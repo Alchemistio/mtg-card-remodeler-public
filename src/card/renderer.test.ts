@@ -40,6 +40,13 @@ describe("renderCardSvg", () => {
     expect(svg).toContain('x1="375"');
   });
 
+  it("renders Saga chapter badges", () => {
+    const saga = { ...fixture, layout: "saga", oracleText: "I — Créez un jeton.\nII — Piochez une carte." };
+    const svg = renderCardSvg(saga);
+    expect(svg).toContain('cx="75"');
+    expect(svg).toContain("II");
+  });
+
   it("shows defense for battle cards", () => {
     const battle = { ...fixture, power: undefined, toughness: undefined, defense: "5", layout: "battle" };
     expect(renderCardSvg(battle)).toContain("DEF 5");
