@@ -1,10 +1,6 @@
 # MTG Card Remodeller
 
-Application indépendante de reconstruction et de personnalisation de cartes Magic: The Gathering.
-
-## État du projet
-
-**MVP — fondations en cours.** Cette première version propose une recherche de cartes françaises via Scryfall, un modèle interne normalisé, un aperçu SVG expérimental et un export SVG.
+Atelier indépendant de reconstruction et de personnalisation de cartes Magic: The Gathering.
 
 ## Démarrage
 
@@ -15,43 +11,67 @@ npm install
 npm run dev
 ```
 
-Pour vérifier le projet :
+Contrôles :
 
 ```bash
 npm test
 npm run build
 ```
 
-## Fonctionnalités présentes
+## Fonctionnalités actuellement implémentées
 
-- Recherche Scryfall avec préférence pour les impressions françaises.
-- Normalisation des données distantes vers un modèle interne validé avec Zod.
-- Tokenisation des symboles de règles (par exemple `{T}`, `{W}`, `{2}`) et des retours à la ligne.
-- Premier rendu SVG de carte au format de travail 750 × 1050 px.
-- Export du rendu en SVG.
+- Recherche de cartes via l'API Scryfall, avec filtre français par défaut.
+- Normalisation des cartes dans un modèle interne validé par Zod.
+- Conservation des données multi-faces Scryfall (recto/verso).
+- Interface responsive en français.
+- Aperçu vectoriel SVG au format 750 × 1050.
+- Ajustement automatique de la taille de police et retour à la ligne en fonction de la zone disponible.
+- Diagnostic visuel lorsque le texte ne peut toujours pas tenir à la taille minimale.
+- Bibliothèque locale basée sur IndexedDB (avec repli localStorage).
+- Export SVG, PNG haute définition (3×) et PDF au format physique 63,5 × 88,9 mm.
+- Tests unitaires du modèle, du moteur typographique, du tokeniseur, des layouts et du rendu SVG.
+- Workflow GitHub Actions pour les tests et la compilation.
 
-## Architecture actuelle
+## Architecture
 
 ```text
 src/
   card/
-    model.ts       # Modèle interne et validation Scryfall
-    scryfall.ts    # Client API
-    symbols.ts     # Analyse des symboles de règles
-    renderer.ts    # Premier rendu SVG
-  App.tsx          # Interface MVP
-  main.tsx         # Point d'entrée
-  styles.css       # Thème de l'atelier
+    model.ts             # Modèle interne et normalisation Scryfall
+    scryfall.ts          # Client API et recherche française
+    symbols.ts           # Tokenisation des symboles de règles
+    typography.ts        # Mesure, retour à la ligne et ajustement du texte
+    layouts.ts           # Registre des familles de layouts
+    renderer.ts          # Génération SVG
+    library.ts           # Persistance locale IndexedDB
+  export/
+    cardExport.ts        # Exports SVG indirects, PNG et PDF
+  App.tsx                # Interface de l'atelier
+  styles.css             # Thème responsive
+docs/
+  ARCHITECTURE.md
+  EXPORTS.md
+  ROADMAP.md
 ```
+
+## Limites connues
+
+- Le rendu actuel est une base graphique originale et expérimentale, pas une reproduction exacte des cadres officiels.
+- Les styles Saga, Aventure, planeswalker et les autres familles nécessitent encore leurs compositions spécifiques.
+- Les symboles de règles sont reconnus mais leur rendu vectoriel dédié doit être finalisé.
+- L'export PDF actuel ne comporte pas encore de fond perdu ni de traits de coupe.
+- L'export d'illustrations distantes dépend des autorisations CORS de leur serveur.
+- IndexedDB est utilisé dans le prototype web ; SQLite sera intégré dans la version desktop Tauri.
+- Les assets graphiques finaux (cadres, textures, polices, glyphes) devront être intégrés dans le respect des droits applicables.
 
 ## Feuille de route
 
-Voir [docs/ROADMAP.md](docs/ROADMAP.md) pour les étapes détaillées.
+Voir [docs/ROADMAP.md](docs/ROADMAP.md).
 
-## Sources et propriété intellectuelle
+## Propriété intellectuelle
 
-Les données de cartes sont récupérées depuis l'API Scryfall. Les illustrations et marques Magic: The Gathering restent la propriété de leurs ayants droit. Ce projet est indépendant et n'est ni affilié à ni approuvé par Wizards of the Coast. Respecter les conditions d'utilisation de Scryfall et les politiques applicables aux contenus de fans.
+Les données de cartes sont récupérées depuis Scryfall. Les illustrations, noms et marques Magic: The Gathering restent la propriété de leurs ayants droit. Ce projet est indépendant et n'est ni affilié à ni approuvé par Wizards of the Coast. Respecter les conditions d'utilisation de Scryfall et les politiques applicables aux contenus de fans.
 
 ## Licence
 
-Aucune licence de redistribution du code n'est définie à ce stade. Ajouter une licence explicite avant toute réutilisation externe.
+Aucune licence de redistribution du code n'est définie à ce stade. Une licence explicite devra être ajoutée avant toute réutilisation externe.
