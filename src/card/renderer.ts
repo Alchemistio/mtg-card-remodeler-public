@@ -1,6 +1,7 @@
 import type { Card } from "./model";
 import { tokenizeRulesText } from "./symbols";
 import { createCanvasTextMeasure, fitText } from "./typography";
+import { layoutRulesText, manaColor, renderRulesLayoutSvg } from "./rulesLayout";
 import { getFramePreset, getFramePresetById } from "../assets/framePresets";
 import type { CardOverrides } from "./customization";
 import { getLayoutDefinition } from "./layouts";
@@ -13,8 +14,7 @@ function manaPips(cost: string, startX = 670, y = 75): string {
   const symbols = cost.match(/\{[^}]+\}/g) ?? [];
   return symbols.map((symbol, index) => {
     const value = symbol.slice(1, -1);
-    const color: Record<string, string> = { W: "#f4e8c8", U: "#5b9bd5", B: "#44404a", R: "#d65b45", G: "#5b9563" };
-    const fill = color[value] ?? "#c5c1b8";
+    const fill = manaColor(value);
     const cx = startX - (symbols.length - index - 1) * 34;
     const fontSize = value.length > 2 ? 10 : 13;
     return `<circle cx="${cx}" cy="${y}" r="14" fill="${fill}" stroke="#24211d" stroke-width="2"/><text x="${cx}" y="${y + 4}" text-anchor="middle" font-size="${fontSize}" font-weight="700" fill="#171717">${escapeXml(value)}</text>`;
@@ -42,19 +42,28 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
   const frame = (overrides.framePreset ? getFramePresetById(overrides.framePreset) : undefined) ?? getFramePreset(card.colors);
   const layout = getLayoutDefinition(card.layout);
   const color = frame.background;
-  const rules = fitText(rulesLines(oracleText), {
-    width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
-    fontFamily: overrides.fontFamily ?? "Georgia,serif", lineHeightRatio: overrides.lineHeight ?? 1.18,
-    paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
-  });
-  const rulesSvg = rules.lines.map((line, index) => {
-    const chapter = layout.rulesPanel === "saga" ? line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/) : null;
-    const y = 715 + index * rules.lineHeight;
-    if (chapter) {
-      return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(overrides.fontFamily ?? "Georgia,serif")}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
-    }
-    return `<text x="75" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
-  }).join("");
+  const fontFamily = overrides.fontFamily ?? "Georgia,serif";
+  const rules = layout.rulesPanel === "saga"
+    ? fitText(rulesLines(oracleText), {
+        width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+        fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
+        paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
+      })
+    : layoutRulesText(oracleText, {
+        width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+        fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
+        measure: createCanvasTextMeasure()
+      });
+  const rulesSvg = layout.rulesPanel === "saga"
+    ? rules.lines.map((line, index) => {
+        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\\s*[—-]\\s*(.*)$/);
+        const y = 715 + index * rules.lineHeight;
+        if (chapter) {
+          return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
+        }
+        return `<text x="75" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
+      }).join("")
+    : renderRulesLayoutSvg(rules, 75, 715, fontFamily);
   const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : "";
   const stats = statsText
     ? `<rect x="585" y="950" width="110" height="58" rx="12" fill="#eee5d3" stroke="#332d25" stroke-width="4"/><text x="640" y="990" text-anchor="middle" font-size="30" font-weight="bold" fill="#201d19">${escapeXml(statsText)}</text>`
