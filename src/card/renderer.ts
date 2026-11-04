@@ -56,7 +56,7 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
       });
   const rulesSvg = layout.rulesPanel === "saga"
     ? rules.lines.map((line, index) => {
-        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\\s*[—-]\\s*(.*)$/);
+        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/);
         const y = 715 + index * rules.lineHeight;
         if (chapter) {
           return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
