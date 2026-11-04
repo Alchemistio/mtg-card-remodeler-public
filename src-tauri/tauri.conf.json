@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MTG Card Remodeller",
+  "version": "0.2.0",
+  "identifier": "com.alchemistio.mtgcardremodeller",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "MTG Card Remodeller",
+        "width": 1440,
+        "height": 960,
+        "minWidth": 900,
+        "minHeight": 680,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost https://cards.scryfall.io data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src ipc: http://ipc.localhost https://api.scryfall.com https://cards.scryfall.io"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all"
+  }
+}
