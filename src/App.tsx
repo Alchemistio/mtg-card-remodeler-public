@@ -126,7 +126,7 @@ export default function App() {
         </div>
         <div className="results-heading saved-heading"><span><Bookmark size={12}/> BIBLIOTHÈQUE LOCALE</span><span>{savedCards.length}</span></div>
         <div className="results-list saved-list">
-          {savedCards.map(card => <button className={selected.id === card.id ? "result selected" : "result"} key={card.id} onClick={() => setSelected(card)}>
+          {savedCards.map(card => <button className={selected.id === card.id ? "result selected" : "result"} key={card.id} onClick={() => selectCard(card)}>
             <span className="result-thumb">{card.imageUrl ? <img src={card.imageUrl} alt=""/> : <ImageIcon size={18}/>}</span>
             <span><b>{card.name}</b><small>{card.set.toUpperCase()} · {card.collectorNumber}</small></span>
           </button>)}
