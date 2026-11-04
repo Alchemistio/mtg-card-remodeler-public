@@ -148,7 +148,7 @@ export default function App() {
         <div className="editor-heading">
           <div><div className="eyebrow">ESPACE DE TRAVAIL</div><h2>Aperçu de la carte</h2></div>
           <div className="toolbar">
-            {selected.faces && selected.faces.length > 1 && <button className="tool-button" onClick={() => setFaceIndex(index => (index + 1) % selected.faces!.length)}><FlipHorizontal size={15}/> Face {faceIndex + 1}/{selected.faces.length}</button>}
+            {selected.layout !== "split" && selected.faces && selected.faces.length > 1 && <button className="tool-button" onClick={() => setFaceIndex(index => (index + 1) % selected.faces!.length)}><FlipHorizontal size={15}/> Face {faceIndex + 1}/{selected.faces.length}</button>}
             <button className="tool-button" onClick={saveSelected}><Save size={15}/> Enregistrer</button>
           </div>
         </div>
