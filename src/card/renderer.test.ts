@@ -26,4 +26,23 @@ describe("renderCardSvg", () => {
     expect(renderCardSvg(doubleFaced, 1)).toContain("Face arrière");
     expect(renderCardSvg(doubleFaced, 1)).toContain("Arrière");
   });
+  it("renders split card faces side by side", () => {
+    const split = {
+      ...fixture, layout: "split",
+      faces: [
+        { name: "Feu", manaCost: "{1}{R}", typeLine: "Éphémère", oracleText: "Infligez 2 blessures." },
+        { name: "Glace", manaCost: "{1}{U}", typeLine: "Éphémère", oracleText: "Engagez une cible." }
+      ]
+    };
+    const svg = renderCardSvg(split);
+    expect(svg).toContain("Feu");
+    expect(svg).toContain("Glace");
+    expect(svg).toContain('x1="375"');
+  });
+
+  it("shows defense for battle cards", () => {
+    const battle = { ...fixture, power: undefined, toughness: undefined, defense: "5", layout: "battle" };
+    expect(renderCardSvg(battle)).toContain("DEF 5");
+  });
+
 });
