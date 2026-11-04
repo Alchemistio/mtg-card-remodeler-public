@@ -26,4 +26,35 @@ describe("renderCardSvg", () => {
     expect(renderCardSvg(doubleFaced, 1)).toContain("Face arrière");
     expect(renderCardSvg(doubleFaced, 1)).toContain("Arrière");
   });
+  it("renders split card faces side by side", () => {
+    const split = {
+      ...fixture, layout: "split",
+      faces: [
+        { name: "Feu", manaCost: "{1}{R}", typeLine: "Éphémère", oracleText: "Infligez 2 blessures." },
+        { name: "Glace", manaCost: "{1}{U}", typeLine: "Éphémère", oracleText: "Engagez une cible." }
+      ]
+    };
+    const svg = renderCardSvg(split);
+    expect(svg).toContain("Feu");
+    expect(svg).toContain("Glace");
+    expect(svg).toContain('x1="375"');
+  });
+
+  it("renders Saga chapter badges", () => {
+    const saga = { ...fixture, layout: "saga", oracleText: "I — Créez un jeton.\nII — Piochez une carte." };
+    const svg = renderCardSvg(saga);
+    expect(svg).toContain('cx="75"');
+    expect(svg).toContain("II");
+  });
+
+  it("uses an adventure-specific rules panel", () => {
+    const adventure = { ...fixture, layout: "adventure" };
+    expect(renderCardSvg(adventure)).toContain(">AVENTURE</text>");
+  });
+
+  it("shows defense for battle cards", () => {
+    const battle = { ...fixture, power: undefined, toughness: undefined, defense: "5", layout: "battle" };
+    expect(renderCardSvg(battle)).toContain("DEF 5");
+  });
+
 });

@@ -1,6 +1,7 @@
 import type { Card } from "./model";
 import { tokenizeRulesText } from "./symbols";
 import { createCanvasTextMeasure, fitText } from "./typography";
+import { layoutRulesText, manaColor, renderRulesLayoutSvg } from "./rulesLayout";
 import { getFramePreset, getFramePresetById } from "../assets/framePresets";
 import type { CardOverrides } from "./customization";
 import { getLayoutDefinition } from "./layouts";
@@ -13,8 +14,7 @@ function manaPips(cost: string, startX = 670, y = 75): string {
   const symbols = cost.match(/\{[^}]+\}/g) ?? [];
   return symbols.map((symbol, index) => {
     const value = symbol.slice(1, -1);
-    const color: Record<string, string> = { W: "#f4e8c8", U: "#5b9bd5", B: "#44404a", R: "#d65b45", G: "#5b9563" };
-    const fill = color[value] ?? "#c5c1b8";
+    const fill = manaColor(value);
     const cx = startX - (symbols.length - index - 1) * 34;
     const fontSize = value.length > 2 ? 10 : 13;
     return `<circle cx="${cx}" cy="${y}" r="14" fill="${fill}" stroke="#24211d" stroke-width="2"/><text x="${cx}" y="${y + 4}" text-anchor="middle" font-size="${fontSize}" font-weight="700" fill="#171717">${escapeXml(value)}</text>`;
@@ -30,7 +30,7 @@ function rulesLines(text: string): string {
 }
 
 export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverrides = {}): string {
-  const face = card.faces?.[faceIndex];
+  const face = card.layout === "split" ? undefined : card.faces?.[faceIndex];
   const name = face?.name ?? card.name;
   const manaCost = face?.manaCost ?? card.manaCost;
   const typeLine = face?.typeLine ?? card.typeLine;
@@ -38,31 +38,62 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
   const power = face?.power ?? card.power;
   const toughness = face?.toughness ?? card.toughness;
   const loyalty = face?.loyalty ?? card.loyalty;
+  const defense = face?.defense ?? card.defense;
   const imageUrl = face?.imageUrl ?? card.imageUrl;
   const frame = (overrides.framePreset ? getFramePresetById(overrides.framePreset) : undefined) ?? getFramePreset(card.colors);
   const layout = getLayoutDefinition(card.layout);
   const color = frame.background;
-  const rules = fitText(rulesLines(oracleText), {
-    width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
-    fontFamily: overrides.fontFamily ?? "Georgia,serif", lineHeightRatio: overrides.lineHeight ?? 1.18,
-    paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
-  });
-  const rulesSvg = rules.lines.map((line, index) => {
-    const chapter = layout.rulesPanel === "saga" ? line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/) : null;
-    const y = 715 + index * rules.lineHeight;
-    if (chapter) {
-      return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(overrides.fontFamily ?? "Georgia,serif")}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
-    }
-    return `<text x="75" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
-  }).join("");
-  const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : "";
+  const fontFamily = overrides.fontFamily ?? "Georgia,serif";
+  const sagaRules = layout.rulesPanel === "saga"
+    ? fitText(rulesLines(oracleText), {
+        width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+        fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
+        paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
+      })
+    : null;
+  const standardRules = layout.rulesPanel !== "saga"
+    ? layoutRulesText(oracleText, {
+        width: 590, height: layout.rulesPanel === "adventure" ? 225 : 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+        fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
+        measure: createCanvasTextMeasure()
+      })
+    : null;
+  const rulesSvg = sagaRules
+    ? sagaRules.lines.map((line, index) => {
+        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/);
+        const y = 715 + index * sagaRules.lineHeight;
+        if (chapter) {
+          return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${sagaRules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
+        }
+        return `<text x="75" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${sagaRules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
+      }).join("")
+    : renderRulesLayoutSvg(standardRules!, 75, layout.rulesPanel === "adventure" ? 750 : 715, fontFamily);
+  const splitFaces = layout.rulesPanel === "split" && card.faces?.length === 2 ? card.faces : null;
+  const splitLayouts = splitFaces?.map(splitFace => layoutRulesText(splitFace.oracleText, {
+    width: 275, height: 205, maxFontSize: 17, minFontSize: 10, fontFamily,
+    lineHeightRatio: overrides.lineHeight ?? 1.15, measure: createCanvasTextMeasure()
+  })) ?? [];
+  const adventureLabel = layout.rulesPanel === "adventure"
+    ? '<rect x="64" y="704" width="145" height="28" rx="7" fill="#b58d4f" stroke="#51412b" stroke-width="1.5"/><text x="136" y="723" text-anchor="middle" font-size="13" font-weight="bold" fill="#201d19">AVENTURE</text>'
+    : "";
+  const finalRulesSvg = splitFaces
+    ? '<line x1="375" y1="706" x2="375" y2="977" stroke="#8d806a" stroke-width="2"/>' +
+      '<text x="68" y="735" font-size="18" font-weight="bold" fill="#201d19">' + escapeXml(splitFaces[0].name) + '</text>' +
+      '<text x="392" y="735" font-size="18" font-weight="bold" fill="#201d19">' + escapeXml(splitFaces[1].name) + '</text>' +
+      manaPips(splitFaces[0].manaCost, 330, 730) + manaPips(splitFaces[1].manaCost, 690, 730) +
+      renderRulesLayoutSvg(splitLayouts[0], 68, 765, fontFamily) +
+      renderRulesLayoutSvg(splitLayouts[1], 392, 765, fontFamily)
+    : adventureLabel + rulesSvg;
+  const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : defense ? `DEF ${defense}` : "";
   const stats = statsText
     ? `<rect x="585" y="950" width="110" height="58" rx="12" fill="#eee5d3" stroke="#332d25" stroke-width="4"/><text x="640" y="990" text-anchor="middle" font-size="30" font-weight="bold" fill="#201d19">${escapeXml(statsText)}</text>`
     : loyalty
       ? `<circle cx="640" cy="978" r="35" fill="#e7d9b7" stroke="#453a2c" stroke-width="5"/><text x="640" y="989" text-anchor="middle" font-size="27" font-weight="bold" fill="#201d19">${escapeXml(loyalty)}</text>`
       : "";
-  const overflow = rules.overflow
-    ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rules.overflowLines} ligne(s) hors zone)</text>`
+  const rulesOverflow = splitFaces ? splitLayouts.some(item => item.overflow) : sagaRules?.overflow ?? standardRules?.overflow ?? false;
+  const rulesOverflowLines = splitFaces ? splitLayouts.reduce((sum, item) => sum + item.overflowLines, 0) : sagaRules?.overflowLines ?? standardRules?.overflowLines ?? 0;
+  const overflow = rulesOverflow
+    ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rulesOverflowLines} ligne(s) hors zone)</text>`
     : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050">
     <defs><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f3ead8"/><stop offset="1" stop-color="#cfc2a9"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-opacity=".45"/></filter></defs>
@@ -76,7 +107,7 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
     <rect x="48" y="632" width="654" height="50" rx="9" fill="${frame.title}" stroke="${frame.border}" stroke-width="3"/>
     <text x="64" y="665" font-family="Georgia,serif" font-size="23" font-weight="bold" fill="#211d19">${escapeXml(typeLine)}</text>
     <rect x="48" y="690" width="654" height="302" rx="10" fill="${frame.rules}" stroke="${frame.border}" stroke-width="3"/>
-    ${rulesSvg}
+    ${finalRulesSvg}
     ${overflow}
     ${stats}
   </svg>`;

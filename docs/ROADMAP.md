@@ -16,8 +16,9 @@
 - [ ] Valider la CI après les dernières intégrations et corriger les défauts restants.
 
 ## Phase 2 — Fidélité des cartes
-- [ ] Rendu des symboles de mana et d'activation avec glyphes vectoriels.
-- [ ] Layouts dédiés : Aventure, Saga, planeswalker, split, transform, modal DFC, bataille et classe.
+- [x] Rendu inline des symboles de mana et d'activation sous forme de glyphes vectoriels provisoires.
+- [x] Compositions initiales pour Saga, split, planeswalker, recto-verso et bataille.
+- [ ] Layouts complets Aventure, classe, prototype et modal DFC.
 - [ ] Rendu des coûts alternatifs, rappels, marqueurs et capacités structurées.
 - [ ] Gestion des polices locales et de métriques typographiques reproductibles.
 - [ ] Corpus visuel de référence et tests de régression par famille de cartes.
