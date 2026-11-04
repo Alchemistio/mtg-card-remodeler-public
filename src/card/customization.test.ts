@@ -4,7 +4,7 @@ import type { Card } from "./model";
 
 const card: Card = {
   id: "base", name: "Nom source", manaCost: "{1}{G}", cmc: 2, typeLine: "Créature",
-  oracleText: "Texte source", colors: ["G"], colorIdentity: ["G"], rarity: "common",
+  oracleText: "Texte source", colors: ["G"], colorIdentity: ["G"], keywords: [], rarity: "common",
   set: "tst", collectorNumber: "1", language: "fr", layout: "normal", source: "scryfall",
   rawData: { name: "Nom source", original: true }
 };
