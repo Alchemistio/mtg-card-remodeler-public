@@ -4,6 +4,8 @@ import {
   Save, FileImage, FileText, FlipHorizontal, Bookmark
 } from "lucide-react";
 import type { Card } from "./card/model";
+import type { CardOverrides } from "./card/customization";
+import { applyCardOverrides } from "./card/customization";
 import { searchCards } from "./card/scryfall";
 import { renderCardSvg } from "./card/renderer";
 import { exportCardPdf, exportCardPng } from "./export/cardExport";
@@ -21,18 +23,20 @@ export default function App() {
   const [results, setResults] = useState<Card[]>([]);
   const [savedCards, setSavedCards] = useState<Card[]>([]);
   const [selected, setSelected] = useState<Card>(DEMO);
+  const [overrides, setOverrides] = useState<CardOverrides>({});
   const [faceIndex, setFaceIndex] = useState(0);
   const [busy, setBusy] = useState(false);
   const [exportBusy, setExportBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const svg = useMemo(() => renderCardSvg(selected, faceIndex), [selected, faceIndex]);
+  const displayCard = useMemo(() => applyCardOverrides(selected, overrides), [selected, overrides]);
+  const svg = useMemo(() => renderCardSvg(displayCard, faceIndex, overrides), [displayCard, faceIndex, overrides]);
 
   useEffect(() => {
     listSavedCards().then(setSavedCards).catch(() => setSavedCards([]));
   }, []);
 
-  useEffect(() => { setFaceIndex(0); }, [selected.id]);
+  useEffect(() => { setFaceIndex(0); setOverrides({}); }, [selected.id]);
 
   async function search(event: React.FormEvent) {
     event.preventDefault();
@@ -51,17 +55,15 @@ export default function App() {
     const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = url;
-    link.download = `${safeName(selected.name)}.svg`;
-    link.click();
-    URL.revokeObjectURL(url);
+    link.href = url; link.download = `${safeName(displayCard.name)}.svg`;
+    link.click(); URL.revokeObjectURL(url);
   }
 
   async function saveSelected() {
     try {
-      await saveCard(selected);
+      await saveCard(displayCard);
       setSavedCards(await listSavedCards());
-      setNotice("Carte enregistrée dans la bibliothèque locale.");
+      setNotice("Version personnalisée enregistrée dans la bibliothèque locale.");
     } catch {
       setError("Impossible d'enregistrer cette carte dans le stockage local.");
     }
@@ -70,13 +72,16 @@ export default function App() {
   async function runExport(kind: "png" | "pdf") {
     setExportBusy(true); setError(""); setNotice("");
     try {
-      if (kind === "png") await exportCardPng(selected, 3);
-      else await exportCardPdf(selected);
+      if (kind === "png") await exportCardPng(displayCard, 3);
+      else await exportCardPdf(displayCard);
       setNotice(kind === "png" ? "Export PNG haute définition terminé." : "Export PDF terminé.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "L'export a échoué.");
     } finally { setExportBusy(false); }
   }
+
+  const setOverride = <K extends keyof CardOverrides>(key: K, value: CardOverrides[K]) =>
+    setOverrides(current => ({ ...current, [key]: value }));
 
   return <main className="app-shell">
     <header className="topbar">
@@ -124,16 +129,33 @@ export default function App() {
         </div>
         <div className="preview-stage">
           <div className="card-preview" dangerouslySetInnerHTML={{ __html: svg }}/>
-          <div className="preview-caption"><span>{selected.faces?.[faceIndex]?.name ?? selected.name}</span><span>Format de travail · 750 × 1050</span></div>
+          <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>Format de travail · 750 × 1050</span></div>
         </div>
+        <section className="card-edit-panel">
+          <div className="eyebrow">PERSONNALISATION</div>
+          <div className="edit-grid">
+            <label>Nom<input value={overrides.name ?? selected.name} onChange={event => setOverride("name", event.target.value)}/></label>
+            <label>Type<input value={overrides.typeLine ?? selected.typeLine} onChange={event => setOverride("typeLine", event.target.value)}/></label>
+            <label>Force<input value={overrides.power ?? selected.power ?? ""} onChange={event => setOverride("power", event.target.value)}/></label>
+            <label>Endurance<input value={overrides.toughness ?? selected.toughness ?? ""} onChange={event => setOverride("toughness", event.target.value)}/></label>
+            <label className="wide">Texte de règles<textarea rows={5} value={overrides.oracleText ?? selected.oracleText} onChange={event => setOverride("oracleText", event.target.value)}/></label>
+            <label>Cadre
+              <select value={overrides.framePreset ?? "auto"} onChange={event => setOverride("framePreset", event.target.value === "auto" ? undefined : event.target.value)}>
+                <option value="auto">Automatique</option><option value="white">Blanc</option><option value="blue">Bleu</option><option value="black">Noir</option><option value="red">Rouge</option><option value="green">Vert</option><option value="colorless">Incolore</option><option value="multicolor">Multicolore</option>
+              </select>
+            </label>
+            <label>Police (px)<input type="number" min="11" max="30" value={overrides.fontSize ?? 22} onChange={event => setOverride("fontSize", Number(event.target.value))}/></label>
+          </div>
+          <button className="reset-button" onClick={() => setOverrides({})}>Réinitialiser les personnalisations</button>
+        </section>
         <div className="export-toolbar">
           <button className="export-button" onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression</button>
         </div>
         <div className="inspector">
-          <div><span className="eyebrow">CARTE SÉLECTIONNÉE</span><strong>{selected.name}</strong><small>{selected.typeLine || "Type non renseigné"}</small></div>
-          <div className="inspector-meta"><span>Langue <b>{selected.language.toUpperCase()}</b></span><span>Rareté <b>{selected.rarity || "—"}</b></span><span>Extension <b>{selected.set.toUpperCase() || "—"}</b></span></div>
+          <div><span className="eyebrow">CARTE SÉLECTIONNÉE</span><strong>{displayCard.name}</strong><small>{displayCard.typeLine || "Type non renseigné"}</small></div>
+          <div className="inspector-meta"><span>Langue <b>{displayCard.language.toUpperCase()}</b></span><span>Rareté <b>{displayCard.rarity || "—"}</b></span><span>Extension <b>{displayCard.set.toUpperCase() || "—"}</b></span></div>
         </div>
       </section>
     </section>
