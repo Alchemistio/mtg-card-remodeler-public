@@ -8,7 +8,7 @@ import type { CardOverrides } from "./card/customization";
 import { applyCardOverrides, createCardProject, type CardProject } from "./card/customization";
 import { searchCards } from "./card/scryfall";
 import { renderCardSvg } from "./card/renderer";
-import { exportCardPdf, exportCardPng } from "./export/cardExport";
+import { exportCardPdf, exportCardPng, exportCardSvg } from "./export/cardExport";
 import { listProjects, listSavedCards, saveCard, saveProject } from "./card/library";
 
 const DEMO: Card = {
@@ -64,12 +64,14 @@ export default function App() {
     } finally { setBusy(false); }
   }
 
-  function exportSvg() {
-    const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url; link.download = `${safeName(displayCard.name)}.svg`;
-    link.click(); URL.revokeObjectURL(url);
+  async function exportSvg() {
+    setExportBusy(true); setError(""); setNotice("");
+    try {
+      await exportCardSvg(displayCard, faceIndex, overrides);
+      setNotice("Export SVG autonome terminé.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "L'export SVG a échoué.");
+    } finally { setExportBusy(false); }
   }
 
   async function saveSelected() {
@@ -87,8 +89,8 @@ export default function App() {
   async function runExport(kind: "png" | "pdf") {
     setExportBusy(true); setError(""); setNotice("");
     try {
-      if (kind === "png") await exportCardPng(displayCard, 3);
-      else await exportCardPdf(displayCard);
+      if (kind === "png") await exportCardPng(displayCard, 3, faceIndex, overrides);
+      else await exportCardPdf(displayCard, faceIndex, overrides);
       setNotice(kind === "png" ? "Export PNG haute définition terminé." : "Export PDF terminé.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "L'export a échoué.");
@@ -172,7 +174,7 @@ export default function App() {
           <button className="reset-button" onClick={() => setOverrides({})}>Réinitialiser les personnalisations</button>
         </section>
         <div className="export-toolbar">
-          <button className="export-button" onClick={exportSvg}><Download size={16}/> SVG</button>
+          <button className="export-button" disabled={exportBusy} onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression</button>
         </div>
