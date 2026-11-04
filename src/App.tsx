@@ -176,7 +176,7 @@ export default function App() {
         <div className="export-toolbar">
           <button className="export-button" disabled={exportBusy} onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
-          <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression</button>
+          <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression · fond perdu 3 mm</button>
         </div>
         <div className="inspector">
           <div><span className="eyebrow">CARTE SÉLECTIONNÉE</span><strong>{displayCard.name}</strong><small>{displayCard.typeLine || "Type non renseigné"}</small></div>
