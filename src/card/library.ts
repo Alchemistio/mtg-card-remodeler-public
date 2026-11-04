@@ -1,8 +1,11 @@
 import { CardSchema, type Card } from "./model";
+import { CardProjectSchema, type CardProject } from "./customization";
 
 const DB_NAME = "mtg-card-remodeller";
 const STORE = "cards";
+const PROJECT_STORE = "projects";
 const FALLBACK_KEY = "mtg-card-remodeller:cards";
+const PROJECT_FALLBACK_KEY = "mtg-card-remodeller:projects";
 const TAURI_DATABASE = "sqlite:cards.db";
 
 type TauriSqlDatabase = {
@@ -29,21 +32,26 @@ async function getTauriDatabase(): Promise<TauriSqlDatabase | null> {
 function openDatabase(): Promise<IDBDatabase | null> {
   if (typeof indexedDB === "undefined") return Promise.resolve(null);
   return new Promise(resolve => {
-    const request = indexedDB.open(DB_NAME, 1);
+    const request = indexedDB.open(DB_NAME, 2);
     request.onupgradeneeded = () => {
       const db = request.result;
       if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: "id" });
+      if (!db.objectStoreNames.contains(PROJECT_STORE)) db.createObjectStore(PROJECT_STORE, { keyPath: "id" });
     };
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => resolve(null);
   });
 }
 
-function readFallback(): Card[] {
+function readFallback<T>(key: string, parse: (value: unknown) => T): T[] {
   try {
-    const raw = localStorage.getItem(FALLBACK_KEY);
-    return raw ? (JSON.parse(raw) as unknown[]).map(item => CardSchema.parse(item)) : [];
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as unknown[]).map(parse) : [];
   } catch { return []; }
+}
+
+function writeFallback<T>(key: string, values: T[]): void {
+  localStorage.setItem(key, JSON.stringify(values));
 }
 
 export async function listSavedCards(): Promise<Card[]> {
@@ -53,11 +61,11 @@ export async function listSavedCards(): Promise<Card[]> {
     return rows.map(row => CardSchema.parse(JSON.parse(row.payload)));
   }
   const db = await openDatabase();
-  if (!db) return readFallback();
+  if (!db) return readFallback(FALLBACK_KEY, item => CardSchema.parse(item));
   return new Promise(resolve => {
     const request = db.transaction(STORE, "readonly").objectStore(STORE).getAll();
     request.onsuccess = () => resolve((request.result as unknown[]).map(item => CardSchema.parse(item)));
-    request.onerror = () => resolve(readFallback());
+    request.onerror = () => resolve(readFallback(FALLBACK_KEY, item => CardSchema.parse(item)));
   });
 }
 
@@ -73,13 +81,52 @@ export async function saveCard(card: Card): Promise<void> {
   }
   const db = await openDatabase();
   if (!db) {
-    const cards = readFallback().filter(item => item.id !== valid.id);
-    localStorage.setItem(FALLBACK_KEY, JSON.stringify([...cards, valid]));
+    const cards = readFallback(FALLBACK_KEY, item => CardSchema.parse(item)).filter(item => item.id !== valid.id);
+    writeFallback(FALLBACK_KEY, [...cards, valid]);
     return;
   }
   await new Promise<void>((resolve, reject) => {
     const transaction = db.transaction(STORE, "readwrite");
     transaction.objectStore(STORE).put(valid);
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+}
+
+export async function listProjects(): Promise<CardProject[]> {
+  const sql = await getTauriDatabase();
+  if (sql) {
+    const rows = await sql.select<Array<{ payload: string }>>("SELECT payload FROM projects ORDER BY updated_at DESC");
+    return rows.map(row => CardProjectSchema.parse(JSON.parse(row.payload)));
+  }
+  const db = await openDatabase();
+  if (!db) return readFallback(PROJECT_FALLBACK_KEY, item => CardProjectSchema.parse(item));
+  return new Promise(resolve => {
+    const request = db.transaction(PROJECT_STORE, "readonly").objectStore(PROJECT_STORE).getAll();
+    request.onsuccess = () => resolve((request.result as unknown[]).map(item => CardProjectSchema.parse(item)));
+    request.onerror = () => resolve(readFallback(PROJECT_FALLBACK_KEY, item => CardProjectSchema.parse(item)));
+  });
+}
+
+export async function saveProject(project: CardProject): Promise<void> {
+  const valid = CardProjectSchema.parse(project);
+  const sql = await getTauriDatabase();
+  if (sql) {
+    await sql.execute(
+      "INSERT INTO projects (id, source_card_id, payload, updated_at) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) ON CONFLICT(id) DO UPDATE SET source_card_id = excluded.source_card_id, payload = excluded.payload, updated_at = CURRENT_TIMESTAMP",
+      [valid.id, valid.sourceCardId, JSON.stringify(valid)]
+    );
+    return;
+  }
+  const db = await openDatabase();
+  if (!db) {
+    const projects = readFallback(PROJECT_FALLBACK_KEY, item => CardProjectSchema.parse(item)).filter(item => item.id !== valid.id);
+    writeFallback(PROJECT_FALLBACK_KEY, [...projects, valid]);
+    return;
+  }
+  await new Promise<void>((resolve, reject) => {
+    const transaction = db.transaction(PROJECT_STORE, "readwrite");
+    transaction.objectStore(PROJECT_STORE).put(valid);
     transaction.oncomplete = () => resolve();
     transaction.onerror = () => reject(transaction.error);
   });
@@ -93,7 +140,7 @@ export async function removeSavedCard(id: string): Promise<void> {
   }
   const db = await openDatabase();
   if (!db) {
-    localStorage.setItem(FALLBACK_KEY, JSON.stringify(readFallback().filter(card => card.id !== id)));
+    writeFallback(FALLBACK_KEY, readFallback(FALLBACK_KEY, item => CardSchema.parse(item)).filter(card => card.id !== id));
     return;
   }
   await new Promise<void>((resolve, reject) => {
