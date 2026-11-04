@@ -128,7 +128,7 @@ export function renderRulesLayoutSvg(
       const start = cursor;
       cursor += run.width;
       if (run.kind === "text") {
-        return `<text x="${start}" y="${baseline}" font-family="${fontFamily}" font-size="${layout.fontSize}" fill="#201d19">${escapeXml(run.value)}</text>`;
+        return `<text x="${start}" y="${baseline}" font-family="${escapeXml(fontFamily)}" font-size="${layout.fontSize}" fill="#201d19">${escapeXml(run.value)}</text>`;
       }
       const radius = layout.fontSize * 0.46;
       const cy = baseline - layout.fontSize * 0.36;
