@@ -106,28 +106,34 @@ function createBleedCanvas(source: HTMLCanvasElement, bleedPixels: number): HTML
   return canvas;
 }
 
-function addCropMarks(pdf: jsPDF, trimX: number, trimY: number, trimWidth: number, trimHeight: number, margin: number): void {
+function addCropMarks(
+  pdf: jsPDF, trimX: number, trimY: number, trimWidth: number, trimHeight: number, margin: number, bleed: number
+): void {
   const length = Math.max(2.5, margin - 1);
-  const gap = 0.5;
   const left = trimX;
   const right = trimX + trimWidth;
   const top = trimY;
   const bottom = trimY + trimHeight;
+  const imageLeft = left - bleed;
+  const imageRight = right + bleed;
+  const imageTop = top - bleed;
+  const imageBottom = bottom + bleed;
+  const leftEnd = imageLeft - 0.5;
+  const rightStart = imageRight + 0.5;
+  const topEnd = imageTop - 0.5;
+  const bottomStart = imageBottom + 0.5;
   pdf.setDrawColor(20, 20, 20);
   pdf.setLineWidth(0.15);
 
-  // Top-left
-  pdf.line(left - length - gap, top, left - gap, top);
-  pdf.line(left, top - length - gap, left, top - gap);
-  // Top-right
-  pdf.line(right + gap, top, right + length + gap, top);
-  pdf.line(right, top - length - gap, right, top - gap);
-  // Bottom-left
-  pdf.line(left - length - gap, bottom, left - gap, bottom);
-  pdf.line(left, bottom + gap, left, bottom + length + gap);
-  // Bottom-right
-  pdf.line(right + gap, bottom, right + length + gap, bottom);
-  pdf.line(right, bottom + gap, right, bottom + length + gap);
+  // Marks stay outside the bleed area and align with the trim rectangle.
+  pdf.line(Math.max(0.5, leftEnd - length), top, leftEnd, top);
+  pdf.line(left, Math.max(0.5, topEnd - length), left, topEnd);
+  pdf.line(rightStart, top, rightStart + length, top);
+  pdf.line(right, Math.max(0.5, topEnd - length), right, topEnd);
+  pdf.line(Math.max(0.5, leftEnd - length), bottom, leftEnd, bottom);
+  pdf.line(left, bottomStart, left, bottomStart + length);
+  pdf.line(rightStart, bottom, rightStart + length, bottom);
+  pdf.line(right, bottomStart, right, bottomStart + length);
 }
 
 export async function exportCardPdf(
@@ -157,7 +163,7 @@ export async function exportCardPdf(
   pdf.addImage(data, "PNG", imageX, imageY, imageWidth, imageHeight, undefined, "FAST");
 
   if (cropMarks) {
-    addCropMarks(pdf, imageX + bleedMm, imageY + bleedMm, trimWidth, trimHeight, marginMm);
+    addCropMarks(pdf, imageX + bleedMm, imageY + bleedMm, trimWidth, trimHeight, marginMm, bleedMm);
   }
   pdf.save(`${safeName(card.name)}-print.pdf`);
 }
