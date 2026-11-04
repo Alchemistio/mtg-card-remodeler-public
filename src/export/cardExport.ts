@@ -76,12 +76,88 @@ export async function exportCardPng(card: Card, scale = 3, faceIndex = 0, overri
   URL.revokeObjectURL(url);
 }
 
-export async function exportCardPdf(card: Card, faceIndex = 0, overrides: CardOverrides = {}): Promise<void> {
+export interface PdfExportOptions {
+  bleedMm?: number;
+  cropMarks?: boolean;
+}
+
+function createBleedCanvas(source: HTMLCanvasElement, bleedPixels: number): HTMLCanvasElement {
+  const canvas = document.createElement("canvas");
+  canvas.width = source.width + bleedPixels * 2;
+  canvas.height = source.height + bleedPixels * 2;
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("Canvas indisponible pour le fond perdu.");
+
+  const inset = Math.min(12, Math.floor(Math.min(source.width, source.height) / 20));
+  const width = source.width;
+  const height = source.height;
+  context.drawImage(source, bleedPixels, bleedPixels);
+
+  // Extend the frame edge into the bleed instead of leaving transparent pixels.
+  context.drawImage(source, 0, inset, width, 1, bleedPixels, 0, width, bleedPixels);
+  context.drawImage(source, 0, height - inset - 1, width, 1, bleedPixels, bleedPixels + height, width, bleedPixels);
+  context.drawImage(source, inset, 0, 1, height, 0, bleedPixels, bleedPixels, height);
+  context.drawImage(source, width - inset - 1, 0, 1, height, bleedPixels + width, bleedPixels, bleedPixels, height);
+
+  context.drawImage(source, inset, inset, 1, 1, 0, 0, bleedPixels, bleedPixels);
+  context.drawImage(source, width - inset - 1, inset, 1, 1, bleedPixels + width, 0, bleedPixels, bleedPixels);
+  context.drawImage(source, inset, height - inset - 1, 1, 1, 0, bleedPixels + height, bleedPixels, bleedPixels);
+  context.drawImage(source, width - inset - 1, height - inset - 1, 1, 1, bleedPixels + width, bleedPixels + height, bleedPixels, bleedPixels);
+  return canvas;
+}
+
+function addCropMarks(pdf: jsPDF, trimX: number, trimY: number, trimWidth: number, trimHeight: number, margin: number): void {
+  const length = Math.max(2.5, margin - 1);
+  const gap = 0.5;
+  const left = trimX;
+  const right = trimX + trimWidth;
+  const top = trimY;
+  const bottom = trimY + trimHeight;
+  pdf.setDrawColor(20, 20, 20);
+  pdf.setLineWidth(0.15);
+
+  // Top-left
+  pdf.line(left - length - gap, top, left - gap, top);
+  pdf.line(left, top - length - gap, left, top - gap);
+  // Top-right
+  pdf.line(right + gap, top, right + length + gap, top);
+  pdf.line(right, top - length - gap, right, top - gap);
+  // Bottom-left
+  pdf.line(left - length - gap, bottom, left - gap, bottom);
+  pdf.line(left, bottom + gap, left, bottom + length + gap);
+  // Bottom-right
+  pdf.line(right + gap, bottom, right + length + gap, bottom);
+  pdf.line(right, bottom + gap, right, bottom + length + gap);
+}
+
+export async function exportCardPdf(
+  card: Card, faceIndex = 0, overrides: CardOverrides = {}, options: PdfExportOptions = {}
+): Promise<void> {
+  const bleedMm = Math.max(0, Math.min(5, options.bleedMm ?? 3));
+  const cropMarks = options.cropMarks ?? true;
+  const marginMm = cropMarks ? 5 : 0;
+  const trimWidth = 63.5;
+  const trimHeight = 88.9;
+  const dpi = 900;
+  const bleedPixels = Math.round(bleedMm * dpi / 25.4);
+
   const svg = await makeSvgSelfContained(renderCardSvg(card, faceIndex, overrides));
   const image = await svgToImage(svg);
-  const canvas = canvasFromImage(image, 2250, 3150);
-  const data = canvas.toDataURL("image/png");
-  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [63.5, 88.9], compress: true });
-  pdf.addImage(data, "PNG", 0, 0, 63.5, 88.9, undefined, "FAST");
-  pdf.save(`${safeName(card.name)}.pdf`);
+  const cardCanvas = canvasFromImage(image, 2250, 3150);
+  const printCanvas = bleedPixels > 0 ? createBleedCanvas(cardCanvas, bleedPixels) : cardCanvas;
+  const data = printCanvas.toDataURL("image/png");
+
+  const imageWidth = trimWidth + bleedMm * 2;
+  const imageHeight = trimHeight + bleedMm * 2;
+  const pageWidth = imageWidth + marginMm * 2;
+  const pageHeight = imageHeight + marginMm * 2;
+  const imageX = marginMm;
+  const imageY = marginMm;
+  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pageWidth, pageHeight], compress: true });
+  pdf.addImage(data, "PNG", imageX, imageY, imageWidth, imageHeight, undefined, "FAST");
+
+  if (cropMarks) {
+    addCropMarks(pdf, imageX + bleedMm, imageY + bleedMm, trimWidth, trimHeight, marginMm);
+  }
+  pdf.save(`${safeName(card.name)}-print.pdf`);
 }
