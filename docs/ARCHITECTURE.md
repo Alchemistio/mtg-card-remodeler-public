@@ -15,15 +15,16 @@
 - **Règles** : tokeniseur des symboles entre accolades.
 - **Typographie** : mesure Canvas lorsque disponible, repli déterministe et recherche dichotomique de taille.
 - **Layouts** : registre des familles de cartes et prise en charge des faces.
-- **Rendu** : SVG avec couleurs de cadre provisoires.
+- **Rendu** : SVG avec presets de cadre provisoires.
+- **Assets** : manifeste versionné et validation des chemins de ressources.
+- **Persistance desktop** : SQLite via le plugin SQL Tauri.
 - **Persistance web** : IndexedDB, repli localStorage.
 - **Export** : SVG, PNG 3× et PDF au format physique standard.
 - **Tests** : Vitest.
 
 ## Cibles de l'architecture complète
 - **Application de bureau** : Tauri 2.
-- **Persistance bureau** : SQLite avec migrations ; cache fichier pour images et ressources.
-- **Assets** : manifeste local versionné (cadres, textures, glyphes, polices).
+- **Assets** : cadres, textures, glyphes et polices locales avec licences/attributions.
 - **Export raster/PDF** : profils d'impression, fond perdu, traits de coupe et dimensions explicites.
 - **Tests visuels** : Playwright pour les parcours et les rendus de référence.
 
@@ -33,5 +34,5 @@ Le format standard est 63,5 × 88,9 mm (ratio proche de 5:7). Le canevas de trav
 ## Sécurité et données
 - Les textes provenant de Scryfall sont échappés avant insertion dans le SVG.
 - Les données de cartes ne sont pas exécutées comme du HTML.
-- Le cache local ne contient pas de secrets.
+- Les chemins d'assets sont contrôlés pour refuser les chemins absolus et les segments parent.
 - Les images distantes peuvent être soumises aux restrictions CORS du navigateur.
