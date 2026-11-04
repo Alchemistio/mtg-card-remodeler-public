@@ -9,9 +9,11 @@
 - [x] Produire un premier rendu SVG.
 - [x] Ajouter un ajustement typographique et un diagnostic de débordement.
 - [x] Ajouter une bibliothèque locale IndexedDB avec repli localStorage.
+- [x] Ajouter une persistance SQLite dans l'application Tauri.
 - [x] Ajouter des exports SVG, PNG 3× et PDF au format physique standard.
-- [x] Ajouter des tests unitaires et une CI.
-- [ ] Valider le pipeline de compilation et corriger tous les défauts détectés.
+- [x] Ajouter un shell desktop Tauri 2 et un manifeste d'assets.
+- [x] Ajouter des tests unitaires et une CI web.
+- [ ] Valider la CI après les dernières intégrations et corriger les défauts restants.
 
 ## Phase 2 — Fidélité des cartes
 - [ ] Rendu des symboles de mana et d'activation avec glyphes vectoriels.
@@ -27,9 +29,7 @@
 - [ ] Gestion des projets, favoris, collections et import en lot.
 - [ ] Cache d'images et de données, synchronisation et nettoyage.
 
-## Phase 4 — Bureau et impression
-- [ ] Portage vers Tauri 2.
-- [ ] Base SQLite et migrations.
+## Phase 4 — Export et distribution
 - [ ] Export PDF avec fond perdu, traits de coupe et profils d'impression.
 - [ ] Export PNG à résolution réglable et traitement des images distantes.
 - [ ] Packaging Windows, macOS et Linux.
