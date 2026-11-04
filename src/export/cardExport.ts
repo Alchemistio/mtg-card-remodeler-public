@@ -88,6 +88,8 @@ function createBleedCanvas(source: HTMLCanvasElement, bleedPixels: number): HTML
   const context = canvas.getContext("2d");
   if (!context) throw new Error("Canvas indisponible pour le fond perdu.");
 
+  context.fillStyle = "#25221e";
+  context.fillRect(0, 0, canvas.width, canvas.height);
   const inset = Math.min(12, Math.floor(Math.min(source.width, source.height) / 20));
   const width = source.width;
   const height = source.height;
