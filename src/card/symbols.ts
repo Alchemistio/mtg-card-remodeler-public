@@ -3,7 +3,7 @@ export type RulesToken =
   | { kind: "symbol"; value: string }
   | { kind: "newline"; value: "\n" };
 
-const SYMBOL_PATTERN = /(\\{[^{}]+\\}|\\r?\\n)/g;
+const SYMBOL_PATTERN = /(\{[^{}]+\}|\r?\n)/g;
 
 export function tokenizeRulesText(text: string): RulesToken[] {
   return text.split(SYMBOL_PATTERN).filter(Boolean).map(value => {
