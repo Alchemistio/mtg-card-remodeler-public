@@ -1,0 +1,12 @@
+[package]
+name = "mtg-card-remodeller"
+version = "0.2.0"
+description = "Atelier indépendant de reconstruction de cartes Magic"
+authors = ["Alchemistio"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
