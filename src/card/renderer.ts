@@ -30,7 +30,7 @@ function rulesLines(text: string): string {
 }
 
 export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverrides = {}): string {
-  const face = card.faces?.[faceIndex];
+  const face = card.layout === "split" ? undefined : card.faces?.[faceIndex];
   const name = face?.name ?? card.name;
   const manaCost = face?.manaCost ?? card.manaCost;
   const typeLine = face?.typeLine ?? card.typeLine;
