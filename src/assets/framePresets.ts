@@ -21,3 +21,7 @@ export function getFramePreset(colors: string[]): FramePreset {
   if (colors.length > 1) return FRAME_PRESETS.M;
   return FRAME_PRESETS[colors[0] ?? "C"] ?? FRAME_PRESETS.C;
 }
+
+export function getFramePresetById(id: string): FramePreset | undefined {
+  return Object.values(FRAME_PRESETS).find(preset => preset.id === id);
+}
