@@ -4,4 +4,3 @@ CREATE TABLE IF NOT EXISTS projects (
   payload TEXT NOT NULL,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE INDEX IF NOT EXISTS idx_projects_updated_at ON projects(updated_at);
