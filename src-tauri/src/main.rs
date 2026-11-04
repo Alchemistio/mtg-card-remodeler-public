@@ -3,12 +3,20 @@
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 fn main() {
-    let migrations = vec![Migration {
-        version: 1,
-        description: "create_card_library",
-        sql: "CREATE TABLE IF NOT EXISTS cards (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);",
-        kind: MigrationKind::Up,
-    }];
+    let migrations = vec![
+        Migration {
+            version: 1,
+            description: "create_card_library",
+            sql: "CREATE TABLE IF NOT EXISTS cards (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);",
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 2,
+            description: "create_saved_projects",
+            sql: "CREATE TABLE IF NOT EXISTS projects (id TEXT PRIMARY KEY NOT NULL, source_card_id TEXT NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); CREATE INDEX IF NOT EXISTS idx_projects_updated_at ON projects(updated_at);",
+            kind: MigrationKind::Up,
+        },
+    ];
 
     tauri::Builder::default()
         .plugin(
