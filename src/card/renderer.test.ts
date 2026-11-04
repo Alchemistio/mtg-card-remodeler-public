@@ -47,6 +47,11 @@ describe("renderCardSvg", () => {
     expect(svg).toContain("II");
   });
 
+  it("uses an adventure-specific rules panel", () => {
+    const adventure = { ...fixture, layout: "adventure" };
+    expect(renderCardSvg(adventure)).toContain(">AVENTURE</text>");
+  });
+
   it("shows defense for battle cards", () => {
     const battle = { ...fixture, power: undefined, toughness: undefined, defense: "5", layout: "battle" };
     expect(renderCardSvg(battle)).toContain("DEF 5");
