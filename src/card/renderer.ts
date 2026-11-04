@@ -1,14 +1,11 @@
 import type { Card } from "./model";
 import { tokenizeRulesText } from "./symbols";
 import { createCanvasTextMeasure, fitText } from "./typography";
+import { getFramePreset } from "../assets/framePresets";
 
 const escapeXml = (value: string) => value.replace(/[&<>"']/g, char => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;"
 })[char] ?? char);
-
-const FRAME_COLORS: Record<string, string> = {
-  W: "#e7d9b7", U: "#7da8c5", B: "#756d78", R: "#c77b5f", G: "#829b72"
-};
 
 function manaPips(cost: string, startX = 670, y = 75): string {
   const symbols = cost.match(/\{[^}]+\}/g) ?? [];
@@ -40,7 +37,8 @@ export function renderCardSvg(card: Card, faceIndex = 0): string {
   const toughness = face?.toughness ?? card.toughness;
   const loyalty = face?.loyalty ?? card.loyalty;
   const imageUrl = face?.imageUrl ?? card.imageUrl;
-  const color = card.colors.length > 1 ? "#77716a" : FRAME_COLORS[card.colors[0] ?? ""] ?? "#aaa49a";
+  const frame = getFramePreset(card.colors);
+  const color = frame.background;
   const rules = fitText(rulesLines(oracleText), {
     width: 590, height: 265, maxFontSize: 22, minFontSize: 11,
     lineHeightRatio: 1.18, paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
@@ -59,14 +57,14 @@ export function renderCardSvg(card: Card, faceIndex = 0): string {
     <defs><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f3ead8"/><stop offset="1" stop-color="#cfc2a9"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-opacity=".45"/></filter></defs>
     <rect x="12" y="12" width="726" height="1026" rx="34" fill="#25221e" filter="url(#shadow)"/>
     <rect x="28" y="28" width="694" height="994" rx="25" fill="${color}" stroke="#100f0e" stroke-width="5"/>
-    <rect x="43" y="42" width="664" height="63" rx="12" fill="url(#paper)" stroke="#443b30" stroke-width="3"/>
+    <rect x="43" y="42" width="664" height="63" rx="12" fill="${frame.title}" stroke="${frame.border}" stroke-width="3"/>
     <text x="62" y="83" font-family="Georgia,serif" font-size="27" font-weight="bold" fill="#211d19">${escapeXml(name)}</text>
     ${manaPips(manaCost)}
     <rect x="49" y="119" width="652" height="500" rx="8" fill="#51483d" stroke="#28221b" stroke-width="5"/>
     ${imageUrl ? `<image href="${escapeXml(imageUrl)}" x="55" y="125" width="640" height="488" preserveAspectRatio="xMidYMid slice"/>` : `<rect x="55" y="125" width="640" height="488" fill="#6b6254"/><text x="375" y="375" text-anchor="middle" fill="#e7dfcf" font-size="24">Illustration non disponible</text>`}
-    <rect x="48" y="632" width="654" height="50" rx="9" fill="url(#paper)" stroke="#443b30" stroke-width="3"/>
+    <rect x="48" y="632" width="654" height="50" rx="9" fill="${frame.title}" stroke="${frame.border}" stroke-width="3"/>
     <text x="64" y="665" font-family="Georgia,serif" font-size="23" font-weight="bold" fill="#211d19">${escapeXml(typeLine)}</text>
-    <rect x="48" y="690" width="654" height="302" rx="10" fill="url(#paper)" stroke="#443b30" stroke-width="3"/>
+    <rect x="48" y="690" width="654" height="302" rx="10" fill="${frame.rules}" stroke="${frame.border}" stroke-width="3"/>
     ${rulesSvg}
     ${overflow}
     ${stats}
