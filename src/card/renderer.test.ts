@@ -5,7 +5,7 @@ import type { Card } from "./model";
 const fixture: Card = {
   id: "fixture", name: "Carte <test>", manaCost: "{2}{G}", cmc: 3,
   typeLine: "Créature : bête", oracleText: "Piétinement\nQuand elle arrive, piochez une carte.",
-  colors: ["G"], colorIdentity: ["G"], power: "3", toughness: "3",
+  colors: ["G"], colorIdentity: ["G"], keywords: [], power: "3", toughness: "3",
   rarity: "common", set: "tst", collectorNumber: "001", language: "fr",
   layout: "normal", source: "scryfall"
 };
