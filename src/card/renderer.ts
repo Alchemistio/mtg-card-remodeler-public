@@ -2,6 +2,7 @@ import type { Card } from "./model";
 import { tokenizeRulesText } from "./symbols";
 import { createCanvasTextMeasure, fitText } from "./typography";
 import { getFramePreset } from "../assets/framePresets";
+import { getLayoutDefinition } from "./layouts";
 
 const escapeXml = (value: string) => value.replace(/[&<>"']/g, char => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;"
@@ -38,18 +39,26 @@ export function renderCardSvg(card: Card, faceIndex = 0): string {
   const loyalty = face?.loyalty ?? card.loyalty;
   const imageUrl = face?.imageUrl ?? card.imageUrl;
   const frame = getFramePreset(card.colors);
+  const layout = getLayoutDefinition(card.layout);
   const color = frame.background;
   const rules = fitText(rulesLines(oracleText), {
     width: 590, height: 265, maxFontSize: 22, minFontSize: 11,
     lineHeightRatio: 1.18, paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
   });
-  const rulesSvg = rules.lines.map((line, index) =>
-    `<text x="75" y="${715 + index * rules.lineHeight}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`
-  ).join("");
-  const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : loyalty ? `[${loyalty}]` : "";
+  const rulesSvg = rules.lines.map((line, index) => {
+    const chapter = layout.rulesPanel === "saga" ? line.match(/^(I{1,3}|IV|V?I{0,3}|IX|X|[0-9]+)\\s*[—-]\\s*(.*)$/) : null;
+    const y = 715 + index * rules.lineHeight;
+    if (chapter) {
+      return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
+    }
+    return `<text x="75" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
+  }).join("");
+  const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : "";
   const stats = statsText
     ? `<rect x="585" y="950" width="110" height="58" rx="12" fill="#eee5d3" stroke="#332d25" stroke-width="4"/><text x="640" y="990" text-anchor="middle" font-size="30" font-weight="bold" fill="#201d19">${escapeXml(statsText)}</text>`
-    : "";
+    : loyalty
+      ? `<circle cx="640" cy="978" r="35" fill="#e7d9b7" stroke="#453a2c" stroke-width="5"/><text x="640" y="989" text-anchor="middle" font-size="27" font-weight="bold" fill="#201d19">${escapeXml(loyalty)}</text>`
+      : "";
   const overflow = rules.overflow
     ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rules.overflowLines} ligne(s) hors zone)</text>`
     : "";
