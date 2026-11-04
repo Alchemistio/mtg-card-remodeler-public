@@ -14,7 +14,7 @@ import { listProjects, listSavedCards, saveCard, saveProject } from "./card/libr
 const DEMO: Card = {
   id: "demo", name: "Ours runegriffe", manaCost: "{1}{G}", cmc: 2,
   typeLine: "Créature : ours", oracleText: "Piétinement\nQuand cette créature arrive sur le champ de bataille, regardez la carte du dessus de votre bibliothèque. Vous pouvez la mettre dans votre cimetière.",
-  colors: ["G"], colorIdentity: ["G"], power: "2", toughness: "2", rarity: "common",
+  colors: ["G"], colorIdentity: ["G"], keywords: [], power: "2", toughness: "2", rarity: "common",
   set: "demo", collectorNumber: "001", language: "fr", layout: "normal", source: "scryfall"
 };
 
