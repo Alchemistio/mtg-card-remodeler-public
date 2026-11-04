@@ -13,6 +13,7 @@ describe("rules text symbol layout", () => {
   it("uses color identity for mana symbols", () => {
     expect(manaColor("W")).toBe("#f2e8cf");
     expect(manaColor("U/R")).toBe("#5b9bd5");
+    expect(manaColor("2/W")).toBe("#f2e8cf");
   });
 
   it("renders symbols as vector pips", () => {
