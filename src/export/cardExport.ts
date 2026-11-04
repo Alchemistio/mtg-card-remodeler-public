@@ -81,6 +81,40 @@ export interface PdfExportOptions {
   cropMarks?: boolean;
 }
 
+export interface PdfPageGeometry {
+  bleedMm: number;
+  marginMm: number;
+  imageX: number;
+  imageY: number;
+  imageWidth: number;
+  imageHeight: number;
+  pageWidth: number;
+  pageHeight: number;
+  trimX: number;
+  trimY: number;
+  trimWidth: number;
+  trimHeight: number;
+}
+
+export function getPdfPageGeometry(options: PdfExportOptions = {}): PdfPageGeometry {
+  const bleedMm = Math.max(0, Math.min(5, options.bleedMm ?? 3));
+  const marginMm = options.cropMarks === false ? 0 : 5;
+  const trimWidth = 63.5;
+  const trimHeight = 88.9;
+  const imageWidth = trimWidth + bleedMm * 2;
+  const imageHeight = trimHeight + bleedMm * 2;
+  const imageX = marginMm;
+  const imageY = marginMm;
+  return {
+    bleedMm, marginMm, imageX, imageY, imageWidth, imageHeight,
+    pageWidth: imageWidth + marginMm * 2,
+    pageHeight: imageHeight + marginMm * 2,
+    trimX: imageX + bleedMm,
+    trimY: imageY + bleedMm,
+    trimWidth, trimHeight
+  };
+}
+
 function createBleedCanvas(source: HTMLCanvasElement, bleedPixels: number): HTMLCanvasElement {
   const canvas = document.createElement("canvas");
   canvas.width = source.width + bleedPixels * 2;
@@ -141,11 +175,9 @@ function addCropMarks(
 export async function exportCardPdf(
   card: Card, faceIndex = 0, overrides: CardOverrides = {}, options: PdfExportOptions = {}
 ): Promise<void> {
-  const bleedMm = Math.max(0, Math.min(5, options.bleedMm ?? 3));
+  const geometry = getPdfPageGeometry(options);
+  const { bleedMm, marginMm, trimWidth, trimHeight, imageWidth, imageHeight, imageX, imageY, pageWidth, pageHeight, trimX, trimY } = geometry;
   const cropMarks = options.cropMarks ?? true;
-  const marginMm = cropMarks ? 5 : 0;
-  const trimWidth = 63.5;
-  const trimHeight = 88.9;
   const dpi = 900;
   const bleedPixels = Math.round(bleedMm * dpi / 25.4);
 
@@ -155,17 +187,11 @@ export async function exportCardPdf(
   const printCanvas = bleedPixels > 0 ? createBleedCanvas(cardCanvas, bleedPixels) : cardCanvas;
   const data = printCanvas.toDataURL("image/png");
 
-  const imageWidth = trimWidth + bleedMm * 2;
-  const imageHeight = trimHeight + bleedMm * 2;
-  const pageWidth = imageWidth + marginMm * 2;
-  const pageHeight = imageHeight + marginMm * 2;
-  const imageX = marginMm;
-  const imageY = marginMm;
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pageWidth, pageHeight], compress: true });
   pdf.addImage(data, "PNG", imageX, imageY, imageWidth, imageHeight, undefined, "FAST");
 
   if (cropMarks) {
-    addCropMarks(pdf, imageX + bleedMm, imageY + bleedMm, trimWidth, trimHeight, marginMm, bleedMm);
+    addCropMarks(pdf, trimX, trimY, trimWidth, trimHeight, marginMm, bleedMm);
   }
   pdf.save(`${safeName(card.name)}-print.pdf`);
 }
