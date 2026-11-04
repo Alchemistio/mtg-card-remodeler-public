@@ -6,13 +6,14 @@ const escapeXml = (value: string) => value.replace(/[&<>"']/g, char => ({
 })[char] ?? char);
 
 function manaPips(cost: string): string {
-  const symbols = cost.match(/\\{[^}]+\\}/g) ?? [];
+  const symbols = cost.match(/\{[^}]+\}/g) ?? [];
   return symbols.map((symbol, index) => {
     const value = symbol.slice(1, -1);
     const color: Record<string, string> = { W: "#f4e8c8", U: "#5b9bd5", B: "#44404a", R: "#d65b45", G: "#5b9563" };
     const fill = color[value] ?? "#c5c1b8";
     const text = value.length > 2 ? value.slice(0, 2) : value;
-    return `<circle cx="${670 - (symbols.length - index - 1) * 34}" cy="75" r="14" fill="${fill}" stroke="#24211d" stroke-width="2"/><text x="${670 - (symbols.length - index - 1) * 34}" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#171717">${escapeXml(text)}</text>`;
+    const cx = 670 - (symbols.length - index - 1) * 34;
+    return `<circle cx="${cx}" cy="75" r="14" fill="${fill}" stroke="#24211d" stroke-width="2"/><text x="${cx}" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#171717">${escapeXml(text)}</text>`;
   }).join("");
 }
 
