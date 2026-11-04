@@ -9,3 +9,5 @@ coverage/
 .vscode/
 .idea/
 src-tauri/target/
+
+src-tauri/icons/
