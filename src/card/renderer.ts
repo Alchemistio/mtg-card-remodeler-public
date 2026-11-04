@@ -87,8 +87,8 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
     : loyalty
       ? `<circle cx="640" cy="978" r="35" fill="#e7d9b7" stroke="#453a2c" stroke-width="5"/><text x="640" y="989" text-anchor="middle" font-size="27" font-weight="bold" fill="#201d19">${escapeXml(loyalty)}</text>`
       : "";
-  const rulesOverflow = sagaRules?.overflow ?? standardRules?.overflow ?? false;
-  const rulesOverflowLines = sagaRules?.overflowLines ?? standardRules?.overflowLines ?? 0;
+  const rulesOverflow = splitFaces ? splitLayouts.some(item => item.overflow) : sagaRules?.overflow ?? standardRules?.overflow ?? false;
+  const rulesOverflowLines = splitFaces ? splitLayouts.reduce((sum, item) => sum + item.overflowLines, 0) : sagaRules?.overflowLines ?? standardRules?.overflowLines ?? 0;
   const overflow = rulesOverflow
     ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rulesOverflowLines} ligne(s) hors zone)</text>`
     : "";
