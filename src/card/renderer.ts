@@ -1,7 +1,8 @@
 import type { Card } from "./model";
 import { tokenizeRulesText } from "./symbols";
 import { createCanvasTextMeasure, fitText } from "./typography";
-import { getFramePreset } from "../assets/framePresets";
+import { getFramePreset, getFramePresetById } from "../assets/framePresets";
+import type { CardOverrides } from "./customization";
 import { getLayoutDefinition } from "./layouts";
 
 const escapeXml = (value: string) => value.replace(/[&<>"']/g, char => ({
@@ -28,7 +29,7 @@ function rulesLines(text: string): string {
   ).join("");
 }
 
-export function renderCardSvg(card: Card, faceIndex = 0): string {
+export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverrides = {}): string {
   const face = card.faces?.[faceIndex];
   const name = face?.name ?? card.name;
   const manaCost = face?.manaCost ?? card.manaCost;
@@ -38,18 +39,19 @@ export function renderCardSvg(card: Card, faceIndex = 0): string {
   const toughness = face?.toughness ?? card.toughness;
   const loyalty = face?.loyalty ?? card.loyalty;
   const imageUrl = face?.imageUrl ?? card.imageUrl;
-  const frame = getFramePreset(card.colors);
+  const frame = (overrides.framePreset ? getFramePresetById(overrides.framePreset) : undefined) ?? getFramePreset(card.colors);
   const layout = getLayoutDefinition(card.layout);
   const color = frame.background;
   const rules = fitText(rulesLines(oracleText), {
-    width: 590, height: 265, maxFontSize: 22, minFontSize: 11,
-    lineHeightRatio: 1.18, paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
+    width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+    fontFamily: overrides.fontFamily ?? "Georgia,serif", lineHeightRatio: overrides.lineHeight ?? 1.18,
+    paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
   });
   const rulesSvg = rules.lines.map((line, index) => {
     const chapter = layout.rulesPanel === "saga" ? line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/) : null;
     const y = 715 + index * rules.lineHeight;
     if (chapter) {
-      return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
+      return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(overrides.fontFamily ?? "Georgia,serif")}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
     }
     return `<text x="75" y="${y}" font-family="Georgia,serif" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
   }).join("");
