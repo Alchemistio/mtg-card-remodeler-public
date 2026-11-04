@@ -5,11 +5,11 @@ import {
 } from "lucide-react";
 import type { Card } from "./card/model";
 import type { CardOverrides } from "./card/customization";
-import { applyCardOverrides } from "./card/customization";
+import { applyCardOverrides, createCardProject, type CardProject } from "./card/customization";
 import { searchCards } from "./card/scryfall";
 import { renderCardSvg } from "./card/renderer";
 import { exportCardPdf, exportCardPng } from "./export/cardExport";
-import { listSavedCards, saveCard } from "./card/library";
+import { listProjects, listSavedCards, saveCard, saveProject } from "./card/library";
 
 const DEMO: Card = {
   id: "demo", name: "Ours runegriffe", manaCost: "{1}{G}", cmc: 2,
@@ -22,6 +22,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Card[]>([]);
   const [savedCards, setSavedCards] = useState<Card[]>([]);
+  const [savedProjects, setSavedProjects] = useState<CardProject[]>([]);
   const [selected, setSelected] = useState<Card>(DEMO);
   const [overrides, setOverrides] = useState<CardOverrides>({});
   const [faceIndex, setFaceIndex] = useState(0);
@@ -34,9 +35,21 @@ export default function App() {
 
   useEffect(() => {
     listSavedCards().then(setSavedCards).catch(() => setSavedCards([]));
+    listProjects().then(setSavedProjects).catch(() => setSavedProjects([]));
   }, []);
 
-  useEffect(() => { setFaceIndex(0); setOverrides({}); }, [selected.id]);
+  useEffect(() => { setFaceIndex(0); }, [selected.id]);
+
+  function selectCard(card: Card) {
+    setSelected(card);
+    setOverrides({});
+  }
+
+  function openProject(project: CardProject) {
+    setSelected(project.sourceSnapshot);
+    setOverrides(project.overrides);
+    setNotice("Projet personnalisé chargé.");
+  }
 
   async function search(event: React.FormEvent) {
     event.preventDefault();
@@ -61,9 +74,11 @@ export default function App() {
 
   async function saveSelected() {
     try {
-      await saveCard(displayCard);
+      await saveCard(selected);
+      await saveProject(createCardProject(selected, overrides));
       setSavedCards(await listSavedCards());
-      setNotice("Version personnalisée enregistrée dans la bibliothèque locale.");
+      setSavedProjects(await listProjects());
+      setNotice("Projet et carte source enregistrés dans la bibliothèque locale.");
     } catch {
       setError("Impossible d'enregistrer cette carte dans le stockage local.");
     }
@@ -103,7 +118,7 @@ export default function App() {
         {notice && <p className="notice" role="status">{notice}</p>}
         <div className="results-heading"><span>RÉSULTATS</span><span>{results.length}</span></div>
         <div className="results-list">
-          {results.map(card => <button className={selected.id === card.id ? "result selected" : "result"} key={card.id} onClick={() => setSelected(card)}>
+          {results.map(card => <button className={selected.id === card.id ? "result selected" : "result"} key={card.id} onClick={() => selectCard(card)}>
             <span className="result-thumb">{card.imageUrl ? <img src={card.imageUrl} alt=""/> : <ImageIcon size={18}/>}</span>
             <span><b>{card.name}</b><small>{card.typeLine}</small></span>
           </button>)}
@@ -116,6 +131,14 @@ export default function App() {
             <span><b>{card.name}</b><small>{card.set.toUpperCase()} · {card.collectorNumber}</small></span>
           </button>)}
           {savedCards.length === 0 && <div className="empty-results">Enregistre une carte pour la retrouver ici.</div>}
+        </div>
+        <div className="results-heading saved-heading"><span>PROJETS PERSONNALISÉS</span><span>{savedProjects.length}</span></div>
+        <div className="results-list saved-list">
+          {savedProjects.map(project => <button className="result" key={project.id} onClick={() => openProject(project)}>
+            <span className="result-thumb"><Bookmark size={16}/></span>
+            <span><b>{project.overrides.name ?? project.sourceSnapshot.name}</b><small>Projet · {project.sourceSnapshot.set.toUpperCase()}</small></span>
+          </button>)}
+          {savedProjects.length === 0 && <div className="empty-results">Tes projets personnalisés apparaîtront ici.</div>}
         </div>
         <div className="sidebar-note"><Sparkles size={16}/><span>Données de carte via Scryfall. Les cadres et rendus personnalisés sont expérimentaux.</span></div>
       </aside>
