@@ -16,6 +16,12 @@ fn main() {
             sql: "CREATE TABLE IF NOT EXISTS projects (id TEXT PRIMARY KEY NOT NULL, source_card_id TEXT NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);",
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 3,
+            description: "index_projects_by_update_time",
+            sql: "CREATE INDEX IF NOT EXISTS idx_projects_updated_at ON projects(updated_at);",
+            kind: MigrationKind::Up,
+        },
     ];
 
     tauri::Builder::default()
