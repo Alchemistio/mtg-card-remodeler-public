@@ -44,27 +44,30 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
   const layout = getLayoutDefinition(card.layout);
   const color = frame.background;
   const fontFamily = overrides.fontFamily ?? "Georgia,serif";
-  const rules = layout.rulesPanel === "saga"
+  const sagaRules = layout.rulesPanel === "saga"
     ? fitText(rulesLines(oracleText), {
         width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
         fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
         paddingX: 0, paddingY: 2, measure: createCanvasTextMeasure()
       })
-    : layoutRulesText(oracleText, {
+    : null;
+  const standardRules = layout.rulesPanel !== "saga"
+    ? layoutRulesText(oracleText, {
         width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
         fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
         measure: createCanvasTextMeasure()
-      });
-  const rulesSvg = layout.rulesPanel === "saga"
-    ? rules.lines.map((line, index) => {
-        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\s*[—-]\s*(.*)$/);
-        const y = 715 + index * rules.lineHeight;
+      })
+    : null;
+  const rulesSvg = sagaRules
+    ? sagaRules.lines.map((line, index) => {
+        const chapter = line.match(/^(IV|IX|VIII|VII|VI|V|III|II|I|X|[0-9]+)\\s*[—-]\\s*(.*)$/);
+        const y = 715 + index * sagaRules.lineHeight;
         if (chapter) {
-          return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
+          return `<circle cx="75" cy="${y - 6}" r="15" fill="#b58d4f" stroke="#51412b" stroke-width="2"/><text x="75" y="${y - 1}" text-anchor="middle" font-size="11" font-weight="bold" fill="#201d19">${escapeXml(chapter[1])}</text><text x="102" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${sagaRules.fontSize}" fill="#201d19">${escapeXml(chapter[2])}</text>`;
         }
-        return `<text x="75" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${rules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
+        return `<text x="75" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${sagaRules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
       }).join("")
-    : renderRulesLayoutSvg(rules, 75, 715, fontFamily);
+    : renderRulesLayoutSvg(standardRules!, 75, 715, fontFamily);
   const splitFaces = layout.rulesPanel === "split" && card.faces?.length === 2 ? card.faces : null;
   const splitLayouts = splitFaces?.map(splitFace => layoutRulesText(splitFace.oracleText, {
     width: 275, height: 205, maxFontSize: 17, minFontSize: 10, fontFamily,
@@ -84,8 +87,10 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
     : loyalty
       ? `<circle cx="640" cy="978" r="35" fill="#e7d9b7" stroke="#453a2c" stroke-width="5"/><text x="640" y="989" text-anchor="middle" font-size="27" font-weight="bold" fill="#201d19">${escapeXml(loyalty)}</text>`
       : "";
-  const overflow = rules.overflow
-    ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rules.overflowLines} ligne(s) hors zone)</text>`
+  const rulesOverflow = sagaRules?.overflow ?? standardRules?.overflow ?? false;
+  const rulesOverflowLines = sagaRules?.overflowLines ?? standardRules?.overflowLines ?? 0;
+  const overflow = rulesOverflow
+    ? `<text x="65" y="975" font-size="14" fill="#8a2e25">Texte trop long : réduire le texte ou adapter le cadre (${rulesOverflowLines} ligne(s) hors zone)</text>`
     : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050">
     <defs><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f3ead8"/><stop offset="1" stop-color="#cfc2a9"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-opacity=".45"/></filter></defs>
