@@ -53,7 +53,7 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
     : null;
   const standardRules = layout.rulesPanel !== "saga"
     ? layoutRulesText(oracleText, {
-        width: 590, height: 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
+        width: 590, height: layout.rulesPanel === "adventure" ? 225 : 265, maxFontSize: overrides.fontSize ?? 22, minFontSize: 11,
         fontFamily, lineHeightRatio: overrides.lineHeight ?? 1.18,
         measure: createCanvasTextMeasure()
       })
@@ -67,12 +67,15 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
         }
         return `<text x="75" y="${y}" font-family="${escapeXml(fontFamily)}" font-size="${sagaRules.fontSize}" fill="#201d19">${escapeXml(line)}</text>`;
       }).join("")
-    : renderRulesLayoutSvg(standardRules!, 75, 715, fontFamily);
+    : renderRulesLayoutSvg(standardRules!, 75, layout.rulesPanel === "adventure" ? 750 : 715, fontFamily);
   const splitFaces = layout.rulesPanel === "split" && card.faces?.length === 2 ? card.faces : null;
   const splitLayouts = splitFaces?.map(splitFace => layoutRulesText(splitFace.oracleText, {
     width: 275, height: 205, maxFontSize: 17, minFontSize: 10, fontFamily,
     lineHeightRatio: overrides.lineHeight ?? 1.15, measure: createCanvasTextMeasure()
   })) ?? [];
+  const adventureLabel = layout.rulesPanel === "adventure"
+    ? '<rect x="64" y="704" width="145" height="28" rx="7" fill="#b58d4f" stroke="#51412b" stroke-width="1.5"/><text x="136" y="723" text-anchor="middle" font-size="13" font-weight="bold" fill="#201d19">AVENTURE</text>'
+    : "";
   const finalRulesSvg = splitFaces
     ? '<line x1="375" y1="706" x2="375" y2="977" stroke="#8d806a" stroke-width="2"/>' +
       '<text x="68" y="735" font-size="18" font-weight="bold" fill="#201d19">' + escapeXml(splitFaces[0].name) + '</text>' +
@@ -80,7 +83,7 @@ export function renderCardSvg(card: Card, faceIndex = 0, overrides: CardOverride
       manaPips(splitFaces[0].manaCost, 330, 730) + manaPips(splitFaces[1].manaCost, 690, 730) +
       renderRulesLayoutSvg(splitLayouts[0], 68, 765, fontFamily) +
       renderRulesLayoutSvg(splitLayouts[1], 392, 765, fontFamily)
-    : rulesSvg;
+    : adventureLabel + rulesSvg;
   const statsText = power !== undefined && toughness !== undefined ? `${power}/${toughness}` : defense ? `DEF ${defense}` : "";
   const stats = statsText
     ? `<rect x="585" y="950" width="110" height="58" rx="12" fill="#eee5d3" stroke="#332d25" stroke-width="4"/><text x="640" y="990" text-anchor="middle" font-size="30" font-weight="bold" fill="#201d19">${escapeXml(statsText)}</text>`
