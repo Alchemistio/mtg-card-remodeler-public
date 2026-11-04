@@ -25,12 +25,13 @@ export interface RulesLayoutOptions {
 }
 
 export function manaColor(symbol: string): string {
-  const base = symbol.split("/")[0].replace(/[0-9]/g, "");
   const colors: Record<string, string> = {
     W: "#f2e8cf", U: "#5b9bd5", B: "#46414b", R: "#d65b45",
     G: "#659363", C: "#c5c1b8", S: "#b8cbd0", E: "#e4c85c",
     T: "#cbb98f", Q: "#cbb98f", X: "#d4c8a8"
   };
+  const parts = symbol.split("/").map(part => part.replace(/[0-9]/g, "")).filter(Boolean);
+  const base = parts.find(part => colors[part]) ?? parts[0] ?? "";
   return colors[base] ?? "#c5c1b8";
 }
 
