@@ -10,6 +10,7 @@ export const CardFaceSchema = z.object({
   power: z.string().optional(),
   toughness: z.string().optional(),
   loyalty: z.string().optional(),
+  defense: z.string().optional(),
   imageUrl: z.string().url().optional()
 });
 
@@ -28,6 +29,7 @@ export const CardSchema = z.object({
   power: z.string().optional(),
   toughness: z.string().optional(),
   loyalty: z.string().optional(),
+  defense: z.string().optional(),
   rarity: z.string().default(""),
   set: z.string().default(""),
   setName: z.string().optional(),
@@ -65,6 +67,7 @@ export interface ScryfallCard {
   power?: string;
   toughness?: string;
   loyalty?: string;
+  defense?: string;
   rarity?: string;
   set?: string;
   set_name?: string;
@@ -81,7 +84,7 @@ export interface ScryfallCard {
   image_uris?: { normal?: string; large?: string; png?: string; art_crop?: string };
   card_faces?: Array<{
     name: string; mana_cost?: string; type_line?: string; oracle_text?: string;
-    flavor_text?: string; artist?: string; power?: string; toughness?: string; loyalty?: string;
+    flavor_text?: string; artist?: string; power?: string; toughness?: string; loyalty?: string; defense?: string;
     image_uris?: { normal?: string; large?: string; png?: string; art_crop?: string };
   }>;
   [key: string]: unknown;
@@ -94,7 +97,7 @@ export function normalizeScryfallCard(raw: ScryfallCard): Card {
     typeLine: raw.type_line ?? "", oracleText: raw.oracle_text ?? "",
     flavorText: raw.flavor_text, artist: raw.artist,
     colors: raw.colors ?? [], colorIdentity: raw.color_identity ?? [],
-    power: raw.power, toughness: raw.toughness, loyalty: raw.loyalty,
+    power: raw.power, toughness: raw.toughness, loyalty: raw.loyalty, defense: raw.defense,
     rarity: raw.rarity ?? "", set: raw.set ?? "", setName: raw.set_name,
     collectorNumber: raw.collector_number ?? "", language: raw.lang ?? "fr",
     releasedAt: raw.released_at, scryfallUri: raw.scryfall_uri,
@@ -105,7 +108,7 @@ export function normalizeScryfallCard(raw: ScryfallCard): Card {
     faces: raw.card_faces?.map(face => ({
       name: face.name, manaCost: face.mana_cost ?? "", typeLine: face.type_line ?? "",
       oracleText: face.oracle_text ?? "", flavorText: face.flavor_text, artist: face.artist,
-      power: face.power, toughness: face.toughness, loyalty: face.loyalty,
+      power: face.power, toughness: face.toughness, loyalty: face.loyalty, defense: face.defense,
       imageUrl: face.image_uris?.art_crop ?? face.image_uris?.normal
     })),
     rawData: raw
