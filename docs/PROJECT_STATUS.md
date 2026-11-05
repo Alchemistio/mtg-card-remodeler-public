@@ -46,7 +46,7 @@ La PR #4 ajoute le moteur de cadres FeSens, le raccordement des données Scryfal
 - Conservation des données brutes pour éviter la perte d'informations.
 - Gestion des cartes multi-faces et des champs force, endurance, loyauté et défense.
 - Récupération de l'illustration et des métadonnées de collection.
-- Cache de recherche de 12 h ajouté dans la PR #4, avec cadence minimale de 100 ms et reprises automatiques sur les erreurs 429/503.
+- Cache de recherche de 12 h ajouté dans la PR #4, avec cadence minimale de 100 ms et reprises automatiques sur les erreurs 429/503. Une indisponibilité ou une entrée corrompue du cache ne bloque pas l'accès direct à Scryfall.
 
 **Reste à faire :** import du catalogue Bulk Data de Scryfall, stratégie de rafraîchissement du cache, contrôle du débit de requêtes et gestion plus poussée des erreurs réseau.
 
