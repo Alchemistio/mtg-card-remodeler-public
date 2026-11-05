@@ -25,6 +25,8 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
+      - name: Generate Tauri platform icons
+        run: npm run tauri:icons
       - name: Build Windows installers
         run: npm run tauri:build -- --bundles nsis,msi
       - name: Upload installers
