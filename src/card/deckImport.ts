@@ -162,7 +162,7 @@ export function parseCsvDecklist(input: string): ImportedDeck {
 export async function importDeckUrl(value: string, signal?: AbortSignal): Promise<ImportedDeck> {
   const url = new URL(value.trim());
   if (url.protocol !== "https:") throw new Error("Les liens de deck doivent utiliser HTTPS.");
-  if (url.hostname === "moxfield.com" || url.hostname.endsWith(".moxfield.com")) {\.com$/i.test(url.hostname)) {
+  if (url.hostname === "moxfield.com" || url.hostname.endsWith(".moxfield.com")) {
     const id = extractDeckId(value, "moxfield");
     const response = await fetch(`https://api2.moxfield.com/v3/decks/all/${encodeURIComponent(id)}`, {
       signal, headers: { Accept: "application/json", "User-Agent": "MTGCardRemodeller/0.3 (personal deck importer)" }
@@ -172,7 +172,7 @@ export async function importDeckUrl(value: string, signal?: AbortSignal): Promis
     if (!deck.lines.length) throw new Error("Aucune carte trouvée dans ce deck Moxfield.");
     return deck;
   }
-  if (url.hostname === "archidekt.com" || url.hostname.endsWith(".archidekt.com")) {\.com$/i.test(url.hostname)) {
+  if (url.hostname === "archidekt.com" || url.hostname.endsWith(".archidekt.com")) {
     const id = extractDeckId(value, "archidekt");
     const response = await fetch(`https://archidekt.com/api/decks/${id}/`, { signal, headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error(`Import Archidekt impossible (${response.status}). Tu peux aussi coller la decklist exportée en texte.`);
