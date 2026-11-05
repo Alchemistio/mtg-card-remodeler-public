@@ -1,14 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Search, Download, Layers3, Sparkles, LoaderCircle, Image as ImageIcon,
   Save, FileImage, FileText, FlipHorizontal, Bookmark
 } from "lucide-react";
+import { MtgCard } from "mtg-card";
 import type { Card } from "./card/model";
 import type { CardOverrides } from "./card/customization";
 import { applyCardOverrides, createCardProject, type CardProject } from "./card/customization";
 import { searchCards } from "./card/scryfall";
 import { renderCardSvg } from "./card/renderer";
-import { exportCardPdf, exportCardPng, exportCardSvg } from "./export/cardExport";
+import { toFeSensProps } from "./card/mtgCardAdapter";
+import { exportCardPdf, exportCardPng, exportCardSvg, exportMtgCardPdf, exportMtgCardPng, exportMtgCardSvg } from "./export/cardExport";
 import { listProjects, listSavedCards, saveCard, saveProject } from "./card/library";
 
 const DEMO: Card = {
@@ -19,6 +21,7 @@ const DEMO: Card = {
 };
 
 export default function App() {
+  const previewRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Card[]>([]);
   const [savedCards, setSavedCards] = useState<Card[]>([]);
@@ -34,6 +37,8 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const displayCard = useMemo(() => applyCardOverrides(selected, overrides), [selected, overrides]);
   const svg = useMemo(() => renderCardSvg(displayCard, faceIndex, overrides), [displayCard, faceIndex, overrides]);
+  const feSensProps = useMemo(() => toFeSensProps(displayCard, faceIndex, overrides), [displayCard, faceIndex, overrides]);
+  const nativeCardElement = () => previewRef.current?.querySelector<HTMLElement>(".mtg-card-native > *") ?? null;
 
   useEffect(() => {
     listSavedCards().then(setSavedCards).catch(() => setSavedCards([]));
@@ -69,7 +74,9 @@ export default function App() {
   async function exportSvg() {
     setExportBusy(true); setError(""); setNotice("");
     try {
-      await exportCardSvg(displayCard, faceIndex, overrides);
+      const native = feSensProps ? nativeCardElement() : null;
+      if (native) await exportMtgCardSvg(displayCard.name, native);
+      else await exportCardSvg(displayCard, faceIndex, overrides);
       setNotice("Export SVG autonome terminé.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "L'export SVG a échoué.");
@@ -91,7 +98,10 @@ export default function App() {
   async function runExport(kind: "png" | "pdf") {
     setExportBusy(true); setError(""); setNotice("");
     try {
-      if (kind === "png") await exportCardPng(displayCard, 3, faceIndex, overrides);
+      const native = feSensProps ? nativeCardElement() : null;
+      if (native && kind === "png") await exportMtgCardPng(displayCard.name, native);
+      else if (native) await exportMtgCardPdf(displayCard.name, native, { bleedMm, cropMarks });
+      else if (kind === "png") await exportCardPng(displayCard, 3, faceIndex, overrides);
       else await exportCardPdf(displayCard, faceIndex, overrides, { bleedMm, cropMarks });
       setNotice(kind === "png" ? "Export PNG haute définition terminé." : `Export PDF terminé avec ${bleedMm} mm de fond perdu${cropMarks ? " et traits de coupe" : ""}.`);
     } catch (err) {
@@ -155,8 +165,12 @@ export default function App() {
           </div>
         </div>
         <div className="preview-stage">
-          <div className="card-preview" dangerouslySetInnerHTML={{ __html: svg }}/>
-          <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>Format de travail · 750 × 1050</span></div>
+          <div className={feSensProps ? "card-preview card-preview-native" : "card-preview"} ref={previewRef}>
+            {feSensProps
+              ? <div className="mtg-card-native"><MtgCard {...feSensProps}/></div>
+              : <div dangerouslySetInnerHTML={{ __html: svg }}/>}
+          </div>
+          <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>Format de travail · {feSensProps ? "672 × 936" : "750 × 1050"}</span></div>
         </div>
         <section className="card-edit-panel">
           <div className="eyebrow">PERSONNALISATION</div>
