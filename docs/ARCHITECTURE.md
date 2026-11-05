@@ -11,15 +11,15 @@
 ## Couches présentes
 - **Interface** : React + TypeScript.
 - **Validation** : Zod.
-- **Données** : client Scryfall, recherche française et normalisation.
+- **Données** : client Scryfall, recherche française, normalisation Zod, cache persistant à expiration (12 h), cadence de 100 ms et reprises sur erreurs 429/503.
 - **Règles** : tokeniseur des symboles entre accolades.
 - **Typographie** : mesure Canvas lorsque disponible, repli déterministe et recherche dichotomique de taille.
 - **Layouts** : registre des familles de cartes et prise en charge des faces.
-- **Rendu** : SVG avec presets de cadre provisoires.
-- **Assets** : manifeste versionné et validation des chemins de ressources.
-- **Persistance desktop** : SQLite via le plugin SQL Tauri.
-- **Persistance web** : IndexedDB, repli localStorage.
-- **Export** : SVG, PNG 3× et PDF au format physique standard.
+- **Rendu** : moteur `mtg-card` (FeSens) pour les cadres standard, Saga, planeswalker et Aventure ; SVG local de secours pour les layouts non couverts.
+- **Assets** : manifeste local et paquet npm FeSens pour les SVG, textures et symboles ; inventaire de licences à compléter.
+- **Persistance desktop** : SQLite via le plugin SQL Tauri (cartes, projets et cache Scryfall).
+- **Persistance web** : IndexedDB, repli localStorage (cartes, projets et cache Scryfall).
+- **Export** : SVG/PNG/PDF. Le rendu FeSens est capturé en PNG haute résolution avant export ; les compositions locales restent vectorielles.
 - **Tests** : Vitest.
 
 ## Cibles de l'architecture complète
@@ -29,7 +29,7 @@
 - **Tests visuels** : Playwright pour les parcours et les rendus de référence.
 
 ## Dimensions
-Le format standard est 63,5 × 88,9 mm (ratio proche de 5:7). Le canevas de travail est 750 × 1050 unités. L'export PNG 3× produit 2250 × 3150 pixels. Le PDF place le rendu dans une page physique de 63,5 × 88,9 mm ; le fond perdu et les traits de coupe restent à implémenter.
+Le format standard est 63,5 × 88,9 mm (ratio proche de 5:7). Le canevas de travail est 750 × 1050 unités. L'export PNG 3× produit 2250 × 3150 pixels. Le PDF respecte le format fini 63,5 × 88,9 mm avec fond perdu réglable et traits de coupe. Les profils CMJN/ICC restent à implémenter.
 
 ## Sécurité et données
 - Les textes provenant de Scryfall sont échappés avant insertion dans le SVG.

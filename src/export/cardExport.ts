@@ -196,3 +196,60 @@ export async function exportCardPdf(
   }
   pdf.save(`${safeName(card.name)}-print.pdf`);
 }
+
+async function captureMtgCard(element: HTMLElement): Promise<HTMLCanvasElement> {
+  await document.fonts?.ready;
+  const { toPng } = await import("html-to-image");
+  const dataUrl = await toPng(element, {
+    width: 672, height: 936, pixelRatio: 2250 / 672,
+    cacheBust: true, backgroundColor: "#17140f"
+  });
+  const image = new Image();
+  image.src = dataUrl;
+  await new Promise<void>((resolve, reject) => {
+    image.onload = () => resolve();
+    image.onerror = () => reject(new Error("Impossible de capturer le rendu de la carte."));
+  });
+  return canvasFromImage(image, 2250, 3150);
+}
+
+function downloadBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export async function exportMtgCardSvg(name: string, element: HTMLElement): Promise<void> {
+  const canvas = await captureMtgCard(element);
+  const png = canvas.toDataURL("image/png");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050"><image href="${png}" width="750" height="1050"/></svg>`;
+  downloadBlob(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }), `${safeName(name)}.svg`);
+}
+
+export async function exportMtgCardPng(name: string, element: HTMLElement): Promise<void> {
+  const canvas = await captureMtgCard(element);
+  const blob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob(result => result ? resolve(result) : reject(new Error("Export PNG impossible.")), "image/png")
+  );
+  downloadBlob(blob, `${safeName(name)}-3x.png`);
+}
+
+export async function exportMtgCardPdf(
+  name: string, element: HTMLElement, options: PdfExportOptions = {}
+): Promise<void> {
+  const geometry = getPdfPageGeometry(options);
+  const { bleedMm, marginMm, trimWidth, trimHeight, imageWidth, imageHeight, imageX, imageY, pageWidth, pageHeight, trimX, trimY } = geometry;
+  const cropMarks = options.cropMarks ?? true;
+  const bleedPixels = Math.round(bleedMm * 900 / 25.4);
+  const cardCanvas = await captureMtgCard(element);
+  const printCanvas = bleedPixels > 0 ? createBleedCanvas(cardCanvas, bleedPixels) : cardCanvas;
+  const data = printCanvas.toDataURL("image/png");
+  const { jsPDF } = await import("jspdf");
+  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pageWidth, pageHeight], compress: true });
+  pdf.addImage(data, "PNG", imageX, imageY, imageWidth, imageHeight, undefined, "FAST");
+  if (cropMarks) addCropMarks(pdf, trimX, trimY, trimWidth, trimHeight, marginMm, bleedMm);
+  pdf.save(`${safeName(name)}-print.pdf`);
+}

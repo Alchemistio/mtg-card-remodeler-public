@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS scryfall_cache (
+  cache_key TEXT PRIMARY KEY NOT NULL,
+  payload TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
