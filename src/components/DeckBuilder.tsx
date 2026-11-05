@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { ArrowDown, ArrowUp, FileText, Link2, LoaderCircle, Minus, Plus, Printer, Trash2, Upload } from "lucide-react";
+import { ArrowDown, ArrowUp, FileText, Link2, LoaderCircle, Printer, Trash2, Upload } from "lucide-react";
 import { importDeckUrl, parseDecklist, resolveDeckLines, type ImportedDeck, type ResolvedDeckLine } from "../card/deckImport";
 import { saveCard } from "../card/library";
 import { DEFAULT_PRINT_SETTINGS, exportPrintSheetPdf, getSheetGeometry, type PrintSheetSettings } from "../export/printSheet";
@@ -11,6 +11,7 @@ const BOARDS = [
 
 export default function DeckBuilder() {
   const [source, setSource] = useState("");
+  const [deckText, setDeckText] = useState("");
   const [deck, setDeck] = useState<ImportedDeck>({ name: "Nouveau deck", lines: [] });
   const [resolved, setResolved] = useState<ResolvedDeckLine[]>([]);
   const [language, setLanguage] = useState("fr");
@@ -36,7 +37,7 @@ export default function DeckBuilder() {
     setError(""); setNotice("");
     const parsed = parseDecklist(text);
     if (!parsed.lines.length) { setError("Aucune ligne de carte reconnue. Exemple : 4 Lightning Bolt (lea) 161"); return; }
-    setDeck(current => ({ ...parsed, name: name || current.name || parsed.name }));
+    setDeck({ ...parsed, name: name || parsed.name });
     setResolved([]);
     await resolve(parsed);
   }
@@ -108,7 +109,7 @@ export default function DeckBuilder() {
         </label>
         <div className="deck-or">OU COLLER / IMPORTER UN FICHIER</div>
         <textarea className="deck-textarea" placeholder={"1 Sol Ring\n1 Command Tower\n4 Lightning Bolt (lea) 161\n\nSideboard\n2 Negate"} value={source.includes("\n") ? source : undefined} onChange={e => setSource(e.target.value)} rows={8}/>
-        <div className="deck-import-actions"><button className="tool-button" onClick={() => loadText(source)} disabled={busy || !source.trim()}>Lire la decklist collée</button><button className="tool-button" onClick={() => fileRef.current?.click()}><Upload size={14}/> Fichier TXT / CSV</button><input ref={fileRef} type="file" accept=".txt,.csv,.dec,.list" hidden onChange={e => handleFile(e.target.files?.[0])}/></div>
+        <div className="deck-import-actions"><button className="tool-button" onClick={() => loadText(deckText)} disabled={busy || !deckText.trim()}>Lire la decklist collée</button><button className="tool-button" onClick={() => fileRef.current?.click()}><Upload size={14}/> Fichier TXT / CSV</button><input ref={fileRef} type="file" accept=".txt,.csv,.dec,.list" hidden onChange={e => handleFile(e.target.files?.[0])}/></div>
         <label className="deck-field">Langue préférée
           <select value={language} onChange={e => setLanguage(e.target.value)}><option value="fr">Français</option><option value="en">Anglais</option><option value="de">Allemand</option><option value="es">Espagnol</option><option value="it">Italien</option><option value="ja">Japonais</option></select>
         </label>
@@ -116,7 +117,7 @@ export default function DeckBuilder() {
         {error && <p className="error" role="alert">{error}</p>}{notice && <p className="notice" role="status">{notice}</p>}
       </section>
       <section className="deck-panel deck-list-panel">
-        <div className="panel-title">Liste du deck <span>{resolved.length} lignes</span></div>
+        <div className="panel-title">Liste du deck · {deck.name} <span>{resolved.length} lignes</span></div>
         {!resolved.length && <div className="deck-empty">Importe une decklist pour voir les cartes et leurs impressions.</div>}
         {BOARDS.map(([key, title]) => {
           const lines = resolved.filter(item => item.board === key);
