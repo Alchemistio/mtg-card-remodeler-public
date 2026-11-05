@@ -31,7 +31,7 @@ Voir [docs/DESKTOP.md](docs/DESKTOP.md).
 
 ## Fonctionnalités implémentées
 
-- Recherche Scryfall avec filtre français par défaut et cache de résultats de 12 h (mémoire + SQLite/IndexedDB/localStorage).
+- Recherche Scryfall française, cache de 12 h (mémoire + SQLite/IndexedDB/localStorage), cadence de 100 ms et reprises sur erreurs 429/503.
 - Modèle interne Zod conservant les données brutes Scryfall et les faces multiples.
 - Interface responsive en français.
 - Aperçu haute fidélité via le moteur React/SVG `mtg-card` pour les cartes classiques, Sagas, planeswalkers et Aventures ; moteur SVG local conservé pour les compositions non encore couvertes.
