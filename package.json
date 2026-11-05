@@ -21,7 +21,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zod": "^3.24.1",
-    "@tauri-apps/plugin-sql": "^2.2.0"
+    "@tauri-apps/plugin-sql": "^2.2.0",
+    "mtg-card": "^0.1.1",
+    "html-to-image": "^1.11.13"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
