@@ -22,3 +22,20 @@ Les exports reçoivent la face sélectionnée et les personnalisations actives (
 
 ## Limites
 Les polices externes doivent être chargées avant rasterisation. Les illustrations distantes doivent autoriser CORS pour être intégrées au fichier exporté. Les profils d'impression propres à certains imprimeurs (traits de sécurité, marges techniques spécifiques, CMJN et profils ICC) restent à développer.
+
+
+## Planches d'impression multi-cartes
+
+L'espace **Import decklist & impression** prépare des planches PDF à partir de plusieurs cartes :
+- Papiers prédéfinis A4, A3, Letter et Legal, ou dimensions personnalisées.
+- Orientation portrait ou paysage.
+- Marges haute, droite, basse et gauche indépendantes.
+- Nombre de colonnes et de lignes, espacement entre cartes et centrage de la grille.
+- Dimensions physiques personnalisables des cartes.
+- Fond perdu de 0 à 5 mm, prolongé par extension des pixels de bord.
+- Traits de coupe et résolution réglable de 300 à 1200 DPI.
+- Pagination automatique lorsque le deck dépasse le nombre de cartes par page.
+
+La géométrie vérifie que la grille et les fonds perdus tiennent dans la zone imprimable avant de lancer l'export. Le PDF doit être imprimé à **100 % / taille réelle**, sans option « ajuster à la page ».
+
+Les planches sont actuellement rendues via le moteur SVG local ; certains layouts complexes peuvent donc différer de l'aperçu FeSens individuel. Les cartes recto-verso utilisent pour l'instant leur première face dans la planche.
