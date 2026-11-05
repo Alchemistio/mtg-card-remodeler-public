@@ -61,7 +61,7 @@ export function getSheetGeometry(settings: PrintSheetSettings): SheetGeometry {
     : settings.marginTopMm) + bleed;
   return { pageWidthMm, pageHeightMm, columns, rows, cardWidthMm, cardHeightMm, startX, startY, stepX: cardWidthMm + bleed * 2 + gutter, stepY: cardHeightMm + bleed * 2 + gutter, cardsPerPage: columns * rows };
 }
-async function imageForCard(card: Card, dpi: number, overrides: CardOverrides = {}): Promise<string> {
+async function imageForCard(card: Card, dpi: number, bleedMm: number, overrides: CardOverrides = {}): Promise<string> {
   const svg = renderCardSvg(card, 0, overrides);
   const matches = [...svg.matchAll(/<image\b[^>]*href="([^"]+)"/g)];
   let output = svg;
@@ -91,10 +91,28 @@ async function imageForCard(card: Card, dpi: number, overrides: CardOverrides = 
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Canvas indisponible.");
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
-    return canvas.toDataURL("image/png");
+    return createBleed(canvas, Math.round(bleedMm / 25.4 * dpi)).toDataURL("image/png");
   } finally { URL.revokeObjectURL(url); }
 }
 function settingsDpiWidth(mm: number, dpi: number) { return mm / 25.4 * dpi; }
+function createBleed(source: HTMLCanvasElement, pixels: number): HTMLCanvasElement {
+  if (pixels <= 0) return source;
+  const canvas = document.createElement("canvas");
+  canvas.width = source.width + pixels * 2; canvas.height = source.height + pixels * 2;
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("Canvas indisponible pour le fond perdu.");
+  context.drawImage(source, pixels, pixels);
+  const inset = Math.min(12, Math.floor(Math.min(source.width, source.height) / 20));
+  context.drawImage(source, 0, inset, source.width, 1, pixels, 0, source.width, pixels);
+  context.drawImage(source, 0, source.height - inset - 1, source.width, 1, pixels, pixels + source.height, source.width, pixels);
+  context.drawImage(source, inset, 0, 1, source.height, 0, pixels, pixels, source.height);
+  context.drawImage(source, source.width - inset - 1, 0, 1, source.height, pixels + source.width, pixels, pixels, source.height);
+  context.drawImage(source, inset, inset, 1, 1, 0, 0, pixels, pixels);
+  context.drawImage(source, source.width - inset - 1, inset, 1, 1, pixels + source.width, 0, pixels, pixels);
+  context.drawImage(source, inset, source.height - inset - 1, 1, 1, 0, pixels + source.height, pixels, pixels);
+  context.drawImage(source, source.width - inset - 1, source.height - inset - 1, 1, 1, pixels + source.width, pixels + source.height, pixels, pixels);
+  return canvas;
+}
 function addMarks(pdf: any, x: number, y: number, width: number, height: number, bleed: number) {
   const gap = Math.max(1, bleed + 1.2);
   const len = 3;
@@ -126,7 +144,7 @@ export async function exportPrintSheetPdf(
     const key = entry.card.id;
     let image = cache.get(key);
     if (!image) {
-      image = await imageForCard(entry.card, settings.dpi, entry.overrides);
+      image = await imageForCard(entry.card, settings.dpi, bleed, entry.overrides);
       cache.set(key, image);
     }
     if (i > 0 && i % geometry.cardsPerPage === 0) pdf.addPage([geometry.pageWidthMm, geometry.pageHeightMm], settings.orientation);
