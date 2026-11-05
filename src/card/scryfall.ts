@@ -68,7 +68,8 @@ export async function searchCards(query: string, signal?: AbortSignal): Promise<
   if (memoryEntry && memoryEntry.expiresAt > Date.now()) return memoryEntry.cards;
   if (memoryEntry) memoryCache.delete(cacheKey);
 
-  const persisted = await getCachedSearch(cacheKey);
+  let persisted: Card[] | null = null;
+  try { persisted = await getCachedSearch(cacheKey); } catch { /* A cache failure must not block the remote search. */ }
   if (persisted) {
     memoryCache.set(cacheKey, { cards: persisted, expiresAt: Date.now() + CACHE_TTL });
     return persisted;
@@ -95,7 +96,8 @@ export async function getCardById(id: string): Promise<Card | null> {
   const cacheKey = `id:${id}`;
   const memoryEntry = memoryCache.get(cacheKey);
   if (memoryEntry && memoryEntry.expiresAt > Date.now()) return memoryEntry.cards[0] ?? null;
-  const persisted = await getCachedSearch(cacheKey);
+  let persisted: Card[] | null = null;
+  try { persisted = await getCachedSearch(cacheKey); } catch { /* A cache failure must not block the remote lookup. */ }
   if (persisted) {
     memoryCache.set(cacheKey, { cards: persisted, expiresAt: Date.now() + CACHE_TTL });
     return persisted[0] ?? null;
