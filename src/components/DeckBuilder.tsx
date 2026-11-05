@@ -65,14 +65,19 @@ export default function DeckBuilder() {
     if (!file) return;
     try {
       const text = await file.text();
+      const name = file.name.replace(/\.[^.]+$/, "");
       if (file.name.toLowerCase().endsWith(".csv")) {
         const parsed = parseCsvDecklist(text);
         if (!parsed.lines.length) { setError("Aucune ligne de carte reconnue dans le CSV."); return; }
-        setDeck({ ...parsed, name: file.name.replace(/\\.[^.]+$/, "") });
+        setDeck({ ...parsed, name });
         setResolved([]);
         await resolve(parsed);
- else await loadText(text, file.name.replace(/\.[^.]+$/, ""));
-    } catch { setError("Impossible de lire ce fichier."); }
+      } else {
+        await loadText(text, name);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Impossible de lire ce fichier.");
+    }
   }
   function updateQuantity(id: string, quantity: number) {
     setResolved(items => items.map(item => item.id === id ? { ...item, quantity: Math.max(1, Math.min(999, quantity)) } : item));
