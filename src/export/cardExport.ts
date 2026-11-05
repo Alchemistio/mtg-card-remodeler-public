@@ -1,4 +1,4 @@
-import { jsPDF } from "jspdf";
+import type { jsPDF as JsPDF } from "jspdf";
 import type { Card } from "../card/model";
 import type { CardOverrides } from "../card/customization";
 import { renderCardSvg } from "../card/renderer";
@@ -143,7 +143,7 @@ function createBleedCanvas(source: HTMLCanvasElement, bleedPixels: number): HTML
 }
 
 function addCropMarks(
-  pdf: jsPDF, trimX: number, trimY: number, trimWidth: number, trimHeight: number, margin: number, bleed: number
+  pdf: JsPDF, trimX: number, trimY: number, trimWidth: number, trimHeight: number, margin: number, bleed: number
 ): void {
   const length = Math.max(2.5, margin - 1);
   const left = trimX;
@@ -187,6 +187,7 @@ export async function exportCardPdf(
   const printCanvas = bleedPixels > 0 ? createBleedCanvas(cardCanvas, bleedPixels) : cardCanvas;
   const data = printCanvas.toDataURL("image/png");
 
+  const { jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: [pageWidth, pageHeight], compress: true });
   pdf.addImage(data, "PNG", imageX, imageY, imageWidth, imageHeight, undefined, "FAST");
 
