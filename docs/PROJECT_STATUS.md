@@ -2,8 +2,8 @@
 
 **Date : 5 novembre 2026**  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public  
-**Branche de travail :** `feat/frames-fesens`  
-**Pull request :** https://github.com/Alchemistio/mtg-card-remodeler-public/pull/4
+**Branche de travail :** `feat/frames-fesens` (fusionnée dans `main`)  
+**Pull request :** [#4 — fusionnée](https://github.com/Alchemistio/mtg-card-remodeler-public/pull/4)
 
 ## 1. Synthèse
 
@@ -13,7 +13,7 @@ Les deux améliorations majeures déjà intégrées à `main` sont :
 - les premières compositions avancées et les symboles inline du moteur local ;
 - l'export PDF au format physique standard avec fond perdu de 3 mm et traits de coupe configurables.
 
-La PR #4 ajoute le moteur de cadres FeSens, le raccordement des données Scryfall à ses composants et un cache persistant des recherches. Elle est en cours de validation CI et n'est pas encore fusionnée dans `main`.
+La PR #4 a été fusionnée dans `main` : elle ajoute le moteur de cadres FeSens, le raccordement des données Scryfall à ses composants et un cache persistant des recherches. Les tests web et le build ont passé sur la branche de travail ; une vérification CI supplémentaire est lancée sur le commit de fusion.
 
 **État global : prototype avancé, mais pas encore un outil de production prêt à distribuer.** Les fonctionnalités essentielles existent, tandis que la couverture des familles de cartes, les tests visuels, les profils d'impression et la validation des droits graphiques restent incomplets.
 
@@ -46,7 +46,7 @@ La PR #4 ajoute le moteur de cadres FeSens, le raccordement des données Scryfal
 - Conservation des données brutes pour éviter la perte d'informations.
 - Gestion des cartes multi-faces et des champs force, endurance, loyauté et défense.
 - Récupération de l'illustration et des métadonnées de collection.
-- Cache de recherche de 12 h ajouté dans la PR #4, avec cadence minimale de 100 ms et reprises automatiques sur les erreurs 429/503. Une indisponibilité ou une entrée corrompue du cache ne bloque pas l'accès direct à Scryfall.
+- Cache de recherche de 12 h intégré, avec cadence minimale de 100 ms et reprises automatiques sur les erreurs 429/503. Une indisponibilité ou une entrée corrompue du cache ne bloque pas l’accès direct à Scryfall.
 
 **Reste à faire :** import du catalogue Bulk Data de Scryfall, stratégie de rafraîchissement du cache, contrôle du débit de requêtes et gestion plus poussée des erreurs réseau.
 
