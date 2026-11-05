@@ -28,6 +28,8 @@ export default function App() {
   const [faceIndex, setFaceIndex] = useState(0);
   const [busy, setBusy] = useState(false);
   const [exportBusy, setExportBusy] = useState(false);
+  const [bleedMm, setBleedMm] = useState(3);
+  const [cropMarks, setCropMarks] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const displayCard = useMemo(() => applyCardOverrides(selected, overrides), [selected, overrides]);
@@ -90,8 +92,8 @@ export default function App() {
     setExportBusy(true); setError(""); setNotice("");
     try {
       if (kind === "png") await exportCardPng(displayCard, 3, faceIndex, overrides);
-      else await exportCardPdf(displayCard, faceIndex, overrides);
-      setNotice(kind === "png" ? "Export PNG haute définition terminé." : "Export PDF terminé.");
+      else await exportCardPdf(displayCard, faceIndex, overrides, { bleedMm, cropMarks });
+      setNotice(kind === "png" ? "Export PNG haute définition terminé." : `Export PDF terminé avec ${bleedMm} mm de fond perdu${cropMarks ? " et traits de coupe" : ""}.`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "L'export a échoué.");
     } finally { setExportBusy(false); }
@@ -176,7 +178,7 @@ export default function App() {
         <div className="export-toolbar">
           <button className="export-button" disabled={exportBusy} onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
-          <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression · fond perdu 3 mm</button>
+          <button className="export-button" disabled={exportBusy} onClick={() => runExport("pdf")}><FileText size={16}/> PDF impression</button>
         </div>
         <div className="inspector">
           <div><span className="eyebrow">CARTE SÉLECTIONNÉE</span><strong>{displayCard.name}</strong><small>{displayCard.typeLine || "Type non renseigné"}</small></div>
