@@ -21,7 +21,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost https://cards.scryfall.io https://cdn.jsdelivr.net data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src ipc: http://ipc.localhost https://api.scryfall.com https://cards.scryfall.io https://cdn.jsdelivr.net"
+      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost https://cards.scryfall.io https://cdn.jsdelivr.net data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src ipc: http://ipc.localhost https://api.scryfall.com https://cards.scryfall.io https://cdn.jsdelivr.net https://api2.moxfield.com https://archidekt.com"
     }
   },
   "bundle": {
