@@ -11,7 +11,7 @@
 ## Couches présentes
 - **Interface** : React + TypeScript.
 - **Validation** : Zod.
-- **Données** : client Scryfall, recherche française, normalisation Zod et cache persistant à expiration (12 h).
+- **Données** : client Scryfall, recherche française, normalisation Zod, cache persistant à expiration (12 h), cadence de 100 ms et reprises sur erreurs 429/503.
 - **Règles** : tokeniseur des symboles entre accolades.
 - **Typographie** : mesure Canvas lorsque disponible, repli déterministe et recherche dichotomique de taille.
 - **Layouts** : registre des familles de cartes et prise en charge des faces.
