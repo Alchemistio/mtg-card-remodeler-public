@@ -2,7 +2,10 @@ import { normalizeScryfallCard, type Card, type ScryfallCard } from "./model";
 import { getCachedSearch, saveCachedSearch } from "./library";
 
 const API = "https://api.scryfall.com";
-const CACHE_TTL = 12 * 60 * 60 * 1000;\nconst memoryCache = new Map<string, { expiresAt: number; cards: Card[] }>();\n\nconst HEADERS = {
+const CACHE_TTL = 12 * 60 * 60 * 1000;
+const memoryCache = new Map<string, { expiresAt: number; cards: Card[] }>();
+
+const HEADERS = {
   Accept: "application/json",
   "User-Agent": "MTGCardRemodeller/0.2 (independent fan project)"
 };
