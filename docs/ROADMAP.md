@@ -9,7 +9,8 @@
 - [x] Produire un premier rendu SVG.
 - [x] Ajouter un ajustement typographique et un diagnostic de débordement.
 - [x] Ajouter une bibliothèque locale IndexedDB avec repli localStorage.
-- [x] Ajouter une persistance SQLite dans l'application Tauri.
+- [x] Mettre en cache les recherches Scryfall pendant 12 h en mémoire et dans le stockage persistant.
+- [x] Ajouter une persistance SQLite dans l'application Tauri, y compris le cache Scryfall.
 - [x] Ajouter des exports SVG, PNG 3× et PDF au format physique standard.
 - [x] Ajouter un shell desktop Tauri 2 et un manifeste d'assets.
 - [x] Ajouter des tests unitaires et une CI web.
