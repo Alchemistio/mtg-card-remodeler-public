@@ -54,6 +54,18 @@ describe("FeSens renderer adapter", () => {
     }
   });
 
+
+  it("renders French basic lands with their matching large mana symbol", () => {
+    const forest = { ...base, typeLine: "Terrain de base — Forêt", manaCost: "" };
+    const props = toFeSensProps(forest);
+    expect(props?.frame).toBe("land");
+    if (props?.frame === "land") expect(props.landSymbol).toBe("G");
+  });
+
+  it("preserves custom frame presets through the local renderer", () => {
+    expect(toFeSensProps(base, 0, { framePreset: "blue" })).toBeNull();
+  });
+
   it("leaves unsupported split and battle layouts on the local renderer", () => {
     expect(toFeSensProps({ ...base, layout: "split" })).toBeNull();
     expect(toFeSensProps({ ...base, layout: "battle" })).toBeNull();
