@@ -141,7 +141,7 @@ export function parseCsvDecklist(input: string): ImportedDeck {
   for (const row of dataRows) {
     const name = (row[hasHeader ? nameColumn : 1] ?? row[0] ?? "").trim();
     if (!name) continue;
-    const quantityValue = hasHeader && quantityColumn >= 0 ? row[quantityColumn] : row[0];
+    const quantityValue = hasHeader ? (quantityColumn >= 0 ? row[quantityColumn] : "1") : row[0];
     const quantity = Number(quantityValue || 1);
     if (!Number.isFinite(quantity) || quantity <= 0) continue;
     const boardValue = hasHeader && boardColumn >= 0 ? row[boardColumn] ?? "" : "";
