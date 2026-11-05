@@ -21,7 +21,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost https://cards.scryfall.io data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src ipc: http://ipc.localhost https://api.scryfall.com https://cards.scryfall.io"
+      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost https://cards.scryfall.io https://cdn.jsdelivr.net data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src ipc: http://ipc.localhost https://api.scryfall.com https://cards.scryfall.io https://cdn.jsdelivr.net"
     }
   },
   "bundle": {
