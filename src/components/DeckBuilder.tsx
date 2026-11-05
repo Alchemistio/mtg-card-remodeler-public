@@ -108,7 +108,7 @@ export default function DeckBuilder() {
           <div className="deck-url"><Link2 size={15}/><input value={source} onChange={e => setSource(e.target.value)} placeholder="https://moxfield.com/decks/…"/><button onClick={importFromUrl} disabled={busy || !source.trim()}>Importer</button></div>
         </label>
         <div className="deck-or">OU COLLER / IMPORTER UN FICHIER</div>
-        <textarea className="deck-textarea" placeholder={"1 Sol Ring\n1 Command Tower\n4 Lightning Bolt (lea) 161\n\nSideboard\n2 Negate"} value={source.includes("\n") ? source : undefined} onChange={e => setSource(e.target.value)} rows={8}/>
+        <textarea className="deck-textarea" placeholder={"1 Sol Ring\n1 Command Tower\n4 Lightning Bolt (lea) 161\n\nSideboard\n2 Negate"} value={deckText} onChange={e => setDeckText(e.target.value)} rows={8}/>
         <div className="deck-import-actions"><button className="tool-button" onClick={() => loadText(deckText)} disabled={busy || !deckText.trim()}>Lire la decklist collée</button><button className="tool-button" onClick={() => fileRef.current?.click()}><Upload size={14}/> Fichier TXT / CSV</button><input ref={fileRef} type="file" accept=".txt,.csv,.dec,.list" hidden onChange={e => handleFile(e.target.files?.[0])}/></div>
         <label className="deck-field">Langue préférée
           <select value={language} onChange={e => setLanguage(e.target.value)}><option value="fr">Français</option><option value="en">Anglais</option><option value="de">Allemand</option><option value="es">Espagnol</option><option value="it">Italien</option><option value="ja">Japonais</option></select>
