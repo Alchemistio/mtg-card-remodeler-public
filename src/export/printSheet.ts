@@ -24,9 +24,9 @@ export interface PrintSheetSettings {
 }
 export const DEFAULT_PRINT_SETTINGS: PrintSheetSettings = {
   paper: "A4", customWidthMm: 210, customHeightMm: 297, orientation: "portrait",
-  marginTopMm: 8, marginRightMm: 8, marginBottomMm: 8, marginLeftMm: 8,
-  gutterMm: 3, columns: 3, rows: 3, cardWidthMm: 63.5, cardHeightMm: 88.9,
-  bleedMm: 3, cropMarks: true, dpi: 600, centerGrid: true
+  marginTopMm: 2, marginRightMm: 2, marginBottomMm: 2, marginLeftMm: 2,
+  gutterMm: 1, columns: 3, rows: 3, cardWidthMm: 63.5, cardHeightMm: 88.9,
+  bleedMm: 1, cropMarks: true, dpi: 600, centerGrid: true
 };
 const PAPER: Record<Exclude<PaperPreset, "Custom">, [number, number]> = {
   A4: [210, 297], A3: [297, 420], Letter: [215.9, 279.4], Legal: [215.9, 355.6]
@@ -45,20 +45,21 @@ export function getSheetGeometry(settings: PrintSheetSettings): SheetGeometry {
   const cardWidthMm = Math.max(10, settings.cardWidthMm);
   const cardHeightMm = Math.max(10, settings.cardHeightMm);
   const gutter = Math.max(0, settings.gutterMm);
-  const gridWidth = columns * cardWidthMm + (columns - 1) * gutter;
-  const gridHeight = rows * cardHeightMm + (rows - 1) * gutter;
+  const bleed = Math.max(0, Math.min(5, settings.bleedMm));
+  const gridWidth = columns * (cardWidthMm + bleed * 2) + (columns - 1) * gutter;
+  const gridHeight = rows * (cardHeightMm + bleed * 2) + (rows - 1) * gutter;
   const usableWidth = pageWidthMm - settings.marginLeftMm - settings.marginRightMm;
   const usableHeight = pageHeightMm - settings.marginTopMm - settings.marginBottomMm;
   if (gridWidth > usableWidth + 0.01 || gridHeight > usableHeight + 0.01) {
     throw new Error("La grille ne tient pas dans le papier choisi. Réduis les cartes, les marges ou le nombre de colonnes/lignes.");
   }
-  const startX = settings.centerGrid
+  const startX = (settings.centerGrid
     ? settings.marginLeftMm + (usableWidth - gridWidth) / 2
-    : settings.marginLeftMm;
-  const startY = settings.centerGrid
+    : settings.marginLeftMm) + bleed;
+  const startY = (settings.centerGrid
     ? settings.marginTopMm + (usableHeight - gridHeight) / 2
-    : settings.marginTopMm;
-  return { pageWidthMm, pageHeightMm, columns, rows, cardWidthMm, cardHeightMm, startX, startY, stepX: cardWidthMm + gutter, stepY: cardHeightMm + gutter, cardsPerPage: columns * rows };
+    : settings.marginTopMm) + bleed;
+  return { pageWidthMm, pageHeightMm, columns, rows, cardWidthMm, cardHeightMm, startX, startY, stepX: cardWidthMm + bleed * 2 + gutter, stepY: cardHeightMm + bleed * 2 + gutter, cardsPerPage: columns * rows };
 }
 async function imageForCard(card: Card, dpi: number, overrides: CardOverrides = {}): Promise<string> {
   const svg = renderCardSvg(card, 0, overrides);
