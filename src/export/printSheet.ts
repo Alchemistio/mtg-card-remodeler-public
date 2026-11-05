@@ -60,7 +60,7 @@ export function getSheetGeometry(settings: PrintSheetSettings): SheetGeometry {
     : settings.marginTopMm;
   return { pageWidthMm, pageHeightMm, columns, rows, cardWidthMm, cardHeightMm, startX, startY, stepX: cardWidthMm + gutter, stepY: cardHeightMm + gutter, cardsPerPage: columns * rows };
 }
-async function imageForCard(card: Card, overrides: CardOverrides = {}): Promise<string> {
+async function imageForCard(card: Card, dpi: number, overrides: CardOverrides = {}): Promise<string> {
   const svg = renderCardSvg(card, 0, overrides);
   const matches = [...svg.matchAll(/<image\b[^>]*href="([^"]+)"/g)];
   let output = svg;
@@ -69,11 +69,12 @@ async function imageForCard(card: Card, overrides: CardOverrides = {}): Promise<
     if (href.startsWith("data:")) continue;
     const response = await fetch(href, { mode: "cors" });
     if (!response.ok) throw new Error(`Impossible de charger l'illustration de ${card.name}.`);
+    const blobData = await response.blob();
     const data = await new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => typeof reader.result === "string" ? resolve(reader.result) : reject(new Error("Image illisible."));
       reader.onerror = () => reject(new Error("Image illisible."));
-      reader.readAsDataURL(await response.blob());
+      reader.readAsDataURL(blobData);
     });
     output = output.replace(match[1], data);
   }
@@ -84,8 +85,8 @@ async function imageForCard(card: Card, overrides: CardOverrides = {}): Promise<
     image.src = url;
     await new Promise<void>((resolve, reject) => { image.onload = () => resolve(); image.onerror = () => reject(new Error(`Le rendu de ${card.name} a échoué.`)); });
     const canvas = document.createElement("canvas");
-    canvas.width = Math.round(settingsDpiWidth(63.5, 600));
-    canvas.height = Math.round(settingsDpiWidth(88.9, 600));
+    canvas.width = Math.round(settingsDpiWidth(63.5, dpi));
+    canvas.height = Math.round(settingsDpiWidth(88.9, dpi));
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Canvas indisponible.");
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -118,14 +119,13 @@ export async function exportPrintSheetPdf(
   const { jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ orientation: settings.orientation, unit: "mm", format: [geometry.pageWidthMm, geometry.pageHeightMm], compress: true });
   const bleed = Math.max(0, Math.min(5, settings.bleedMm));
-  const bleedDpi = Math.round(bleed / 25.4 * settings.dpi);
   const cache = new Map<string, string>();
   for (let i = 0; i < expanded.length; i++) {
     const entry = expanded[i];
     const key = entry.card.id;
     let image = cache.get(key);
     if (!image) {
-      image = await imageForCard(entry.card, entry.overrides);
+      image = await imageForCard(entry.card, settings.dpi, entry.overrides);
       cache.set(key, image);
     }
     if (i > 0 && i % geometry.cardsPerPage === 0) pdf.addPage([geometry.pageWidthMm, geometry.pageHeightMm], settings.orientation);
