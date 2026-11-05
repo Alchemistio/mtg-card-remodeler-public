@@ -4,8 +4,10 @@ import { CardProjectSchema, type CardProject } from "./customization";
 const DB_NAME = "mtg-card-remodeller";
 const STORE = "cards";
 const PROJECT_STORE = "projects";
+const CACHE_STORE = "scryfallCache";
 const FALLBACK_KEY = "mtg-card-remodeller:cards";
 const PROJECT_FALLBACK_KEY = "mtg-card-remodeller:projects";
+const CACHE_FALLBACK_KEY = "mtg-card-remodeller:scryfall-cache";
 const TAURI_DATABASE = "sqlite:cards.db";
 
 type TauriSqlDatabase = {
@@ -32,11 +34,12 @@ async function getTauriDatabase(): Promise<TauriSqlDatabase | null> {
 function openDatabase(): Promise<IDBDatabase | null> {
   if (typeof indexedDB === "undefined") return Promise.resolve(null);
   return new Promise(resolve => {
-    const request = indexedDB.open(DB_NAME, 2);
+    const request = indexedDB.open(DB_NAME, 3);
     request.onupgradeneeded = () => {
       const db = request.result;
       if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: "id" });
       if (!db.objectStoreNames.contains(PROJECT_STORE)) db.createObjectStore(PROJECT_STORE, { keyPath: "id" });
+      if (!db.objectStoreNames.contains(CACHE_STORE)) db.createObjectStore(CACHE_STORE, { keyPath: "key" });
     };
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => resolve(null);
@@ -146,6 +149,71 @@ export async function removeSavedCard(id: string): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     const transaction = db.transaction(STORE, "readwrite");
     transaction.objectStore(STORE).delete(id);
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+}
+
+export async function getCachedSearch(key: string): Promise<Card[] | null> {
+  const now = new Date().toISOString();
+  const sql = await getTauriDatabase();
+  if (sql) {
+    const rows = await sql.select<Array<{ payload: string }>>(
+      "SELECT payload FROM scryfall_cache WHERE cache_key = $1 AND expires_at > $2",
+      [key, now]
+    );
+    if (!rows.length) return null;
+    const parsed = JSON.parse(rows[0].payload) as unknown[];
+    return parsed.map(item => CardSchema.parse(item));
+  }
+
+  const db = await openDatabase();
+  if (!db) {
+    try {
+      const entries = JSON.parse(localStorage.getItem(CACHE_FALLBACK_KEY) ?? "{}") as Record<string, { payload: unknown[]; expiresAt: number }>;
+      const entry = entries[key];
+      if (!entry || entry.expiresAt <= Date.now()) return null;
+      return entry.payload.map(item => CardSchema.parse(item));
+    } catch { return null; }
+  }
+
+  return new Promise(resolve => {
+    const request = db.transaction(CACHE_STORE, "readonly").objectStore(CACHE_STORE).get(key);
+    request.onsuccess = () => {
+      const entry = request.result as { payload: unknown[]; expiresAt: number } | undefined;
+      if (!entry || entry.expiresAt <= Date.now()) { resolve(null); return; }
+      try { resolve(entry.payload.map(item => CardSchema.parse(item))); }
+      catch { resolve(null); }
+    };
+    request.onerror = () => resolve(null);
+  });
+}
+
+export async function saveCachedSearch(key: string, cards: Card[], ttlMs = 12 * 60 * 60 * 1000): Promise<void> {
+  const valid = cards.map(card => CardSchema.parse(card));
+  const expiresAt = Date.now() + ttlMs;
+  const sql = await getTauriDatabase();
+  if (sql) {
+    await sql.execute(
+      "INSERT INTO scryfall_cache (cache_key, payload, expires_at, updated_at) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) ON CONFLICT(cache_key) DO UPDATE SET payload = excluded.payload, expires_at = excluded.expires_at, updated_at = CURRENT_TIMESTAMP",
+      [key, JSON.stringify(valid), new Date(expiresAt).toISOString()]
+    );
+    return;
+  }
+
+  const db = await openDatabase();
+  if (!db) {
+    try {
+      const entries = JSON.parse(localStorage.getItem(CACHE_FALLBACK_KEY) ?? "{}") as Record<string, unknown>;
+      entries[key] = { key, payload: valid, expiresAt };
+      localStorage.setItem(CACHE_FALLBACK_KEY, JSON.stringify(entries));
+    } catch { /* Cache is an optimization; storage failure must not block card search. */ }
+    return;
+  }
+
+  await new Promise<void>((resolve, reject) => {
+    const transaction = db.transaction(CACHE_STORE, "readwrite");
+    transaction.objectStore(CACHE_STORE).put({ key, payload: valid, expiresAt });
     transaction.oncomplete = () => resolve();
     transaction.onerror = () => reject(transaction.error);
   });
