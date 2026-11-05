@@ -61,7 +61,7 @@ export function getSheetGeometry(settings: PrintSheetSettings): SheetGeometry {
     : settings.marginTopMm) + bleed;
   return { pageWidthMm, pageHeightMm, columns, rows, cardWidthMm, cardHeightMm, startX, startY, stepX: cardWidthMm + bleed * 2 + gutter, stepY: cardHeightMm + bleed * 2 + gutter, cardsPerPage: columns * rows };
 }
-async function imageForCard(card: Card, dpi: number, bleedMm: number, overrides: CardOverrides = {}): Promise<string> {
+async function imageForCard(card: Card, dpi: number, bleedMm: number, cardWidthMm: number, cardHeightMm: number, overrides: CardOverrides = {}): Promise<string> {
   const svg = renderCardSvg(card, 0, overrides);
   const matches = [...svg.matchAll(/<image\b[^>]*href="([^"]+)"/g)];
   let output = svg;
@@ -86,8 +86,8 @@ async function imageForCard(card: Card, dpi: number, bleedMm: number, overrides:
     image.src = url;
     await new Promise<void>((resolve, reject) => { image.onload = () => resolve(); image.onerror = () => reject(new Error(`Le rendu de ${card.name} a échoué.`)); });
     const canvas = document.createElement("canvas");
-    canvas.width = Math.round(settingsDpiWidth(63.5, dpi));
-    canvas.height = Math.round(settingsDpiWidth(88.9, dpi));
+    canvas.width = Math.round(settingsDpiWidth(cardWidthMm, dpi));
+    canvas.height = Math.round(settingsDpiWidth(cardHeightMm, dpi));
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Canvas indisponible.");
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -144,7 +144,7 @@ export async function exportPrintSheetPdf(
     const key = entry.card.id;
     let image = cache.get(key);
     if (!image) {
-      image = await imageForCard(entry.card, settings.dpi, bleed, entry.overrides);
+      image = await imageForCard(entry.card, settings.dpi, bleed, geometry.cardWidthMm, geometry.cardHeightMm, entry.overrides);
       cache.set(key, image);
     }
     if (i > 0 && i % geometry.cardsPerPage === 0) pdf.addPage([geometry.pageWidthMm, geometry.pageHeightMm], settings.orientation);
