@@ -11,14 +11,14 @@
 ## Couches présentes
 - **Interface** : React + TypeScript.
 - **Validation** : Zod.
-- **Données** : client Scryfall, recherche française et normalisation.
+- **Données** : client Scryfall, recherche française, normalisation Zod et cache persistant à expiration (12 h).
 - **Règles** : tokeniseur des symboles entre accolades.
 - **Typographie** : mesure Canvas lorsque disponible, repli déterministe et recherche dichotomique de taille.
 - **Layouts** : registre des familles de cartes et prise en charge des faces.
 - **Rendu** : moteur `mtg-card` (FeSens) pour les cadres standard, Saga, planeswalker et Aventure ; SVG local de secours pour les layouts non couverts.
 - **Assets** : manifeste local et paquet npm FeSens pour les SVG, textures et symboles ; inventaire de licences à compléter.
-- **Persistance desktop** : SQLite via le plugin SQL Tauri.
-- **Persistance web** : IndexedDB, repli localStorage.
+- **Persistance desktop** : SQLite via le plugin SQL Tauri (cartes, projets et cache Scryfall).
+- **Persistance web** : IndexedDB, repli localStorage (cartes, projets et cache Scryfall).
 - **Export** : SVG/PNG/PDF. Le rendu FeSens est capturé en PNG haute résolution avant export ; les compositions locales restent vectorielles.
 - **Tests** : Vitest.
 
