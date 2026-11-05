@@ -163,8 +163,10 @@ export async function getCachedSearch(key: string): Promise<Card[] | null> {
       [key, now]
     );
     if (!rows.length) return null;
-    const parsed = JSON.parse(rows[0].payload) as unknown[];
-    return parsed.map(item => CardSchema.parse(item));
+    try {
+      const parsed = JSON.parse(rows[0].payload) as unknown[];
+      return parsed.map(item => CardSchema.parse(item));
+    } catch { return null; }
   }
 
   const db = await openDatabase();
