@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Search, Download, Layers3, Sparkles, LoaderCircle, Image as ImageIcon,
   Save, FileImage, FileText, FlipHorizontal, Bookmark
@@ -33,12 +33,45 @@ export default function App() {
   const [exportBusy, setExportBusy] = useState(false);
   const [bleedMm, setBleedMm] = useState(3);
   const [cropMarks, setCropMarks] = useState(true);
+  const [fitOverflow, setFitOverflow] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const displayCard = useMemo(() => applyCardOverrides(selected, overrides), [selected, overrides]);
   const svg = useMemo(() => renderCardSvg(displayCard, faceIndex, overrides), [displayCard, faceIndex, overrides]);
   const feSensProps = useMemo(() => toFeSensProps(displayCard, faceIndex, overrides), [displayCard, faceIndex, overrides]);
   const nativeCardElement = () => previewRef.current?.querySelector<HTMLElement>(".mtg-card-native > *") ?? null;
+
+  useLayoutEffect(() => {
+    const root = previewRef.current?.querySelector<HTMLElement>(".mtg-card-native");
+    if (!root || !feSensProps) { setFitOverflow(false); return; }
+
+    const requestedScale = overrides.fontSize ? overrides.fontSize / 22 : 1;
+    const textZones = [...root.querySelectorAll<HTMLElement>(
+      '[class*="rulesArea"],[class*="chaptersArea"],[class*="abilitiesArea"],[class*="splitBox"]'
+    )];
+    const singleLineFields = [...root.querySelectorAll<HTMLElement>(
+      '[class*="cardName"],[class*="typeLine"]'
+    )];
+    const fits = () =>
+      textZones.every(zone => zone.clientHeight === 0 || zone.scrollHeight <= zone.clientHeight + 2) &&
+      singleLineFields.every(field => field.clientWidth === 0 || field.scrollWidth <= field.clientWidth + 2);
+
+    let scale = requestedScale;
+    root.style.setProperty("--mtg-fit-scale", String(scale));
+    if (!fits()) {
+      let low = 0.4;
+      let high = requestedScale;
+      for (let i = 0; i < 14; i += 1) {
+        const mid = (low + high) / 2;
+        root.style.setProperty("--mtg-fit-scale", String(mid));
+        if (fits()) high = mid;
+        else low = mid;
+      }
+      scale = high;
+      root.style.setProperty("--mtg-fit-scale", String(scale));
+    }
+    setFitOverflow(!fits());
+  }, [feSensProps, overrides.fontSize]);
 
   useEffect(() => {
     listSavedCards().then(setSavedCards).catch(() => setSavedCards([]));
@@ -170,7 +203,7 @@ export default function App() {
               ? <div className="mtg-card-native" style={{ "--mtg-fit-scale": overrides.fontSize ? overrides.fontSize / 22 : 1 } as React.CSSProperties}><MtgCard {...feSensProps}/></div>
               : <div dangerouslySetInnerHTML={{ __html: svg }}/>}
           </div>
-          <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>Format de travail · {feSensProps ? "672 × 936" : "750 × 1050"}</span></div>
+          <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>{fitOverflow ? "Texte à ajuster · " : ""}Format de travail · {feSensProps ? "672 × 936" : "750 × 1050"}</span></div>
         </div>
         <section className="card-edit-panel">
           <div className="eyebrow">PERSONNALISATION</div>
