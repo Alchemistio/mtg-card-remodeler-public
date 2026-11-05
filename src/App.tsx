@@ -167,7 +167,7 @@ export default function App() {
         <div className="preview-stage">
           <div className={feSensProps ? "card-preview card-preview-native" : "card-preview"} ref={previewRef}>
             {feSensProps
-              ? <div className="mtg-card-native"><MtgCard {...feSensProps}/></div>
+              ? <div className="mtg-card-native" style={{ "--mtg-fit-scale": overrides.fontSize ? overrides.fontSize / 22 : 1 } as React.CSSProperties}><MtgCard {...feSensProps}/></div>
               : <div dangerouslySetInnerHTML={{ __html: svg }}/>}
           </div>
           <div className="preview-caption"><span>{displayCard.faces?.[faceIndex]?.name ?? displayCard.name}</span><span>Format de travail · {feSensProps ? "672 × 936" : "750 × 1050"}</span></div>
