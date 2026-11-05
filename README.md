@@ -40,7 +40,7 @@ Voir [docs/DESKTOP.md](docs/DESKTOP.md).
 - Personnalisation en direct du nom, du type, des règles, de la force/endurance, du cadre et de la taille de police.
 - Projets personnalisés séparés des données source.
 - Bibliothèque locale : SQLite dans Tauri, IndexedDB dans le navigateur, repli localStorage.
-- Export SVG/PNG/PDF ; PDF avec fond perdu configurable (0/3/5 mm) et traits de coupe. Les cartes FeSens sont exportées à partir d’une capture haute résolution du composant.
+- Import de decklists par texte, TXT, CSV, et liens publics Moxfield/Archidekt (selon disponibilité des API tierces), avec quantités, commandants, réserve et autres sections ; résolution groupée via Scryfall.\n- Espace dédié pour organiser les cartes, ajuster les quantités et réordonner la liste avant impression.\n- Export PDF multi-pages en planches : papier A4/A3/Letter/Legal ou dimensions personnalisées, portrait/paysage, marges indépendantes, colonnes/lignes, espacement, taille des cartes, fond perdu, traits de coupe et résolution 300/600/900/1200 DPI.\n- Export individuel SVG/PNG/PDF conservé ; les cartes FeSens individuelles sont exportées à partir d’une capture haute résolution du composant.
 - Registre de layouts, presets de cadres et manifeste d'assets.
 - Tests Vitest et workflow GitHub Actions pour tests, build web et vérification Tauri/Rust.
 
@@ -79,7 +79,7 @@ docs/
 - Les cadres FeSens sont réutilisés via le paquet npm `mtg-card` (MIT déclaré en amont) ; ils restent soumis aux conditions et attributions de leurs sources graphiques.
 - Les cadres FeSens couvrent classique, Saga, planeswalker et Aventure. Les layouts split, bataille, classe, prototype et certains cas particuliers utilisent encore le moteur SVG de secours.
 - Les exports SVG des cadres FeSens encapsulent un rendu PNG haute résolution ; ils ne constituent pas encore un document entièrement vectoriel éditable.
-- Les profils d’impression CMJN/ICC, fonds perdus spécifiques aux imprimeurs et repères de sécurité restent à développer.
+- L'import depuis URL Moxfield/Archidekt dépend de leurs API publiques non garanties ; le collage de la decklist exportée reste la solution de repli.\n- L'export de planches utilise le moteur SVG local ; certains layouts complexes ne sont pas encore aussi fidèles que l'aperçu FeSens individuel.\n- Les profils d’impression CMJN/ICC et repères de sécurité propres aux imprimeurs restent à développer.
 - Les polices Beleren/Merriweather/Source Sans Pro et les droits de redistribution des éléments issus du fichier Figma source doivent être validés avant une distribution publique.
 - Les tests automatisés ne remplacent pas encore une validation visuelle sur un corpus de cartes réel et varié.
 - La CI vérifie le shell Tauri sous Linux ; les packages finaux Windows/macOS restent à construire sur leurs plateformes respectives.
