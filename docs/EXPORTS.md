@@ -4,7 +4,7 @@
 Le SVG exporté est rendu autonome : l'illustration distante est récupérée puis incorporée en data URI. Le fichier reste donc consultable hors connexion après l'export. Si le serveur d'image refuse les requêtes CORS, l'export affiche une erreur explicite au lieu de générer un fichier incomplet.
 
 ## PNG
-Le pipeline rasterise le SVG autonome dans un canvas à une échelle configurable. Le réglage par défaut est 3× (2250 × 3150 px), soit 900 DPI pour le format physique standard 63,5 × 88,9 mm.
+Le moteur SVG local est rasterisé depuis son SVG autonome. Les cartes FeSens sont capturées depuis le composant DOM puis rasterisées à 2250 × 3150 px (3× le canevas de travail, environ 900 DPI au format 63,5 × 88,9 mm).
 
 ## PDF prêt à imprimer
 Par défaut, l'export PDF utilise :
