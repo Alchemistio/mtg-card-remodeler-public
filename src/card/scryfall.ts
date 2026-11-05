@@ -10,6 +10,37 @@ const HEADERS = {
   "User-Agent": "MTGCardRemodeller/0.2 (independent fan project)"
 };
 
+let requestQueue: Promise<void> = Promise.resolve();
+let lastRequestAt = 0;
+
+function wait(milliseconds: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+/** Serialize API calls, keep at least 100 ms between requests, and retry transient rate/server errors. */
+async function requestScryfall(url: string, init: RequestInit = {}): Promise<Response> {
+  const request = requestQueue.then(async () => {
+    const spacing = 100 - (Date.now() - lastRequestAt);
+    if (spacing > 0) await wait(spacing);
+
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const response = await fetch(url, init);
+      lastRequestAt = Date.now();
+      if (![429, 503].includes(response.status) || attempt === 2) return response;
+
+      const retryAfter = Number(response.headers.get("Retry-After"));
+      const fallbackDelay = 1000 * (attempt + 1);
+      await wait(Number.isFinite(retryAfter) && retryAfter > 0
+        ? Math.min(30_000, retryAfter * 1000)
+        : fallbackDelay);
+    }
+    throw new Error("La requête Scryfall n'a pas pu être terminée.");
+  });
+
+  requestQueue = request.then(() => undefined, () => undefined);
+  return request;
+}
+
 function frenchQuery(query: string): string {
   const trimmed = query.trim();
   return /(^|\s)lang:[a-z]{2}(\s|$)/i.test(trimmed) ? trimmed : `${trimmed} lang:fr`;
@@ -43,7 +74,7 @@ export async function searchCards(query: string, signal?: AbortSignal): Promise<
     return persisted;
   }
 
-  const response = await fetch(`${API}/cards/search?${params}`, { signal, headers: HEADERS });
+  const response = await requestScryfall(`${API}/cards/search?${params}`, { signal, headers: HEADERS });
   if (!response.ok) {
     if (response.status === 404) return [];
     throw await readError(response);
@@ -70,7 +101,7 @@ export async function getCardById(id: string): Promise<Card | null> {
     return persisted[0] ?? null;
   }
 
-  const response = await fetch(`${API}/cards/${encodeURIComponent(id)}`, { headers: HEADERS });
+  const response = await requestScryfall(`${API}/cards/${encodeURIComponent(id)}`, { headers: HEADERS });
   if (response.status === 404) return null;
   if (!response.ok) throw await readError(response);
   const card = normalizeScryfallCard(await response.json() as ScryfallCard);
