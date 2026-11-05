@@ -9,7 +9,7 @@ describe("print sheet geometry", () => {
     expect(geometry.cardsPerPage).toBe(9);
   });
   it("supports landscape Letter and custom paper sizes", () => {
-    const letter = getSheetGeometry({ ...DEFAULT_PRINT_SETTINGS, paper: "Letter", orientation: "landscape" });
+    const letter = getSheetGeometry({ ...DEFAULT_PRINT_SETTINGS, paper: "Letter", orientation: "landscape", rows: 2 });
     expect(letter.pageWidthMm).toBe(279.4);
     expect(letter.pageHeightMm).toBe(215.9);
     const custom = getSheetGeometry({ ...DEFAULT_PRINT_SETTINGS, paper: "Custom", customWidthMm: 250, customHeightMm: 330 });
