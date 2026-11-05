@@ -84,7 +84,7 @@ docs/
 - Les tests automatisés ne remplacent pas encore une validation visuelle sur un corpus de cartes réel et varié.
 - La CI vérifie le shell Tauri sous Linux ; les packages finaux Windows/macOS restent à construire sur leurs plateformes respectives.
 
-Voir [docs/ROADMAP.md](docs/ROADMAP.md) pour la suite.
+Voir [docs/ROADMAP.md](docs/ROADMAP.md) pour la suite et [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) pour le rapport d'avancement détaillé.
 
 ## Propriété intellectuelle
 
