@@ -28,7 +28,7 @@ function baseProps(card: Card, face: CardFace | undefined, overrides: CardOverri
     manaCost: manaSymbols(manaCost),
     cardArt: overrides.imageUrl ?? faceValue(face, card, "imageUrl") as string | undefined,
     typeLine,
-    legendary: /\\bLegendary\\b/i.test(typeLine),
+    legendary: /\\bLegendary\\b|\\bLégendaire\\b/i.test(typeLine),
     cardNumber: card.collectorNumber,
     rarity: rarityValue(card.rarity),
     setCode: card.set.toUpperCase(),
@@ -41,7 +41,7 @@ function baseProps(card: Card, face: CardFace | undefined, overrides: CardOverri
 function parsePlaneswalkerAbilities(text: string): { cost: string; text: string }[] {
   const abilities: { cost: string; text: string }[] = [];
   for (const line of text.split(/\\r?\\n/)) {
-    const match = line.match(/^([+\\-−]?\\d+):\\s*(.*)$/);
+    const match = line.match(/^([+\\-−]?\\d+)\\s*:\\s*(.*)$/);
     if (match) abilities.push({ cost: match[1], text: match[2] });
     else if (line.trim() && abilities.length) abilities[abilities.length - 1].text += `\\n${line}`;
   }
@@ -62,9 +62,9 @@ function parseSaga(text: string): { chapters: { numerals: string; text: string }
 }
 
 function standardFrame(typeLine: string, oracleText: string): "standard" | "vehicle" | "mutate" | "land" {
-  if (/\\bLand\\b/i.test(typeLine)) return "land";
-  if (/\\bVehicle\\b/i.test(typeLine)) return "vehicle";
-  if (/\\bMutate\\b/i.test(oracleText)) return "mutate";
+  if (/\\bLand\\b|\\bTerrain\\b/i.test(typeLine)) return "land";
+  if (/\\bVehicle\\b|\\bVéhicule\\b/i.test(typeLine)) return "vehicle";
+  if (/\\bMutate\\b|\\bMutation\\b/i.test(oracleText)) return "mutate";
   return "standard";
 }
 
@@ -76,7 +76,7 @@ export function toFeSensProps(card: Card, faceIndex = 0, overrides: CardOverride
   if (["split", "battle", "class", "meld", "planar", "scheme", "vanguard", "token"].includes(card.layout)) return null;
 
   if (card.layout === "adventure") {
-    const adventureFace = card.faces?.find(face => /\\bAdventure\\b/i.test(face.typeLine));
+    const adventureFace = card.faces?.find(face => /\\bAdventure\\b|\\bAventure\\b/i.test(face.typeLine));
     const creatureFace = card.faces?.find(face => face !== adventureFace) ?? card.faces?.[0];
     if (!adventureFace || !creatureFace) return null;
     const creatureBase = baseProps(card, creatureFace, overrides);
@@ -123,8 +123,8 @@ export function toFeSensProps(card: Card, faceIndex = 0, overrides: CardOverride
     flavorText: overrides.flavorText ?? faceValue(face, card, "flavorText") as string | undefined,
     power: overrides.power ?? faceValue(face, card, "power") as string | undefined,
     toughness: overrides.toughness ?? faceValue(face, card, "toughness") as string | undefined,
-    landSymbol: /\\bBasic Land\\b/i.test(typeLine)
-      ? (manaSymbols(manaCost)[0] ?? ({ Plains: "W", Island: "U", Swamp: "B", Mountain: "R", Forest: "G" } as Record<string, string>)[typeLine.split("—").at(-1)?.trim() ?? ""])
+    landSymbol: /\\bBasic Land\\b|\\bTerrain de base\\b/i.test(typeLine)
+      ? (manaSymbols(manaCost)[0] ?? ({ Plains: "W", Plaine: "W", Island: "U", Île: "U", Swamp: "B", Marais: "B", Mountain: "R", Montagne: "R", Forest: "G", Forêt: "G" } as Record<string, string>)[typeLine.split(/[—–-]/).at(-1)?.trim() ?? ""])
       : undefined
   };
 }
