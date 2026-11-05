@@ -99,6 +99,66 @@ function normalizeArchidekt(payload: any): ImportedDeck {
   return { name: payload.name || "Deck Archidekt", source: "Archidekt", lines };
 }
 
+
+function parseCsvRows(input: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < input.length; i += 1) {
+    const char = input[i];
+    if (char === '"') {
+      if (quoted && input[i + 1] === '"') { cell += '"'; i += 1; }
+      else quoted = !quoted;
+    } else if (char === "," && !quoted) {
+      row.push(cell.trim()); cell = "";
+    } else if ((char === "\n" || char === "\r") && !quoted) {
+      if (char === "\r" && input[i + 1] === "\n") i += 1;
+      row.push(cell.trim()); cell = "";
+      if (row.some(value => value.length)) rows.push(row);
+      row = [];
+    } else cell += char;
+  }
+  row.push(cell.trim());
+  if (row.some(value => value.length)) rows.push(row);
+  if (quoted) throw new Error("Le fichier CSV contient un guillemet non fermé.");
+  return rows;
+}
+
+export function parseCsvDecklist(input: string): ImportedDeck {
+  const rows = parseCsvRows(input);
+  if (!rows.length) return { name: "Deck CSV", lines: [] };
+  const header = rows[0].map(value => value.toLowerCase().replace(/[^a-z0-9]/g, ""));
+  const findColumn = (patterns: RegExp[]) => header.findIndex(value => patterns.some(pattern => pattern.test(value)));
+  const nameColumn = findColumn([/^name$/, /^cardname$/, /^card$/]);
+  const quantityColumn = findColumn([/^qty$/, /^quantity$/, /^count$/, /^amount$/]);
+  const setColumn = findColumn([/^set$/, /^setcode$/, /^edition$/, /^expansion$/]);
+  const collectorColumn = findColumn([/^collectornumber$/, /^collector$/, /^number$/, /^cn$/]);
+  const boardColumn = findColumn([/^board$/, /^section$/, /^category$/]);
+  const hasHeader = nameColumn >= 0;
+  const dataRows = hasHeader ? rows.slice(1) : rows;
+  const lines: DeckLine[] = [];
+  for (const row of dataRows) {
+    const name = (row[hasHeader ? nameColumn : 1] ?? row[0] ?? "").trim();
+    if (!name) continue;
+    const quantityValue = hasHeader && quantityColumn >= 0 ? row[quantityColumn] : row[0];
+    const quantity = Number(quantityValue || 1);
+    if (!Number.isFinite(quantity) || quantity <= 0) continue;
+    const boardValue = hasHeader && boardColumn >= 0 ? row[boardColumn] ?? "" : "";
+    const board: DeckBoard = /side/i.test(boardValue) ? "sideboard"
+      : /commander/i.test(boardValue) ? "commander"
+      : /companion/i.test(boardValue) ? "companion"
+      : /maybe/i.test(boardValue) ? "maybeboard"
+      : /token/i.test(boardValue) ? "tokens" : "main";
+    lines.push({
+      id: makeId(), name, quantity: Math.max(1, Math.min(999, Math.floor(quantity))), board,
+      set: hasHeader && setColumn >= 0 ? row[setColumn]?.toLowerCase() || undefined : undefined,
+      collectorNumber: hasHeader && collectorColumn >= 0 ? row[collectorColumn] || undefined : undefined
+    });
+  }
+  return { name: "Deck CSV", lines };
+}
+
 export async function importDeckUrl(value: string, signal?: AbortSignal): Promise<ImportedDeck> {
   const url = new URL(value.trim());
   if (/moxfield\.com$/i.test(url.hostname)) {
