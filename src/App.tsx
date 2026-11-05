@@ -148,8 +148,8 @@ export default function App() {
   return <main className="app-shell">
     <header className="topbar">
       <div className="brand-mark"><Layers3 size={22}/></div>
-      <div><strong>MTG CARD REMODELLER</strong><span>Atelier de reconstruction</span></div>
-      <div className="topbar-tag"><span className="status-dot"/> Prototype évolutif</div>
+      <div><strong>MTG CARD REMODELLER</strong><span>Atelier personnel de proxies</span></div>
+      <div className="topbar-tag"><span className="status-dot"/> Atelier local</div>
     </header>
     <section className="workspace">
       <aside className="sidebar">
