@@ -175,6 +175,14 @@ export default function App() {
           </div>
           <button className="reset-button" onClick={() => setOverrides({})}>Réinitialiser les personnalisations</button>
         </section>
+        <div className="print-settings">
+          <label>Fond perdu
+            <select value={bleedMm} onChange={event => setBleedMm(Number(event.target.value))}>
+              <option value={0}>0 mm</option><option value={3}>3 mm</option><option value={5}>5 mm</option>
+            </select>
+          </label>
+          <label className="crop-toggle"><input type="checkbox" checked={cropMarks} onChange={event => setCropMarks(event.target.checked)}/> Traits de coupe</label>
+        </div>
         <div className="export-toolbar">
           <button className="export-button" disabled={exportBusy} onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
