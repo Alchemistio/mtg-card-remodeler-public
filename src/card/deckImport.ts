@@ -135,10 +135,12 @@ async function resolveChunk(lines: DeckLine[], defaultLanguage: string, signal?:
   const payload = await response.json() as { data: ScryfallCard[]; not_found: Array<Record<string, string>> };
   const cards = payload.data.map(normalizeScryfallCard);
   const byName = new Map(cards.map(card => [card.name.toLowerCase(), card]));
-  return lines.map((line, index) => {
+  return lines.map((line) => {
+    const matches = cards.filter(card => card.name.toLowerCase() === line.name.toLowerCase());
+    const preferredLanguage = line.language ?? defaultLanguage;
     const found = line.set && line.collectorNumber
       ? cards.find(card => card.set === line.set && card.collectorNumber === line.collectorNumber)
-      : byName.get(line.name.toLowerCase()) ?? cards.find(card => card.name.toLowerCase() === line.name.toLowerCase());
+      : matches.find(card => card.language === preferredLanguage) ?? byName.get(line.name.toLowerCase()) ?? matches[0];
     if (found) return { ...line, card: found };
     return { ...line, error: "Carte introuvable dans Scryfall. Vérifie le nom, l'édition ou la langue." };
   });
