@@ -39,7 +39,7 @@ La PR #4 ajoute le moteur de cadres FeSens, le raccordement des données Scryfal
 
 ### 3.1 Récupération des données Scryfall
 
-<badge color="success">Bien avancé</badge>
+**État : bien avancé**
 
 - Recherche avec filtre français par défaut.
 - Normalisation des champs dans un modèle interne validé par Zod.
@@ -52,7 +52,7 @@ La PR #4 ajoute le moteur de cadres FeSens, le raccordement des données Scryfal
 
 ### 3.2 Cadres, textures et symboles
 
-<badge color="warning">Partiel</badge>
+**État : partiel**
 
 La PR #4 utilise le paquet FeSens comme base graphique au lieu de continuer à développer uniquement des cadres simplifiés. Il fournit des cadres colorés, des textures, des éléments SVG et des symboles de mana.
 
@@ -68,7 +68,7 @@ Le moteur SVG local reste actif pour les compositions qui ne sont pas encore cor
 
 ### 3.3 Reconstruction et typographie
 
-<badge color="warning">Partiel</badge>
+**État : partiel**
 
 - Les champs de carte peuvent être personnalisés sans modifier la source Scryfall.
 - Le moteur local calcule la mise en page du texte et signale les débordements.
@@ -79,7 +79,7 @@ Le moteur SVG local reste actif pour les compositions qui ne sont pas encore cor
 
 ### 3.4 Édition et sauvegarde
 
-<badge color="success">Bien avancé</badge>
+**État : bien avancé**
 
 - Recherche et sélection d'une carte.
 - Modification du nom, du type, du texte de règles, de la force et de l'endurance.
@@ -91,7 +91,7 @@ Le moteur SVG local reste actif pour les compositions qui ne sont pas encore cor
 
 ### 3.5 Exports et impression
 
-<badge color="warning">Partiel</badge>
+**État : partiel**
 
 - SVG autonome pour le moteur local.
 - PNG de 2250 × 3150 px, soit 900 DPI au format fini 63,5 × 88,9 mm.
@@ -103,7 +103,7 @@ Le moteur SVG local reste actif pour les compositions qui ne sont pas encore cor
 
 ### 3.6 Distribution
 
-<badge color="danger">À faire</badge>
+**État : à faire**
 
 - Shell Tauri 2 présent.
 - La CI contrôle le build web et vérifie le code Rust avec `cargo fmt` et `cargo check`.
