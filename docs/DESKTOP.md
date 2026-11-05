@@ -16,12 +16,12 @@ npm run tauri:dev
 npm run tauri:build
 ```
 
-Le packaging multi-plateforme doit être exécuté sur les runners ou machines de chaque système cible. La CI web vérifie les tests et le build Vite ; elle ne compile pas encore la cible Rust.
+Le packaging multi-plateforme doit être exécuté sur les runners ou machines de chaque système cible. La CI vérifie les tests et le build Vite, puis exécute `cargo fmt --check` et `cargo check` sous Linux. Les packages installables Windows/macOS/Linux et la signature restent à produire.
 
 ## Persistance
 
-- **Desktop Tauri** : SQLite via `tauri-plugin-sql`, base `cards.db`, migration initiale et table `cards`.
+- **Desktop Tauri** : SQLite via `tauri-plugin-sql`, base `cards.db`, migrations versionnées pour les tables `cards`, `projects` et `scryfall_cache`.
 - **Navigateur** : IndexedDB.
 - **Repli** : localStorage lorsque IndexedDB est indisponible.
 
-Les cartes sont stockées sous forme de JSON validé par Zod, avec index SQL sur le nom. Les modifications visuelles à venir devront être stockées dans une colonne de surcharge dédiée plutôt que d'altérer les données sources Scryfall.
+Les cartes et projets sont stockés sous forme de JSON validé par Zod. Les recherches Scryfall sont mises en cache 12 h avec une date d’expiration. Les modifications visuelles sont conservées dans les projets et non dans le snapshot source.
