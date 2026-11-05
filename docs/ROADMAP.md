@@ -15,7 +15,8 @@
 - [x] Ajouter un shell desktop Tauri 2 et un manifeste d'assets.
 - [x] Ajouter des tests unitaires et une CI web.
 - [x] Valider la CI web, la compilation TypeScript et la vérification Tauri/Rust sur la branche principale avant l’intégration du moteur FeSens.
-- [ ] Revalider la CI après l’intégration du moteur FeSens.
+- [x] Revalider la CI après l’intégration du moteur FeSens et corriger les régressions détectées.
+- [ ] Valider un installateur Windows final sur une machine Windows propre.
 
 ## Phase 2 — Fidélité des cartes
 - [x] Rendu inline des symboles de mana et d'activation sous forme de glyphes vectoriels provisoires.
@@ -32,6 +33,7 @@
 - [ ] Éditeur de cadres et de zones de texte.
 - [ ] Séparation des données Scryfall et des surcharges utilisateur.
 - [x] Import de decklists texte/TXT/CSV avec quantités, sections de deck et résolution en lots Scryfall.\n- [x] Import best-effort des decks publics Moxfield et Archidekt (les API tierces peuvent bloquer les requêtes).\n- [ ] Gestion avancée des projets, favoris et collections.
+- [ ] Import direct des URLs tierces sans dépendre des politiques CORS du WebView.
 - [ ] Cache d'images et de données, synchronisation et nettoyage.
 
 ## Phase 4 — Export et distribution
