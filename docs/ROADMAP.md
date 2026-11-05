@@ -31,14 +31,14 @@
 - [ ] Registre d’assets local unifié : cadres, textures, symboles, polices et masques, avec inventaire de licences.
 - [ ] Éditeur de cadres et de zones de texte.
 - [ ] Séparation des données Scryfall et des surcharges utilisateur.
-- [ ] Gestion des projets, favoris, collections et import en lot.
+- [x] Import de decklists texte/TXT/CSV avec quantités, sections de deck et résolution en lots Scryfall.\n- [x] Import best-effort des decks publics Moxfield et Archidekt (les API tierces peuvent bloquer les requêtes).\n- [ ] Gestion avancée des projets, favoris et collections.
 - [ ] Cache d'images et de données, synchronisation et nettoyage.
 
 ## Phase 4 — Export et distribution
 - [x] Export PDF avec fond perdu de 0/3/5 mm et traits de coupe.
-- [ ] Profils d’impression, CMJN/ICC et marges de sécurité propres aux imprimeurs.
+- [x] Export PDF multi-pages en planches avec papier A4/A3/Letter/Legal/personnalisé, orientation, marges indépendantes, grille, espacement, dimensions de cartes, fond perdu et traits de coupe.\n- [ ] Profils d’impression, CMJN/ICC et marges de sécurité propres aux imprimeurs.
 - [x] Export PNG haute définition 3× pour les rendus SVG locaux et FeSens.
-- [ ] Réglage de résolution et pipeline d’images distantes plus complet.
+- [x] Réglage de résolution PDF (300/600/900/1200 DPI) pour les planches d'impression.\n- [ ] Pipeline d’images distantes plus complet.
 - [ ] Packaging Windows, macOS et Linux.
 - [ ] Tests de bout en bout et documentation utilisateur.
 
