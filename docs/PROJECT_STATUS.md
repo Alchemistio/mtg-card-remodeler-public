@@ -15,13 +15,13 @@ Les deux améliorations majeures déjà intégrées à `main` sont :
 
 La PR #4 a été fusionnée dans `main` : elle ajoute le moteur de cadres FeSens, le raccordement des données Scryfall à ses composants et un cache persistant des recherches. Les tests web et le build ont passé sur la branche de travail ; une vérification CI supplémentaire est lancée sur le commit de fusion.
 
-**État global : prototype avancé, mais pas encore un outil de production prêt à distribuer.** Les fonctionnalités essentielles existent, tandis que la couverture des familles de cartes, les tests visuels, les profils d'impression et la validation des droits graphiques restent incomplets.
+**État global : prototype avancé en préparation du premier build desktop Windows.** Les fonctionnalités essentielles existent, tandis que la couverture des familles de cartes, les tests visuels, les profils d'impression et la validation des droits graphiques restent incomplets.
 
 ## 2. État technique de l'existant
 
 | Domaine | État | Détails |
 |---|---|---|
-| Interface | Réalisé | React + TypeScript + Vite, interface française et responsive |
+| Interface | En cours de finition | React + TypeScript + Vite ; première passe de la DA FF XII Zodiac Age intégrée, contrôle visuel Windows restant |
 | Application desktop | Partiel | Shell Tauri 2, configuration et SQLite présents ; les paquets finaux ne sont pas encore produits |
 | Données cartes | Réalisé | Modèle interne Zod, conservation du JSON Scryfall brut et des faces |
 | Recherche | Réalisé | Recherche Scryfall, préférence française, recherche par nom et identifiant |
@@ -107,7 +107,7 @@ Le moteur SVG local reste actif pour les compositions qui ne sont pas encore cor
 
 - Shell Tauri 2 présent.
 - La CI contrôle le build web et vérifie le code Rust avec `cargo fmt` et `cargo check`.
-- Aucun installateur Windows/macOS/Linux n'est encore publié.
+- Un workflow manuel Windows est ajouté pour produire les installateurs NSIS (.exe) et MSI comme artefacts temporaires ; il reste à exécuter et valider.
 - La signature des applications et les mises à jour automatiques ne sont pas configurées.
 
 ## 4. Feuille de route par phase
@@ -167,3 +167,12 @@ La création et la signature des installateurs demandent des environnements de b
 Le projet a dépassé le stade d'une simple maquette : il dispose d'un socle applicatif, d'une recherche Scryfall, d'une bibliothèque locale, d'un moteur de rendu, d'une personnalisation et d'un export PDF avec fond perdu.
 
 L'intégration FeSens est une avancée importante pour la fidélité graphique, mais elle ne couvre pas encore toutes les familles de cartes et transforme ses rendus en images pour les exports. Le prochain jalon réaliste est une version bêta utilisable, après validation de la PR #4, des droits graphiques et des rendus sur des cartes réelles.
+
+
+## 7. Mise à jour — direction artistique et build Windows
+
+- Les références utilisateur `showcase-da.html` et `showcase_menu.html` ont été analysées. Le thème Nuit est appliqué à l'atelier de gestion ; le thème Parchemin est réservé aux futures vues de consultation.
+- Les tokens de couleur, les contrastes, les sélections dorées et les alternatives typographiques ont été documentés dans [UI_DIRECTION.md](UI_DIRECTION.md).
+- Une première couche CSS reprend la palette nuit, les bandeaux noirs, les sélections dorées, les champs sombres et les panneaux d'aperçu.
+- Un workflow manuel Windows produit les installateurs NSIS et MSI en artefacts éphémères (14 jours). Aucun Release public automatique n'est créé.
+- La validation visuelle sur la machine cible et l'exécution réelle du workflow d'installation restent à faire.

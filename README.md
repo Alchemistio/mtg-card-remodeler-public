@@ -93,3 +93,9 @@ Les données de cartes sont récupérées depuis Scryfall. Les illustrations, no
 ## Licence
 
 Le code propre au projet ne dispose pas encore d’une licence de redistribution. Les dépendances tierces conservent leurs licences respectives ; voir [docs/THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md).
+
+
+## Interface et build Windows
+
+- La direction artistique de l'interface suit les références FF XII Zodiac Age fournies : [guide UI](docs/UI_DIRECTION.md).
+- Un build Windows manuel peut être lancé depuis l'onglet **Actions** avec le workflow **Windows desktop build**. Il produit des installateurs NSIS (.exe) et MSI en artefact temporaire.
