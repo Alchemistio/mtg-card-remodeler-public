@@ -6,11 +6,19 @@ Le SVG exporté est rendu autonome : l'illustration distante est récupérée pu
 ## PNG
 Le pipeline rasterise le SVG autonome dans un canvas à une échelle configurable. Le réglage par défaut est 3× (2250 × 3150 px), soit 900 DPI pour le format physique standard 63,5 × 88,9 mm.
 
-## PDF
-L'export PDF crée une page au format physique 63,5 × 88,9 mm et y place le rendu raster 3×. Cette version ne contient pas encore de fond perdu ni de traits de coupe.
+## PDF prêt à imprimer
+Par défaut, l'export PDF utilise :
+- Format fini : 63,5 × 88,9 mm.
+- Fond perdu : 3 mm sur les quatre côtés.
+- Traits de coupe : activés, placés à l'extérieur du fond perdu.
+- Résolution de rendu : 900 DPI.
+
+Le document PDF inclut donc une zone de fond perdu de 69,5 × 94,9 mm, ainsi qu'une marge externe pour les repères de coupe. Les bandes de fond perdu prolongent les bords du cadre pour éviter les liserés transparents.
+
+L'API d'export accepte aussi `{ bleedMm, cropMarks }` pour adapter le fond perdu (0 à 5 mm) et activer/désactiver les traits de coupe.
 
 ## Cartes multi-faces et personnalisations
 Les exports reçoivent la face sélectionnée et les personnalisations actives (cadre, taille de police, texte, etc.). Le contenu de la carte source reste stocké séparément dans le projet.
 
 ## Limites
-Les polices externes doivent être chargées avant rasterisation. Les illustrations distantes doivent autoriser CORS pour être intégrées au fichier exporté. Les profils d'impression avec fond perdu, repères de coupe et variantes d'imprimeurs restent à développer.
+Les polices externes doivent être chargées avant rasterisation. Les illustrations distantes doivent autoriser CORS pour être intégrées au fichier exporté. Les profils d'impression propres à certains imprimeurs (traits de sécurité, marges techniques spécifiques, CMJN et profils ICC) restent à développer.

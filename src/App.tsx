@@ -28,6 +28,8 @@ export default function App() {
   const [faceIndex, setFaceIndex] = useState(0);
   const [busy, setBusy] = useState(false);
   const [exportBusy, setExportBusy] = useState(false);
+  const [bleedMm, setBleedMm] = useState(3);
+  const [cropMarks, setCropMarks] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const displayCard = useMemo(() => applyCardOverrides(selected, overrides), [selected, overrides]);
@@ -90,8 +92,8 @@ export default function App() {
     setExportBusy(true); setError(""); setNotice("");
     try {
       if (kind === "png") await exportCardPng(displayCard, 3, faceIndex, overrides);
-      else await exportCardPdf(displayCard, faceIndex, overrides);
-      setNotice(kind === "png" ? "Export PNG haute définition terminé." : "Export PDF terminé.");
+      else await exportCardPdf(displayCard, faceIndex, overrides, { bleedMm, cropMarks });
+      setNotice(kind === "png" ? "Export PNG haute définition terminé." : `Export PDF terminé avec ${bleedMm} mm de fond perdu${cropMarks ? " et traits de coupe" : ""}.`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "L'export a échoué.");
     } finally { setExportBusy(false); }
@@ -173,6 +175,14 @@ export default function App() {
           </div>
           <button className="reset-button" onClick={() => setOverrides({})}>Réinitialiser les personnalisations</button>
         </section>
+        <div className="print-settings">
+          <label>Fond perdu
+            <select value={bleedMm} onChange={event => setBleedMm(Number(event.target.value))}>
+              <option value={0}>0 mm</option><option value={3}>3 mm</option><option value={5}>5 mm</option>
+            </select>
+          </label>
+          <label className="crop-toggle"><input type="checkbox" checked={cropMarks} onChange={event => setCropMarks(event.target.checked)}/> Traits de coupe</label>
+        </div>
         <div className="export-toolbar">
           <button className="export-button" disabled={exportBusy} onClick={exportSvg}><Download size={16}/> SVG</button>
           <button className="export-button" disabled={exportBusy} onClick={() => runExport("png")}><FileImage size={16}/> PNG HD</button>
