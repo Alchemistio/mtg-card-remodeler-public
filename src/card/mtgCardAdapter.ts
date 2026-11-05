@@ -73,7 +73,7 @@ function standardFrame(typeLine: string, oracleText: string): "standard" | "vehi
  * Unsupported compositions deliberately return null and keep the local SVG fallback.
  */
 export function toFeSensProps(card: Card, faceIndex = 0, overrides: CardOverrides = {}): MtgCardProps | null {
-  if (["split", "battle", "class", "meld", "planar", "scheme", "vanguard", "token"].includes(card.layout)) return null;
+  if (overrides.framePreset || ["split", "battle", "class", "meld", "planar", "scheme", "vanguard", "token"].includes(card.layout)) return null;
 
   if (card.layout === "adventure") {
     const adventureFace = card.faces?.find(face => /\\bAdventure\\b|\\bAventure\\b/i.test(face.typeLine));
