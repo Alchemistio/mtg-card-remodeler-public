@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { ArrowDown, ArrowUp, FileText, Link2, LoaderCircle, Printer, Trash2, Upload } from "lucide-react";
-import { importDeckUrl, parseDecklist, resolveDeckLines, type ImportedDeck, type ResolvedDeckLine } from "../card/deckImport";
+import { importDeckUrl, parseCsvDecklist, parseDecklist, resolveDeckLines, type ImportedDeck, type ResolvedDeckLine } from "../card/deckImport";
 import { saveCard } from "../card/library";
 import { DEFAULT_PRINT_SETTINGS, exportPrintSheetPdf, getSheetGeometry, type PrintSheetSettings } from "../export/printSheet";
 
@@ -66,13 +66,12 @@ export default function DeckBuilder() {
     try {
       const text = await file.text();
       if (file.name.toLowerCase().endsWith(".csv")) {
-        const rows = text.split(/\r?\n/).filter(Boolean);
-        const header = rows.shift()?.split(",") ?? [];
-        const nameIndex = header.findIndex(v => /name|card/i.test(v));
-        const qtyIndex = header.findIndex(v => /qty|quantity|count/i.test(v));
-        const list = rows.map(row => { const cells = row.split(","); return `${cells[qtyIndex >= 0 ? qtyIndex : 0] || 1} ${cells[nameIndex >= 0 ? nameIndex : 1] || cells[0]}`; }).join("\n");
-        await loadText(list, file.name.replace(/\.[^.]+$/, ""));
-      } else await loadText(text, file.name.replace(/\.[^.]+$/, ""));
+        const parsed = parseCsvDecklist(text);
+        if (!parsed.lines.length) { setError("Aucune ligne de carte reconnue dans le CSV."); return; }
+        setDeck({ ...parsed, name: file.name.replace(/\\.[^.]+$/, "") });
+        setResolved([]);
+        await resolve(parsed);
+ else await loadText(text, file.name.replace(/\.[^.]+$/, ""));
     } catch { setError("Impossible de lire ce fichier."); }
   }
   function updateQuantity(id: string, quantity: number) {
