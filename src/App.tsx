@@ -12,6 +12,7 @@ import { renderCardSvg } from "./card/renderer";
 import { toFeSensProps } from "./card/mtgCardAdapter";
 import { exportCardPdf, exportCardPng, exportCardSvg, exportMtgCardPdf, exportMtgCardPng, exportMtgCardSvg } from "./export/cardExport";
 import { listProjects, listSavedCards, saveCard, saveProject } from "./card/library";
+import DeckBuilder from "./components/DeckBuilder";
 
 const DEMO: Card = {
   id: "demo", name: "Ours runegriffe", manaCost: "{1}{G}", cmc: 2,
@@ -21,6 +22,7 @@ const DEMO: Card = {
 };
 
 export default function App() {
+  const [activeView, setActiveView] = useState<"card" | "deck">("card");
   const previewRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Card[]>([]);
@@ -151,7 +153,11 @@ export default function App() {
       <div><strong>MTG CARD REMODELLER</strong><span>Atelier personnel de proxies</span></div>
       <div className="topbar-tag"><span className="status-dot"/> Atelier local</div>
     </header>
-    <section className="workspace">
+    <nav className="workspace-tabs" aria-label="Espaces de travail">
+      <button className={activeView === "card" ? "active" : ""} onClick={() => setActiveView("card")}>Éditeur de carte</button>
+      <button className={activeView === "deck" ? "active" : ""} onClick={() => setActiveView("deck")}>Import decklist & impression</button>
+    </nav>
+    {activeView === "card" ? <section className="workspace">
       <aside className="sidebar">
         <div className="eyebrow">BIBLIOTHÈQUE</div>
         <h1>Retrouver une carte</h1>
@@ -240,7 +246,7 @@ export default function App() {
           <div className="inspector-meta"><span>Langue <b>{displayCard.language.toUpperCase()}</b></span><span>Rareté <b>{displayCard.rarity || "—"}</b></span><span>Extension <b>{displayCard.set.toUpperCase() || "—"}</b></span></div>
         </div>
       </section>
-    </section>
+    </section> : <DeckBuilder />}
     <footer>MTG Card Remodeller <span>•</span> Projet indépendant, non affilié à Wizards of the Coast.</footer>
   </main>;
 }
