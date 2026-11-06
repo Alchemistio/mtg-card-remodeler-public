@@ -1,7 +1,7 @@
 # MTG Card Remodeler
 # Cahier des charges fonctionnel et technique
 
-**Version :** 1.4  
+**Version :** 1.5  
 **Date :** 6 novembre 2026  
 **Statut :** En cours de définition — décisions validées et questions ouvertes  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public
