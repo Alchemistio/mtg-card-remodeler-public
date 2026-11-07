@@ -2206,18 +2206,6 @@ Lorsqu'un projet possède un rapport temporaire en attente de reprise après un 
 
 Toutes les fonctionnalités de cette section sont validées. La reprise d'un rapport temporaire en attente est présentée dans un panneau discret intégré à la page d'aperçu du projet, sans fenêtre modale ; aucune opération n'est lancée sans action explicite de l'utilisateur.
 
-## 10.86 Chapitres restant à développer
-
-- Illustrations et versions alternatives.
-- Éditions et symboles.
-- Export individuel et par lots.
-- Interface et ergonomie détaillées.
-- Paramètres généraux.
-- Performances.
-- Sécurité et intégrité des données.
-- Tests et critères de validation.
-- Architecture technique détaillée.
-
 ## 10.85 Date et heure du dernier échec technique — Question 91, validée
 
 Le panneau discret de reprise intégré à la page d'aperçu du projet doit afficher la date et l'heure du dernier échec technique ayant empêché le remplacement du rapport qualité.
@@ -2229,6 +2217,18 @@ Le panneau discret de reprise intégré à la page d'aperçu du projet doit affi
 - Cette information complète le signalement de l'opération en attente ; elle ne déclenche pas automatiquement la reprise et ne modifie pas le comportement de l'ancien rapport qualité courant.
 
 Toutes les fonctionnalités de cette section sont validées. Le panneau de reprise affiche la date et l'heure du dernier échec technique de remplacement.
+
+## 10.86 Chapitres restant à développer
+
+- Illustrations et versions alternatives.
+- Éditions et symboles.
+- Export individuel et par lots.
+- Interface et ergonomie détaillées.
+- Paramètres généraux.
+- Performances.
+- Sécurité et intégrité des données.
+- Tests et critères de validation.
+- Architecture technique détaillée.
 
 # 11. Principes généraux de conception
 
