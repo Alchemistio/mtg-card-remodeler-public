@@ -2160,18 +2160,6 @@ Lorsqu'une erreur technique empêche le remplacement du rapport qualité, le mes
 
 Toutes les fonctionnalités de cette section sont validées. Après un échec technique du remplacement, l'utilisateur peut relancer immédiatement l'opération avec le bouton « Réessayer », tout en conservant l'ancien rapport jusqu'à la réussite effective du remplacement.
 
-## 10.82 Chapitres restant à développer
-
-- Illustrations et versions alternatives.
-- Éditions et symboles.
-- Export individuel et par lots.
-- Interface et ergonomie détaillées.
-- Paramètres généraux.
-- Performances.
-- Sécurité et intégrité des données.
-- Tests et critères de validation.
-- Architecture technique détaillée.
-
 ## 10.79 Conservation persistante du rapport temporaire après abandon des tentatives — Question 88, validée
 
 Lorsque l'utilisateur quitte le message d'erreur après un ou plusieurs échecs techniques de remplacement du rapport qualité, le nouveau rapport temporaire doit être conservé afin de permettre une reprise ultérieure, y compris après la fermeture complète puis la réouverture de l'application.
@@ -2200,6 +2188,18 @@ Lorsqu'un projet possède un rapport temporaire conservé après un ou plusieurs
 - Si le rapport temporaire est devenu indisponible ou inutilisable, informer l'utilisateur et lui permettre de reprendre le processus de contrôle qualité selon les règles définies à la section 10.79.
 
 Toutes les fonctionnalités de cette section sont validées. Un rapport temporaire en attente est signalé à la fois par un indicateur discret dans l'aperçu du projet et par une proposition automatique de reprise à l'ouverture de ce projet. La reprise reste soumise à une action explicite de l'utilisateur.
+
+## 10.82 Chapitres restant à développer
+
+- Illustrations et versions alternatives.
+- Éditions et symboles.
+- Export individuel et par lots.
+- Interface et ergonomie détaillées.
+- Paramètres généraux.
+- Performances.
+- Sécurité et intégrité des données.
+- Tests et critères de validation.
+- Architecture technique détaillée.
 
 # 11. Principes généraux de conception
 
