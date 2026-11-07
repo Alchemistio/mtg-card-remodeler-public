@@ -2190,18 +2190,6 @@ Lorsqu'un projet possède un rapport temporaire conservé après un ou plusieurs
 
 Toutes les fonctionnalités de cette section sont validées. Un rapport temporaire en attente est signalé à la fois par un indicateur discret dans l'aperçu du projet et par une proposition automatique de reprise à l'ouverture de ce projet. La reprise reste soumise à une action explicite de l'utilisateur.
 
-## 10.84 Chapitres restant à développer
-
-- Illustrations et versions alternatives.
-- Éditions et symboles.
-- Export individuel et par lots.
-- Interface et ergonomie détaillées.
-- Paramètres généraux.
-- Performances.
-- Sécurité et intégrité des données.
-- Tests et critères de validation.
-- Architecture technique détaillée.
-
 ## 10.83 Présentation de la reprise du rapport temporaire — Question 90, validée
 
 Lorsqu'un projet possède un rapport temporaire en attente de reprise après un ou plusieurs échecs techniques de remplacement, la proposition de reprise doit être présentée sous la forme d'un panneau discret intégré à la page d'aperçu du projet.
@@ -2216,6 +2204,18 @@ Lorsqu'un projet possède un rapport temporaire en attente de reprise après un 
 - Si le rapport temporaire est devenu indisponible ou inutilisable, l'indiquer dans le panneau et permettre à l'utilisateur de reprendre le processus de contrôle qualité selon les règles de la section 10.79.
 
 Toutes les fonctionnalités de cette section sont validées. La reprise d'un rapport temporaire en attente est présentée dans un panneau discret intégré à la page d'aperçu du projet, sans fenêtre modale ; aucune opération n'est lancée sans action explicite de l'utilisateur.
+
+## 10.84 Chapitres restant à développer
+
+- Illustrations et versions alternatives.
+- Éditions et symboles.
+- Export individuel et par lots.
+- Interface et ergonomie détaillées.
+- Paramètres généraux.
+- Performances.
+- Sécurité et intégrité des données.
+- Tests et critères de validation.
+- Architecture technique détaillée.
 
 # 11. Principes généraux de conception
 
