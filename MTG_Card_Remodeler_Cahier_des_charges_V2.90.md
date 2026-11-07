@@ -2615,11 +2615,11 @@ Si la fenêtre secondaire depuis laquelle l'utilisateur a demandé l'ouverture d
 - Si plusieurs nouvelles instances correspondant à cette même fenêtre secondaire ont été créées, c'est la plus récemment créée qui reçoit le focus.
 - Si aucune fenêtre correspondante n'a été recréée, les règles de repli définies aux sections 10.118 à 10.120 s'appliquent.
 
-## 10.122 Priorité entre plusieurs fenêtres secondaires recréées — Question 128, validée
+## 10.123 Priorité entre plusieurs fenêtres secondaires recréées — Question 128, validée
 
 Lorsque plusieurs nouvelles instances correspondant à la même fenêtre secondaire d'origine sont créées pendant que l'historique est ouvert, l'application donne la priorité à celle qui a été créée le plus récemment. Cette instance reçoit le focus à la fermeture de l'historique, si elle est toujours ouverte. Si elle a été fermée entre-temps, l'application recherche la plus récente des autres instances correspondantes encore ouvertes ; si aucune ne subsiste, les règles de repli définies aux sections 10.118 à 10.120 s'appliquent.
 
-## 10.123 Chapitres restant à développer
+## 10.124 Chapitres restant à développer
 
 - Illustrations et versions alternatives.
 - Éditions et symboles.
