@@ -13,7 +13,7 @@
 
 Polices, couleurs, illustrations, symboles, frames, types de cartes, bibliothèque, recherche, decks et projets.
 
-Questions indexées : [22](#question-22) · [23](#question-23) · [24](#question-24) · [26](#question-26) · [27](#question-27) · [28](#question-28) · [29](#question-29) · [30](#question-30) · [31](#question-31) · [32](#question-32)
+Questions indexées : [22](#question-22) · [23](#question-23) · [25](#question-25) · [24](#question-24) · [26](#question-26) · [27](#question-27) · [28](#question-28) · [29](#question-29) · [30](#question-30) · [31](#question-31) · [32](#question-32)
 
 ### Rendu, export, impression et découpe (questions 33 à 46)
 
@@ -39,9 +39,9 @@ Reconnexion, restauration, résolutions, dimensions de référence, chevauchemen
 
 Questions indexées : [155](#question-155) · [156](#question-156) · [157](#question-157) · [158](#question-158) · [159](#question-159) · [160](#question-160) · [161](#question-161) · [162](#question-162) · [163](#question-163) · [164](#question-164) · [165](#question-165) · [166](#question-166) · [167](#question-167) · [168](#question-168) · [169](#question-169) · [170](#question-170) · [171](#question-171) · [172](#question-172)
 
-### Questions intégrées dans les premiers chapitres
+### Décisions des premiers chapitres
 
-Les questions **1 à 21**, ainsi que la **question 25**, sont antérieures à la série de sections numérotées individuellement dans le chapitre 10. Leurs décisions sont consolidées dans les chapitres initiaux et les sections thématiques du document ; elles ne disposent pas toutes d'une section dédiée portant leur numéro. Pour ces éléments, effectuer une recherche par sujet ou terme dans le cahier des charges plutôt que se fier à un numéro de ligne isolé.
+Les questions **1 à 21** sont consolidées dans les chapitres initiaux du cahier des charges et ne disposent pas toutes d'une section dédiée portant leur numéro. Pour les retrouver, utiliser le thème ou les mots-clés dans le document complet.
 
 ## Index détaillé des décisions
 
@@ -51,6 +51,7 @@ Les questions **1 à 21**, ainsi que la **question 25**, sont antérieures à la
 |---:|---:|---|---:|
 | <a id="question-22"></a>22 | 10.1 | [Gestion des polices](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L530) | [530](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L530) |
 | <a id="question-23"></a>23 | 10.2 | [Gestion des couleurs](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L545) | [545](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L545) |
+| <a id="question-25"></a>25 | 10.2 | [Associations d'illustrations par carte et par variante](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L579) | [579](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L579) |
 | <a id="question-24"></a>24 | 10.3 | [Gestion des illustrations](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L592) | [592](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L592) |
 | <a id="question-26"></a>26 | 10.4 | [Gestion des symboles Magic et des icônes](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L630) | [630](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L630) |
 | <a id="question-27"></a>27 | 10.5 | [Gestion des cadres (Frames)](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L671) | [671](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.08.md#L671) |
