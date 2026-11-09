@@ -2,8 +2,8 @@
 
 > **Document de repérage, pas une spécification.** Les décisions complètes et leur formulation normative restent dans le cahier des charges. Cet index permet de retrouver rapidement une décision dans la version la plus récente.
 
-- **Version de référence indexée :** V3.12
-- **Cahier des charges :** [MTG Card Remodeler V3.12](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.12.md)
+- **Version de référence indexée :** V3.13
+- **Cahier des charges :** [MTG Card Remodeler V3.12](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.13.md)
 - **Règle de maintenance :** à chaque nouvelle version du cahier des charges, mettre à jour cet index, recalculer toutes les lignes et remplacer les liens de ligne par ceux de la nouvelle version.
 - **Méthode de recherche :** partir du numéro de question si connu ; sinon repérer le thème, puis ouvrir le lien de la ligne correspondante. Les identifiants de question et les titres de section sont plus stables que les numéros de ligne.
 
@@ -39,9 +39,9 @@ Reconnexion, restauration, résolutions, dimensions de référence, chevauchemen
 
 Questions indexées : [155](#question-155) · [156](#question-156) · [157](#question-157) · [158](#question-158) · [159](#question-159) · [160](#question-160) · [161](#question-161) · [162](#question-162) · [163](#question-163) · [164](#question-164) · [165](#question-165) · [166](#question-166) · [167](#question-167) · [168](#question-168) · [169](#question-169) · [170](#question-170) · [171](#question-171) · [172](#question-172)
 
-### Interface et ergonomie (questions 173 à 192)
+### Interface et ergonomie (questions 173 à 197)
 
-Navigation principale, projets en onglets, organisation et mémorisation des panneaux, raccourcis clavier, restauration, menus contextuels et fenêtres indépendantes.
+Navigation principale, projets en onglets, organisation et mémorisation des panneaux, raccourcis clavier, restauration, menus contextuels, détachement et réintégration des projets, fenêtres indépendantes et gestion multi-fenêtres.
 
 Questions indexées : [173](#question-173) · [174](#question-174) · [175](#question-175) · [176](#question-176) · [177](#question-177) · [178](#question-178) · [179](#question-179) · [180](#question-180) · [181](#question-181) · [182](#question-182) · [183](#question-183) · [184](#question-184) · [185](#question-185) · [186](#question-186) · [187](#question-187) · [188](#question-188) · [189](#question-189) · [190](#question-190) · [191](#question-191) · [192](#question-192)
 
