@@ -52,3 +52,14 @@ Aucun déplacement de source ni déduplication destructive n'a été réalisé. 
 ## 6. Prochaine action
 
 Exécuter le script sur un clone complet, puis examiner en priorité les planches MANA, les dossiers Regular Frame / EnchantmentFrame Nyx / Mana Symbol et Token. À partir du catalogue produit, enrichir le manifeste asset par asset et décider d'un premier lot de ressources candidates, sans modifier les sources.
+
+
+## 7. Mise à jour — inventaire individuel des sources
+
+Un inventaire individuel de métadonnées a été créé pour les 37 371 fichiers des cinq collections, à partir de l'arbre Git récursif. Les fichiers JSON sont rangés sous `Assets/METADATA/inventory-*.json` ; Full-Magic-Pack est fractionné en dix parties. Le manifeste principal référence maintenant ces inventaires.
+
+Un validateur indépendant a été ajouté : `scripts/assets/validate_asset_inventory.py`. Il contrôle la validité JSON, le nombre de fiches, les IDs/chemins uniques, les champs requis et la forme des Git blob SHA. Il peut aussi vérifier l'existence des fichiers avec `--root .`.
+
+**Limite importante :** le validateur n'a pas été exécuté dans un clone local complet dans cet environnement. Aucun PNG/JPEG/TTF binaire n'a été téléchargé ici. Les fiches sont donc des métadonnées Git, non des analyses visuelles ou des validations de licence. Le script de catalogue local reste nécessaire pour dimensions, SHA-256 des octets et planches de contact.
+
+`Assets/LIBRARY/README.md` formalise les critères d'entrée dans la future bibliothèque normalisée. Aucun fichier graphique n'y est encore approuvé.
