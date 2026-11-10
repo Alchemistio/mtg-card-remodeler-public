@@ -468,6 +468,18 @@ Questions indexées : [364](#question-364) · [365](#question-365) · [366](#que
 | <a id="question-367"></a>367 | 10.367 | [10.367 Désinstallation avec choix de conservation des données](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4121) | [4121](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4121) |
 | <a id="question-368"></a>368 | 10.368 | [10.368 Pages de paramètres dédiées aux extensions](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4125) | [4125](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4125) |
 
+### Sécurité opérationnelle des extensions (questions 369 à 373)
+
+Autorisations, accès aux projets, conflits, désactivation et protection des données des extensions.
+
+Questions indexées : [369](#question-369) · [370](#question-370) · [371](#question-371) · [372](#question-372) · [373](#question-373)
+
+| <a id="question-369"></a>369 | 10.369 | [10.369 Confirmation des autorisations à la première installation](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4129) | [4129](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4129) |
+| <a id="question-370"></a>370 | 10.370 | [10.370 Accès limité aux données de projet nécessaires](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4133) | [4133](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4133) |
+| <a id="question-371"></a>371 | 10.371 | [10.371 Signalement et arbitrage des conflits entre extensions](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4137) | [4137](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4137) |
+| <a id="question-372"></a>372 | 10.372 | [10.372 Désactivation avec retrait des fonctions et vérification des conséquences](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4141) | [4141](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4141) |
+| <a id="question-373"></a>373 | 10.373 | [10.373 Protection et restauration des données des extensions](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4145) | [4145](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.49.md#L4145) |
+
 ## Consignes de mise à jour
 
 À chaque publication d'une nouvelle version du cahier des charges :
