@@ -17,8 +17,9 @@ Statuts : [x] terminé · [~] partiel/en cours · [ ] à faire · [!] bloquant/�
 
 ## Phase B — Analyse visuelle et classification
 - [~] Déduire les grandes familles à partir des noms, extensions et structures des packages.
+- [x] Créer `MSE_STYLE_CATALOG.csv` : 399 packages MSE (371 Full-Magic-Pack, 28 Big Pack), chemins et présence de vignette référencés.
 - [ ] Extraire et examiner les aperçus de tous les PNG/JPEG/WebP pertinents.
-- [ ] Générer des planches de contact par collection et sous-famille.
+- [ ] Générer des planches de contact par collection et sous-famille (185 vignettes de styles repérées, mais pas encore assemblées ni inspectées visuellement).
 - [ ] Rendre/inspecter les SVG et identifier leurs dimensions/viewBox.
 - [ ] Inspecter le contenu de toutes les archives ZIP et formats propriétaires (dont PFI/MSE).
 - [ ] Identifier les doublons visuels et les variantes quasi identiques.
@@ -52,6 +53,7 @@ Statuts : [x] terminé · [~] partiel/en cours · [ ] à faire · [!] bloquant/�
 
 ## Journal d'exécution
 ### 2026-11-10
+- Catalogue MSE technique créé : 399 packages de styles, 185 références de vignettes ; les indices de famille sont basés sur les noms et ne valent pas validation visuelle.
 - Inventaire Git récursif réalisé sur le commit `2ada6c1342a61763a849cd869937dfad6245e220`.
 - Collections trouvées à la racine : Full-Magic-Pack-main, Big Pack, MtgCard Builder, MANA, Fonts.
 - 37371 fichiers et 1772 dossiers recensés.

@@ -30,13 +30,17 @@ La documentation de référence, la checklist et les manifestes d'inventaire tec
 - `docs/assets/ASSETS_AUDIT_REPORT.md` : présent rapport.
 - `docs/assets/manifests/` : inventaires CSV exhaustifs shardés par collection (et par fragments pour Full-Magic-Pack), chaque ligne contient chemin, taille en octets, SHA Git et extension.
 
+## Catalogue complémentaire des styles MSE
+Un fichier `docs/assets/MSE_STYLE_CATALOG.csv` a été ajouté : 399 packages `.mse-style` sont répertoriés (371 dans Full-Magic-Pack-main et 28 dans Big Pack), dont 185 disposent d'un chemin de vignette repéré (`acard`, `sample` ou `preview`). Les familles proposées sont des indices issus des noms de packages, non une validation visuelle.
+
 ## Travail effectué
 1. Lecture de l'arbre Git récursif complet et non tronqué.
 2. Comptage des fichiers/dossiers, tailles et extensions.
 3. Comparaison des empreintes SHA pour détecter les doublons binaires exacts.
 4. Structuration de l'index fonctionnel et de l'organisation cible.
 5. Création de manifestes techniques complets permettant de retrouver chaque fichier source.
-6. Mise à jour de la checklist avec les éléments terminés et les travaux non réalisés.
+6. Création du catalogue technique de 399 packages MSE et repérage de 185 vignettes.
+7. Mise à jour de la checklist avec les éléments terminés et les travaux non réalisés.
 
 ## Limites et travaux restant nécessaires
 La phase B n'est pas achevée : toutes les images n'ont pas été inspectées visuellement, les planches de contact n'ont pas été produites et les archives/ressources propriétaires n'ont pas été intégralement ouvertes. En conséquence, aucune extraction de production ni normalisation de ressources candidates n'a été faite. Le manifeste créé dans cette passe est un **manifeste d'inventaire source**, pas encore le manifeste runtime final. Les licences des polices, cadres et symboles ne sont pas validées. Les CSV comprennent 37 371 fichiers des cinq collections sources ; les deux fichiers documentaires de `Assets/METADATA` sont exclus.

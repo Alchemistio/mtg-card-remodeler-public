@@ -30,6 +30,9 @@ Le projet est une application de remodelage/personnalisation de cartes Magic, av
 
 Les chiffres ci-dessus concernent les cinq collections sources uniquement : 37 371 fichiers, 1 772 dossiers et 1 754 249 089 octets. Les deux fichiers de documentation présents dans `Assets/METADATA` ne sont pas comptabilisés dans ces chiffres.
 
+## Catalogue des packages de styles MSE
+Un catalogue technique complémentaire est disponible dans [MSE_STYLE_CATALOG.csv](./MSE_STYLE_CATALOG.csv). Il recense 399 packages `.mse-style` identifiés dans Big Pack (28) et Full-Magic-Pack-main (371), avec leur chemin source, une éventuelle vignette `acard/sample/preview` et des indices de famille déduits du nom. 185 packages ont une vignette référencée dans ce catalogue. Ces indices ne sont pas une classification visuelle validée ; les vignettes doivent encore être examinées.
+
 ## Rôle présumé des collections
 - **Full-Magic-Pack-main** : collection de packages Magic Set Editor (styles `.mse-style`, includes, symbol fonts, locales, game definitions, export templates et ressources associées). Source majeure pour étudier cadres, variantes et composants. Les formats MSE ne sont pas directement des assets React/SVG.
 - **Big Pack** : collection parallèle/complémentaire de ressources de styles et composants, avec fichiers graphiques et formats d'outils tiers. Comparer avec Full Magic avant toute sélection.
