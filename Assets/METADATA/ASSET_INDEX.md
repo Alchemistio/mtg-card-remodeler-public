@@ -1,6 +1,6 @@
 # Index des collections d'assets
 
-> Index des sources actuellement présentes dans `Assets/`. Les descriptions de contenu sont basées sur l'arborescence Git et les formats observés. Une collection indexée n'est pas automatiquement validée pour intégration ou redistribution.
+> Index des sources présentes dans `Assets/`. Les descriptions structurelles ne valent pas validation visuelle, technique ou juridique.
 
 ## Vue d'ensemble
 
@@ -16,9 +16,7 @@
 
 **Chemin :** `Assets/Full-Magic-Pack-main/`
 
-Contenu structurel relevé dans `data/` :
-
-| Type de package | Nombre de dossiers |
+| Type de package | Nombre |
 |---|---:|
 | `.mse-style` | 371 |
 | `.mse-include` | 32 |
@@ -27,19 +25,13 @@ Contenu structurel relevé dans `data/` :
 | `.mse-game` | 7 |
 | `.mse-export-template` | 22 |
 
-**Rôle probable :** cadres de cartes, composants graphiques, glyphes, règles de jeu MSE, localisations et exports.
-
-**À inspecter :** fichiers de configuration de styles, dépendances `.mse-include`, ressources graphiques référencées, polices, scripts et conditions de licence. Préserver les packages MSE comme unités autonomes.
+Rôle probable : cadres de cartes, composants graphiques, glyphes, règles MSE, localisations et exports. Préserver les packages comme unités autonomes et examiner leurs dépendances.
 
 ## SRC-002 — Big Pack
 
 **Chemin :** `Assets/Big Pack/`
 
-**Contenu recensé :** styles de cartes, cadres alternatifs/historiques, composants et ressources de grande taille (dont fichiers PFI).
-
-**Rôle probable :** compléter la couverture des cadres et conserver les variantes absentes de Full-Magic-Pack.
-
-**À inspecter :** contenu et format réel des PFI, versions des styles, doublons visuels et dépendances de packages.
+Styles de cartes, cadres alternatifs/historiques, composants et ressources volumineuses (dont PFI). À comparer à Full-Magic-Pack pour repérer les variantes uniques. Le format et les dépendances des PFI restent à identifier.
 
 ## SRC-003 — MtgCard Builder
 
@@ -47,40 +39,34 @@ Contenu structurel relevé dans `data/` :
 
 | Sous-collection | Fichiers | Rôle |
 |---|---:|---|
-| `Archive/` | 23 | Archives ZIP à inventorier individuellement |
+| `Archive/` | 23 | Archives ZIP à inventorier |
 | `Regular/` | 459 | Ressources graphiques de cartes et composants |
 | `Token/` | 128 | Ressources dédiées aux tokens |
 
-**Familles identifiées dans les noms/archives :** Battle, Class, Cases, Prototype, Rooms, Stations, Spree, Lands, Attraction, Legend Crown et Holo Stamps.
-
-**À inspecter :** noms génériques `asset N.png/svg`, 11 pages HTML repérées dans la collection, contenu des ZIP, dimensions, transparences, qualité et droits d'utilisation.
+Sous-dossiers repérés dans `Regular/` : `Regular Frame/`, `EnchantmentFrame Nyx/`, `Mana Symbol/`. Familles repérées dans les noms/archives : Battle, Class, Cases, Prototype, Rooms, Stations, Spree, Lands, Attraction, Legend Crown et Holo Stamps. Les fichiers `asset N.png/svg` exigent une revue visuelle avant identification. Les 11 fichiers HTML et les ZIP doivent être contrôlés séparément.
 
 ## SRC-004 — MANA
 
 **Chemin :** `Assets/MANA/`
 
-| Sous-collection | Rôle |
+| Sous-collection | Rôle / constat |
 |---|---|
-| `Flat/` | Symboles mana en style plein |
-| `Circleless/` | Symboles sans cercle |
+| `Flat/` | PNG de symboles mana nommés, incluant couleurs, incolore, hybrides, phyrexians et spéciaux |
+| `Circleless/` | Variantes sans cercle |
 | `Shifted/` | Variantes de glyphes/symboles |
-| `SVG/` | Symboles vectoriels |
+| `SVG/` | Six SVG : Blanc, Bleu, Noir, Rouge, Vert, Less |
 
-**Couverture attendue :** couleurs W/U/B/R/G, incolore, coûts génériques, hybrides, phyrexians et symboles spéciaux.
-
-**À inspecter :** nomenclature réelle des glyphes, variantes couvertes, dimensions, viewBox, alignement optique et licence. Ne pas fusionner les styles sans règle visuelle.
+Les six SVG de `SVG/` déclarent un viewBox commun `0 0 82.56 82.56`. Cela confirme une cohérence de canevas, pas une identité visuelle ou un alignement optique. Vérifier couverture et homogénéité de chaque sous-collection avant sélection.
 
 ## SRC-005 — Fonts
 
 **Chemin :** `Assets/Fonts/`
 
-Dix fichiers de polices sont recensés. Les noms observés incluent notamment Magic Symbols 2011, MagicSymbols2008, Matrix, Matrix Bold Small Caps, MPlantin, MPlantin Italic, PLA et Relay Medium.
-
-**À inspecter :** famille interne, nom PostScript, poids, style, tables de caractères, glyphes mana, licence, droits d'incorporation et redistribution.
+Dix fichiers de polices. Les noms observés incluent Magic Symbols 2011, MagicSymbols2008, Matrix, Matrix Bold Small Caps, MPlantin, PLA et Relay Medium. Vérifier famille interne, poids, glyphes, licence, droits d'incorporation et redistribution.
 
 ## Index fonctionnel cible
 
-| ID | Famille de production | Sources candidates |
+| ID | Famille | Sources candidates |
 |---|---|---|
 | FRM-001 | Cadres classiques | Full-Magic-Pack, Big Pack |
 | FRM-002 | Cadres modernes / M15 | Full-Magic-Pack, Big Pack |
@@ -95,10 +81,14 @@ Dix fichiers de polices sont recensés. Les noms observés incluent notamment Ma
 | TOK-001 | Tokens et cadres de tokens | MtgCard Builder, Full-Magic-Pack |
 | FNT-001 | Typographie de carte | Fonts, Big Pack, Full-Magic-Pack |
 
-## Règles d'utilisation de l'index
+## Outil d'inventaire détaillé
 
-- Les volumes sont indicatifs et peuvent changer avec la branche.
-- Les familles fonctionnelles sont des destinations proposées, pas un inventaire exhaustif des assets individuels.
+Le script [`build_asset_catalog.py`](../../scripts/assets/build_asset_catalog.py) génère localement les métadonnées de chaque fichier et les planches de contact. Voir [la référence d'audit](../../docs/ASSET_AUDIT_REFERENCE.md#7-génération-du-catalogue-visuel) pour la commande.
+
+## Règles d'utilisation
+
+- Les volumes sont indicatifs et peuvent évoluer.
+- Les familles fonctionnelles sont des destinations proposées, pas un inventaire exhaustif.
 - Le statut d'une ressource doit être vérifié dans `assets.manifest.json`.
 - Ne pas intégrer ni redistribuer une ressource sur la seule base de sa présence dans ce dépôt.
 - Mettre à jour cet index après toute extraction, conversion ou décision de licence.
