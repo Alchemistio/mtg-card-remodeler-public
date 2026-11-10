@@ -12,7 +12,9 @@
 
 | Version | Description |
 |---|---|
-| V3.44 | Validation des tests automatiques au démarrage et après opérations sensibles, des tests étendus de non-régression, du blocage des opérations à risque après échec, des rapports détaillés et de l'absence de relance automatique après modification importante |\n| V3.43 | Validation des contrôles d'intégrité, de la récupération sécurisée des projets, des points de restauration avant opérations sensibles, de la vérification approfondie des imports et du journal détaillé des opérations |
+| V3.44 | Validation des tests automatiques au démarrage et après opérations sensibles, des tests étendus de non-régression, du blocage des opérations à risque après échec, des rapports détaillés et de l'absence de relance automatique après modification importante |
+| V3.43 | Validation des contrôles d'intégrité, de la récupération sécurisée des projets, des points de restauration avant opérations sensibles, de la vérification approfondie des imports et du journal détaillé des opérations |
+| V3.42 | Validation du cache configurable, des rendus automatiques en arrière-plan, du traitement simultané, de la limite de mémoire vive et du suivi détaillé des performances |
 | V3.41 | Validation des préférences de langue, des thèmes visuels, de la mise à l'échelle de l'interface, des mises à jour et de l'écran d'accueil au démarrage |
 | V3.40 | Validation de l'organisation des paramètres par catégories, de leur application après validation, de leur stockage local, de la recherche globale et des niveaux de réinitialisation avec aperçu |
 | V3.39 | Validation des paramètres globaux et par catégorie des notifications, des réglages sonores indépendants, de la priorité des notifications importantes, de la lisibilité et de la limitation des répétitions |
