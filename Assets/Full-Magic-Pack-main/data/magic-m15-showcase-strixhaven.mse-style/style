@@ -1,0 +1,410 @@
+﻿mse version:		2.1.2
+game: magic
+short name: Showcase
+full name: Strixhaven Showcase
+icon: card-sample.png
+installer group: magic/m15 style/normal cards
+position hint: 095
+
+version: 2024-09-01
+depends on:
+	package: magic.mse-game
+	version: 2014-06-25
+depends on:
+	package: magic-default-image.mse-include
+	version: 2007-09-23
+depends on:
+	package: magic-modules.mse-include
+	version: 2024-10-01
+depends on:
+	package: magic-mana-large.mse-symbol-font
+	version: 2007-09-23
+depends on:
+	package: magic-mana-small.mse-symbol-font
+	version: 2007-09-23
+depends on:
+	package: magic-mainframe-extras.mse-include
+	version: 2007-09-23
+depends on:
+	package: magic-watermarks.mse-include
+	version: 2007-09-23
+
+card width: 375
+card height: 523
+card dpi: 150
+####### card images from silverback_ape
+####### pt image from Card Conjurer
+#### https://cardconjurer.com/
+############################################################## Extra scripts
+init script:
+	# Load scripts for image box
+	include file: /magic-default-image.mse-include/scripts
+	include file: blends
+	
+	# Should hybrids have a grey name?
+	mask_hybrid_with_land := { styling.grey_hybrid_name }
+	
+	#Should multicolor lands with basic land types have a colored name?
+	mask_multi_land_with_color := { styling.colored_multicolor_land_name }
+	
+	template_prefix := [
+		card: "",
+		card2:"back/",
+		crown:"crown/",
+		pt: "/magic-modules.mse-include/pts/375 m15/",
+		stamp: "",
+		identity: "/magic-modules.mse-include/indicators/"
+	]
+	template_suffix := [
+		card: "card.png",
+		card2:"card.png",
+		crown:"crown.png",
+		pt: "pt.png",
+		stamp: "stamp.jpg",
+		identity: "identity.png"
+	]
+	template      := { template_prefix[type] + input + template_suffix[type] }
+	land_template := { template_prefix[type] + (if input == "a" then "c" else input) + template_suffix[type] }
+	# Use land templates for previews because they show more contrast
+	hybrid_previews := "land,hybrid"
+	crown_background := { color_background(type:"crown",     base_hybrid:card_hybrid) }
+
+	# Use the normal tap symbol
+	mana_t := {
+		if      styling.tap_symbol == "old"        then "old"
+		else if styling.tap_symbol == "diagonal T" then "older"
+		else                                            "new"
+	}
+	
+	# Use guild mana symbols?
+	guild_mana := { styling.use_guild_mana_symbols }
+	
+	# Is the card a promo card?
+	is_promo := { styling.promo }
+	mana_sort := {
+		if styling.unsorted_casting_cost then
+			input
+		else
+			sort_text@(order: "XYZI[0123456789]HSCA(WUBRG)")()
+	}
+	ancestral_mana := { styling.ancestral_mana_symbols }
+	is_unsorted := {styling.remove_from_autocount}
+
+	chop_top := {to_number(pull_comma_array(styling.text_chops, cell:0, end:false))}
+	chop_bot := {to_number(pull_comma_array(styling.text_chops, cell:1, end:false))}
+	chop_correction := { chop_bot() }
+	shrink_type := {if styling.shrink_typeline_text != "" then to_number(styling.shrink_typeline_text) else 0}
+	shrink_name := {if styling.shrink_name_text != "" then to_number(styling.shrink_name_text) else 0}
+	
+	typeline_offset_top_1 := {2}
+	indicator_offset_left_1 := {-3}
+	type_offset_left_1 := {3}
+	
+	default_partition := { 
+		if styling.default_partition != "no override"
+			then styling.default_partition
+		else "A"
+	}
+	module_alias := {
+		template := alias_custom_template
+		land_template := alias_custom_land_template
+		color_background(
+			type: "alias",
+			base_hybrid: card_hybrid,
+			artifact_blend: "black",
+			hybrid_blend: "white",
+			multicolor_blend: "black"
+		)
+	}
+	alias_offset_top_1 := {5}
+	alias_colors := {
+		[
+			w: rgb(243, 241, 229),
+			u: rgb(0, 108, 169),
+			b: rgb(55, 54, 48),
+			r: rgb(217, 62, 39),
+			g: rgb(0, 111, 64),
+			a: rgb(193, 193, 193),
+			m: rgb(234, 208, 106),
+			c: rgb(165, 149, 133)
+		][input]
+	}
+
+############################################################## Set info fields
+set info style:
+	symbol:
+		variation:
+			name: invertedcommon
+			border radius: 0.10
+			fill type: solid
+			fill color:   rgb(255,255,255)
+			border color: rgb(0,0,0)
+############################################################## Extra style options
+styling field:
+	type: text
+	name: text chops
+	description: Format as "X,Y". Shrinks textbox X pixels from the top and Y from bottom.
+styling field:
+	type: text
+	name: shrink name text
+	description: Shrinks name X pixels
+styling field:
+	type: text
+	name: shrink typeline text
+	description: Shrinks type X pixels
+styling field:
+	type: boolean
+	name: extended art
+	description: Should the art extend under the textbox?
+styling field:
+	type: boolean
+	name: remove from autocount
+	description: Removes the automatic card number for specific cards, to allow for overcounted cards like in Planeswalker Decks.
+	initial: no
+styling field:
+	type: boolean
+	name: special ptbox
+	description: Use the specialized ptbox instead of the standard one.
+styling field:
+	type: choice
+	name: default partition
+	description: Should this template use a different default parition?
+	choice: no override
+	include file: /magic-modules.mse-include/information/choices_partition
+include file: /magic-modules.mse-include/stamps/styling_fields
+styling field:
+	type: boolean
+	name: grey hybrid name
+	description: Use a grey background for the name and type line on hybrid cards. This is done on real cards.
+styling field:
+	type: boolean
+	name: unsorted casting cost
+	description: Disables automatic mana symbol sorting.
+	initial: no
+styling field:
+	type: boolean
+	name: ancestral mana symbols
+	description: Enables ancestral's modified generic mana.
+	initial: no
+styling field:
+	type: boolean
+	name: colored multicolor land name
+	description: Use a colored background for the name and type on multicolor land cards with a basic land type. This is done on real cards.
+styling field:
+	type: boolean
+	name: use guild mana symbols
+	description: Use the Ravnica guild symbols instead of the official half/half circles for hybrid mana.
+	initial: no
+styling field:
+	type: choice
+	name: tap symbol
+	description: What tap and untap symbols should be used on cards?
+	initial: modern
+	choice: modern
+	choice: old
+	choice: diagonal T
+styling field:
+	type: package choice
+	name: text box mana symbols
+	match: magic-mana-*.mse-symbol-font
+	initial: magic-mana-small.mse-symbol-font
+styling field:
+	type: package choice
+	name: casting cost mana symbols
+	match: magic-mana-*.mse-symbol-font
+	initial: magic-mana-small-strixhaven.mse-symbol-font
+styling field:
+	type: choice
+	name: center text
+	description: When to center text (short text only means only on one-line cards with no flavor text)
+	choice: always
+	choice: short text only
+	choice: never
+	initial: never
+styling field:
+	type: boolean
+	name: promo
+	description: Is this card a promo card, with the "P" rarity?
+	initial: no
+styling field:
+	type: boolean
+	name: masterpiece
+	description: Is this card a Masterpiece?
+	initial: no
+styling field:
+	type: boolean
+	name: inverted common symbol
+	description: Should the common rarity symbol be inverted, like in Coldsnap?
+	initial: no
+styling field:
+	type: choice
+	name: corners
+	description: What should the corners of the card look like?
+	include file: /magic-modules.mse-include/corners/choices
+	initial: rounded and antialiased
+include file: /magic-modules.mse-include/fonts/styling_fields
+styling field:
+	type: package choice
+	name: overlay
+	description: Should there be an overlay applied, such as foil?
+	match: magic-overlay-*.mse-include
+	required: false
+styling style:
+	use guild mana symbols:
+		choice images:
+			yes: /magic-mana-small.mse-symbol-font/mana_guild_rg.png
+			no:  /magic-mana-small.mse-symbol-font/mana_rg.png
+	tap symbol:
+		render style: both
+		choice images:
+			modern:     /magic-mana-large.mse-symbol-font/mana_t.png
+			old:        /magic-mana-large.mse-symbol-font/mana_t_old.png
+			diagonal T: /magic-mana-large.mse-symbol-font/mana_t_older.png
+	center text:
+		render style: both
+		choice images:
+			always:          /magic.mse-game/icons/center-all-text.png
+			short text only: /magic.mse-game/icons/center-short-text.png
+			never:           /magic.mse-game/icons/center-no-text.png
+	inverted common symbol:
+		choice images:
+			no:  { symbol_variation(symbol: set.symbol, variation: "common") }
+			yes: { symbol_variation(symbol: set.symbol, variation: "invertedcommon") }
+############################################################## Card fields
+include file: /magic-modules.mse-include/corners/card_fields
+include file: /magic-modules.mse-include/namelines/card_fields
+include file: /magic-modules.mse-include/typelines/card_fields
+include file: /magic-modules.mse-include/watermarks/card_fields
+include file: /magic-modules.mse-include/information/card_fields
+include file: /magic-modules.mse-include/stamps/card_fields
+include file: /magic-modules.mse-include/separators/card_fields
+include file: /magic-modules.mse-include/alias/card_fields_under
+card style:
+	############################# Background stuff
+	card color:
+		left:	0
+		top:	0
+		width:	375
+		height:	523
+		z index: 200
+		render style: image
+		popup style: in place
+		image: { card_background() }
+		mask: frame_mask.png
+	############################# Image
+	image:
+		left: 0
+		top: 64
+		width: 375
+		height:	{ if styling.extended_art then 397 else 225 }
+		z index: 100
+		default: {default_image(card.card_color)}
+		mask: {if styling.extended_art then "imagemask.png" else ""}
+	############################# Text box
+	text:
+		left: 29
+		top: {329-(-chop_top())}
+		width: 314
+		bottom: {483-chop_bot()}
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 14
+			scale down to: 6
+			color: black
+		symbol font:
+			name: { styling.text_box_mana_symbols }
+			size: 14
+			scale down to: 6
+		alignment:
+			script:
+				if (styling.center_text == "short text only" and
+				   not contains(match:"\n", card.rule_text) and
+				   card.flavor_text == "<i-flavor></i-flavor>" and
+				   card_style.text.content_lines <= 2) or
+				   styling.center_text == "always"
+				then "middle center"
+				else "middle left"
+		z index: 900
+		padding left:   6
+		padding right:  4
+		line height hard: {if is_modal(card.rule_text) then 0.9 else 1.2 }
+		line height line: 1.5
+		line height soft: 0.9
+		line height hard max: {if is_modal(card.rule_text) then 1.0 else 1.3 }
+		line height line max: 1.6
+	############################# PT
+	pt:
+		left: 292
+		top: 467
+		width: 60
+		height:	28
+		z index: 900
+		alignment: center middle shrink-overflow
+		font:
+			name: Beleren Bold
+			size: 15
+			color: black
+			separator color: red
+############################################################## Extra card fields
+extra card field:
+	type: choice
+	name: pt box
+	script: card.card_color
+	editable: false
+	save value: false
+extra card field:
+	type: choice
+	name: foil layer
+	choice: foil
+	save value: false
+	editable: false
+extra card field:
+	type: choice
+	name: stamp
+	script: card.card_color
+	show statistics: false
+	editable: false
+extra card field:
+	type: choice
+	name: shutters
+	script: card.card_color
+	show statistics: false
+	editable: false
+extra card style:
+	pt box:
+		left: { if styling.special_ptbox then 263 else 273 }
+		top: { if styling.special_ptbox then 467 else 466 }
+		width: { if styling.special_ptbox then 83 else 81 }
+		height:	{ if styling.special_ptbox then 27 else 42 }
+		z index: 840
+		visible: { card.pt != "" }
+		render style: image
+		image: {if styling.special_ptbox then "pt.png" else module_ptbox()}
+	foil layer:
+		left: 0
+		top : 0
+		width: 375
+		height: 523
+		z index: 1050
+		render style: image
+		image: {if styling.overlay == "" then nil else styling.overlay + "/overlay.png"}
+		mask: { if is_rare() then "foil_mask_rare.png" else "foil_mask.png" }
+	stamp:
+		left: 165
+		top: 472
+		width: 46
+		height: 26
+		z index: 850
+		visible: { card.card_stamp != "none" }
+		render style: image
+		image: { "/magic-modules.mse-include/stamps/backs/" + (if stamp_shape(field:1) == "triangle" then "triangle_stamp.png" else "stamp.png") }
+	shutters:
+		left: 0
+		top: 318
+		width: 375
+		height: 154
+		z index: 110
+		render style: image
+		image: shutters.png
+		visible: {not styling.extended_art}
