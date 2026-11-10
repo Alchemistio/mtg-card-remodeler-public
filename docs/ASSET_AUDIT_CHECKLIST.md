@@ -82,7 +82,7 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 ## Avancement complémentaire — inventaire individuel
 
 - [x] Générer les fiches de métadonnées des 37 371 fichiers des cinq collections source à partir de l'arbre Git.
-- [x] Fractionner l'inventaire Full-Magic-Pack en dix fichiers JSON pour respecter des tailles de commit raisonnables.
+- [x] Fractionner l'inventaire Full-Magic-Pack en dix-neuf fichiers JSON pour respecter des tailles de commit raisonnables.
 - [x] Ajouter les inventaires individuels MANA (314), Fonts (10), MtgCard Builder (610), Big Pack (1 996) et Full-Magic-Pack (34 441).
 - [x] Ajouter un validateur de cohérence : `scripts/assets/validate_asset_inventory.py`.
 - [x] Définir les règles d'admission de `Assets/LIBRARY/` dans son README.
