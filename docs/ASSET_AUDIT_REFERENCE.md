@@ -26,8 +26,8 @@ Le répertoire est nommé `Assets/` (A majuscule). Les cinq collections de premi
 | SRC-003 | `Assets/MtgCard Builder/` | 610 | 375 Mo | Ressources Regular, Token et archives |
 | SRC-004 | `Assets/MANA/` | 314 | 2,2 Mo | Variantes de symboles mana PNG/SVG et fontes |
 | SRC-005 | `Assets/Fonts/` | 10 | 0,57 Mo | Polices et fontes associées |
- 
-Chiffres issus de l'arbre Git récursif observé sur la branche main pendant l'audit ; les volumes sont arrondis et peuvent évoluer. Le total indicatif est d'environ 37 371 fichiers et 1,75 Go. Les extensions et contenus internes des archives ne constituent pas à eux seuls une preuve de compatibilité avec le renderer.
+
+Chiffres issus de l'arbre Git récursif observé sur la branche main pendant l'audit ; volumes arrondis, susceptibles d'évoluer. Total indicatif : 37 371 fichiers et environ 1,75 Go.
 
 ### 3.1 Full-Magic-Pack
 
@@ -39,11 +39,11 @@ Collection de styles et composants MSE/graphismes historiques ou alternatifs. À
 
 ### 3.3 MtgCard Builder
 
-Sous-ensembles recensés : `Archive/`, `Regular/`, `Token/`. Les noms génériques de type `asset N.png/svg` exigent une identification visuelle avant renommage. Des pages HTML récupérées et des archives ZIP doivent être contrôlées séparément. Ne pas assimiler automatiquement les ZIP à des ressources prêtes à intégrer.
+Sous-ensembles recensés : `Archive/`, `Regular/`, `Token/`. Les noms génériques de type `asset N.png/svg` exigent une identification visuelle avant renommage. Des pages HTML récupérées et des archives ZIP doivent être contrôlées séparément. Les dossiers explicites `Regular Frame`, `EnchantmentFrame Nyx` et `Mana Symbol` sont des pistes de classement, pas des validations visuelles.
 
 ### 3.4 MANA
 
-Sous-ensembles : `Flat/`, `Circleless/`, `Shifted/`, `SVG/`. Variantes de glyphes mana, dont hybrides/phyrexians et symboles particuliers. Choisir une famille cohérente par rendu plutôt que fusionner aveuglément les styles.
+Sous-ensembles : `Flat/`, `Circleless/`, `Shifted/`, `SVG/`. Dans `SVG/`, six fichiers ont été confirmés : `Blanc.svg`, `Bleu.svg`, `Noir.svg`, `Rouge.svg`, `Vert.svg`, `Less.svg`. Leur racine SVG déclare un viewBox commun `0 0 82.56 82.56`. Il s'agit d'une constatation structurelle ; le rendu visuel et l'alignement optique restent à examiner. `Flat/` expose des noms de symboles tels que `mana_w`, `mana_u`, `mana_b`, `mana_r`, `mana_g`, `mana_c`, des hybrides (ex. `mana_bg`) et des variantes phyrexian (ex. `mana_phy*`). Ne pas présumer que chaque variante existe dans chaque style. Choisir une famille cohérente par rendu plutôt que fusionner aveuglément les styles.
 
 ### 3.5 Fonts
 
@@ -51,7 +51,7 @@ Dix fichiers de polices recensés. La présence dans le dépôt ne prouve pas le
 
 ## 4. Décisions d'architecture
 
-1. **SOURCE immuable** : conserver les collections originales et leur arborescence sous `Assets/_SOURCE/` uniquement lors d'une migration future planifiée ; tant que cette migration n'est pas validée, ne pas déplacer les sources actuelles.
+1. **SOURCE immuable** : conserver les collections originales et leur arborescence. Ne pas déplacer les sources actuelles.
 2. **LIBRARY normalisée** : ne contenir que les ressources identifiées, utiles, techniquement converties si nécessaire, documentées et juridiquement validées.
 3. **METADATA** : manifeste machine-readable, index humain, provenance, notices et journal des changements.
 4. **Application** : ne charger que les assets approuvés, légers et nécessaires au build. Les archives sources ne doivent pas être incluses dans les bundles web/desktop.
@@ -74,7 +74,20 @@ Champs recommandés : `id`, `name`, `kind`, `category`, `variant`, `sourceCollec
 
 Statuts : `source-only`, `needs-visual-review`, `needs-license-review`, `ready-for-conversion`, `normalized`, `integrated`, `rejected`.
 
-## 7. Correspondance avec le code actuel
+## 7. Génération du catalogue visuel
+
+Script ajouté : [`scripts/assets/build_asset_catalog.py`](../scripts/assets/build_asset_catalog.py).
+
+Depuis la racine du dépôt :
+
+```bash
+python -m pip install Pillow CairoSVG
+python scripts/assets/build_asset_catalog.py --root Assets --out /tmp/mtg-assets-catalog
+```
+
+Le script produit un catalogue JSON, un CSV et des planches de contact raster ; il extrait dimensions et mode alpha des images, viewBox/dimensions des SVG, hash SHA-256 et métadonnées de ZIP (sans extraction). Les catégories sont heuristiques, les licences restent en attente et les planches nécessitent une revue humaine. Il fonctionne en lecture seule et n'écrit que dans le répertoire `--out`. Pillow est requis pour les images raster ; CairoSVG permet le rendu des vignettes SVG.
+
+## 8. Correspondance avec le code actuel
 
 - `src/assets/manifest.ts` : registre TypeScript historique à réconcilier avec le manifeste et les vrais fichiers.
 - `src/assets/framePresets.ts` : palettes couleur actuellement utilisées par le renderer local.
@@ -82,7 +95,7 @@ Statuts : `source-only`, `needs-visual-review`, `needs-license-review`, `ready-f
 - `docs/ARCHITECTURE.md` : principes de rendu vectoriel, séparation des données et assets.
 - `docs/THIRD_PARTY_NOTICES.md` : point de vigilance déjà identifié sur FeSens/MTG Card Designer ; les droits des sources MSE, MTGCard Builder, polices et symboles doivent être examinés séparément.
 
-## 8. Index et historique
+## 9. Index et historique
 
 - Checklist opérationnelle : [ASSET_AUDIT_CHECKLIST.md](./ASSET_AUDIT_CHECKLIST.md)
 - Rapport de réalisation : [ASSET_AUDIT_REPORT.md](./ASSET_AUDIT_REPORT.md)
