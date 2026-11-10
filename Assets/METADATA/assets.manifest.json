@@ -295,17 +295,26 @@
     {
       "collectionId": "SRC-001",
       "files": 34441,
-      "parts": 10,
+      "parts": 19,
       "paths": [
         "Assets/METADATA/inventory-full-magic-pack-01.json",
+        "Assets/METADATA/inventory-full-magic-pack-01b.json",
         "Assets/METADATA/inventory-full-magic-pack-02.json",
+        "Assets/METADATA/inventory-full-magic-pack-02b.json",
         "Assets/METADATA/inventory-full-magic-pack-03.json",
+        "Assets/METADATA/inventory-full-magic-pack-03b.json",
         "Assets/METADATA/inventory-full-magic-pack-04.json",
+        "Assets/METADATA/inventory-full-magic-pack-04b.json",
         "Assets/METADATA/inventory-full-magic-pack-05.json",
+        "Assets/METADATA/inventory-full-magic-pack-05b.json",
         "Assets/METADATA/inventory-full-magic-pack-06.json",
+        "Assets/METADATA/inventory-full-magic-pack-06b.json",
         "Assets/METADATA/inventory-full-magic-pack-07.json",
+        "Assets/METADATA/inventory-full-magic-pack-07b.json",
         "Assets/METADATA/inventory-full-magic-pack-08.json",
+        "Assets/METADATA/inventory-full-magic-pack-08b.json",
         "Assets/METADATA/inventory-full-magic-pack-09.json",
+        "Assets/METADATA/inventory-full-magic-pack-09b.json",
         "Assets/METADATA/inventory-full-magic-pack-10.json"
       ]
     },
