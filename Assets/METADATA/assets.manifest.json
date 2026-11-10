@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "manifestType": "source-collection-inventory",
+  "generatedAt": "2026-11-10",
+  "repository": "Alchemistio/mtg-card-remodeler-public",
+  "branch": "main",
+  "scope": "Assets/",
+  "status": "source-inventory-only",
+  "description": "Inventaire de niveau collection. Ce document ne certifie ni l'inspection visuelle, ni la licence, ni l'intégrabilité des fichiers individuels.",
+  "totals": {
+    "files": 37371,
+    "approximateBytes": 1754000000,
+    "approximateMegabytes": 1754
+  },
+  "collections": [
+    {
+      "id": "SRC-001",
+      "name": "Full-Magic-Pack-main",
+      "path": "Assets/Full-Magic-Pack-main/",
+      "files": 34441,
+      "approximateBytes": 934700000,
+      "formats": [
+        "MSE package directories",
+        "images",
+        "fonts",
+        "scripts",
+        "locale data"
+      ],
+      "subcollections": {
+        "mseStyle": 371,
+        "mseInclude": 32,
+        "mseSymbolFont": 76,
+        "mseLocale": 13,
+        "mseGame": 7,
+        "mseExportTemplate": 22
+      },
+      "functionalCandidates": [
+        "Frames",
+        "Components",
+        "Symbols",
+        "Fonts",
+        "Layouts",
+        "Export templates"
+      ],
+      "status": "needs-visual-review",
+      "licenseStatus": "pending-review",
+      "notes": "MSE packages may contain relative dependencies; preserve package structure until dependency mapping."
+    },
+    {
+      "id": "SRC-002",
+      "name": "Big Pack",
+      "path": "Assets/Big Pack/",
+      "files": 1996,
+      "approximateBytes": 441700000,
+      "formats": [
+        "MSE packages",
+        "images",
+        "fonts",
+        "PFI and related files"
+      ],
+      "functionalCandidates": [
+        "Historical frames",
+        "Alternative frames",
+        "Components",
+        "Fonts"
+      ],
+      "status": "needs-visual-review",
+      "licenseStatus": "pending-review",
+      "notes": "Compare with Full-Magic-Pack for unique variants; large PFI files need format identification."
+    },
+    {
+      "id": "SRC-003",
+      "name": "MtgCard Builder",
+      "path": "Assets/MtgCard Builder/",
+      "files": 610,
+      "approximateBytes": 375000000,
+      "subcollections": [
+        "Archive/",
+        "Regular/",
+        "Token/"
+      ],
+      "formats": [
+        "PNG",
+        "SVG",
+        "ZIP",
+        "HTML"
+      ],
+      "functionalCandidates": [
+        "Frames",
+        "Components",
+        "Tokens"
+      ],
+      "status": "needs-visual-review",
+      "licenseStatus": "pending-review",
+      "notes": "Generic asset filenames require visual identification. ZIP archives and captured HTML require separate review."
+    },
+    {
+      "id": "SRC-004",
+      "name": "MANA",
+      "path": "Assets/MANA/",
+      "files": 314,
+      "approximateBytes": 2200000,
+      "subcollections": [
+        "Flat/",
+        "Circleless/",
+        "Shifted/",
+        "SVG/"
+      ],
+      "formats": [
+        "PNG",
+        "SVG",
+        "font files"
+      ],
+      "functionalCandidates": [
+        "Mana symbols",
+        "Hybrid symbols",
+        "Phyrexian symbols",
+        "Special symbols"
+      ],
+      "status": "needs-visual-review",
+      "licenseStatus": "pending-review",
+      "notes": "Select a coherent symbol family per card style; inspect dimensions and glyph coverage."
+    },
+    {
+      "id": "SRC-005",
+      "name": "Fonts",
+      "path": "Assets/Fonts/",
+      "files": 10,
+      "approximateBytes": 570000,
+      "formats": [
+        "Font files"
+      ],
+      "functionalCandidates": [
+        "Card title typography",
+        "Rules typography",
+        "Mana and special glyphs"
+      ],
+      "status": "needs-license-review",
+      "licenseStatus": "pending-review",
+      "notes": "Embedding and redistribution rights must be verified before bundling."
+    }
+  ],
+  "targetTaxonomy": {
+    "Frames": [
+      "Classic",
+      "Modern",
+      "M15",
+      "Old-Border",
+      "Showcase",
+      "Borderless",
+      "Full-Art",
+      "Special"
+    ],
+    "Components": [
+      "Borders",
+      "Crowns",
+      "Masks",
+      "Textures",
+      "Watermarks",
+      "Stamps"
+    ],
+    "Symbols": [
+      "Mana",
+      "Types",
+      "Loyalty",
+      "Counters",
+      "Special"
+    ],
+    "Tokens": [
+      "Token templates",
+      "Token frame components"
+    ],
+    "Fonts": [
+      "Families",
+      "Weights",
+      "Styles"
+    ]
+  },
+  "assetRecordSchema": {
+    "required": [
+      "id",
+      "name",
+      "kind",
+      "category",
+      "sourceCollection",
+      "sourcePath",
+      "format",
+      "sha256",
+      "licenseStatus",
+      "status"
+    ],
+    "optional": [
+      "variant",
+      "path",
+      "width",
+      "height",
+      "viewBox",
+      "attribution",
+      "licenseText",
+      "compatibleLayouts",
+      "notes"
+    ],
+    "statusValues": [
+      "source-only",
+      "needs-visual-review",
+      "needs-license-review",
+      "ready-for-conversion",
+      "normalized",
+      "integrated",
+      "rejected"
+    ],
+    "licenseStatusValues": [
+      "unknown",
+      "pending-review",
+      "verified",
+      "not-for-redistribution"
+    ]
+  },
+  "duplicateAnalysis": {
+    "identicalBlobGroups": 3875,
+    "pathsInDuplicateGroups": 12299,
+    "extraCopies": 8424,
+    "estimatedRedundantBytes": 337400000,
+    "policy": "Do not delete source duplicates automatically; package autonomy and relative dependencies must be checked."
+  },
+  "exclusions": {
+    "individualAssets": "Not yet enumerated in this collection-level manifest",
+    "visualReview": "Not completed",
+    "archiveContents": "Not expanded",
+    "licenseVerification": "Not completed"
+  },
+  "nextActions": [
+    "Generate image contact sheets",
+    "Inspect ZIP and MSE package contents",
+    "Verify source licenses and font redistribution rights",
+    "Select and normalize first approved assets",
+    "Extend manifest with per-asset records and automated validation"
+  ]
+}
