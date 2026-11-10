@@ -285,11 +285,12 @@
     "licenseVerification": "Not completed"
   },
   "nextActions": [
-    "Run validate_asset_inventory.py against a complete local checkout",
-    "Run build_asset_catalog.py to obtain image dimensions, true SHA-256 and contact sheets",
-    "Review visual candidates and inspect ZIP/MSE package contents",
-    "Verify licenses and attributions before selecting assets",
-    "Copy only approved assets into Assets/LIBRARY and update the production manifest"
+    "Run the local source inventory validator against a complete checkout",
+    "Generate visual contact sheets and inspect all candidate families",
+    "Resolve provenance and licenses for every candidate asset",
+    "Extract only selected assets with verified rights into Assets/LIBRARY",
+    "Normalize selected formats and create runtime-ready asset records",
+    "Add manifest path checks and renderer tests before declaring Phase C complete"
   ],
   "perFileInventories": [
     {
@@ -356,5 +357,14 @@
     "candidateKind is inferred from path and extension and is not a visual/semantic validation.",
     "No binary files were downloaded or modified during this inventory generation.",
     "The per-file inventory does not establish dimensions, image quality, compatibility, provenance rights or redistribution permissions."
-  ]
+  ],
+  "provenanceReviewPath": "Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md",
+  "licenseReviewSummary": {
+    "explicitPackageLicenseFound": 1,
+    "scope": "Full-Magic-Pack-main/data/magic-m15-bigtext.mse-style only",
+    "otherCollections": "pending-review",
+    "phyrexianFont": "pending-review; README references license.txt not found in current tree",
+    "feSensFigmaAssets": "pending-review; package MIT does not establish source Figma asset rights"
+  },
+  "phaseCStatus": "metadata-and-inventory-complete; normalization-blocked-pending-visual-and-license-review"
 }
