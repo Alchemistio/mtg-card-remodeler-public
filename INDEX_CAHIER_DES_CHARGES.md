@@ -39,7 +39,7 @@ Reconnexion, restauration, résolutions, dimensions de référence, chevauchemen
 
 Questions indexées : [155](#question-155) · [156](#question-156) · [157](#question-157) · [158](#question-158) · [159](#question-159) · [160](#question-160) · [161](#question-161) · [162](#question-162) · [163](#question-163) · [164](#question-164) · [165](#question-165) · [166](#question-166) · [167](#question-167) · [168](#question-168) · [169](#question-169) · [170](#question-170) · [171](#question-171) · [172](#question-172)
 
-### Interface et ergonomie (questions 173 à 282)
+### Interface et ergonomie (questions 173 à 292)
 
 Navigation principale, projets en onglets, organisation et mémorisation des panneaux, raccourcis clavier, restauration, menus contextuels, détachement et réintégration des projets, fenêtres indépendantes et gestion multi-fenêtres.
 
