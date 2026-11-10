@@ -474,6 +474,12 @@ Consultation, informations préalables, mises à jour individuelles ou groupées
 
 Questions indexées : [379](#question-379) · [380](#question-380) · [381](#question-381) · [382](#question-382) · [383](#question-383)
 
+| <a id="question-379"></a>379 | 10.379 | [10.379 Consultation des mises à jour depuis la fiche de chaque extension](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4171) | [4171](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4171) |
+| <a id="question-380"></a>380 | 10.380 | [10.380 Présentation de la nouvelle version et des principales nouveautés](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4175) | [4175](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4175) |
+| <a id="question-381"></a>381 | 10.381 | [10.381 Mise à jour individuelle ou groupée des extensions sélectionnées](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4179) | [4179](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4179) |
+| <a id="question-382"></a>382 | 10.382 | [10.382 Restauration manuelle d'une version antérieure d'une extension](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4183) | [4183](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4183) |
+| <a id="question-383"></a>383 | 10.383 | [10.383 Restauration automatique après l'échec d'une mise à jour](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) | [4187](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) |
+
 
 
 Autorisations, accès aux projets, conflits, désactivation et protection des données des extensions.
@@ -491,11 +497,6 @@ Questions indexées : [369](#question-369) · [370](#question-370) · [371](#que
 | <a id="question-377"></a>377 | 10.377 | [10.377 Signalement des incompatibilités après mise à jour de l'application](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4163) | [4163](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4163) |
 | <a id="question-378"></a>378 | 10.378 | [10.378 Absence d'historique des opérations sur les extensions](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4167) | [4167](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4167) |
 
-| <a id="question-379"></a>379 | 10.379 | [10.379 Consultation des mises à jour depuis la fiche de chaque extension](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4171) | [4171](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4171) |
-| <a id="question-380"></a>380 | 10.380 | [10.380 Présentation de la nouvelle version et des principales nouveautés](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4175) | [4175](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4175) |
-| <a id="question-381"></a>381 | 10.381 | [10.381 Mise à jour individuelle ou groupée des extensions sélectionnées](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4179) | [4179](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4179) |
-| <a id="question-382"></a>382 | 10.382 | [10.382 Restauration manuelle d'une version antérieure d'une extension](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4183) | [4183](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4183) |
-| <a id="question-383"></a>383 | 10.383 | [10.383 Restauration automatique après l'échec d'une mise à jour](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) | [4187](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) |
 
 ## Consignes de mise à jour
 
