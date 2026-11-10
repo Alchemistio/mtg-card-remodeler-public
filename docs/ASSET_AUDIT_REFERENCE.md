@@ -121,3 +121,12 @@ Le Git blob SHA est un SHA-1 d'objet Git, pas un SHA-256 des octets. Les catégo
 Un validateur standard-library est disponible : `scripts/assets/validate_asset_inventory.py`. Commande : `python scripts/assets/validate_asset_inventory.py --root .`.
 
 La zone de destination `Assets/LIBRARY/` est créée avec ses critères d'admission ; elle ne contient volontairement encore aucun asset approuvé. Voir `Assets/LIBRARY/README.md`.
+
+
+## 11. Provenance, licence et dépendances MSE
+
+Registre détaillé : [`Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md`](../Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md).
+
+Constats : un fichier LICENSE MIT a été trouvé pour `magic-m15-bigtext.mse-style` uniquement (Sam Boosalis, 2025). Le README du package partagé `magic-modules.mse-include` documente les dépendances de version 2024-10-01 et un ordre de couches Z essentiel à la conversion. Le README Phyrexian crédite Anuttymous, Savil et des contributeurs MTG Salvation/Fontstruct, mais renvoie à un `license.txt` qui n'est pas présent dans l'arborescence examinée. Les autres familles, polices et sources restent en revue.
+
+La conséquence est importante : la bibliothèque `Assets/LIBRARY/` a ses règles d'admission mais reste vide. Aucun asset non vérifié n'a été copié ou intégré au renderer.
