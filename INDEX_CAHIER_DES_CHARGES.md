@@ -481,6 +481,7 @@ Questions indexées : [379](#question-379) · [380](#question-380) · [381](#que
 | <a id="question-383"></a>383 | 10.383 | [10.383 Restauration automatique après l'échec d'une mise à jour](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) | [4187](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.51.md#L4187) |
 
 
+### Sécurité opérationnelle des extensions (questions 369 à 378)
 
 Autorisations, accès aux projets, conflits, désactivation et protection des données des extensions.
 
