@@ -104,3 +104,10 @@ Le manifeste et les inventaires par fichier couvrent désormais les 37 371 fichi
 - Fonts : 10 fiches.
 
 Voir `assets.manifest.json` et les fichiers `inventory-*.json`. Les catégories restent heuristiques et les statuts de licence en attente. Les Git blob SHA ne remplacent pas le SHA-256 du contenu.
+
+
+## Provenance et compatibilité
+
+Le package `magic-modules.mse-include` documente un ordre de couches Z et des dépendances de version qui doivent être préservés lors d'une conversion. Un texte MIT a été identifié pour M15 Big Text seulement ; il ne couvre pas l'ensemble du pack. Le dossier Phyrexian référence un fichier `license.txt` non retrouvé dans l'arbre consulté. Les autres fontes et collections restent à vérifier. Consulter [le registre de provenance/licences](./PROVENANCE_AND_LICENSE_REVIEW.md) avant toute intégration.
+
+La bibliothèque normalisée `Assets/LIBRARY/` est créée mais volontairement vide jusqu'à validation visuelle, technique et juridique.
