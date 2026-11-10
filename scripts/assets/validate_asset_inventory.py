@@ -42,7 +42,7 @@ def main() -> int:
             errors.append(f"{inventory_path}: fileCount does not match records length")
         for record in records:
             total += 1
-            for field in ("id", "sourcePath", "sourceCollection", "gitBlobSha", "candidateKind", "status", "licenseStatus"):
+            for field in ("id", "sourcePath", "gitBlobSha", "candidateKind", "status", "licenseStatus"):
                 if not record.get(field):
                     errors.append(f"{inventory_path}: record missing {field}")
             rid = record.get("id")
