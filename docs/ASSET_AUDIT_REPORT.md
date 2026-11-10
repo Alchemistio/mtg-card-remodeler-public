@@ -63,3 +63,18 @@ Un validateur indépendant a été ajouté : `scripts/assets/validate_asset_inve
 **Limite importante :** le validateur n'a pas été exécuté dans un clone local complet dans cet environnement. Aucun PNG/JPEG/TTF binaire n'a été téléchargé ici. Les fiches sont donc des métadonnées Git, non des analyses visuelles ou des validations de licence. Le script de catalogue local reste nécessaire pour dimensions, SHA-256 des octets et planches de contact.
 
 `Assets/LIBRARY/README.md` formalise les critères d'entrée dans la future bibliothèque normalisée. Aucun fichier graphique n'y est encore approuvé.
+
+
+## 8. Revue de provenance et décision sur la phase C
+
+La recherche de fichiers de licence et de notices a permis d'identifier un seul texte de licence explicite dans les sources examinées : le MIT du package `magic-m15-bigtext.mse-style`, limité à ce package. Les READMEs de `magic-modules.mse-include` décrivent des dépendances partagées/versionnées et un ordre Z de couches ; cette architecture doit être conservée lors d'une conversion. Le README Phyrexian mentionne des crédits et un `license.txt` d'accompagnement qui n'a pas été retrouvé dans l'arbre Git consulté. Les polices, MANA, MtgCard Builder et Big Pack restent sans preuve globale de droits.
+
+Le registre détaillé est `Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md`. La bibliothèque `Assets/LIBRARY/` est créée mais ne contient aucun asset de production : c'est volontaire, car aucun lot n'a été validé à la fois visuellement et juridiquement.
+
+### État de clôture
+
+L'inventaire individuel des 37 371 fichiers est terminé et ses 23 fichiers JSON ont été relus : 37 371 fiches, aucun JSON invalide, aucun identifiant ou chemin dupliqué détecté. Le générateur de catalogue visuel et le validateur local sont livrés.
+
+**La phase C n'est pas déclarée entièrement terminée.** La normalisation et la sélection de ressources sont bloquées par l'absence de revue visuelle des binaires et par les droits non établis. Le faire malgré ces incertitudes créerait un risque de redistribution non autorisée et pourrait casser les dépendances MSE. Aucun original n'a été modifié.
+
+Pour terminer réellement la phase C, il faut exécuter le générateur sur un clone complet, examiner les planches, confirmer les licences des lots retenus, puis seulement extraire/normaliser ces fichiers dans `Assets/LIBRARY/` et enrichir le manifeste runtime.
