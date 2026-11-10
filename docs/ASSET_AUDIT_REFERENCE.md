@@ -86,6 +86,7 @@ Statuts : `source-only`, `needs-visual-review`, `needs-license-review`, `ready-f
 
 - Checklist opérationnelle : [ASSET_AUDIT_CHECKLIST.md](./ASSET_AUDIT_CHECKLIST.md)
 - Rapport de réalisation : [ASSET_AUDIT_REPORT.md](./ASSET_AUDIT_REPORT.md)
-- Manifeste : [../Assets/METADATA/assets.manifest.json](../Assets/METADATA/assets.manifest.json)
+- Index des collections : [ASSET_INDEX.md](../Assets/METADATA/ASSET_INDEX.md)
+- Manifeste : [assets.manifest.json](../Assets/METADATA/assets.manifest.json)
 
 Mettre à jour ces documents ensemble à chaque changement important. Le rapport décrit ce qui a réellement été fait ; la checklist décrit l'état courant ; la présente référence contient les règles durables.
