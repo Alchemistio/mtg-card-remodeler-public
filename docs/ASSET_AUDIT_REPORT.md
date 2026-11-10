@@ -1,73 +1,54 @@
-# Rapport de réalisation — audit du patrimoine Assets
+# Rapport d'avancement — audit du patrimoine Assets
 
 Date : 2026-11-10  
 Dépôt : `Alchemistio/mtg-card-remodeler-public`  
 Branche : `main`
 
-## 1. Résumé exécutif
+## 1. Résumé
 
-Les phases d'inventaire, de contextualisation et de préparation du référentiel ont été réalisées. Le manifeste de source et les documents de gouvernance ont été créés. Les collections originales n'ont pas été déplacées ni modifiées.
+Après la création du référentiel d'audit et du manifeste de collections, l'étape suivante a consisté à préparer une méthode reproductible de catalogue visuel. Un script en lecture seule a été ajouté au dépôt. Une inspection structurelle ciblée de la collection MANA et des sous-dossiers de MtgCard Builder a également été réalisée.
 
-**La Phase C n'est pas entièrement terminée au sens de l'extraction et de la normalisation des fichiers graphiques** : l'inspection visuelle exhaustive, l'extraction des archives, le contrôle juridique et la conversion ne peuvent être validés à partir des seules métadonnées Git. Ces tâches restent explicitement ouvertes dans la checklist. Le manifeste créé est un manifeste d'inventaire des sources, pas encore un catalogue exhaustif de chaque asset validé pour la production.
+**La revue visuelle exhaustive n'est pas encore terminée** : les fichiers binaires ne sont pas récupérables par l'interface GitHub texte utilisée ici. Le script doit être exécuté sur un clone local complet du dépôt pour générer les planches de contact et les métadonnées détaillées. Aucune ressource n'a été déplacée, renommée, supprimée ou intégrée au renderer.
 
-## 2. Documents créés
+## 2. Nouveau livrable
 
-- `docs/ASSET_AUDIT_REFERENCE.md` : contexte technique, inventaire, taxonomie, règles de gouvernance, schéma d'asset et liens vers les documents.
-- `docs/ASSET_AUDIT_CHECKLIST.md` : suivi opérationnel avec statuts réalisés, partiels et à faire.
-- `docs/ASSET_AUDIT_REPORT.md` : présent rapport.
-- `Assets/METADATA/assets.manifest.json` : manifeste machine-readable des collections sources et de leur état d'analyse.
-- `Assets/METADATA/ASSET_INDEX.md` : index humain des collections, contenus recensés et familles fonctionnelles cibles.
+- `scripts/assets/build_asset_catalog.py` : générateur local de catalogue JSON/CSV, métadonnées d'images, hash SHA-256, inspection des ZIP et planches de contact.
+- Le script écrit exclusivement dans le dossier indiqué par `--out` ; il ne modifie jamais les assets sources.
+- Pillow est requis pour les dimensions et planches raster. CairoSVG est facultatif pour produire les vignettes des SVG.
+- Les catégories calculées automatiquement sont heuristiques ; aucune licence n'est inférée et les ZIP ne sont pas extraits.
 
-## 3. Résultats d'inventaire
+Commande recommandée :
 
-| Collection | Fichiers | Volume indicatif |
-|---|---:|---:|
-| Full-Magic-Pack-main | 34 441 | 934,7 Mo |
-| Big Pack | 1 996 | 441,7 Mo |
-| MtgCard Builder | 610 | 375 Mo |
-| MANA | 314 | 2,2 Mo |
-| Fonts | 10 | 0,57 Mo |
-| **Total** | **37 371** | **environ 1,75 Go** |
+```bash
+python -m pip install Pillow CairoSVG
+python scripts/assets/build_asset_catalog.py --root Assets --out /tmp/mtg-assets-catalog
+```
 
-L'arbre MSE de Full-Magic-Pack comprend notamment 371 styles, 32 includes, 76 symbol fonts, 13 locales, 7 définitions de jeu et 22 modèles d'export.
+Sorties : `assets.catalog.json`, `assets.catalog.csv` et `contact-sheets/*.jpg`.
 
-L'analyse par SHA a relevé 3 875 groupes de fichiers avec contenus binaires identiques (12 299 chemins concernés, soit 8 424 copies supplémentaires). Estimation de volume redondant : environ 337,4 Mo. Ce chiffre ne constitue pas une recommandation de suppression : certains packages peuvent nécessiter des copies autonomes.
+## 3. Constatations ciblées
 
-## 4. Contexte applicatif
+- `Assets/MANA/SVG/` contient six fichiers : Blanc, Bleu, Noir, Rouge, Vert et Less.
+- Les six SVG déclarent le même viewBox : `0 0 82.56 82.56`.
+- `Assets/MANA/Flat/` comprend des noms explicites pour les cinq couleurs, le mana incolore, des symboles hybrides et plusieurs symboles phyrexians/spéciaux.
+- `Assets/MtgCard Builder/Regular/` comporte des sous-dossiers explicites comme `Regular Frame`, `EnchantmentFrame Nyx` et `Mana Symbol`, mais aussi des fichiers numérotés génériques.
+- Le dossier `Token/` contient également des fichiers numérotés génériques ; leur identification nécessite les planches de contact.
 
-Le projet utilise React/TypeScript/Vite/Tauri 2, un renderer FeSens pour certaines familles et un renderer SVG local. Le renderer local dépend actuellement de palettes définies dans `src/assets/framePresets.ts`. Le registre `src/assets/manifest.ts` référence six SVG de cadres dans `assets/frames/` qui ne sont pas présents à ces chemins dans l'arbre observé. L'intégration des collections racine n'est donc pas démontrée.
+Ces constats sont structurels ou issus de la lecture des en-têtes SVG ; ils ne constituent pas une validation de l'apparence, de la qualité, de la compatibilité ou des droits.
 
-Le dossier `Assets/` est une bibliothèque source de référence et non une bibliothèque de production branchée sur le renderer.
+## 4. État des phases
 
-## 5. Décisions prises
+- **Phase A :** inventaire et contexte documentés ; licences et snapshot immuable à faire.
+- **Phase B :** taxonomie et script prêts ; génération/examen réel des planches et comparaison visuelle encore à faire.
+- **Phase C :** manifeste de collections et schéma prêts ; catalogue individuel exhaustif, sélection, normalisation et contrôle juridique restent à faire.
+- **Phase D :** non commencée.
 
-1. Préserver les sources originales.
-2. Séparer les archives sources de la bibliothèque normalisée.
-3. Organiser la bibliothèque cible par familles fonctionnelles : Frames, Components, Symbols, Tokens, Fonts.
-4. Exiger provenance, hash, format, dimensions, statut juridique et compatibilités avant validation d'un asset.
-5. Ne jamais supprimer automatiquement un doublon sur la seule base du hash.
-6. Ne pas intégrer de ressource dont les droits de redistribution ne sont pas établis.
+## 5. Limites et décisions de prudence
 
-## 6. Travaux non exécutés / limites
+L'interface GitHub utilisée pour cet audit renvoie les fichiers texte, mais ne permet pas de récupérer directement les PNG binaires pour fabriquer les planches dans cet environnement. Il serait incorrect d'affirmer que les PNG ont été examinés visuellement. Le script a donc été commité pour permettre une exécution reproductible dans l'environnement local du projet.
 
-- Pas de génération de planches de contact ni d'inspection visuelle exhaustive des images.
-- Les archives ZIP n'ont pas été ouvertes et inventoriées individuellement.
-- Les fichiers MSE propriétaires n'ont pas été convertis en SVG/PNG.
-- Les licences des polices, images, packs MSE et symboles n'ont pas été vérifiées.
-- Aucune ressource candidate n'a été déplacée vers `Assets/LIBRARY/` : sans revue visuelle et juridique, une extraction prétendument validée serait trompeuse.
-- Aucun changement de code applicatif n'a été effectué ; le renderer et le registre TypeScript existants sont inchangés.
-- Aucun build/test n'a été lancé dans un environnement local de compilation.
+Aucun déplacement de source ni déduplication destructive n'a été réalisé. Les licences restent `pending-review`. Les assets restent non approuvés pour redistribution.
 
-## 7. Suites prioritaires
+## 6. Prochaine action
 
-1. Générer des planches de contact à partir d'un clone local ou d'une archive du dépôt.
-2. Inspecter les ZIP, packages MSE, PFI et fichiers génériques.
-3. Faire la revue juridique des sources et fontes.
-4. Sélectionner un premier lot d'assets à forte valeur : mana SVG, symboles et cadres ciblés.
-5. Extraire et normaliser ce lot dans `Assets/LIBRARY/`.
-6. Enrichir le manifeste asset par asset et ajouter une validation automatisée des chemins/IDs.
-7. Faire évoluer le registre TypeScript et le renderer dans une intervention distincte, avec tests visuels.
-
-## 8. Conclusion
-
-Le patrimoine est riche et pertinent pour l'évolution du produit, mais la valeur applicative dépend de la sélection, de la conversion et de la traçabilité. Le référentiel et la checklist sont désormais en place pour poursuivre ce travail sans confondre inventaire, validation graphique et autorisation de redistribution.
+Exécuter le script sur un clone complet, puis examiner en priorité les planches MANA, les dossiers Regular Frame / EnchantmentFrame Nyx / Mana Symbol et Token. À partir du catalogue produit, enrichir le manifeste asset par asset et décider d'un premier lot de ressources candidates, sans modifier les sources.
