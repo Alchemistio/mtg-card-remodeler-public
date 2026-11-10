@@ -36,6 +36,7 @@ Légende : [x] réalisé et vérifié ; [~] partiel / inventorié mais non valid
 - [x] Définir la structure cible et les règles de nommage.
 - [x] Définir le schéma du manifeste et les statuts de validation.
 - [x] Créer un manifeste source des cinq collections avec volumes, chemins et limites.
+- [x] Créer l'index humain des collections et leur correspondance avec les familles fonctionnelles.
 - [ ] Extraire les ressources candidates validées vers `Assets/LIBRARY/`.
 - [ ] Renommer les ressources identifiées avec des noms stables.
 - [ ] Convertir/normaliser les formats selon les besoins réels du renderer.
