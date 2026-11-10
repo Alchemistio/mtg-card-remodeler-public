@@ -103,3 +103,21 @@ Le script produit un catalogue JSON, un CSV et des planches de contact raster ; 
 - Manifeste : [assets.manifest.json](../Assets/METADATA/assets.manifest.json)
 
 Mettre à jour ces documents ensemble à chaque changement important. Le rapport décrit ce qui a réellement été fait ; la checklist décrit l'état courant ; la présente référence contient les règles durables.
+
+
+## 10. Inventaire individuel exhaustif (métadonnées Git)
+
+Les cinq collections ont maintenant des enregistrements par fichier, dérivés de l'arbre Git récursif complet : 34 441 Full-Magic-Pack, 1 996 Big Pack, 610 MtgCard Builder, 314 MANA et 10 Fonts, soit 37 371 fichiers. Les données comprennent un ID stable dans l'inventaire, chemin, nom, extension, taille, Git blob SHA, catégorie candidate et statuts de revue.
+
+Fichiers :
+- `Assets/METADATA/inventory-full-magic-pack-01.json` à `inventory-full-magic-pack-10.json`
+- `Assets/METADATA/inventory-big-pack.json`
+- `Assets/METADATA/inventory-mtgcard-builder.json`
+- `Assets/METADATA/inventory-mana.json`
+- `Assets/METADATA/inventory-fonts.json`
+
+Le Git blob SHA est un SHA-1 d'objet Git, pas un SHA-256 des octets. Les catégories sont déduites des chemins/extensions. Les dimensions, l'apparence, les licences et les compatibilités restent à contrôler.
+
+Un validateur standard-library est disponible : `scripts/assets/validate_asset_inventory.py`. Commande : `python scripts/assets/validate_asset_inventory.py --root .`.
+
+La zone de destination `Assets/LIBRARY/` est créée avec ses critères d'admission ; elle ne contient volontairement encore aucun asset approuvé. Voir `Assets/LIBRARY/README.md`.
