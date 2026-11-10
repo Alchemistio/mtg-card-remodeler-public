@@ -91,3 +91,19 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [ ] Effectuer la revue visuelle et juridique, puis sélectionner/normaliser le premier lot.
 
 **Important :** les enregistrements individuels contiennent le SHA Git (SHA-1), pas le SHA-256 des octets. Les classifications sont heuristiques. Ils ne certifient ni le contenu visuel ni les droits.
+
+
+## Revue de provenance et état de clôture de la phase C
+
+- [x] Rechercher les fichiers LICENSE/LICENCE/NOTICE/README repérables dans l'arbre Git.
+- [x] Lire le texte MIT du package M15 Big Text (périmètre limité à ce package).
+- [x] Lire les notices MSE de magic-modules et relever dépendances/version et ordre des couches.
+- [x] Lire le README Phyrexian et relever les crédits ainsi que la référence à un `license.txt` absent de l'arbre examiné.
+- [x] Créer `Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md`.
+- [x] Contrôler les 23 inventaires JSON : 37 371 fiches analysées, IDs et chemins uniques, JSON valides.
+- [ ] Vérifier les licences de chaque famille source et des polices.
+- [ ] Produire les planches de contact et effectuer la revue visuelle.
+- [ ] Extraire/normaliser le premier lot d'assets dont les droits et l'usage sont confirmés.
+- [ ] Ajouter les assets approuvés au manifeste runtime et valider les rendus.
+
+**Clôture :** l'inventaire et la préparation documentaire de la phase C sont terminés. La phase C complète n'est pas déclarée close : la bibliothèque normalisée reste volontairement vide, car les droits et la sélection visuelle ne sont pas établis.
