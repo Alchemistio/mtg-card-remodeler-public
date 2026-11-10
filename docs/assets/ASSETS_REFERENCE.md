@@ -2,9 +2,9 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche inspectée : `main`
-- Commit de référence de l'inventaire : `2ada6c1342a61763a849cd869937dfad6245e220`
+- Snapshot de référence des assets : branche `main`, inventaire effectué le 2026-11-10
 - Date de l'audit : 2026-11-10
-- Périmètre : cinq collections à la racine du dépôt (`Full-Magic-Pack-main`, `Big Pack`, `MtgCard Builder`, `MANA`, `Fonts`). Attention : ce ne sont pas des sous-dossiers d'un dossier racine `Assets/` dans l'arborescence Git observée.
+- Périmètre : cinq collections sous `Assets/` : `Assets/Full-Magic-Pack-main`, `Assets/Big Pack`, `Assets/MtgCard Builder`, `Assets/MANA`, `Assets/Fonts`. Le dossier `Assets/METADATA` est distinct des cinq collections sources.
 
 ## Mission et règle de vérité
 Ce document est la référence persistante pour les travaux futurs sur les ressources graphiques de MTG Card Remodeler. Il distingue systématiquement : (1) inventaire technique prouvé par Git, (2) classification sémantique déduite des noms/structures, (3) validation visuelle et juridique encore à faire. Ne jamais présenter une ressource comme intégrée à l'application tant qu'elle n'est pas copiée dans la bibliothèque de production, référencée par le manifeste runtime et couverte par un test.
@@ -27,6 +27,8 @@ Le projet est une application de remodelage/personnalisation de cartes Magic, av
 | MtgCard Builder | 610 | 375043784 | 375.04 |
 | MANA | 314 | 2237378 | 2.24 |
 | Fonts | 10 | 572856 | 0.57 |
+
+Les chiffres ci-dessus concernent les cinq collections sources uniquement : 37 371 fichiers, 1 772 dossiers et 1 754 249 089 octets. Les deux fichiers de documentation présents dans `Assets/METADATA` ne sont pas comptabilisés dans ces chiffres.
 
 ## Rôle présumé des collections
 - **Full-Magic-Pack-main** : collection de packages Magic Set Editor (styles `.mse-style`, includes, symbol fonts, locales, game definitions, export templates et ressources associées). Source majeure pour étudier cadres, variantes et composants. Les formats MSE ne sont pas directement des assets React/SVG.

@@ -3,10 +3,10 @@
 Date : 2026-11-10  
 Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public  
 Branche : main  
-Commit de référence des sources : `2ada6c1342a61763a849cd869937dfad6245e220`
+Snapshot de référence : branche `main`, inventaire du 2026-11-10
 
 ## Résultat
-La documentation de référence, la checklist et les manifestes d'inventaire technique ont été préparés. Les sources originales sont restées intactes.
+La documentation de référence, la checklist et les manifestes d'inventaire technique ont été préparés. Les sources originales sont restées intactes. Les cinq collections sont sous `Assets/` ; `Assets/METADATA` est exclu des comptes de collections.
 
 ## Mesures relevées
 - Fichiers : 37371
@@ -39,7 +39,7 @@ La documentation de référence, la checklist et les manifestes d'inventaire tec
 6. Mise à jour de la checklist avec les éléments terminés et les travaux non réalisés.
 
 ## Limites et travaux restant nécessaires
-La phase B n'est pas achevée : toutes les images n'ont pas été inspectées visuellement, les planches de contact n'ont pas été produites et les archives/ressources propriétaires n'ont pas été intégralement ouvertes. En conséquence, aucune extraction de production ni normalisation de ressources candidates n'a été faite. Le manifeste créé dans cette passe est un **manifeste d'inventaire source**, pas encore le manifeste runtime final. Les licences des polices, cadres et symboles ne sont pas validées.
+La phase B n'est pas achevée : toutes les images n'ont pas été inspectées visuellement, les planches de contact n'ont pas été produites et les archives/ressources propriétaires n'ont pas été intégralement ouvertes. En conséquence, aucune extraction de production ni normalisation de ressources candidates n'a été faite. Le manifeste créé dans cette passe est un **manifeste d'inventaire source**, pas encore le manifeste runtime final. Les licences des polices, cadres et symboles ne sont pas validées. Les CSV comprennent 37 371 fichiers des cinq collections sources ; les deux fichiers documentaires de `Assets/METADATA` sont exclus.
 
 La demande « jusqu'à la Phase C, création du manifeste incluse » est donc satisfaite pour le manifeste exhaustif d'inventaire et le schéma du manifeste runtime ; l'extraction/normalisation de la bibliothèque runtime reste conditionnée par la validation visuelle et juridique. Il serait incorrect de la déclarer terminée avant cette étape.
 

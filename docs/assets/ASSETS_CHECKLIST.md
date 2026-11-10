@@ -6,12 +6,12 @@ Dépôt : Alchemistio/mtg-card-remodeler-public · Branche : main · Date de sui
 Statuts : [x] terminé · [~] partiel/en cours · [ ] à faire · [!] bloquant/à arbitrer
 
 ## Phase A — Sécurisation et inventaire des sources
-- [x] Confirmer les collections réellement présentes à la racine du dépôt.
+- [x] Confirmer les cinq collections sources sous `Assets/` et distinguer `Assets/METADATA`.
 - [x] Recenser tous les fichiers et dossiers via l'arbre Git récursif.
 - [x] Relever taille, extension et SHA Git de chaque fichier.
 - [x] Calculer les groupes de doublons binaires exacts.
 - [x] Produire des manifestes techniques exhaustifs par collection (fichiers CSV shardés).
-- [x] Conserver la référence du commit de l'inventaire.
+- [x] Conserver la référence temporelle et la branche de l'inventaire (`main`, 2026-11-10).
 - [ ] Ajouter les licences et attributions vérifiées pour chaque collection.
 - [ ] Vérifier les archives et dépendances internes avant toute déduplication.
 
@@ -30,7 +30,7 @@ Statuts : [x] terminé · [~] partiel/en cours · [ ] à faire · [!] bloquant/�
 - [x] Définir l'arborescence cible SOURCE / LIBRARY / METADATA.
 - [x] Définir les catégories fonctionnelles FRM/CMP/SYM/FNT/TOK/LAY.
 - [x] Définir le schéma d'une entrée de manifeste runtime.
-- [x] Générer un inventaire machine-readable exhaustif des fichiers sources (CSV avec chemins, tailles, SHA et extensions).
+- [x] Générer un inventaire machine-readable exhaustif des cinq collections sources (CSV shardés avec chemins, tailles, SHA Git et extensions).
 - [ ] Sélectionner les ressources après validation visuelle (dépend de Phase B).
 - [ ] Extraire les ressources approuvées dans la bibliothèque normalisée.
 - [ ] Convertir les formats nécessaires (SVG/PNG) et documenter les transformations.
