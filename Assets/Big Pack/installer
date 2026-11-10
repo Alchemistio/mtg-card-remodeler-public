@@ -1,0 +1,324 @@
+﻿mse version: 0.3.7
+short name: 
+full name: 
+icon: 
+position hint: 100000
+installer group: 
+version: 0.0.0
+compatible version: 0.0.0
+package:
+	name: magic.mse-game
+	version: 2015-12-13
+	short name: Magic
+	full name: Magic the Gathering
+	icon url: card-back.png
+	installer group: magic/game files
+	position hint: 1
+	description: 
+	depends on: magic-blends.mse-include 2014-06-25
+	depends on: magic-watermarks.mse-include 2007-09-23
+package:
+	name: magic-blends.mse-include
+	version: 2015-05-23
+	short name: magic-blends
+	full name: Magic The Gathering, card blend utilities
+	icon url: 
+	installer group: unclassified/magic/magic-blends
+	position hint: 100000
+	description: 
+package:
+	name: magic-future-common.mse-include
+	version: 2008-05-21
+	short name: magic-future-common
+	full name: Icons/symbols for futureshifted Magic The Gathering templates
+	icon url: 
+	installer group: unclassified/magic/future/magic-future-common
+	position hint: 100000
+	description: 
+package:
+	name: magic-watermarks.mse-include
+	version: 2015-04-07
+	short name: magic-watermarks
+	full name: Magic The Gathering, textbox watermarks
+	icon url: 
+	installer group: unclassified/magic/magic-watermarks
+	position hint: 100000
+	description: 
+package:
+	name: magic-mana-small.mse-symbol-font
+	version: 2015-12-13
+	short name: normal
+	full name: normal
+	icon url: mana_r.png
+	installer group: magic/Mana symbols/normal style
+	position hint: 1
+	description: 
+package:
+	name: magic-mana-large.mse-symbol-font
+	version: 2015-12-13
+	short name: popup style
+	full name: popup style
+	icon url: mana_r.png
+	installer group: magic/Mana symbols/popup style
+	position hint: 2
+	description: 
+package:
+	name: magic-mana-small-phyrexian.mse-symbol-font
+	version: 2015-12-13
+	short name: phyrexian
+	full name: phyrexian
+	icon url: mana_phyr.png
+	installer group: magic/Mana symbols/phyrexian normal style
+	position hint: 100000
+	description: 
+	depends on: magic-mana-small.mse-symbol-font 2015-12-13
+package:
+	name: magic-mana-large-phyrexian.mse-symbol-font
+	version: 2015-12-13
+	short name: phyrexian popup style
+	full name: phyrexian popup style
+	icon url: mana_phyr.png
+	installer group: magic/Mana symbols/phyrexian popup style
+	position hint: 100000
+	description: 
+	depends on: magic-mana-large.mse-symbol-font 2015-12-13
+package:
+	name: magic-identity-new.mse-include
+	version: 2012-02-23
+	short name: magic-identity-new
+	full name: Magic The Gathering, modern identities
+	icon url: 
+	installer group: unclassified/magic/identity/magic-identity-new
+	position hint: 100000
+	description: 
+package:
+	name: magic-default-image.mse-include
+	version: 2007-09-23
+	short name: magic-default-image
+	full name: Magic The Gathering, placeholder images
+	icon url: 
+	installer group: unclassified/magic/default/magic-default-image
+	position hint: 100000
+	description: 
+package:
+	name: magic-extended-art.mse-style
+	version: 2014-02-22
+	short name: Extended Art
+	full name: Extended Art
+	icon url: card-sample.png
+	installer group: magic/new style/extended art
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new.mse-style
+	version: 2014-02-22
+	short name: Modern style
+	full name: After 8th edition
+	icon url: card-sample.png
+	installer group: magic/new style/normal cards
+	position hint: 11
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-identity-new.mse-include 2012-01-22
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-artbg.mse-style
+	version: 2014-02-22
+	short name: Art Background
+	full name: Expanded Art Alteration
+	icon url: card-sample.png
+	installer group: magic/new style/artbackground cards
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-new.mse-style 2008-04-13
+package:
+	name: magic-new-leveler-gradiented.mse-style
+	version: 2014-02-22
+	short name: Leveler Gradiented
+	full name: Gradiented Post 8th Leveler Style
+	icon url: card-sample.png
+	installer group: magic/new style/leveler cards/Gradiented
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2010-04-06
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-planeswalker-4abil-scrunched.mse-style
+	version: 2014-02-22
+	short name: Scrunched 4 'Walkers
+	full name: Modern Planeswalkers (Scrunched Four Abilities)
+	icon url: card-sample.png
+	installer group: magic/new style/planeswalkers/four abilities/scrunched
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2009-07-23
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic-new-planeswalker.mse-style 2008-06-02
+package:
+	name: magic-new-planeswalker-artbg.mse-style
+	version: 2014-02-22
+	short name: Artbg Walkers
+	full name: Modern Planeswalkers artbg
+	icon url: card-sample.png
+	installer group: magic/new style/artbgplaneswalkers
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-planeswalker-basic.mse-style
+	version: 2014-06-26
+	short name: Basic Walker
+	full name: Basic Planeswalkers
+	icon url: card-sample.png
+	installer group: magic/new style/basic planeswalkers
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-new.mse-style 2008-04-13
+	depends on: magic-new-planeswalker.mse-style 2008-11-27
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-split-promo.mse-style
+	version: 2014-02-22
+	short name: Split Promo
+	full name: Modern split promo cards
+	icon url: card-sample.png
+	installer group: magic/new style/split cards/promo style
+	position hint: 14
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-new-promo.mse-style 2008-06-01
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-token-artbg.mse-style
+	version: 2014-02-22
+	short name: Artbg Tokens
+	full name: Modern Artbg Token
+	icon url: card-sample.png
+	installer group: magic/new style/tokens/artbackground cards
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic-embossedletters.mse-symbol-font 2007-09-23
+	depends on: magic-new-token.mse-style 2010-07-25
+package:
+	name: magic-new-planeswalker.mse-style
+	version: 2014-02-22
+	short name: Walkers
+	full name: Modern Planeswalkers
+	icon url: card-sample.png
+	installer group: magic/new style/planeswalkers
+	position hint: 12
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-tapped.mse-style
+	version: 2014-02-23
+	short name: Modern tapped
+	full name: Modern tapped
+	icon url: card-sample.png
+	installer group: magic/new style/tapped cards
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-god-black.mse-style
+	version: 2014-02-22
+	short name: Black Star Gods
+	full name: Modern God Style
+	icon url: card-sample.png
+	installer group: magic/new style/god cards
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-identity-new.mse-include 2012-01-22
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic-future-common.mse-include 2007-09-23
+package:
+	name: magic-new-phyrexian.mse-style
+	version: 2014-02-22
+	short name: Phyrexian
+	full name: Modern w/ Phyrexian
+	icon url: card-sample.png
+	installer group: magic/new style/phyrexian
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-default-image.mse-include 2007-09-23
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-identity-new.mse-include 2012-01-22
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-large-phyrexian.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small-phyrexian.mse-symbol-font 2007-09-23
+	depends on: magic-new.mse-style 2008-04-13
+package:
+	name: magic-new-textless-artifact-narb777.mse-style
+	version: 2014-02-22
+	short name: Textless Artifacts
+	full name: Modern style
+	icon url: card-sample.png
+	installer group: magic/new style/textless/artifacts/narb777
+	position hint: 19
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-future-common.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+package:
+	name: magic-new-promo-black.mse-style
+	version: 2014-02-22
+	short name: Modern Promo
+	full name: Black-on-Black
+	icon url: card-sample.png
+	installer group: magic/new style/normal cards/promo/black on black
+	position hint: 14
+	description: 
+	depends on: magic.mse-game 2008-06-02
+	depends on: magic-watermarks.mse-include 2007-09-23
+	depends on: magic-mana-large.mse-symbol-font 2007-09-23
+	depends on: magic-mana-small.mse-symbol-font 2007-09-23

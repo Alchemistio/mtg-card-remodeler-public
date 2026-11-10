@@ -1,0 +1,787 @@
+﻿mse version: 2.0.0
+package:
+	name: en.mse-locale
+	version: 2011-01-22
+	status: 34
+	file: A20110122T223744 locale
+	file: A20071228T201340 usgb.png
+package:
+	name: magic-blends.mse-include
+	version: 2015-05-23
+	status: 18
+	file: 20181119T161331 include
+	file: 20181119T161331 new-blends
+package:
+	name: magic-default-image.mse-include
+	version: 2007-09-23
+	status: 18
+	file: 20181119T161331 artifact.jpg
+	file: 20181119T161331 black.jpg
+	file: 20181119T161331 blue.jpg
+	file: 20181119T161331 colorless.jpg
+	file: 20181119T161331 green.jpg
+	file: 20181119T161332 include
+	file: 20181119T161332 land.jpg
+	file: 20181119T161332 multicolor.jpg
+	file: 20181119T161332 red.jpg
+	file: 20181119T161332 scripts
+	file: 20181119T161332 white.jpg
+package:
+	name: magic-extended-art.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161332 acard.jpg
+	file: 20181119T161332 apt.jpg
+	file: 20181119T161332 artifact_blend_card.png
+	file: 20181119T161332 artifact_blend_pt.png
+	file: 20181119T161332 bcard.jpg
+	file: 20181119T161332 blcard.jpg
+	file: 20181119T161332 blpt.jpg
+	file: 20181119T161332 bpt.jpg
+	file: 20181119T161333 build.bat
+	file: 20181119T161333 card-sample.png
+	file: 20181119T161333 ccard.jpg
+	file: 20181119T161333 clcard.jpg
+	file: 20181119T161333 clpt.jpg
+	file: 20181119T161333 cpt.jpg
+	file: 20181119T161333 gcard.jpg
+	file: 20181119T161333 glcard.jpg
+	file: 20181119T161333 glpt.jpg
+	file: 20181119T161333 gpt.jpg
+	file: 20181119T161333 hpt.jpg
+	file: 20181119T161333 hybrid_blend_card.png
+	file: 20181119T161333 hybrid_blend_pt.png
+	file: 20181119T161333 mask_pt.png
+	file: 20181119T161334 mcard.jpg
+	file: 20181119T161334 mlcard.jpg
+	file: 20181119T161334 mlpt.jpg
+	file: 20181119T161334 mpt.jpg
+	file: 20181119T161334 multicolor_blend_card.png
+	file: 20181119T161334 multicolor_blend_pt.png
+	file: 20181119T161334 oacard.jpg
+	file: 20181119T161334 oapt.jpg
+	file: 20181119T161335 omcard.jpg
+	file: 20181119T161335 omlcard.jpg
+	file: 20181119T161335 omlpt.jpg
+	file: 20181119T161335 ompt.jpg
+	file: 20181119T161335 rcard.jpg
+	file: 20181119T161335 rlcard.jpg
+	file: 20181119T161335 rlpt.jpg
+	file: 20181119T161335 rpt.jpg
+	file: 20181119T161335 style
+	file: 20181119T161335 tombstone.png
+	file: 20181119T161336 ucard.jpg
+	file: 20181119T161336 ulcard.jpg
+	file: 20181119T161336 ulpt.jpg
+	file: 20181119T161336 upt.jpg
+	file: 20181119T161336 wcard.jpg
+	file: 20181119T161336 wlcard.jpg
+	file: 20181119T161336 wlpt.jpg
+	file: 20181119T161336 wpt.jpg
+package:
+	name: magic-fixed-hires.mse-style
+	version: 2011-09-15
+	status: 34
+	file: A20181119T152659 acard.jpg
+	file: A20181119T081506 apt.png
+	file: A20181119T081506 artifact_blend_card.png
+	file: A20181119T081506 artifact_blend_pt.png
+	file: A20181119T081505 bacard.jpg
+	file: A20181119T081912 backup_style.txt
+	file: A20181119T081505 bak_oacard.jpg
+	file: A20181119T081505 bak_omcard.jpg
+	file: A20181119T145133 bak_omlcard.jpg
+	file: A20181119T081506 bapt.png
+	file: A20181119T152649 bcard.jpg
+	file: A20181119T152627 blcard.jpg
+	file: A20181119T081506 blpt.png
+	file: A20181119T081506 border-mask.png
+	file: A20181119T081505 bpt.png
+	file: A20181119T081505 card-sample.png
+	file: A20181119T081505 ccard.jpg
+	file: A20181119T152608 clcard.jpg
+	file: A20181119T081505 clpt.png
+	file: A20181119T081505 cpt.png
+	file: A20181119T152558 gcard.jpg
+	file: A20181119T152546 glcard.jpg
+	file: A20181119T081505 glpt.png
+	file: A20181119T081505 gpt.png
+	file: A20181119T150243 hybrid_blend_card.png
+	file: A20181119T081505 hybrid_blend_pt.png
+	file: A20181119T081505 imagemask_extended.png
+	file: A20181119T081505 imagemask_standard.png
+	file: A20181119T152524 mcard.jpg
+	file: A20181119T152511 mlcard.jpg
+	file: A20181119T081505 mlpt.png
+	file: A20181119T081505 mpt.png
+	file: A20181119T150016 multicolor_blend_card.png
+	file: A20181119T081505 multicolor_blend_pt.png
+	file: A20181119T152457 oacard.jpg
+	file: A20181119T081505 oapt.png
+	file: A20181119T152442 omcard.jpg
+	file: A20181119T152426 omlcard.jpg
+	file: A20181119T081505 omlpt.png
+	file: A20181119T081505 ompt.png
+	file: A20181119T152413 rcard.jpg
+	file: A20181119T152354 rlcard.jpg
+	file: A20181119T081505 rlpt.png
+	file: A20181119T081505 rpt.png
+	file: A20181119T154648 style
+	file: A20181119T081505 tombstone.png
+	file: A20181119T152333 ucard.jpg
+	file: A20181119T152308 ulcard.jpg
+	file: A20181119T081505 ulpt.png
+	file: A20181119T081505 upt.png
+	file: A20181119T152252 wcard.jpg
+	file: A20181119T152234 wlcard.jpg
+	file: A20181119T081505 wlpt.png
+	file: A20181119T081505 wpt.png
+package:
+	name: magic-forum.mse-export-template
+	version: 2010-06-06
+	status: 34
+	file: A20110107T202352 export-template
+	file: A20110107T202352 icon.png
+package:
+	name: magic-future-common.mse-include
+	version: 2008-05-21
+	status: 18
+	file: 20181119T161336 artifact_black.png
+	file: 20181119T161336 artifact_white.png
+	file: 20181119T161336 creature_black.png
+	file: 20181119T161336 creature_white.png
+	file: 20181119T161336 enchantment_black.png
+	file: 20181119T161336 enchantment_white.png
+	file: 20181119T161336 include
+	file: 20181119T161336 instant_black.png
+	file: 20181119T161336 instant_white.png
+	file: 20181119T161336 land_black.png
+	file: 20181119T161336 land_white.png
+	file: 20181119T161336 multitype_black.png
+	file: 20181119T161336 multitype_white.png
+	file: 20181119T161336 paintbrush_black.png
+	file: 20181119T161336 paintbrush_white.png
+	file: 20181119T161337 planeswalker_black.png
+	file: 20181119T161337 planeswalker_white.png
+	file: 20181119T161337 sorcery_black.png
+	file: 20181119T161337 sorcery_white.png
+package:
+	name: magic-identity-new.mse-include
+	version: 2012-02-23
+	status: 18
+	file: 20181119T161337 aidentity.png
+	file: 20181119T161337 baidentity.png
+	file: 20181119T161337 bidentity.png
+	file: 20181119T161337 blidentity.png
+	file: 20181119T161337 cidentity.png
+	file: 20181119T161337 clidentity.png
+	file: 20181119T161337 gidentity.png
+	file: 20181119T161337 glidentity.png
+	file: 20181119T161337 include
+	file: 20181119T161337 midentity.png
+	file: 20181119T161338 mlidentity.png
+	file: 20181119T161338 omidentity.png
+	file: 20181119T161338 omlidentity.png
+	file: 20181119T161338 ridentity.png
+	file: 20181119T161338 rlidentity.png
+	file: 20181119T161338 uidentity.png
+	file: 20181119T161338 ulidentity.png
+	file: 20181119T161338 widentity.png
+	file: 20181119T161338 wlidentity.png
+package:
+	name: magic-mana-large-phyrexian.mse-symbol-font
+	version: 2015-12-13
+	status: 18
+	file: 20181119T161338 mana_phyr.png
+	file: 20181119T161338 symbol-font
+package:
+	name: magic-mana-large.mse-symbol-font
+	version: 2009-08-10
+	status: 18
+	file: 20181119T161339 mana_1_half.png
+	file: 20181119T161339 mana_b.png
+	file: 20181119T161339 mana_b_half.png
+	file: 20181119T161339 mana_bg.png
+	file: 20181119T161339 mana_bgw.png
+	file: 20181119T161339 mana_br.png
+	file: 20181119T161339 mana_brg.png
+	file: 20181119T161339 mana_chaos.png
+	file: 20181119T161339 mana_circle.png
+	file: 20181119T161339 mana_g.png
+	file: 20181119T161339 mana_g_half.png
+	file: 20181119T161339 mana_gu.png
+	file: 20181119T161339 mana_gub.png
+	file: 20181119T161339 mana_guild_bg.png
+	file: 20181119T161339 mana_guild_br.png
+	file: 20181119T161339 mana_guild_gu.png
+	file: 20181119T161339 mana_guild_gw.png
+	file: 20181119T161339 mana_guild_rg.png
+	file: 20181119T161339 mana_guild_rw.png
+	file: 20181119T161339 mana_guild_ub.png
+	file: 20181119T161339 mana_guild_ur.png
+	file: 20181119T161339 mana_guild_wb.png
+	file: 20181119T161339 mana_guild_wu.png
+	file: 20181119T161339 mana_gw.png
+	file: 20181119T161340 mana_gwu.png
+	file: 20181119T161340 mana_infinite.png
+	file: 20181119T161340 mana_nb.png
+	file: 20181119T161340 mana_ng.png
+	file: 20181119T161340 mana_nr.png
+	file: 20181119T161340 mana_nu.png
+	file: 20181119T161340 mana_nw.png
+	file: 20181119T161340 mana_q.png
+	file: 20181119T161340 mana_q_old.png
+	file: 20181119T161340 mana_q_older.png
+	file: 20181119T161340 mana_r.png
+	file: 20181119T161340 mana_r_half.png
+	file: 20181119T161340 mana_rg.png
+	file: 20181119T161340 mana_rgw.png
+	file: 20181119T161340 mana_rw.png
+	file: 20181119T161340 mana_rwu.png
+	file: 20181119T161340 mana_s.png
+	file: 20181119T161340 mana_s_half.png
+	file: 20181119T161340 mana_t.png
+	file: 20181119T161340 mana_t_old.png
+	file: 20181119T161341 mana_t_older.png
+	file: 20181119T161341 mana_u.png
+	file: 20181119T161341 mana_u_half.png
+	file: 20181119T161341 mana_ub.png
+	file: 20181119T161341 mana_ubr.png
+	file: 20181119T161341 mana_ur.png
+	file: 20181119T161341 mana_urg.png
+	file: 20181119T161341 mana_w.png
+	file: 20181119T161341 mana_w_half.png
+	file: 20181119T161341 mana_wb.png
+	file: 20181119T161341 mana_wbr.png
+	file: 20181119T161341 mana_wu.png
+	file: 20181119T161341 mana_wub.png
+	file: 20181119T161341 mana_x.png
+	file: 20181119T161341 mana_y.png
+	file: 20181119T161341 mana_z.png
+	file: 20181119T161341 symbol-font
+package:
+	name: magic-mana-small-phyrexian.mse-symbol-font
+	version: 2015-12-13
+	status: 18
+	file: 20181119T161342 mana_phyr.png
+	file: 20181119T161342 symbol-font
+package:
+	name: magic-mana-small.mse-symbol-font
+	version: 2009-08-10
+	status: 18
+	file: 20181119T161342 mana_1_half.png
+	file: 20181119T161342 mana_b.png
+	file: 20181119T161342 mana_b_half.png
+	file: 20181119T161342 mana_bg.png
+	file: 20181119T161342 mana_bgw.png
+	file: 20181119T161342 mana_br.png
+	file: 20181119T161342 mana_brg.png
+	file: 20181119T161342 mana_chaos.png
+	file: 20181119T161342 mana_circle.png
+	file: 20181119T161342 mana_g.png
+	file: 20181119T161342 mana_g_half.png
+	file: 20181119T161342 mana_gu.png
+	file: 20181119T161342 mana_gub.png
+	file: 20181119T161342 mana_guild_bg.png
+	file: 20181119T161342 mana_guild_br.png
+	file: 20181119T161342 mana_guild_gu.png
+	file: 20181119T161343 mana_guild_gw.png
+	file: 20181119T161343 mana_guild_rg.png
+	file: 20181119T161343 mana_guild_rw.png
+	file: 20181119T161343 mana_guild_ub.png
+	file: 20181119T161343 mana_guild_ur.png
+	file: 20181119T161343 mana_guild_wb.png
+	file: 20181119T161343 mana_guild_wu.png
+	file: 20181119T161343 mana_gw.png
+	file: 20181119T161343 mana_gwu.png
+	file: 20181119T161343 mana_infinite.png
+	file: 20181119T161343 mana_nb.png
+	file: 20181119T161343 mana_ng.png
+	file: 20181119T161343 mana_nr.png
+	file: 20181119T161343 mana_nu.png
+	file: 20181119T161343 mana_nw.png
+	file: 20181119T161344 mana_q.png
+	file: 20181119T161344 mana_q_old.png
+	file: 20181119T161344 mana_q_older.png
+	file: 20181119T161344 mana_r.png
+	file: 20181119T161344 mana_r_half.png
+	file: 20181119T161344 mana_rg.png
+	file: 20181119T161344 mana_rgw.png
+	file: 20181119T161344 mana_rw.png
+	file: 20181119T161344 mana_rwu.png
+	file: 20181119T161344 mana_s.png
+	file: 20181119T161344 mana_s_half.png
+	file: 20181119T161344 mana_t.png
+	file: 20181119T161344 mana_t_old.png
+	file: 20181119T161344 mana_t_older.png
+	file: 20181119T161344 mana_u.png
+	file: 20181119T161344 mana_u_half.png
+	file: 20181119T161344 mana_ub.png
+	file: 20181119T161344 mana_ubr.png
+	file: 20181119T161344 mana_ur.png
+	file: 20181119T161344 mana_urg.png
+	file: 20181119T161344 mana_w.png
+	file: 20181119T161345 mana_w_half.png
+	file: 20181119T161345 mana_wb.png
+	file: 20181119T161345 mana_wbr.png
+	file: 20181119T161345 mana_wu.png
+	file: 20181119T161345 mana_wub.png
+	file: 20181119T161345 mana_x.png
+	file: 20181119T161345 mana_y.png
+	file: 20181119T161345 mana_z.png
+	file: 20181119T161345 symbol-font
+package:
+	name: magic-new-artbg.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161345 bgmask.png
+	file: 20181119T161345 build.bat
+	file: 20181119T161345 card-sample.png
+	file: 20181119T161345 ptmask.png
+	file: 20181119T161345 style
+package:
+	name: magic-new-flip.mse-style
+	version: 2010-12-17
+	status: 34
+	file: A20080802T173052 acard.jpg
+	file: A20080802T173052 apt.jpg
+	file: A20080802T173052 apt2.jpg
+	file: A20080802T173052 artifact_blend_card.png
+	file: A20080414T191540 artifact_blend_pt.png
+	file: A20080414T191540 artifact_blend_pt2.png
+	file: A20060326T010642 bcard.jpg
+	file: A20110107T201400 blcard.jpg
+	file: A20110107T201400 blpt.jpg
+	file: A20110107T201400 blpt2.jpg
+	file: A20060326T010642 bpt.jpg
+	file: A20060326T010642 bpt2.jpg
+	file: A20061222T212706 card-sample.png
+	file: A20070710T185342 ccard.jpg
+	file: A20070710T185342 clcard.jpg
+	file: A20070710T185342 clpt.jpg
+	file: A20070710T185342 clpt2.jpg
+	file: A20070710T185342 cpt.jpg
+	file: A20070710T185342 cpt2.jpg
+	file: A20060326T010642 gcard.jpg
+	file: A20110107T201400 glcard.jpg
+	file: A20110107T201400 glpt.jpg
+	file: A20110107T201400 glpt2.jpg
+	file: A20060326T010642 gpt.jpg
+	file: A20060326T010642 gpt2.jpg
+	file: A20081211T160408 hybrid_blend_card.png
+	file: A20081211T160408 hybrid_blend_pt.png
+	file: A20081211T160408 hybrid_blend_pt2.png
+	file: A20101230T163658 imgmask.png
+	file: A20070915T235554 mask_pt.png
+	file: A20100721T151120 mask_pt2.png
+	file: A20060326T010642 mcard.jpg
+	file: A20060326T010642 mpt.jpg
+	file: A20060408T234858 mpt2.jpg
+	file: A20070701T211220 multicolor_blend_card.png
+	file: A20070701T211224 multicolor_blend_pt.png
+	file: A20070701T211230 multicolor_blend_pt2.png
+	file: A20060326T010642 rcard.jpg
+	file: A20110107T201400 rlcard.jpg
+	file: A20110107T201400 rlpt.jpg
+	file: A20110107T201400 rlpt2.jpg
+	file: A20060326T010642 rpt.jpg
+	file: A20060326T010642 rpt2.jpg
+	file: A20110107T201400 style
+	file: A20060316T231006 tombstone.png
+	file: A20060326T010642 ucard.jpg
+	file: A20110107T201400 ulcard.jpg
+	file: A20110107T201400 ulpt.jpg
+	file: A20110107T201400 ulpt2.jpg
+	file: A20060326T010642 upt.jpg
+	file: A20060326T010642 upt2.jpg
+	file: A20060326T010642 wcard.jpg
+	file: A20110107T201400 wlcard.jpg
+	file: A20110107T201400 wlpt.jpg
+	file: A20110107T201400 wlpt2.jpg
+	file: A20060326T010642 wpt.jpg
+	file: A20060326T010642 wpt2.jpg
+package:
+	name: magic-new-god-black.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161345 acard.jpg
+	file: 20181119T161346 apt.jpg
+	file: 20181119T161346 artifact_blend_card.png
+	file: 20181119T161346 artifact_blend_identity.png
+	file: 20181119T161346 artifact_blend_pt.png
+	file: 20181119T161346 bcard.jpg
+	file: 20181119T161346 bpt.jpg
+	file: 20181119T161346 build.bat
+	file: 20181119T161346 card-sample.png
+	file: 20181119T161346 gcard.jpg
+	file: 20181119T161346 gpt.jpg
+	file: 20181119T161346 hybrid_blend_card.png
+	file: 20181119T161346 hybrid_blend_identity.png
+	file: 20181119T161346 hybrid_blend_pt.png
+	file: 20181119T161346 imagemask_extended.png
+	file: 20181119T161346 imagemask_standard.png
+	file: 20181119T161346 mcard.jpg
+	file: 20181119T161346 mpt.jpg
+	file: 20181119T161346 multicolor_blend_card.png
+	file: 20181119T161346 multicolor_blend_identity.png
+	file: 20181119T161346 multicolor_blend_pt.png
+	file: 20181119T161346 rcard.jpg
+	file: 20181119T161347 rpt.jpg
+	file: 20181119T161347 style
+	file: 20181119T161347 tombstone.png
+	file: 20181119T161347 ucard.jpg
+	file: 20181119T161347 upt.jpg
+	file: 20181119T161347 wcard.jpg
+	file: 20181119T161347 wpt.jpg
+package:
+	name: magic-new-phyrexian.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161347 artifact_blend_card.png
+	file: 20181119T161347 artifact_blend_identity.png
+	file: 20181119T161347 artifact_blend_pt.png
+	file: 20181119T161347 build.bat
+	file: 20181119T161347 card-sample.png
+	file: 20181119T161347 hybrid_blend_card.png
+	file: 20181119T161347 hybrid_blend_identity.png
+	file: 20181119T161347 hybrid_blend_pt.png
+	file: 20181119T161347 multicolor_blend_card.png
+	file: 20181119T161347 multicolor_blend_identity.png
+	file: 20181119T161347 multicolor_blend_pt.png
+	file: 20181119T161348 style
+package:
+	name: magic-new-planeswalker-4abil-scrunched.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161348 build.bat
+	file: 20181119T161348 card-sample.png
+	file: 20181119T161348 image_mask.png
+	file: 20181119T161348 style
+package:
+	name: magic-new-planeswalker-artbg.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161348 acard.jpg
+	file: 20181119T161348 artifact_blend_card.png
+	file: 20181119T161348 bcard.jpg
+	file: 20181119T161348 border_mask.png
+	file: 20181119T161348 build.bat
+	file: 20181119T161348 card-sample.png
+	file: 20181119T161348 ccard.jpg
+	file: 20181119T161348 gcard.jpg
+	file: 20181119T161349 hybrid_blend_card.png
+	file: 20181119T161349 image_mask.png
+	file: 20181119T161349 image_mask_piping.png
+	file: 20181119T161349 loyalty.png
+	file: 20181119T161349 loyaltydown.png
+	file: 20181119T161349 loyaltynaught.png
+	file: 20181119T161349 loyaltyup.png
+	file: 20181119T161349 mcard.jpg
+	file: 20181119T161349 multicolor_blend_card.png
+	file: 20181119T161349 old_image_mask.png
+	file: 20181119T161349 rcard.jpg
+	file: 20181119T161349 style
+	file: 20181119T161349 text_mask.png
+	file: 20181119T161350 tombstone.png
+	file: 20181119T161350 ucard.jpg
+	file: 20181119T161350 wcard.jpg
+package:
+	name: magic-new-planeswalker-basic.mse-style
+	version: 2014-06-26
+	status: 18
+	file: 20181119T161350 build.bat
+	file: 20181119T161350 card-sample.png
+	file: 20181119T161350 imagemask.png
+	file: 20181119T161350 style
+	file: 20181119T161350 textmask.png
+package:
+	name: magic-new-planeswalker.mse-style
+	version: 2014-02-22
+	status: 18
+	file: 20181119T161350 acard.jpg
+	file: 20181119T161350 artifact_blend_card.png
+	file: 20181119T161351 bcard.jpg
+	file: 20181119T161351 border_mask.png
+	file: 20181119T161351 build.bat
+	file: 20181119T161351 card-sample.png
+	file: 20181119T161351 ccard.jpg
+	file: 20181119T161351 gcard.jpg
+	file: 20181119T161351 hybrid_blend_card.png
+	file: 20181119T161351 image_mask.png
+	file: 20181119T161351 loyalty.png
+	file: 20181119T161351 loyaltydown.png
+	file: 20181119T161351 loyaltynaught.png
+	file: 20181119T161351 loyaltyup.png
+	file: 20181119T161351 mcard.jpg
+	file: 20181119T161351 multicolor_blend_card.png
+	file: 20181119T161351 rcard.jpg
+	file: 20181119T161352 style
+	file: 20181119T161352 text_mask.png
+	file: 20181119T161352 tombstone.png
+	file: 20181119T161352 ucard.jpg
+	file: 20181119T161352 wcard.jpg
+package:
+	name: magic-new-split.mse-style
+	version: 2009-07-06
+	status: 34
+	file: A20080802T173054 acard.jpg
+	file: A20080802T173054 apt.jpg
+	file: A20080414T192338 artifact_blend_card.png
+	file: A20080414T192338 artifact_blend_pt.png
+	file: A20060316T231010 bcard.jpg
+	file: A20060316T231010 blcard.jpg
+	file: A20060316T231010 blpt.jpg
+	file: A20060316T231010 bpt.jpg
+	file: A20061222T213148 card-sample.png
+	file: A20070518T175648 ccard.jpg
+	file: A20070702T155422 clcard.jpg
+	file: A20070702T164934 clpt.jpg
+	file: A20070509T232902 cpt.jpg
+	file: A20060316T231010 gcard.jpg
+	file: A20060316T231010 glcard.jpg
+	file: A20060316T231010 glpt.jpg
+	file: A20060316T231010 gpt.jpg
+	file: A20070702T165040 hybrid_blend_card.png
+	file: A20060316T231010 hybrid_blend_pt.png
+	file: A20080802T173054 mcard.jpg
+	file: A20080802T173054 mlcard.jpg
+	file: A20080802T173054 mlpt.jpg
+	file: A20080802T173054 mpt.jpg
+	file: A20070702T164516 multicolor_blend_card.png
+	file: A20070702T164522 multicolor_blend_pt.png
+	file: A20070509T232902 oacard.jpg
+	file: A20060316T231010 oapt.jpg
+	file: A20080802T173054 omcard.jpg
+	file: A20080802T173054 omlcard.jpg
+	file: A20080802T173054 omlpt.jpg
+	file: A20080802T173054 ompt.jpg
+	file: A20060316T231010 rcard.jpg
+	file: A20060316T231010 rlcard.jpg
+	file: A20060316T231010 rlpt.jpg
+	file: A20060316T231012 rpt.jpg
+	file: A20100721T151124 style
+	file: A20060316T231012 tombstone.png
+	file: A20060316T231012 ucard.jpg
+	file: A20060316T231012 ulcard.jpg
+	file: A20060316T231012 ulpt.jpg
+	file: A20060316T231012 upt.jpg
+	file: A20060316T231012 wcard.jpg
+	file: A20060316T231012 wlcard.jpg
+	file: A20060316T231012 wlpt.jpg
+	file: A20060316T231012 wpt.jpg
+package:
+	name: magic-new.mse-style
+	version: 2009-07-07
+	status: 18
+	file: 20181119T161352 acard.jpg
+	file: 20181119T161352 apt.jpg
+	file: 20181119T161352 artifact_blend_card.png
+	file: 20181119T161352 artifact_blend_pt.png
+	file: 20181119T161353 bacard.jpg
+	file: 20181119T161353 bapt.jpg
+	file: 20181119T161353 bcard.jpg
+	file: 20181119T161353 blcard.jpg
+	file: 20181119T161353 blpt.jpg
+	file: 20181119T161353 border-mask.png
+	file: 20181119T161353 bpt.jpg
+	file: 20181119T161353 card-sample.png
+	file: 20181119T161353 ccard.jpg
+	file: 20181119T161353 clcard.jpg
+	file: 20181119T161353 clpt.jpg
+	file: 20181119T161353 cpt.jpg
+	file: 20181119T161353 gcard.jpg
+	file: 20181119T161353 glcard.jpg
+	file: 20181119T161353 glpt.jpg
+	file: 20181119T161353 gpt.jpg
+	file: 20181119T161353 hybrid_blend_card.png
+	file: 20181119T161353 hybrid_blend_pt.png
+	file: 20181119T161354 imagemask_extended.png
+	file: 20181119T161354 imagemask_standard.png
+	file: 20181119T161354 mcard.jpg
+	file: 20181119T161354 mlcard.jpg
+	file: 20181119T161354 mlpt.jpg
+	file: 20181119T161354 mpt.jpg
+	file: 20181119T161354 multicolor_blend_card.png
+	file: 20181119T161354 multicolor_blend_pt.png
+	file: 20181119T161354 oacard.jpg
+	file: 20181119T161354 oapt.jpg
+	file: 20181119T161354 omcard.jpg
+	file: 20181119T161354 omlcard.jpg
+	file: 20181119T161354 omlpt.jpg
+	file: 20181119T161354 ompt.jpg
+	file: 20181119T161354 ptmask.png
+	file: 20181119T161354 rcard.jpg
+	file: 20181119T161354 rlcard.jpg
+	file: 20181119T161354 rlpt.jpg
+	file: 20181119T161354 rpt.jpg
+	file: 20181119T161354 style
+	file: 20181119T161355 tombstone.png
+	file: 20181119T161355 ucard.jpg
+	file: 20181119T161355 ulcard.jpg
+	file: 20181119T161355 ulpt.jpg
+	file: 20181119T161355 upt.jpg
+	file: 20181119T161355 wcard.jpg
+	file: 20181119T161355 wlcard.jpg
+	file: 20181119T161355 wlpt.jpg
+	file: 20181119T161355 wpt.jpg
+package:
+	name: magic-spoiler.mse-export-template
+	version: 2008-08-07
+	status: 34
+	file: A20010306T024906 blank.gif
+	file: A20110202T205608 export-template
+	file: A20070705T194654 preview.png
+	file: A20070625T225448 sans-serif.png
+	file: A20100721T151108 script.js
+	file: A20070625T225406 serif.png
+	file: A20100721T151108 style.css
+package:
+	name: magic-textless.mse-style
+	version: 2009-07-07
+	status: 34
+	file: A20070801T151232 acard.jpg
+	file: A20060326T013850 apt.jpg
+	file: A20080414T192404 artifact_blend_card.png
+	file: A20080414T192404 artifact_blend_pt.png
+	file: A20060326T013850 bcard.jpg
+	file: A20060326T013850 blpt.jpg
+	file: A20060326T013850 bpt.jpg
+	file: A20061222T213012 card-sample.png
+	file: A20070801T151232 ccard.jpg
+	file: A20070702T164938 clpt.jpg
+	file: A20070801T151232 cpt.jpg
+	file: A20060326T013850 gcard.jpg
+	file: A20060326T013850 glpt.jpg
+	file: A20060326T013850 gpt.jpg
+	file: A20060326T013850 hpt.jpg
+	file: A20070702T165052 hybrid_blend_card.png
+	file: A20070701T200438 hybrid_blend_pt.png
+	file: A20070801T151232 mask_image.png
+	file: A20070915T235648 mask_pt.png
+	file: A20070801T151232 mcard.jpg
+	file: A20060326T013850 mlpt.jpg
+	file: A20060326T013850 mpt.jpg
+	file: A20070702T180736 multicolor_blend_card.png
+	file: A20070702T164550 multicolor_blend_pt.png
+	file: A20070801T151232 oacard.jpg
+	file: A20060326T013850 oapt.jpg
+	file: A20060326T013850 rcard.jpg
+	file: A20060326T013850 rlpt.jpg
+	file: A20060326T013850 rpt.jpg
+	file: A20100721T151116 style
+	file: A20060326T013850 tombstone.png
+	file: A20060326T013850 ucard.jpg
+	file: A20060326T013850 ulpt.jpg
+	file: A20060326T013850 upt.jpg
+	file: A20060326T013850 wcard.jpg
+	file: A20060326T013850 wlpt.jpg
+	file: A20060326T013850 wpt.jpg
+package:
+	name: magic-watermarks.mse-include
+	version: 2010-08-27
+	status: 18
+	file: 20181119T161355 futsymbol_artifact.png
+	file: 20181119T161355 futsymbol_creature.png
+	file: 20181119T161355 futsymbol_enchantment.png
+	file: 20181119T161355 futsymbol_instant.png
+	file: 20181119T161356 futsymbol_land.png
+	file: 20181119T161356 futsymbol_multiple.png
+	file: 20181119T161356 futsymbol_planeswalker.png
+	file: 20181119T161356 futsymbol_sorcery.png
+	file: 20181119T161356 include
+	file: 20181119T161356 watermark-names
+	file: 20181119T161356 watermark_azorius.png
+	file: 20181119T161356 watermark_b.png
+	file: 20181119T161356 watermark_b_old.png
+	file: 20181119T161356 watermark_bgmana.png
+	file: 20181119T161356 watermark_bgmana_colored.png
+	file: 20181119T161356 watermark_boros.png
+	file: 20181119T161356 watermark_brmana.png
+	file: 20181119T161356 watermark_brmana_colored.png
+	file: 20181119T161356 watermark_dimir.png
+	file: 20181119T161357 watermark_g.png
+	file: 20181119T161357 watermark_g_old.png
+	file: 20181119T161357 watermark_golgari.png
+	file: 20181119T161357 watermark_gruul.png
+	file: 20181119T161357 watermark_gumana.png
+	file: 20181119T161357 watermark_gumana_colored.png
+	file: 20181119T161357 watermark_gwmana.png
+	file: 20181119T161357 watermark_gwmana_colored.png
+	file: 20181119T161357 watermark_izzet.png
+	file: 20181119T161357 watermark_mirrodin.png
+	file: 20181119T161358 watermark_orzhov.png
+	file: 20181119T161358 watermark_phyrexia.png
+	file: 20181119T161358 watermark_r.png
+	file: 20181119T161358 watermark_r_old.png
+	file: 20181119T161358 watermark_rakados.png
+	file: 20181119T161358 watermark_rgmana.png
+	file: 20181119T161358 watermark_rgmana_colored.png
+	file: 20181119T161358 watermark_rwmana.png
+	file: 20181119T161358 watermark_rwmana_colored.png
+	file: 20181119T161358 watermark_s.png
+	file: 20181119T161358 watermark_selesnya.png
+	file: 20181119T161358 watermark_simic.png
+	file: 20181119T161359 watermark_u.png
+	file: 20181119T161359 watermark_u_old.png
+	file: 20181119T161359 watermark_ubmana.png
+	file: 20181119T161359 watermark_ubmana_colored.png
+	file: 20181119T161359 watermark_urmana.png
+	file: 20181119T161359 watermark_urmana_colored.png
+	file: 20181119T161359 watermark_w.png
+	file: 20181119T161359 watermark_w_old.png
+	file: 20181119T161359 watermark_wbmana.png
+	file: 20181119T161359 watermark_wbmana_colored.png
+	file: 20181119T161359 watermark_wumana.png
+	file: 20181119T161359 watermark_wumana_colored.png
+	file: 20181119T161359 watermarks
+	file: 20181119T161359 watermarks-old
+package:
+	name: magic.mse-game
+	version: 2011-01-18
+	status: 18
+	file: 20181119T161400 add_cards_scripts
+	file: 20181119T161400 auto_replace
+	file: 20181119T161400 card-back.png
+	file: 20181119T161400 card_fields
+	file: 20181119T161400 game
+	file: 20181119T161400 icons/center-all-text.png
+	file: 20181119T161400 icons/center-no-text.png
+	file: 20181119T161400 icons/center-short-text.png
+	file: 20181119T161400 icons/language-en.png
+	file: 20181119T161400 icons/language-fr.png
+	file: 20181119T161400 icons/large-image.png
+	file: 20181119T161400 icons/number_cards_after.png
+	file: 20181119T161400 icons/number_cards_mixed.png
+	file: 20181119T161400 icons/number_cards_separate.png
+	file: 20181119T161400 icons/small-image.png
+	file: 20181119T161400 keywords
+	file: 20181119T161401 language
+	file: 20181119T161401 magic-words.en_us.dic
+	file: 20181119T161401 packs
+	file: 20181119T161401 script
+	file: 20181119T161401 set_fields
+	file: 20181119T161401 statistics
+	file: 20181119T161401 stats/card_color.png
+	file: 20181119T161401 stats/card_symbol.png
+	file: 20181119T161401 stats/card_type.png
+	file: 20181119T161401 stats/casting_cost.png
+	file: 20181119T161401 stats/color_colored_cost.png
+	file: 20181119T161401 stats/color_cost.png
+	file: 20181119T161401 stats/color_rarity.png
+	file: 20181119T161401 stats/colored_casting_cost.png
+	file: 20181119T161401 stats/cost_colored_cost.png
+	file: 20181119T161401 stats/creature_class.png
+	file: 20181119T161401 stats/creature_race.png
+	file: 20181119T161401 stats/creature_type.png
+	file: 20181119T161401 stats/illustrator.png
+	file: 20181119T161401 stats/keywords.png
+	file: 20181119T161401 stats/power.png
+	file: 20181119T161401 stats/pt.png
+	file: 20181119T161401 stats/rarity.png
+	file: 20181119T161401 stats/stylesheet.png
+	file: 20181119T161401 stats/text_length.png
+	file: 20181119T161402 stats/toughness.png
+	file: 20181119T161402 stats/watermark.png
+	file: 20181119T161402 unit_tests
+	file: 20181119T161402 word_lists
+	file: 20181119T161402 word_lists_fr
