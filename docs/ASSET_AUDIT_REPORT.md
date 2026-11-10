@@ -16,6 +16,7 @@ Les phases d'inventaire, de contextualisation et de préparation du référentie
 - `docs/ASSET_AUDIT_CHECKLIST.md` : suivi opérationnel avec statuts réalisés, partiels et à faire.
 - `docs/ASSET_AUDIT_REPORT.md` : présent rapport.
 - `Assets/METADATA/assets.manifest.json` : manifeste machine-readable des collections sources et de leur état d'analyse.
+- `Assets/METADATA/ASSET_INDEX.md` : index humain des collections, contenus recensés et familles fonctionnelles cibles.
 
 ## 3. Résultats d'inventaire
 
