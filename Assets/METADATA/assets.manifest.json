@@ -19,29 +19,9 @@
       "path": "Assets/Full-Magic-Pack-main/",
       "files": 34441,
       "approximateBytes": 934700000,
-      "formats": [
-        "MSE package directories",
-        "images",
-        "fonts",
-        "scripts",
-        "locale data"
-      ],
-      "subcollections": {
-        "mseStyle": 371,
-        "mseInclude": 32,
-        "mseSymbolFont": 76,
-        "mseLocale": 13,
-        "mseGame": 7,
-        "mseExportTemplate": 22
-      },
-      "functionalCandidates": [
-        "Frames",
-        "Components",
-        "Symbols",
-        "Fonts",
-        "Layouts",
-        "Export templates"
-      ],
+      "formats": ["MSE package directories", "images", "fonts", "scripts", "locale data"],
+      "subcollections": {"mseStyle": 371, "mseInclude": 32, "mseSymbolFont": 76, "mseLocale": 13, "mseGame": 7, "mseExportTemplate": 22},
+      "functionalCandidates": ["Frames", "Components", "Symbols", "Fonts", "Layouts", "Export templates"],
       "status": "needs-visual-review",
       "licenseStatus": "pending-review",
       "notes": "MSE packages may contain relative dependencies; preserve package structure until dependency mapping."
@@ -52,18 +32,8 @@
       "path": "Assets/Big Pack/",
       "files": 1996,
       "approximateBytes": 441700000,
-      "formats": [
-        "MSE packages",
-        "images",
-        "fonts",
-        "PFI and related files"
-      ],
-      "functionalCandidates": [
-        "Historical frames",
-        "Alternative frames",
-        "Components",
-        "Fonts"
-      ],
+      "formats": ["MSE packages", "images", "fonts", "PFI and related files"],
+      "functionalCandidates": ["Historical frames", "Alternative frames", "Components", "Fonts"],
       "status": "needs-visual-review",
       "licenseStatus": "pending-review",
       "notes": "Compare with Full-Magic-Pack for unique variants; large PFI files need format identification."
@@ -74,25 +44,12 @@
       "path": "Assets/MtgCard Builder/",
       "files": 610,
       "approximateBytes": 375000000,
-      "subcollections": [
-        "Archive/",
-        "Regular/",
-        "Token/"
-      ],
-      "formats": [
-        "PNG",
-        "SVG",
-        "ZIP",
-        "HTML"
-      ],
-      "functionalCandidates": [
-        "Frames",
-        "Components",
-        "Tokens"
-      ],
+      "subcollections": ["Archive/", "Regular/", "Token/"],
+      "formats": ["PNG", "SVG", "ZIP", "HTML"],
+      "functionalCandidates": ["Frames", "Components", "Tokens"],
       "status": "needs-visual-review",
       "licenseStatus": "pending-review",
-      "notes": "Generic asset filenames require visual identification. ZIP archives and captured HTML require separate review."
+      "notes": "Generic asset filenames require visual identification. Regular contains Regular Frame, EnchantmentFrame Nyx and Mana Symbol subfolders. ZIP archives and captured HTML require separate review."
     },
     {
       "id": "SRC-004",
@@ -100,26 +57,17 @@
       "path": "Assets/MANA/",
       "files": 314,
       "approximateBytes": 2200000,
-      "subcollections": [
-        "Flat/",
-        "Circleless/",
-        "Shifted/",
-        "SVG/"
-      ],
-      "formats": [
-        "PNG",
-        "SVG",
-        "font files"
-      ],
-      "functionalCandidates": [
-        "Mana symbols",
-        "Hybrid symbols",
-        "Phyrexian symbols",
-        "Special symbols"
-      ],
+      "subcollections": ["Flat/", "Circleless/", "Shifted/", "SVG/"],
+      "formats": ["PNG", "SVG", "font files"],
+      "functionalCandidates": ["Mana symbols", "Hybrid symbols", "Phyrexian symbols", "Special symbols"],
       "status": "needs-visual-review",
       "licenseStatus": "pending-review",
-      "notes": "Select a coherent symbol family per card style; inspect dimensions and glyph coverage."
+      "observedStructure": {
+        "svgFiles": ["Blanc.svg", "Bleu.svg", "Noir.svg", "Rouge.svg", "Vert.svg", "Less.svg"],
+        "commonViewBox": "0 0 82.56 82.56",
+        "flatNamingExamples": ["mana_w", "mana_u", "mana_b", "mana_r", "mana_g", "mana_c", "mana_bg", "mana_phy*"]
+      },
+      "notes": "Six SVG headers declare the same viewBox. This is a structural observation, not visual or optical-alignment approval. Select a coherent symbol family per card style; inspect dimensions and glyph coverage."
     },
     {
       "id": "SRC-005",
@@ -127,94 +75,25 @@
       "path": "Assets/Fonts/",
       "files": 10,
       "approximateBytes": 570000,
-      "formats": [
-        "Font files"
-      ],
-      "functionalCandidates": [
-        "Card title typography",
-        "Rules typography",
-        "Mana and special glyphs"
-      ],
+      "formats": ["Font files"],
+      "functionalCandidates": ["Card title typography", "Rules typography", "Mana and special glyphs"],
       "status": "needs-license-review",
       "licenseStatus": "pending-review",
       "notes": "Embedding and redistribution rights must be verified before bundling."
     }
   ],
   "targetTaxonomy": {
-    "Frames": [
-      "Classic",
-      "Modern",
-      "M15",
-      "Old-Border",
-      "Showcase",
-      "Borderless",
-      "Full-Art",
-      "Special"
-    ],
-    "Components": [
-      "Borders",
-      "Crowns",
-      "Masks",
-      "Textures",
-      "Watermarks",
-      "Stamps"
-    ],
-    "Symbols": [
-      "Mana",
-      "Types",
-      "Loyalty",
-      "Counters",
-      "Special"
-    ],
-    "Tokens": [
-      "Token templates",
-      "Token frame components"
-    ],
-    "Fonts": [
-      "Families",
-      "Weights",
-      "Styles"
-    ]
+    "Frames": ["Classic", "Modern", "M15", "Old-Border", "Showcase", "Borderless", "Full-Art", "Special"],
+    "Components": ["Borders", "Crowns", "Masks", "Textures", "Watermarks", "Stamps"],
+    "Symbols": ["Mana", "Types", "Loyalty", "Counters", "Special"],
+    "Tokens": ["Token templates", "Token frame components"],
+    "Fonts": ["Families", "Weights", "Styles"]
   },
   "assetRecordSchema": {
-    "required": [
-      "id",
-      "name",
-      "kind",
-      "category",
-      "sourceCollection",
-      "sourcePath",
-      "format",
-      "sha256",
-      "licenseStatus",
-      "status"
-    ],
-    "optional": [
-      "variant",
-      "path",
-      "width",
-      "height",
-      "viewBox",
-      "attribution",
-      "licenseText",
-      "compatibleLayouts",
-      "notes"
-    ],
-    "statusValues": [
-      "source-only",
-      "needs-visual-review",
-      "needs-license-review",
-      "ready-for-conversion",
-      "normalized",
-      "integrated",
-      "rejected"
-    ],
-    "licenseStatusValues": [
-      "unknown",
-      "pending-review",
-      "verified",
-      "not-for-redistribution"
-    ]
+    "required": ["id", "name", "kind", "category", "sourceCollection", "sourcePath", "format", "sha256", "licenseStatus", "status"],
+    "optional": ["variant", "path", "width", "height", "viewBox", "attribution", "licenseText", "compatibleLayouts", "notes"],
+    "statusValues": ["source-only", "needs-visual-review", "needs-license-review", "ready-for-conversion", "normalized", "integrated", "rejected"],
+    "licenseStatusValues": ["unknown", "pending-review", "verified", "not-for-redistribution"]
   },
   "duplicateAnalysis": {
     "identicalBlobGroups": 3875,
@@ -223,17 +102,25 @@
     "estimatedRedundantBytes": 337400000,
     "policy": "Do not delete source duplicates automatically; package autonomy and relative dependencies must be checked."
   },
+  "catalogueGenerator": {
+    "path": "scripts/assets/build_asset_catalog.py",
+    "outputs": ["assets.catalog.json", "assets.catalog.csv", "contact-sheets/*.jpg"],
+    "dependencies": {"required": ["Pillow"], "optional": ["CairoSVG"]},
+    "mode": "read-only-source-scan",
+    "execution": "python scripts/assets/build_asset_catalog.py --root Assets --out /tmp/mtg-assets-catalog",
+    "limitations": ["Heuristic categories require review", "Contact sheets require human visual inspection", "ZIP files are listed but not extracted", "No license is inferred"]
+  },
   "exclusions": {
-    "individualAssets": "Not yet enumerated in this collection-level manifest",
+    "individualAssets": "Not yet exhaustively enumerated; the generator has been added but not run against a complete local checkout.",
     "visualReview": "Not completed",
-    "archiveContents": "Not expanded",
+    "archiveContents": "Not exhaustively expanded",
     "licenseVerification": "Not completed"
   },
   "nextActions": [
-    "Generate image contact sheets",
+    "Run the catalogue generator on a complete local checkout and inspect contact sheets",
     "Inspect ZIP and MSE package contents",
     "Verify source licenses and font redistribution rights",
     "Select and normalize first approved assets",
-    "Extend manifest with per-asset records and automated validation"
+    "Extend the manifest with per-asset records and automated validation"
   ]
 }
