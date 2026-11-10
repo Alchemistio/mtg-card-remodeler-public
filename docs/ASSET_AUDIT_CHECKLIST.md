@@ -21,12 +21,16 @@ Légende : [x] réalisé et vérifié ; [~] partiel / inventorié mais non valid
 
 - [x] Identifier les familles de ressources à partir de l'arborescence et des formats MSE.
 - [x] Établir la taxonomie cible : Frames, Components, Symbols, Tokens, Fonts.
+- [x] Créer un générateur reproductible de catalogue JSON/CSV et de planches de contact : `scripts/assets/build_asset_catalog.py`.
+- [x] Confirmer structurellement les six SVG de `Assets/MANA/SVG/` et leur viewBox commun `0 0 82.56 82.56`.
+- [~] Relever la nomenclature des symboles `MANA/Flat/` (mana coloré, hybride, phyrexian et spéciaux) ; couverture à confirmer par génération du catalogue.
 - [~] Repérer les zones nécessitant une inspection visuelle (noms génériques, variantes, HTML, ZIP, PFI).
-- [ ] Générer des planches de contact des PNG/JPEG/WebP.
-- [ ] Générer des planches de contact des SVG après rendu sécurisé.
+- [ ] Exécuter le générateur sur un clone local complet avec Pillow installé.
+- [ ] Générer et examiner les planches de contact des PNG/JPEG/WebP.
+- [ ] Générer et examiner les planches de contact des SVG (installer CairoSVG pour les vignettes SVG).
 - [ ] Ouvrir et inventorier le contenu de chaque archive ZIP.
 - [ ] Comparer visuellement les cadres similaires et identifier les variantes uniques.
-- [ ] Identifier les dimensions, viewBox, transparences et résolutions.
+- [ ] Identifier les dimensions, viewBox, transparences et résolutions de tous les fichiers candidats.
 - [ ] Associer chaque ressource candidate à une famille de cartes/layout.
 - [ ] Marquer les doublons visuels et les fichiers inutiles après revue.
 - [ ] Faire valider les choix de sélection avant toute suppression.
@@ -37,6 +41,8 @@ Légende : [x] réalisé et vérifié ; [~] partiel / inventorié mais non valid
 - [x] Définir le schéma du manifeste et les statuts de validation.
 - [x] Créer un manifeste source des cinq collections avec volumes, chemins et limites.
 - [x] Créer l'index humain des collections et leur correspondance avec les familles fonctionnelles.
+- [x] Ajouter un outil de génération locale d'un catalogue détaillé sans modifier les sources.
+- [ ] Générer le catalogue exhaustif des fichiers individuels et intégrer ses résultats au manifeste de travail.
 - [ ] Extraire les ressources candidates validées vers `Assets/LIBRARY/`.
 - [ ] Renommer les ressources identifiées avec des noms stables.
 - [ ] Convertir/normaliser les formats selon les besoins réels du renderer.
@@ -46,12 +52,23 @@ Légende : [x] réalisé et vérifié ; [~] partiel / inventorié mais non valid
 - [ ] Connecter le manifeste aux composants de rendu sans casser le moteur existant.
 - [ ] Vérifier build, tests et rendus visuels après intégration.
 
-## Phase D — Intégration applicative (hors périmètre de cette intervention)
+## Phase D — Intégration applicative
 
 - [ ] Définir le chargement lazy et le budget de poids des bundles.
 - [ ] Intégrer les cadres et composants validés.
 - [ ] Ajouter les layouts non couverts et tests visuels.
 - [ ] Valider les exports SVG/PNG/PDF et l'impression.
+
+## Exécution du catalogue
+
+Depuis la racine du dépôt :
+
+```bash
+python -m pip install Pillow CairoSVG
+python scripts/assets/build_asset_catalog.py --root Assets --out /tmp/mtg-assets-catalog
+```
+
+Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches JPEG dans le répertoire de sortie. CairoSVG est facultatif pour les vignettes SVG ; Pillow est requis pour les dimensions et planches raster. Les catégories automatiques sont heuristiques et doivent être revues. Le script ne modifie jamais les sources.
 
 ## Règles de sécurité
 
