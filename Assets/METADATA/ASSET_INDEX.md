@@ -92,3 +92,15 @@ Le script [`build_asset_catalog.py`](../../scripts/assets/build_asset_catalog.py
 - Le statut d'une ressource doit être vérifié dans `assets.manifest.json`.
 - Ne pas intégrer ni redistribuer une ressource sur la seule base de sa présence dans ce dépôt.
 - Mettre à jour cet index après toute extraction, conversion ou décision de licence.
+
+
+## Inventaires individuels
+
+Le manifeste et les inventaires par fichier couvrent désormais les 37 371 fichiers des cinq collections source. Les inventaires sont répartis ainsi :
+- Full-Magic-Pack : dix parties, 34 441 fiches.
+- Big Pack : 1 996 fiches.
+- MtgCard Builder : 610 fiches.
+- MANA : 314 fiches.
+- Fonts : 10 fiches.
+
+Voir `assets.manifest.json` et les fichiers `inventory-*.json`. Les catégories restent heuristiques et les statuts de licence en attente. Les Git blob SHA ne remplacent pas le SHA-256 du contenu.
