@@ -42,7 +42,7 @@ Légende : [x] réalisé et vérifié ; [~] partiel / inventorié mais non valid
 - [x] Créer un manifeste source des cinq collections avec volumes, chemins et limites.
 - [x] Créer l'index humain des collections et leur correspondance avec les familles fonctionnelles.
 - [x] Ajouter un outil de génération locale d'un catalogue détaillé sans modifier les sources.
-- [ ] Générer le catalogue exhaustif des fichiers individuels et intégrer ses résultats au manifeste de travail.
+- [x] Générer l'inventaire exhaustif des 37 371 fichiers individuels à partir des métadonnées Git et référencer les 23 JSON dans le manifeste (dimensions, SHA-256 binaire et revue visuelle restent distincts).
 - [ ] Extraire les ressources candidates validées vers `Assets/LIBRARY/`.
 - [ ] Renommer les ressources identifiées avec des noms stables.
 - [ ] Convertir/normaliser les formats selon les besoins réels du renderer.
