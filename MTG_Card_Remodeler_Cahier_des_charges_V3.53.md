@@ -2,7 +2,7 @@
 # Cahier des charges fonctionnel et technique
 
 **Version :** 3.53  
-**Date :** 10 novembre 2026  
+**Date :** 11 novembre 2026  
 **Statut :** En cours de définition — décisions validées et questions ouvertes  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public
 
