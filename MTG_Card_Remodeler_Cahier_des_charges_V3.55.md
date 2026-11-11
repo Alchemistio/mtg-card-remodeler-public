@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.55 | Validation du traitement individuel des éléments endommagés, des vérifications d'intégrité avant import, de l'annulation en cas de dépendance manquante, de la décision utilisateur en cas d'incompatibilité et de la confirmation des incohérences de métadonnées |\n| V3.54 | Validation des contrôles d'intégrité avant export groupé, du traitement individuel des sauvegardes inutilisables, du format ZIP standard, de l'inclusion des métadonnées descriptives et de la résolution des conflits à l'import |
+| V3.55 | Validation du traitement individuel des éléments endommagés, des vérifications d'intégrité avant import, de l'annulation en cas de dépendance manquante, de la décision utilisateur en cas d'incompatibilité et de la confirmation des incohérences de métadonnées |
+| V3.54 | Validation des contrôles d'intégrité avant export groupé, du traitement individuel des sauvegardes inutilisables, du format ZIP standard, de l'inclusion des métadonnées descriptives et de la résolution des conflits à l'import |
 | V3.53 | Validation du choix de conservation des sauvegardes à la désinstallation, de leur rotation lors d'une restauration, de la restauration manuelle en cas d'incompatibilité, de la recherche d'une autre version si la sauvegarde est inutilisable et de l'export groupé des sauvegardes |
 | V3.52 | Validation de la sauvegarde automatique de la version installée avant mise à jour, de la conservation d'une seule version précédente, du stockage interne, de l'absence de vérification périodique et du signalement simple d'une sauvegarde corrompue |
 | V3.51 | Validation de la consultation des mises à jour dans chaque fiche, des informations préalables, des mises à jour individuelles ou groupées, du retour manuel à une version précédente et de la restauration automatique après échec |
