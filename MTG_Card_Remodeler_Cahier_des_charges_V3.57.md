@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.57 | Validation du choix utilisateur face aux sauvegardes défectueuses, de la restauration possible des anciennes versions, de l'affichage de l'intégrité et de la compatibilité, de la récupération après échec d'annulation et du rapport temporaire détaillé |\n| V3.56 | Validation du contrôle d'intégrité après import, du signalement des anciennes versions, de la consultation préalable du contenu ZIP, de l'annulation transactionnelle et de l'absence d'historique des imports |
+| V3.57 | Validation du choix utilisateur face aux sauvegardes défectueuses, de la restauration possible des anciennes versions, de l'affichage de l'intégrité et de la compatibilité, de la récupération après échec d'annulation et du rapport temporaire détaillé |
+| V3.56 | Validation du contrôle d'intégrité après import, du signalement des anciennes versions, de la consultation préalable du contenu ZIP, de l'annulation transactionnelle et de l'absence d'historique des imports |
 | V3.55 | Validation du traitement individuel des éléments endommagés, des vérifications d'intégrité avant import, de l'annulation en cas de dépendance manquante, de la décision utilisateur en cas d'incompatibilité et de la confirmation des incohérences de métadonnées |
 | V3.54 | Validation des contrôles d'intégrité avant export groupé, du traitement individuel des sauvegardes inutilisables, du format ZIP standard, de l'inclusion des métadonnées descriptives et de la résolution des conflits à l'import |
 | V3.53 | Validation du choix de conservation des sauvegardes à la désinstallation, de leur rotation lors d'une restauration, de la restauration manuelle en cas d'incompatibilité, de la recherche d'une autre version si la sauvegarde est inutilisable et de l'export groupé des sauvegardes |
