@@ -78,3 +78,12 @@ L'inventaire individuel des 37 371 fichiers est terminé et ses 23 fichiers JSON
 **La phase C n'est pas déclarée entièrement terminée.** La normalisation et la sélection de ressources sont bloquées par l'absence de revue visuelle des binaires et par les droits non établis. Le faire malgré ces incertitudes créerait un risque de redistribution non autorisée et pourrait casser les dépendances MSE. Aucun original n'a été modifié.
 
 Pour terminer réellement la phase C, il faut exécuter le générateur sur un clone complet, examiner les planches, confirmer les licences des lots retenus, puis seulement extraire/normaliser ces fichiers dans `Assets/LIBRARY/` et enrichir le manifeste runtime.
+
+
+## 9. Amélioration du lancement local — environnement autonome
+
+Le générateur dispose maintenant d'un lanceur interactif : `scripts/assets/run_asset_audit.py`, accompagné d'un raccourci Windows `scripts/assets/run_asset_audit.bat`. L'utilisateur choisit le dossier de travail dans une fenêtre de sélection. Le lanceur crée un environnement virtuel dans ce dossier, installe Pillow et CairoSVG sans modifier Python global, exécute le catalogue, puis supprime l'environnement temporaire. Les résultats sont conservés dans le sous-dossier `catalog/` du dossier choisi.
+
+La documentation d'utilisation est dans `scripts/assets/README.md`. Python 3.10+ doit être installé une fois au préalable et une connexion Internet est nécessaire pour installer les dépendances. Le dossier de travail doit être hors de `Assets/` afin d'éviter que les résultats ne soient réinventoriés comme sources.
+
+Cette amélioration est commise, mais **pas encore testée sur le poste local avec le clone complet**. La génération visuelle des assets reste donc à effectuer. Un arrêt forcé du système peut laisser le dossier temporaire `.asset-audit-runtime`, qui est alors supprimable manuellement.
