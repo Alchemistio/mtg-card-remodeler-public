@@ -17,7 +17,6 @@
 | V3.65 | Validation de l'emplacement fixe des commandes globales au-dessus de la liste, de leur disponibilité permanente, de l'absence de message si elles n'ont aucun effet, de leur exécution immédiate sans confirmation et de l'absence d'annulation dédiée |
 | V3.64 | Validation de l'ordre alphabétique des catégories, du maintien replié des anomalies mineures et informatives, des commandes globales agissant sur catégories et détails, de leur périmètre limité à l'extension consultée et de la réinitialisation des états individuels par ces commandes |
 | V3.63 | Définition de l'affichage des catégories non vides, de l'absence de total global d'anomalies, des commandes globales de développement et de repli, du développement automatique des anomalies et de la restauration de leur état individuel |
-| V3.62 | Validation des quatre niveaux de gravité des anomalies, de leur ordre de détection à gravité et catégorie identiques, de l'état positif sans anomalie, du comptage par catégorie et du repli initial de toutes les catégories du rapport d'importation |
 
 # 1. Présentation générale
 
