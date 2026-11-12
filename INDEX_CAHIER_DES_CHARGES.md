@@ -505,7 +505,7 @@ Questions indexées : [389](#question-389) · [390](#question-390) · [391](#que
 | <a id="question-392"></a>392 | 10.392 | [10.392 Recherche automatique d'une autre version si la sauvegarde est inutilisable](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.70.md#L4059) | [4059](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.70.md#L4059) |
 | <a id="question-393"></a>393 | 10.393 | [10.393 Export groupé des sauvegardes d'extensions](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.70.md#L4063) | [4063](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.70.md#L4063) |
 
-### Sécurité et fiabilité des exports et imports de sauvegardes (questions 394 à 468)
+### Sécurité et fiabilité des exports et imports de sauvegardes (questions 394 à 473)
 
 Vérification d'intégrité, traitement des sauvegardes inutilisables, format d'archive, métadonnées, résolution des conflits et rapport d'importation avec synthèse globale et détail par extension, niveaux de gravité, comptage par catégorie, commandes d'affichage globales, gestion des états individuels et comportement permanent de la barre d'outils, navigation entre extensions, conservation de leur état d'affichage, compteurs d'anomalies, comportement de navigation aux limites de la liste, panneau latéral redimensionnable, informations de version, défilement, indicateur de position, mise en évidence de la sélection, positionnement à gauche, mémorisation de largeur, maintien fixe pendant le défilement, suivi automatique de la sélection et emplacement de l'indicateur dans l'en-tête.
 
