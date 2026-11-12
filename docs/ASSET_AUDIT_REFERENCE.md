@@ -130,3 +130,15 @@ Registre détaillé : [`Assets/METADATA/PROVENANCE_AND_LICENSE_REVIEW.md`](../As
 Constats : un fichier LICENSE MIT a été trouvé pour `magic-m15-bigtext.mse-style` uniquement (Sam Boosalis, 2025). Le README du package partagé `magic-modules.mse-include` documente les dépendances de version 2024-10-01 et un ordre de couches Z essentiel à la conversion. Le README Phyrexian crédite Anuttymous, Savil et des contributeurs MTG Salvation/Fontstruct, mais renvoie à un `license.txt` qui n'est pas présent dans l'arborescence examinée. Les autres familles, polices et sources restent en revue.
 
 La conséquence est importante : la bibliothèque `Assets/LIBRARY/` a ses règles d'admission mais reste vide. Aucun asset non vérifié n'a été copié ou intégré au renderer.
+
+
+## 12. Exécution locale avec environnement temporaire autogéré
+
+Pour éviter les installations manuelles et laisser l'utilisateur choisir où sont stockés les résultats, le dépôt fournit :
+- `scripts/assets/run_asset_audit.bat` : lancement Windows par double-clic ;
+- `scripts/assets/run_asset_audit.py` : sélection du dossier, création de l'environnement virtuel, installation temporaire des dépendances, exécution du générateur et nettoyage ;
+- `scripts/assets/README.md` : mode d'emploi et prérequis.
+
+Le lanceur installe Pillow et CairoSVG dans `<dossier choisi>/.asset-audit-runtime/`, lance le générateur sur le répertoire source `Assets/`, conserve les résultats dans `<dossier choisi>/catalog/`, puis supprime l'environnement virtuel. Aucune dépendance n'est installée dans le Python global ni dans les autres projets.
+
+**Prérequis non automatisé :** Python 3.10+ doit déjà être présent sur l'ordinateur et une connexion Internet est nécessaire pour télécharger les packages. Le répertoire choisi doit être hors de `Assets/`. Un arrêt brutal de la machine peut empêcher le bloc de nettoyage ; le dossier temporaire restant peut alors être supprimé manuellement. Le lancement et le nettoyage restent à tester sur le poste disposant du clone complet.
