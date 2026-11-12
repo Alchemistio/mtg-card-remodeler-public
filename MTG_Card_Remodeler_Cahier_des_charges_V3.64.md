@@ -4421,7 +4421,7 @@ Le rapport propose des commandes globales « Tout développer » et « Tout repl
 
 ## 10.437 État initial des détails individuels lors du développement d'une catégorie — Question 437, validée
 
-Lorsqu'une catégorie est développée, toutes les anomalies qu'elle contient sont automatiquement développées. Leurs informations détaillées sont donc visibles sans action supplémentaire.
+Lorsqu'une catégorie est développée, seules les anomalies critiques et majeures sont automatiquement développées. Les anomalies mineures et informatives restent repliées et nécessitent une action individuelle pour afficher leurs détails.
 
 ## 10.438 Conservation de l'état des détails après repli d'une catégorie — Question 438, validée
 
