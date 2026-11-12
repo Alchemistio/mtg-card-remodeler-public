@@ -107,3 +107,14 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [ ] Ajouter les assets approuvés au manifeste runtime et valider les rendus.
 
 **Clôture :** l'inventaire et la préparation documentaire de la phase C sont terminés. La phase C complète n'est pas déclarée close : la bibliothèque normalisée reste volontairement vide, car les droits et la sélection visuelle ne sont pas établis.
+
+
+## Lanceur autonome — préparation de l'exécution locale
+
+- [x] Ajouter un lanceur interactif avec sélection du dossier de travail : `scripts/assets/run_asset_audit.py`.
+- [x] Ajouter un raccourci Windows double-clic : `scripts/assets/run_asset_audit.bat`.
+- [x] Installer automatiquement Pillow et CairoSVG dans un environnement virtuel temporaire.
+- [x] Supprimer cet environnement et ses dépendances après l'exécution, en conservant le catalogue dans le dossier choisi.
+- [x] Documenter les prérequis, limites et récupération après arrêt forcé : `scripts/assets/README.md`.
+- [ ] Exécuter le lanceur sur un poste disposant du clone complet et vérifier la génération effective des 37 371 fichiers.
+- [ ] Vérifier le nettoyage automatique après succès et après échec d'une dépendance.
