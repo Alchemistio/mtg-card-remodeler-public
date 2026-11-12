@@ -79,7 +79,7 @@ def main() -> int:
             python = runtime / "bin" / "python"
 
         print("[2/3] Installation des dépendances dans cet environnement isolé…")
-        subprocess.run([str(python), "-m", "pip", "install", "--disable-pip-version-check", *requirements], check=True)
+        subprocess.run([str(python), "-m", "pip", "install", "--disable-pip-version-check", "--no-cache-dir", *requirements], check=True)
 
         print("[3/3] Génération du catalogue et des planches de contact…")
         subprocess.run(
