@@ -71,6 +71,12 @@ Architecture modulaire, extensions externes, activation des modules, compatibili
 
 Questions indexées : [354](#question-354) · [355](#question-355) · [356](#question-356) · [357](#question-357) · [358](#question-358)
 
+### Accessibilité et navigation au clavier (questions 484 à 488)
+
+Utilisation de la languette latérale au clavier, gestion du focus à l'ouverture et à la fermeture, repérage visuel du focus et informations accessibles aux lecteurs d'écran.
+
+Questions indexées : [484](#question-484) · [485](#question-485) · [486](#question-486) · [487](#question-487) · [488](#question-488)
+
 | Question | Section | Décision / sujet | Ligne dans V3.73 |
 |---:|---:|---|---:|
 | <a id="question-25"></a>25 | — | [Associations d'illustrations par carte et par variante](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L607) | [607](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L607) |
@@ -535,6 +541,11 @@ Questions indexées : [354](#question-354) · [355](#question-355) · [356](#que
 | <a id="question-481"></a>481 | 10.481 | [10.481 Visibilité et fonction de la languette lorsque le panneau est ouvert](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4418) | [4418](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4418) |
 | <a id="question-482"></a>482 | 10.482 | [10.482 Info-bulle de la languette latérale](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4422) | [4422](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4422) |
 | <a id="question-483"></a>483 | 10.483 | [10.483 Adaptation de l'animation lors du redimensionnement de la fenêtre](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4426) | [4426](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4426) |
+| <a id="question-484"></a>484 | 10.484 | [10.484 Activation clavier de la languette latérale](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4428) | [4428](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4428) |
+| <a id="question-485"></a>485 | 10.485 | [10.485 Placement du focus à l'ouverture du panneau](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4432) | [4432](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4432) |
+| <a id="question-486"></a>486 | 10.486 | [10.486 Restitution du focus après fermeture du panneau](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4436) | [4436](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4436) |
+| <a id="question-487"></a>487 | 10.487 | [10.487 Indicateur visuel du focus clavier sur la languette](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4440) | [4440](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4440) |
+| <a id="question-488"></a>488 | 10.488 | [10.488 Annonce du panneau aux technologies d'assistance](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4444) | [4444](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.73.md#L4444) |
 
 ## Consignes de mise à jour
 
