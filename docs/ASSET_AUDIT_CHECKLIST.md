@@ -127,7 +127,8 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [x] Poser le premier socle Windows desktop et l'exploration d'un dépôt GitHub configurable.
 - [x] Ajouter la sélection et le téléchargement initial de blobs vers un workspace choisi.
 - [x] CI Windows complète (Clippy, tests, build Release et artefact) sur commit `45e601e`.
-- [~] Revalider les changements UI/HTML/doublons postérieurs à ce commit.
+- [x] Valider les workers d'arrière-plan, doublons exacts, vue filtrable et rapport HTML (commit `6310f92`).
+- [~] Revalider l'ajout des canaux/alpha raster sur le dernier commit.
 - [x] Ajouter la résolution SHA commit/arbre et le repli sur sous-arbres en cas d'arbre tronqué.
 - [x] Ajouter parsing d'URL et garde-fous contre chemins/liens symboliques.
 - [ ] Terminer les dépôts privés sécurisés, limites API, cache/reprise et streaming.
