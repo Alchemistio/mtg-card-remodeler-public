@@ -119,3 +119,8 @@ Le commit `6310f92` a passé l'intégralité de la CI Windows : formatage, Clipp
 ## 15. Première planche de contact et métadonnées alpha — 2026-11-13
 
 Une fonction d'export PNG paginée (16 images/page) a été ajoutée, accompagnée d'un index texte. Le SHA-256 source est recalculé avant rendu et les liens symboliques sont refusés. Le décodeur raster fournit également type de canaux et présence d'alpha sans décodage complet des pixels lors de l'inventaire. La CI de ces ajouts est en cours.
+
+
+## 16. Comparaison d'inventaires et diagnostics de quota — 2026-11-13
+
+L'application compare les inventaires JSON par chemin et SHA-256, classe ajouts/suppressions/modifications/fichiers inchangés et exporte un rapport JSON hors des sources comparées. Les champs optionnels manquants des anciens inventaires v1 sont désormais tolérés. Le client GitHub applique un timeout HTTP et identifie les réponses 429 ainsi que les 403 dus à l'épuisement du quota. Le commit `a4a099e` a passé la CI Windows complète ; les derniers changements restent à vérifier.
