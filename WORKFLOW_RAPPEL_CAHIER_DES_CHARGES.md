@@ -29,8 +29,11 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 - Dans cette phase, le travail porte sur la spécification, les décisions, les documents et leur vérification GitHub.
 - Continuer de manière proactive. Ne pas s'arrêter après une série si le contexte permet de poursuivre.
 - L'utilisateur souhaite des séries de **cinq questions** à la fois, avec réponses compactes sous forme de cinq chiffres (ex. `1,2,3,1,2`).
-- L'utilisateur a demandé de poursuivre plusieurs séries successives, notamment des blocs d'au moins cinq séries de cinq questions.
-- Ne solliciter l'utilisateur que pour les arbitrages fonctionnels réellement importants. Pour les détails techniques, prendre une décision cohérente, robuste et sécurisée, puis la documenter sans transformer ces détails en questions.
+- **À chaque relance de l'utilisateur demandant de continuer/reprendre le questionnaire, produire cinq séries de cinq questions, soit 25 questions au total**, sauf si l'utilisateur demande explicitement un autre volume ou si le stock de décisions cruciales restantes est inférieur. Les présenter en cinq blocs distincts clairement numérotés (Série 1/5 à Série 5/5), afin que l'utilisateur puisse répondre bloc par bloc ou en une seule fois.
+- Ne solliciter l'utilisateur que pour les arbitrages fonctionnels réellement cruciaux : décisions qui changent sensiblement le produit, son comportement, ses priorités, ses compromis ou ses limites. Éviter toute question de détail.
+- Pour les sujets de détail, conserver le même processus d'analyse et de documentation, mais **rechercher sur Internet les meilleures pratiques et réponses disponibles**, comparer prioritairement les sources officielles, normes, documentations techniques et références reconnues, puis choisir la solution la plus robuste et adaptée au projet.
+- Les réponses de détail retenues par l'assistant doivent être documentées comme des décisions techniques proposées/prises par l'assistant, avec les justifications et références utiles ; elles ne doivent pas être présentées comme des choix explicitement validés par l'utilisateur.
+- La recherche web est obligatoire pour les décisions de détail lorsque des informations externes, des standards ou des pratiques actuelles peuvent améliorer la décision. Si le sujet est stable et purement interne au projet, l'assistant peut s'appuyer sur les documents existants, en expliquant la rationale.
 - Conserver le workflow de validation et de documentation pour les décisions de détail, mais ne pas interrompre l'utilisateur avec des demandes de choix mineurs.
 - En cas de véritable ambiguïté bloquante, poser une seule question claire et ciblée. Sinon, avancer.
 
@@ -47,9 +50,22 @@ Avant de rédiger une série :
 7. Présenter les cinq questions en français et demander une réponse compacte.
 8. Après la réponse, interpréter les choix, puis documenter les décisions et leurs implications normatives.
 
-### Règle essentielle sur les questions de détail
+### Règle essentielle sur les questions de détail — recherche et décision autonomes
 
-L'assistant doit décider lui-même des détails d'implémentation raisonnables : validation, journalisation, erreurs, transactions, compatibilité, contrôles d'intégrité, valeurs par défaut, accessibilité, tests, reprise, sécurité et comportements de repli. Ces décisions doivent être cohérentes avec l'architecture et les choix précédents. Ne demander à l'utilisateur que les choix qui modifient réellement le comportement produit, les priorités ou les compromis fonctionnels.
+L'assistant ne pose pas à l'utilisateur de questions sur les détails techniques ou opérationnels. Il suit le même workflow que pour une décision ordinaire (identifier le besoin, vérifier l'existant, évaluer les options, arrêter une décision, la documenter et l'indexer), mais remplace la question à l'utilisateur par une recherche documentaire sur Internet.
+
+Pour ces recherches :
+- rechercher les meilleures réponses et pratiques actuelles adaptées au contexte du projet ;
+- privilégier les documentations officielles, standards reconnus, spécifications, recommandations de sécurité et sources techniques primaires ;
+- utiliser des sources secondaires réputées seulement pour compléter ou comparer ;
+- comparer les options, leurs avantages, limites, risques et coûts de complexité ;
+- retenir une solution sûre, maintenable, testable, cohérente avec les décisions déjà validées et proportionnée au projet ;
+- citer/consigner les références importantes dans les documents concernés afin que le choix soit traçable ;
+- signaler explicitement les hypothèses et les incertitudes lorsqu'aucune réponse unique ne s'impose.
+
+Les domaines concernés incluent notamment validation, journalisation, gestion des erreurs, transactions, compatibilité, intégrité, valeurs par défaut, accessibilité, tests, reprise, sécurité, performances et comportements de repli. Ces décisions sont attribuées à l'assistant et ne sont jamais présentées comme des arbitrages explicitement validés par l'utilisateur.
+
+Ne demander à l'utilisateur que les choix cruciaux qui modifient réellement le comportement produit, les priorités, les compromis fonctionnels ou le périmètre.
 
 ## 4. Documentation GitHub à maintenir
 
@@ -144,3 +160,4 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 ### Journal des modifications
 
 - **2026-11-13 — Création du document :** formalisation du workflow de questionnaire, de la prise en charge autonome des détails, des limites de phase (aucun développement avant validation du cahier des charges), de la maintenance GitHub et du point de reprise Q594–Q598.
+- **2026-11-13 — Mise à jour du workflow à la demande de l'utilisateur :** les décisions de détail doivent désormais être recherchées sur Internet et résolues par l'assistant, sans questionner l'utilisateur ; seules les décisions cruciales lui sont soumises. Chaque relance de continuation doit fournir cinq séries de cinq questions (25 au total), sauf demande différente ou absence de 25 arbitrages cruciaux pertinents.
