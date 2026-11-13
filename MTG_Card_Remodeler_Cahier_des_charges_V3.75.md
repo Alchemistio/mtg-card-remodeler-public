@@ -18,7 +18,6 @@
 | V3.72 | Définition des interactions de la languette latérale : ouverture et fermeture immédiates, maintien visible comme commande de fermeture, info-bulle et adaptation de l'animation au redimensionnement |
 | V3.71 | Définition du rétablissement automatique du panneau après un masquage adaptatif, du maintien de son masquage volontaire, de la languette latérale de réouverture, de son icône et de l'animation de glissement |
 | V3.70 | Définition des largeurs minimale et maximale du panneau latéral, de son masquage automatique lorsque la fenêtre devient trop étroite, de son bouton de réouverture et de la restauration de sa dernière largeur |
-| V3.69 | Définition de la position à gauche du panneau latéral, de la mémorisation de sa largeur, de son maintien fixe pendant le défilement du détail, du suivi automatique de l'extension sélectionnée et de l'emplacement de l'indicateur de position dans l'en-tête fixe |
 
 # 1. Présentation générale
 
