@@ -177,3 +177,8 @@ Le commit `6310f92` du dépôt Rust a passé le pipeline Windows complet (Clippy
 ## 19. Planches de contact et alpha raster — 2026-11-13
 
 Le dépôt dédié ajoute une première génération de planches raster PNG (16 fichiers par page) avec index texte associé. Avant rendu, l'outil vérifie que le SHA-256 du fichier n'a pas changé depuis l'inventaire, refuse les liens symboliques, et ignore les fichiers trop volumineux ou les images dépassant le plafond de pixels. Les métadonnées raster incluent maintenant le type de canaux et la présence d'alpha. Ces changements sont en attente de validation CI.
+
+
+## 20. Comparaison d'inventaires et diagnostics API — 2026-11-13
+
+Le moteur compare maintenant deux inventaires JSON v1 par chemin et SHA-256, distingue les fichiers ajoutés, supprimés, modifiés et inchangés, et permet d'exporter un rapport JSON hors des deux sources. Les inventaires v1 plus anciens restent lisibles grâce aux valeurs par défaut des champs optionnels. Le client GitHub a reçu un timeout de 60 secondes et des diagnostics spécifiques pour 429 / 403 lorsque le quota est épuisé. Le commit `a4a099e` (comparaison UI) a passé le pipeline Windows complet ; l'export de comparaison et les diagnostics API sont en cours de revalidation.
