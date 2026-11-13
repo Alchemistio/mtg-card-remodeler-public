@@ -8,7 +8,7 @@
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q593**
 - Dernière section : **10.588**
-- Prochaine série à soumettre : **Q594 à Q598**
+- Prochain bloc à soumettre : **Q619 à Q623**
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
