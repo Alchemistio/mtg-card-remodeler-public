@@ -3,7 +3,7 @@
 > **Document de repérage, pas une spécification.** Les décisions complètes et leur formulation normative restent dans le cahier des charges. Cet index permet de retrouver rapidement une décision dans la version la plus récente.
 
 - **Version de référence indexée : V3.83**
-- **Cahier des charges :** [MTG Card Remodeler V3.83](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.82.md)
+- **Cahier des charges :** [MTG Card Remodeler V3.83](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md)
 - **Règle de maintenance :** à chaque nouvelle version du cahier des charges, mettre à jour cet index, recalculer toutes les lignes et remplacer les liens de ligne par ceux de la nouvelle version.
 - **Méthode de recherche :** partir du numéro de question si connu ; sinon repérer le thème, puis ouvrir le lien de la ligne correspondante. Les identifiants de question et les titres de section sont plus stables que les numéros de ligne.
 
@@ -86,7 +86,7 @@ Questions indexées : [519](#question-519) · [520](#question-520) · [521](#que
 
 | Question | Section | Décision / sujet | Ligne dans V3.83 |
 |---:|---:|---|---:|
-| <a id="question-25"></a>25 | 10.4 | [10.4 (repère historique — question sans section dédiée)](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L457) | [457](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L457) |
+| <a id="question-25"></a>25 | 10.4 | [10.4 (repère historique — question sans section dédiée)](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L607) | [607](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L607) |
 | <a id="question-22"></a>22 | 10.1 | [10.1 Gestion des polices](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L408) | [408](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L408) |
 | <a id="question-23"></a>23 | 10.2 | [10.2 Gestion des couleurs](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L423) | [423](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L423) |
 | <a id="question-24"></a>24 | 10.3 | [10.3 Gestion des illustrations](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L470) | [470](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.83.md#L470) |
