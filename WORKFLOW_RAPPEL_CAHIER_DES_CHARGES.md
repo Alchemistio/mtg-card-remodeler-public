@@ -160,10 +160,10 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 ### Journal des modifications — compléments du 2026-11-13
 
-- **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.95 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
+- **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.94 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
 
 
-- **2026-11-13 — Point de reprise après audit Q619–Q623 :** le prochain identifiant disponible est Q624. L'audit complémentaire n'a pas encore dégagé cinq nouveaux arbitrages cruciaux distincts ; ne pas afficher un bloc artificiellement rempli. Reprendre l'examen des lacunes à partir de l'index V3.95 et du document complet avant toute nouvelle question.
+- **2026-11-13 — Point de reprise après audit Q619–Q623 (historique, remplacé par Q624) :** le prochain identifiant disponible était Q624. Ce point de reprise est clos depuis l'enregistrement de Q624 dans V3.95.
 
 
-- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.95, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625.
+- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.95, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
