@@ -147,3 +147,8 @@ Le lanceur installe Pillow et CairoSVG dans `<dossier choisi>/.asset-audit-runti
 ## 13. Application d'audit Rust dédiée
 
 Le projet d'application Windows native Rust est suivi séparément dans [`Alchemistio/mtg_card_auditory`](https://github.com/Alchemistio/mtg_card_auditory). Le cahier des charges et l'état d'avancement inter-dépôts sont consignés dans [`ASSET_AUDITOR_INTEGRATION.md`](./ASSET_AUDITOR_INTEGRATION.md). Le premier socle sait explorer un arbre GitHub et télécharger une sélection de blobs dans un workspace ; les analyses locales/visuelles, les licences, les rapports et la livraison finale restent à construire et vérifier. Le dépôt source reste immuable.
+
+
+## 14. État du développement Rust — 2026-11-13
+
+Le dépôt `Alchemistio/mtg_card_auditory` comprend maintenant un scan local récursif, calcul SHA-256 en flux, inventaire versionné v1 et exports JSON/CSV. L'interface expose le choix d'un dossier et les exports. Le parsing d'URL GitHub et la résolution des références en SHA de commit ont également été ajoutés. Les exports dans l'arborescence source sont refusés. Voir `docs/ASSET_AUDITOR_INTEGRATION.md` pour les limites et le statut CI. La compilation Windows reste non validée à ce stade.
