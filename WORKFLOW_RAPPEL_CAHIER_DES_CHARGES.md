@@ -29,7 +29,9 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 - Dans cette phase, le travail porte sur la spécification, les décisions, les documents et leur vérification GitHub.
 - Continuer de manière proactive. Ne pas s'arrêter après une série si le contexte permet de poursuivre.
 - L'utilisateur souhaite des séries de **cinq questions** à la fois, avec réponses compactes sous forme de cinq chiffres (ex. `1,2,3,1,2`).
-- **À chaque relance de l'utilisateur demandant de continuer/reprendre le questionnaire, produire cinq séries de cinq questions, soit 25 questions au total**, sauf si l'utilisateur demande explicitement un autre volume ou si le stock de décisions cruciales restantes est inférieur. Les présenter en cinq blocs distincts clairement numérotés (Série 1/5 à Série 5/5), afin que l'utilisateur puisse répondre bloc par bloc ou en une seule fois.
+- À chaque relance, poursuivre un cycle interne de cinq séries de cinq sujets (25 sujets examinés), sauf si le stock de décisions cruciales restantes est inférieur.
+- **Ne soumettre à l'utilisateur qu'un seul bloc de cinq questions par message.** Les quatre autres séries sont préparées et analysées en interne ; elles ne sont pas affichées dans le même message. Après la réponse de l'utilisateur, poursuivre avec le bloc suivant.
+- Ne jamais confondre le volume de travail interne (5 × 5) avec le volume de questions présenté à l'utilisateur (1 × 5).
 - Ne solliciter l'utilisateur que pour les arbitrages fonctionnels réellement cruciaux : décisions qui changent sensiblement le produit, son comportement, ses priorités, ses compromis ou ses limites. Éviter toute question de détail.
 - Pour les sujets de détail, conserver le même processus d'analyse et de documentation, mais **rechercher sur Internet les meilleures pratiques et réponses disponibles**, comparer prioritairement les sources officielles, normes, documentations techniques et références reconnues, puis choisir la solution la plus robuste et adaptée au projet.
 - Les réponses de détail retenues par l'assistant doivent être documentées comme des décisions techniques proposées/prises par l'assistant, avec les justifications et références utiles ; elles ne doivent pas être présentées comme des choix explicitement validés par l'utilisateur.
@@ -39,7 +41,17 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 ## 3. Méthode de préparation de chaque série
 
-Avant de rédiger une série :
+**Vérification obligatoire avant toute question adressée à l'utilisateur :**
+
+1. Consulter d'abord l'index du cahier des charges.
+2. Repérer la catégorie thématique pertinente et suivre les indications de navigation de l'index pour identifier les questions, sections et zones du document susceptibles de contenir la réponse.
+3. Ouvrir les sections correspondantes dans la version la plus récente du cahier des charges, et pas seulement les extraits de l'index.
+4. Vérifier les exigences directes et indirectes, les décisions associées et leurs éventuelles limites.
+5. Si la réponse existe déjà, ne pas reposer la question. Considérer la décision existante comme faisant foi et chercher un autre arbitrage réellement non couvert.
+6. Si la question touche plusieurs catégories, vérifier chacune d'elles avant de conclure qu'il existe une lacune.
+7. Ne jamais considérer l'absence d'un mot-clé dans l'index comme une preuve d'absence de décision : lire les sections pertinentes du cahier des charges complet.
+
+Après ces vérifications, appliquer la méthode de préparation ci-dessous :
 
 1. Parcourir l'index par numéro de question et par thème.
 2. Ouvrir les sections correspondantes dans la version complète.
@@ -161,3 +173,8 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 - **2026-11-13 — Création du document :** formalisation du workflow de questionnaire, de la prise en charge autonome des détails, des limites de phase (aucun développement avant validation du cahier des charges), de la maintenance GitHub et du point de reprise Q594–Q598.
 - **2026-11-13 — Mise à jour du workflow à la demande de l'utilisateur :** les décisions de détail doivent désormais être recherchées sur Internet et résolues par l'assistant, sans questionner l'utilisateur ; seules les décisions cruciales lui sont soumises. Chaque relance de continuation doit fournir cinq séries de cinq questions (25 au total), sauf demande différente ou absence de 25 arbitrages cruciaux pertinents.
+
+
+### Journal des modifications — complément du 2026-11-13
+
+- **2026-11-13 — Vérification préalable renforcée et présentation des questions :** avant chaque question, consultation obligatoire de la catégorie dans l'index, suivi de ses indications de navigation et lecture des passages correspondants dans la dernière version complète du cahier des charges ; toute question déjà résolue est écartée. Le travail interne reste organisé en cinq séries de cinq sujets, mais un seul bloc de cinq questions cruciales est désormais présenté à l'utilisateur par message.
