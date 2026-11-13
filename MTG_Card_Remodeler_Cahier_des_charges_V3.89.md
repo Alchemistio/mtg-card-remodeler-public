@@ -13,10 +13,10 @@
 | Version | Description |
 |---|---|
 | V3.89 | Normalisation et sécurisation du rendu SVG et de ses capacités |
+| V3.88 | Résolution normalisée, déterministe et ordonnée des dépendances d'extensions |
 | V3.87 | Authentification des mises à jour, protection anti-retour arrière, intégrité des artefacts et autorisations fixes |
 | V3.86 | Préparation, validation, extraction sûre et activation contrôlée des paquets d'extensions |
 | V3.85 | Interface d'exécution, contrôle des accès, périmètres de fichiers, ressources et réseau des extensions |
-| V3.85 | Schéma, validation, compatibilité et protection des paramètres d'extensions |
 
 # 1. Présentation générale
 
