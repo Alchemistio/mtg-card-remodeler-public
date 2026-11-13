@@ -8,7 +8,7 @@
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q624**
 - Dernière section : **10.594**
-- Prochain numéro disponible : **Q624** ; prochain bloc de questions à constituer après audit, sans forcer cinq sujets s'il n'existe pas cinq arbitrages cruciaux
+- Prochain numéro disponible : **Q625** ; prochain bloc de questions à constituer après audit, sans forcer cinq sujets s'il n'existe pas cinq arbitrages cruciaux
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
