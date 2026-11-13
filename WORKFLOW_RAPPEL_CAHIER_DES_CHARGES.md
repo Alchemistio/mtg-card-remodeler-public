@@ -8,7 +8,7 @@
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q623**
 - Dernière section : **10.593**
-- Prochain bloc à soumettre : **Q624 à Q628**
+- Prochain numéro disponible : **Q624** ; prochain bloc de questions à constituer après audit, sans forcer cinq sujets s'il n'existe pas cinq arbitrages cruciaux
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -110,7 +110,7 @@ Les questions Q594 à Q618 ont été proposées dans un message précédent sans
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.94, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q624.** Le prochain bloc à soumettre est Q624 à Q628, uniquement après consultation de l'index puis lecture des sections pertinentes de V3.94. Les autres séries du cycle 5 × 5 sont préparées et examinées en interne, sans être affichées à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.94, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q624.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.94. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -161,3 +161,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 ### Journal des modifications — compléments du 2026-11-13
 
 - **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.94 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
+
+
+- **2026-11-13 — Point de reprise après audit Q619–Q623 :** le prochain identifiant disponible est Q624. L'audit complémentaire n'a pas encore dégagé cinq nouveaux arbitrages cruciaux distincts ; ne pas afficher un bloc artificiellement rempli. Reprendre l'examen des lacunes à partir de l'index V3.94 et du document complet avant toute nouvelle question.
