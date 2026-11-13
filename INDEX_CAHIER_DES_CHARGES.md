@@ -86,7 +86,6 @@ Questions indexées : [519](#question-519) · [520](#question-520) · [521](#que
 
 | Question | Section | Décision / sujet | Ligne dans V3.79 |
 |---:|---:|---|---:|
-
 | <a id="question-25"></a>25 | 10.4 | [10.4 (repère historique — question sans section dédiée)](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L607) | [607](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L607) |
 | <a id="question-22"></a>22 | 10.1 | [10.1 Gestion des polices](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L408) | [408](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L408) |
 | <a id="question-23"></a>23 | 10.2 | [10.2 Gestion des couleurs](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L423) | [423](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L423) |
