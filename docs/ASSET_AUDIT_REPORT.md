@@ -94,3 +94,8 @@ Cette amélioration est commise, mais **pas encore testée sur le poste local av
 Le dépôt dédié `Alchemistio/mtg_card_auditory` a reçu un moteur d'inventaire local initial : parcours récursif sans suivi des liens symboliques, calcul SHA-256 par blocs, classification indicative par extension, inventaire JSON versionné et export CSV UTF-8. L'interface permet de lancer l'analyse et d'exporter les deux formats. Les exports dans la source analysée sont refusés. L'outil GitHub accepte une URL de dépôt et résout les refs en SHA de commit.
 
 La CI Windows a mis en évidence une erreur Clippy bloquante, corrigée dans un commit ultérieur. Les runs associés aux nouveaux commits sont encore en cours ; aucun succès de compilation ou d'exécution des tests n'est revendiqué. Les fonctions avancées et l'analyse de 37 371 assets restent à faire.
+
+
+## 11. Renforcement du parcours distant et raster — 2026-11-13
+
+L'exploration GitHub a été renforcée : la référence branche/tag/commit est résolue vers le SHA du commit et le SHA de l'arbre est extrait explicitement. Si l'arbre récursif est tronqué, l'application descend dans les sous-arbres en protégeant les cycles et la profondeur. Les chemins de téléchargement contrôlent les composants et rejettent les liens symboliques. Le scan local relève maintenant le format et les dimensions raster sans décoder les pixels. Les vérifications CI Windows associées sont encore en cours.
