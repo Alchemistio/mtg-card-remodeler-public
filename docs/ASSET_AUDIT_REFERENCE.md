@@ -152,3 +152,8 @@ Le projet d'application Windows native Rust est suivi séparément dans [`Alchem
 ## 14. État du développement Rust — 2026-11-13
 
 Le dépôt `Alchemistio/mtg_card_auditory` comprend maintenant un scan local récursif, calcul SHA-256 en flux, inventaire versionné v1 et exports JSON/CSV. L'interface expose le choix d'un dossier et les exports. Le parsing d'URL GitHub et la résolution des références en SHA de commit ont également été ajoutés. Les exports dans l'arborescence source sont refusés. Voir `docs/ASSET_AUDITOR_INTEGRATION.md` pour les limites et le statut CI. La compilation Windows reste non validée à ce stade.
+
+
+## 15. Renforcement GitHub et métadonnées raster — 2026-11-13
+
+L'outil dédié résout maintenant la référence choisie vers le SHA de commit puis vers le SHA de l'arbre Git. En cas d'arbre récursif tronqué, il descend par sous-arbres avec garde-fous de profondeur et de cycles. Les destinations de téléchargement refusent les chemins non normaux et les liens symboliques. Le scan local lit le format et les dimensions raster depuis l'en-tête. La CI Windows reste en cours de validation ; voir le dépôt dédié.
