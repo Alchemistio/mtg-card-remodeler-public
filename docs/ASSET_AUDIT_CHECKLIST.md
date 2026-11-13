@@ -126,9 +126,11 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [x] Documenter le cahier des charges complet, l'architecture, la sécurité et la feuille de route.
 - [x] Poser le premier socle Windows desktop et l'exploration d'un dépôt GitHub configurable.
 - [x] Ajouter la sélection et le téléchargement initial de blobs vers un workspace choisi.
-- [~] Vérifier la compilation Windows via GitHub Actions (première exécution en cours au moment de cette mise à jour).
+- [~] Vérifier la compilation Windows via GitHub Actions : correctif Clippy commité après le premier échec ; runs récents en cours, validation finale en attente.
 - [ ] Terminer l'exploration GitHub robuste (branches/tags/commit, dépôts privés, arbres tronqués, limites API, cache/reprise).
-- [ ] Implémenter l'inventaire local et distant, les analyseurs, la galerie, les planches, les licences et les rapports.
+- [x] Ajouter un premier scan local récursif, SHA-256 en flux, inventaire JSON v1 et exports CSV.
+- [x] Ajouter le parsing d'URL GitHub et la résolution des refs vers un SHA de commit.
+- [ ] Compléter les analyseurs visuels, SVG, fonts, ZIP/MSE, galerie, planches, licences et rapports.
 - [ ] Publier et tester l'exécutable Windows sur le poste utilisateur.
 
 Voir docs/ASSET_AUDITOR_INTEGRATION.md pour le périmètre et les limites actuelles. L'outil ne doit jamais modifier les sources.
