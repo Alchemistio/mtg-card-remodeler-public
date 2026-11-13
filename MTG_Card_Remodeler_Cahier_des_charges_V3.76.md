@@ -17,8 +17,6 @@
 | V3.74 | Définition du focus, de la fermeture par Tab et Échap et du raccourci personnalisable du panneau latéral |
 | V3.73 | Définition de l'accessibilité clavier et lecteur d'écran du panneau latéral : activation, déplacement et restitution du focus, indicateur visuel et annonce du nom et de l'état |
 | V3.72 | Définition des interactions de la languette latérale : ouverture et fermeture immédiates, maintien visible comme commande de fermeture, info-bulle et adaptation de l'animation au redimensionnement |
-| V3.71 | Définition du rétablissement automatique du panneau après un masquage adaptatif, du maintien de son masquage volontaire, de la languette latérale de réouverture, de son icône et de l'animation de glissement |
-| V3.70 | Définition des largeurs minimale et maximale du panneau latéral, de son masquage automatique lorsque la fenêtre devient trop étroite, de son bouton de réouverture et de la restauration de sa dernière largeur |
 
 # 1. Présentation générale
 
