@@ -162,3 +162,8 @@ L'outil dédié résout maintenant la référence choisie vers le SHA de commit 
 ## 16. Analyse de formats étendue — 2026-11-13
 
 Le moteur local ajoute les premiers analyseurs SVG (validation XML, viewBox, références externes), polices (famille/sous-famille lorsque prises en charge) et ZIP (lecture de la table centrale sans extraction, nombre d'entrées, taille déclarée, chemins suspects et ratios inhabituels). Des limites de taille et de nombre d'entrées sont appliquées. La CI sur le commit d'analyse SVG/polices a passé Clippy et les tests ; le build Release était encore en cours au dernier contrôle. Les changements ZIP ultérieurs doivent encore être validés.
+
+
+## 17. Rapport HTML, doublons et opérations asynchrones — 2026-11-13
+
+Le dépôt Rust ajoute la détection des doublons binaires exacts par SHA-256 (sans suppression), un rapport HTML autonome avec échappement des données et sans JavaScript, une vue locale filtrable et des workers d'arrière-plan pour le scan et les opérations GitHub. Ces derniers changements attendent leur validation CI. Le commit antérieur `45e601e` a passé intégralement Clippy, tests, build Release et upload d'artefact Windows.
