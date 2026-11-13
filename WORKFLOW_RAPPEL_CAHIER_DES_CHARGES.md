@@ -106,34 +106,11 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-La dernière série proposée mais **pas encore répondue** est :
+Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.93, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
 
-### Q594 — Durée de conservation des sauvegardes
-1. Conservation limitée au nombre de sauvegardes défini par l'utilisateur.
-2. Conservation selon une durée configurable.
-3. Conservation intelligente combinant nombre, ancienneté et importance, avec protection des points de restauration importants.
+**Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-### Q595 — Emplacements de sauvegarde
-1. Un emplacement principal configurable.
-2. Plusieurs emplacements configurables.
-3. Plusieurs emplacements avec réplication automatique et détection des destinations indisponibles.
-
-### Q596 — Protection des sauvegardes
-1. Aucune protection supplémentaire.
-2. Chiffrement configurable.
-3. Chiffrement systématique des sauvegardes sensibles, gestion sécurisée des clés et vérification d'intégrité.
-
-### Q597 — Vérification des sauvegardes
-1. Vérification uniquement lors de la restauration.
-2. Vérification automatique après chaque sauvegarde.
-3. Vérifications régulières, détection des corruptions et tests de restauration dans un environnement isolé.
-
-### Q598 — Restauration après incident majeur
-1. Restauration manuelle depuis une sauvegarde sélectionnée.
-2. Assistant guidé pour retrouver le dernier état exploitable.
-3. Reprise après incident avec détection des données récupérables, analyse des pertes potentielles et restauration contrôlée.
-
-**Reprise immédiate :** présenter à nouveau Q594–Q598 si aucune réponse n'a été reçue dans la conversation en cours. Ne pas les considérer comme validées. Après réception de la réponse, traiter et documenter les cinq décisions, puis continuer à **Q599–Q603** après vérification des doublons.
+**Prochain numéro disponible pour une nouvelle question : Q619.** Le prochain message destiné à l'utilisateur doit contenir uniquement un bloc de cinq questions, Q619 à Q623, après consultation de l'index puis lecture des sections pertinentes de la dernière version complète. Les autres séries du cycle 5 × 5 sont préparées et examinées en interne, sans être affichées à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -175,6 +152,7 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-13 — Mise à jour du workflow à la demande de l'utilisateur :** les décisions de détail doivent désormais être recherchées sur Internet et résolues par l'assistant, sans questionner l'utilisateur ; seules les décisions cruciales lui sont soumises. Chaque relance de continuation doit fournir cinq séries de cinq questions (25 au total), sauf demande différente ou absence de 25 arbitrages cruciaux pertinents.
 
 
-### Journal des modifications — complément du 2026-11-13
+### Journal des modifications — compléments du 2026-11-13
 
 - **2026-11-13 — Vérification préalable renforcée et présentation des questions :** avant chaque question, consultation obligatoire de la catégorie dans l'index, suivi de ses indications de navigation et lecture des passages correspondants dans la dernière version complète du cahier des charges ; toute question déjà résolue est écartée. Le travail interne reste organisé en cinq séries de cinq sujets, mais un seul bloc de cinq questions cruciales est désormais présenté à l'utilisateur par message.
+- **2026-11-13 — Audit des propositions Q594–Q618 :** propositions retirées après constat de recoupements avec des décisions de V3.93 ; identifiants réservés et non réutilisables. Prochaine question nouvelle : Q619.
