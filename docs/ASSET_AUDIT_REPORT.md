@@ -114,3 +114,8 @@ Le commit `45e601e` du dépôt Rust a passé le pipeline Windows complet : forma
 ## 14. Validation complète du prototype enrichi — 2026-11-13
 
 Le commit `6310f92` a passé l'intégralité de la CI Windows : formatage, Clippy, tests, build Release et upload de l'artefact. Cette validation couvre les workers d'arrière-plan, la détection des doublons exacts, la vue filtrable et le rapport HTML autonome. Le code ajoute ensuite le type de canaux et la présence d'alpha raster ; sa CI reste en cours.
+
+
+## 15. Première planche de contact et métadonnées alpha — 2026-11-13
+
+Une fonction d'export PNG paginée (16 images/page) a été ajoutée, accompagnée d'un index texte. Le SHA-256 source est recalculé avant rendu et les liens symboliques sont refusés. Le décodeur raster fournit également type de canaux et présence d'alpha sans décodage complet des pixels lors de l'inventaire. La CI de ces ajouts est en cours.
