@@ -172,3 +172,8 @@ Le dépôt Rust ajoute la détection des doublons binaires exacts par SHA-256 (s
 ## 18. Validation UI et rapport HTML — 2026-11-13
 
 Le commit `6310f92` du dépôt Rust a passé le pipeline Windows complet (Clippy, tests, build Release et upload d'artefact). Il valide le scan local en arrière-plan, les opérations GitHub asynchrones, la détection des doublons exacts par SHA-256, la vue locale filtrable et le rapport HTML autonome. L'ajout postérieur des métadonnées alpha raster doit encore passer la CI.
+
+
+## 19. Planches de contact et alpha raster — 2026-11-13
+
+Le dépôt dédié ajoute une première génération de planches raster PNG (16 fichiers par page) avec index texte associé. Avant rendu, l'outil vérifie que le SHA-256 du fichier n'a pas changé depuis l'inventaire, refuse les liens symboliques, et ignore les fichiers trop volumineux ou les images dépassant le plafond de pixels. Les métadonnées raster incluent maintenant le type de canaux et la présence d'alpha. Ces changements sont en attente de validation CI.
