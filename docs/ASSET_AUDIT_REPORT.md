@@ -104,3 +104,8 @@ L'exploration GitHub a été renforcée : la référence branche/tag/commit est 
 ## 12. Analyse SVG, polices et ZIP — 2026-11-13
 
 Le scan local contrôle les SVG comme XML sans les exécuter, extrait le viewBox et signale les références externes détectées. Les polices prises en charge fournissent famille et sous-famille. Les archives ZIP sont inspectées sans extraction : nombre d'entrées, taille décompressée déclarée, chemins suspects et ratios inhabituels. Les limites de taille et d'entrées protègent le scan. La CI sur le commit SVG/polices a passé Clippy et les tests ; le build Release restait en cours. Le code ZIP, ajouté ensuite, attend sa propre validation CI.
+
+
+## 13. Validation CI et fonctionnalités d'interface — 2026-11-13
+
+Le commit `45e601e` du dépôt Rust a passé le pipeline Windows complet : formatage, Clippy, tests, compilation Release et upload de l'artefact. Il inclut le scan local parallèle, SHA-256, métadonnées raster/SVG/polices et inspection ZIP sans extraction. Après ce jalon, le développement a ajouté les workers d'arrière-plan, la détection des doublons binaires et le rapport HTML autonome ; ces changements sont en cours de revalidation CI. Aucun binaire issu du commit intermédiaire n'est présenté comme la livraison finale.
