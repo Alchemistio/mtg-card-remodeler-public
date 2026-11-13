@@ -157,3 +157,8 @@ Le dépôt `Alchemistio/mtg_card_auditory` comprend maintenant un scan local ré
 ## 15. Renforcement GitHub et métadonnées raster — 2026-11-13
 
 L'outil dédié résout maintenant la référence choisie vers le SHA de commit puis vers le SHA de l'arbre Git. En cas d'arbre récursif tronqué, il descend par sous-arbres avec garde-fous de profondeur et de cycles. Les destinations de téléchargement refusent les chemins non normaux et les liens symboliques. Le scan local lit le format et les dimensions raster depuis l'en-tête. La CI Windows reste en cours de validation ; voir le dépôt dédié.
+
+
+## 16. Analyse de formats étendue — 2026-11-13
+
+Le moteur local ajoute les premiers analyseurs SVG (validation XML, viewBox, références externes), polices (famille/sous-famille lorsque prises en charge) et ZIP (lecture de la table centrale sans extraction, nombre d'entrées, taille déclarée, chemins suspects et ratios inhabituels). Des limites de taille et de nombre d'entrées sont appliquées. La CI sur le commit d'analyse SVG/polices a passé Clippy et les tests ; le build Release était encore en cours au dernier contrôle. Les changements ZIP ultérieurs doivent encore être validés.
