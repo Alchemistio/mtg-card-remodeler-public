@@ -87,3 +87,10 @@ Le générateur dispose maintenant d'un lanceur interactif : `scripts/assets/run
 La documentation d'utilisation est dans `scripts/assets/README.md`. Python 3.10+ doit être installé une fois au préalable et une connexion Internet est nécessaire pour installer les dépendances. Le dossier de travail doit être hors de `Assets/` afin d'éviter que les résultats ne soient réinventoriés comme sources.
 
 Cette amélioration est commise, mais **pas encore testée sur le poste local avec le clone complet**. La génération visuelle des assets reste donc à effectuer. Un arrêt forcé du système peut laisser le dossier temporaire `.asset-audit-runtime`, qui est alors supprimable manuellement.
+
+
+## 10. État intermédiaire du projet Rust — 2026-11-13
+
+Le dépôt dédié `Alchemistio/mtg_card_auditory` a reçu un moteur d'inventaire local initial : parcours récursif sans suivi des liens symboliques, calcul SHA-256 par blocs, classification indicative par extension, inventaire JSON versionné et export CSV UTF-8. L'interface permet de lancer l'analyse et d'exporter les deux formats. Les exports dans la source analysée sont refusés. L'outil GitHub accepte une URL de dépôt et résout les refs en SHA de commit.
+
+La CI Windows a mis en évidence une erreur Clippy bloquante, corrigée dans un commit ultérieur. Les runs associés aux nouveaux commits sont encore en cours ; aucun succès de compilation ou d'exécution des tests n'est revendiqué. Les fonctions avancées et l'analyse de 37 371 assets restent à faire.
