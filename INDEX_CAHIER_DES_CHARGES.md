@@ -73,9 +73,9 @@ Questions indexées : [354](#question-354) · [355](#question-355) · [356](#que
 
 ### Accessibilité et navigation au clavier et raccourci du panneau latéral (questions 484 à 513)
 
-Utilisation de la languette latérale au clavier, gestion du focus à l'ouverture et à la fermeture, repérage visuel du focus et informations accessibles aux lecteurs d'écran.
+Utilisation de la languette latérale au clavier, gestion du focus, navigation entre les entrées, activation de la sélection et passage entre le panneau latéral et la zone de détail.
 
-Questions indexées : [484](#question-484) · [485](#question-485) · [486](#question-486) · [487](#question-487) · [488](#question-488) · [489](#question-489) · [490](#question-490) · [491](#question-491) · [492](#question-492) · [493](#question-493) · [494](#question-494) · [495](#question-495) · [496](#question-496) · [497](#question-497) · [498](#question-498) · [504](#question-504) · [505](#question-505) · [506](#question-506) · [507](#question-507) · [508](#question-508)
+Questions indexées : [484](#question-484) · [485](#question-485) · [486](#question-486) · [487](#question-487) · [488](#question-488) · [489](#question-489) · [490](#question-490) · [491](#question-491) · [492](#question-492) · [493](#question-493) · [494](#question-494) · [495](#question-495) · [496](#question-496) · [497](#question-497) · [498](#question-498) · [504](#question-504) · [505](#question-505) · [506](#question-506) · [507](#question-507) · [508](#question-508) · [509](#question-509) · [510](#question-510) · [511](#question-511) · [512](#question-512) · [513](#question-513)
 
 | Question | Section | Décision / sujet | Ligne dans V3.77 |
 |---:|---:|---|---:|
