@@ -126,7 +126,8 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [x] Documenter le cahier des charges complet, l'architecture, la sécurité et la feuille de route.
 - [x] Poser le premier socle Windows desktop et l'exploration d'un dépôt GitHub configurable.
 - [x] Ajouter la sélection et le téléchargement initial de blobs vers un workspace choisi.
-- [~] Vérifier la compilation Windows via GitHub Actions : correctif Clippy commité après le premier échec ; runs récents en cours, validation finale en attente.
+- [x] CI Windows complète (Clippy, tests, build Release et artefact) sur commit `45e601e`.
+- [~] Revalider les changements UI/HTML/doublons postérieurs à ce commit.
 - [x] Ajouter la résolution SHA commit/arbre et le repli sur sous-arbres en cas d'arbre tronqué.
 - [x] Ajouter parsing d'URL et garde-fous contre chemins/liens symboliques.
 - [ ] Terminer les dépôts privés sécurisés, limites API, cache/reprise et streaming.
