@@ -12,6 +12,7 @@
 
 | Version | Description |
 |---|---|
+| V3.83 | Ordre du détail, dépendances, compatibilité, provenance et documentation des extensions |
 | V3.82 | Définition des en-têtes, des résumés, des indicateurs d'état, de la visibilité des informations essentielles et de la hiérarchie des sections |
 | V3.81 | Définition des transitions, de la réduction des mouvements, de la stabilité du défilement, du chargement et du traitement local des erreurs dans les sections |
 | V3.80 | Définition du comportement des sections repliables, de leur état initial, de la conservation des états, des commandes globales et de l'accessibilité clavier |
