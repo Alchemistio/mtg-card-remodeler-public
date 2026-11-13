@@ -127,8 +127,11 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [x] Poser le premier socle Windows desktop et l'exploration d'un dépôt GitHub configurable.
 - [x] Ajouter la sélection et le téléchargement initial de blobs vers un workspace choisi.
 - [~] Vérifier la compilation Windows via GitHub Actions : correctif Clippy commité après le premier échec ; runs récents en cours, validation finale en attente.
-- [ ] Terminer l'exploration GitHub robuste (branches/tags/commit, dépôts privés, arbres tronqués, limites API, cache/reprise).
+- [x] Ajouter la résolution SHA commit/arbre et le repli sur sous-arbres en cas d'arbre tronqué.
+- [x] Ajouter parsing d'URL et garde-fous contre chemins/liens symboliques.
+- [ ] Terminer les dépôts privés sécurisés, limites API, cache/reprise et streaming.
 - [x] Ajouter un premier scan local récursif, SHA-256 en flux, inventaire JSON v1 et exports CSV.
+- [x] Ajouter les métadonnées raster initiales (format et dimensions depuis l'en-tête).
 - [x] Ajouter le parsing d'URL GitHub et la résolution des refs vers un SHA de commit.
 - [ ] Compléter les analyseurs visuels, SVG, fonts, ZIP/MSE, galerie, planches, licences et rapports.
 - [ ] Publier et tester l'exécutable Windows sur le poste utilisateur.
