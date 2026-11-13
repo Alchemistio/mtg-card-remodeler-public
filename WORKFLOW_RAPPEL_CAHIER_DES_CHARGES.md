@@ -155,7 +155,7 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 ### Journal des modifications — compléments du 2026-11-13
 
 - **2026-11-13 — Vérification préalable renforcée et présentation des questions :** avant chaque question, consultation obligatoire de la catégorie dans l'index, suivi de ses indications de navigation et lecture des passages correspondants dans la dernière version complète du cahier des charges ; toute question déjà résolue est écartée. Le travail interne reste organisé en cinq séries de cinq sujets, mais un seul bloc de cinq questions cruciales est désormais présenté à l'utilisateur par message.
-- **2026-11-13 — Audit des propositions Q594–Q618 :** propositions retirées après constat de recoupements avec des décisions de V3.94 ; identifiants réservés et non réutilisables. Prochaine question nouvelle : Q619.
+- **2026-11-13 — Audit des propositions Q594–Q618 :** propositions retirées après constat de recoupements avec des décisions de V3.94 ; identifiants réservés et non réutilisables. Les numéros Q594–Q618 restent réservés ; Q619 a ensuite été utilisé et enregistré.
 
 
 ### Journal des modifications — compléments du 2026-11-13
