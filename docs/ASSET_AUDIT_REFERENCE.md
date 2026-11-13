@@ -142,3 +142,8 @@ Pour éviter les installations manuelles et laisser l'utilisateur choisir où so
 Le lanceur installe Pillow et CairoSVG dans `<dossier choisi>/.asset-audit-runtime/`, lance le générateur sur le répertoire source `Assets/`, conserve les résultats dans `<dossier choisi>/catalog/`, puis supprime l'environnement virtuel. Aucune dépendance n'est installée dans le Python global ni dans les autres projets.
 
 **Prérequis non automatisé :** Python 3.10+ doit déjà être présent sur l'ordinateur et une connexion Internet est nécessaire pour télécharger les packages. Le répertoire choisi doit être hors de `Assets/`. Un arrêt brutal de la machine peut empêcher le bloc de nettoyage ; le dossier temporaire restant peut alors être supprimé manuellement. Le lancement et le nettoyage restent à tester sur le poste disposant du clone complet.
+
+
+## 13. Application d'audit Rust dédiée
+
+Le projet d'application Windows native Rust est suivi séparément dans [`Alchemistio/mtg_card_auditory`](https://github.com/Alchemistio/mtg_card_auditory). Le cahier des charges et l'état d'avancement inter-dépôts sont consignés dans [`ASSET_AUDITOR_INTEGRATION.md`](./ASSET_AUDITOR_INTEGRATION.md). Le premier socle sait explorer un arbre GitHub et télécharger une sélection de blobs dans un workspace ; les analyses locales/visuelles, les licences, les rapports et la livraison finale restent à construire et vérifier. Le dépôt source reste immuable.
