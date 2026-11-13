@@ -77,12 +77,13 @@ Utilisation de la languette latérale au clavier, gestion du focus, navigation e
 
 Questions indexées : [484](#question-484) · [485](#question-485) · [486](#question-486) · [487](#question-487) · [488](#question-488) · [489](#question-489) · [490](#question-490) · [491](#question-491) · [492](#question-492) · [493](#question-493) · [494](#question-494) · [495](#question-495) · [496](#question-496) · [497](#question-497) · [498](#question-498) · [504](#question-504) · [505](#question-505) · [506](#question-506) · [507](#question-507) · [508](#question-508) · [509](#question-509) · [510](#question-510) · [511](#question-511) · [512](#question-512) · [513](#question-513) · [514](#question-514) · [515](#question-515) · [516](#question-516) · [517](#question-517) · [518](#question-518)
 
-| Question | Section | Décision / sujet | Ligne dans V3.79 |
 ### Affichage et navigation du détail des extensions (questions 519 à 523)
 
 Organisation de la zone de détail, présentation des états, navigation dans les informations et accès aux commandes.
 
 Questions indexées : [519](#question-519) · [520](#question-520) · [521](#question-521) · [522](#question-522) · [523](#question-523)
+
+| Question | Section | Décision / sujet | Ligne dans V3.79 |
 
 | <a id="question-519"></a>519 | 10.514 | [10.514 État de la zone de détail lorsqu'aucune extension n'est sélectionnée](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L4668) | [4668](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L4668) |
 | <a id="question-520"></a>520 | 10.515 | [10.515 Organisation des informations dans le détail d'une extension](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L4676) | [4676](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.79.md#L4676) |
