@@ -1,7 +1,7 @@
 # MTG Card Remodeler
 # Cahier des charges fonctionnel et technique
 
-**Version :** 3.93  
+**Version :** 3.94  
 **Date :** 13 novembre 2026  
 **Statut :** En cours de définition — décisions validées et questions ouvertes  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public
@@ -12,6 +12,7 @@
 
 | Version | Description |
 |---|---|
+| V3.94 | Fonctionnement local, transferts manuels et absence de services communautaires |
 | V3.93 | Reproductibilité, intégrité et publication des générations |
 | V3.92 | Géométrie PDF, imposition et contraintes physiques d'impression |
 | V3.91 | Résolution effective, rééchantillonnage et qualité des images |
