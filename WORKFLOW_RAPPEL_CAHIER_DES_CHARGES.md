@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.93](MTG_Card_Remodeler_Cahier_des_charges_V3.93.md)
+- Cahier des charges de référence au dernier contrôle : [V3.94](MTG_Card_Remodeler_Cahier_des_charges_V3.94.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q593**
-- Dernière section : **10.588**
-- Prochain bloc à soumettre : **Q619 à Q623**
+- Dernière question enregistrée : **Q623**
+- Dernière section : **10.593**
+- Prochain bloc à soumettre : **Q624 à Q628**
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -17,7 +17,7 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 1. Se reconnecter au dépôt GitHub indiqué ci-dessus.
 2. Lire ce document de rappel, puis l'index `INDEX_CAHIER_DES_CHARGES.md`.
-3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.93 est toujours la dernière version.
+3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.94 est toujours la dernière version.
 4. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de poser de nouvelles questions.
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
@@ -96,7 +96,7 @@ Pour toute série validée :
 
 ## 5. Prévention des doublons — repères déjà connus
 
-À la reprise depuis l'état V3.93, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
+À la reprise depuis l'état V3.94, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
 
 - **Gestion des projets — section 10.10 / Q32** : création, nommage, sauvegarde, duplication, suppression, bascule, ressources intégrées ou partagées, paramètres de projet, récupération, historique, versions, import/export, dépendances, conflits, ressources manquantes et transfert entre ordinateurs.
 - **Dépendances des extensions — Q564 à Q568** : contraintes de versions, résolution déterministe, ordonnancement, cycles et dépendances facultatives.
@@ -106,11 +106,11 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.93, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
+Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.94, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Prochain numéro disponible pour une nouvelle question : Q619.** Le prochain message destiné à l'utilisateur doit contenir uniquement un bloc de cinq questions, Q619 à Q623, après consultation de l'index puis lecture des sections pertinentes de la dernière version complète. Les autres séries du cycle 5 × 5 sont préparées et examinées en interne, sans être affichées à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.94, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q624.** Le prochain bloc à soumettre est Q624 à Q628, uniquement après consultation de l'index puis lecture des sections pertinentes de V3.94. Les autres séries du cycle 5 × 5 sont préparées et examinées en interne, sans être affichées à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -155,4 +155,9 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 ### Journal des modifications — compléments du 2026-11-13
 
 - **2026-11-13 — Vérification préalable renforcée et présentation des questions :** avant chaque question, consultation obligatoire de la catégorie dans l'index, suivi de ses indications de navigation et lecture des passages correspondants dans la dernière version complète du cahier des charges ; toute question déjà résolue est écartée. Le travail interne reste organisé en cinq séries de cinq sujets, mais un seul bloc de cinq questions cruciales est désormais présenté à l'utilisateur par message.
-- **2026-11-13 — Audit des propositions Q594–Q618 :** propositions retirées après constat de recoupements avec des décisions de V3.93 ; identifiants réservés et non réutilisables. Prochaine question nouvelle : Q619.
+- **2026-11-13 — Audit des propositions Q594–Q618 :** propositions retirées après constat de recoupements avec des décisions de V3.94 ; identifiants réservés et non réutilisables. Prochaine question nouvelle : Q619.
+
+
+### Journal des modifications — compléments du 2026-11-13
+
+- **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.94 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
