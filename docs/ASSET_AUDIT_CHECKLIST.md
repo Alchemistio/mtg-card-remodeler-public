@@ -118,3 +118,17 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [x] Documenter les prérequis, limites et récupération après arrêt forcé : `scripts/assets/README.md`.
 - [ ] Exécuter le lanceur sur un poste disposant du clone complet et vérifier la génération effective des 37 371 fichiers.
 - [ ] Vérifier le nettoyage automatique après succès et après échec d'une dépendance.
+
+
+## Outil dédié Rust — suivi séparé
+
+- [x] Créer le dépôt séparé MTG Asset Auditor : https://github.com/Alchemistio/mtg_card_auditory.
+- [x] Documenter le cahier des charges complet, l'architecture, la sécurité et la feuille de route.
+- [x] Poser le premier socle Windows desktop et l'exploration d'un dépôt GitHub configurable.
+- [x] Ajouter la sélection et le téléchargement initial de blobs vers un workspace choisi.
+- [~] Vérifier la compilation Windows via GitHub Actions (première exécution en cours au moment de cette mise à jour).
+- [ ] Terminer l'exploration GitHub robuste (branches/tags/commit, dépôts privés, arbres tronqués, limites API, cache/reprise).
+- [ ] Implémenter l'inventaire local et distant, les analyseurs, la galerie, les planches, les licences et les rapports.
+- [ ] Publier et tester l'exécutable Windows sur le poste utilisateur.
+
+Voir docs/ASSET_AUDITOR_INTEGRATION.md pour le périmètre et les limites actuelles. L'outil ne doit jamais modifier les sources.
