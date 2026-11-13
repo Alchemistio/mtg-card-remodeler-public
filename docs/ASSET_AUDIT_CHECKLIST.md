@@ -132,6 +132,8 @@ Le script génère `assets.catalog.json`, `assets.catalog.csv` et les planches J
 - [ ] Terminer les dépôts privés sécurisés, limites API, cache/reprise et streaming.
 - [x] Ajouter un premier scan local récursif, SHA-256 en flux, inventaire JSON v1 et exports CSV.
 - [x] Ajouter les métadonnées raster initiales (format et dimensions depuis l'en-tête).
+- [x] Ajouter l'analyse XML SVG, le viewBox et les références externes.
+- [x] Ajouter les métadonnées de polices et l'inspection ZIP sans extraction.
 - [x] Ajouter le parsing d'URL GitHub et la résolution des refs vers un SHA de commit.
 - [ ] Compléter les analyseurs visuels, SVG, fonts, ZIP/MSE, galerie, planches, licences et rapports.
 - [ ] Publier et tester l'exécutable Windows sur le poste utilisateur.
