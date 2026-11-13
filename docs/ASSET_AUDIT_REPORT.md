@@ -109,3 +109,8 @@ Le scan local contrôle les SVG comme XML sans les exécuter, extrait le viewBox
 ## 13. Validation CI et fonctionnalités d'interface — 2026-11-13
 
 Le commit `45e601e` du dépôt Rust a passé le pipeline Windows complet : formatage, Clippy, tests, compilation Release et upload de l'artefact. Il inclut le scan local parallèle, SHA-256, métadonnées raster/SVG/polices et inspection ZIP sans extraction. Après ce jalon, le développement a ajouté les workers d'arrière-plan, la détection des doublons binaires et le rapport HTML autonome ; ces changements sont en cours de revalidation CI. Aucun binaire issu du commit intermédiaire n'est présenté comme la livraison finale.
+
+
+## 14. Validation complète du prototype enrichi — 2026-11-13
+
+Le commit `6310f92` a passé l'intégralité de la CI Windows : formatage, Clippy, tests, build Release et upload de l'artefact. Cette validation couvre les workers d'arrière-plan, la détection des doublons exacts, la vue filtrable et le rapport HTML autonome. Le code ajoute ensuite le type de canaux et la présence d'alpha raster ; sa CI reste en cours.
