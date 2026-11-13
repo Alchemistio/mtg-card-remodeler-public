@@ -17,7 +17,6 @@
 | V3.78 | Précision de l'actualisation du détail, des entrées indisponibles, de la liste vide, de l'annonce accessible et de la sélection au retour |
 | V3.77 | Définition de la navigation clavier dans la liste du panneau latéral et du passage entre liste et détail |
 | V3.76 | Définition du basculement du panneau latéral par raccourci, de son comportement adaptatif, de sa portée par fenêtre, du focus et de l'animation |
-| V3.75 | Définition du raccourci clavier du panneau latéral : absence de valeur par défaut, gestion des conflits, portée, saisie et info-bulle |
 
 # 1. Présentation générale
 
