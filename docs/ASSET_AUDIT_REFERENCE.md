@@ -167,3 +167,8 @@ Le moteur local ajoute les premiers analyseurs SVG (validation XML, viewBox, ré
 ## 17. Rapport HTML, doublons et opérations asynchrones — 2026-11-13
 
 Le dépôt Rust ajoute la détection des doublons binaires exacts par SHA-256 (sans suppression), un rapport HTML autonome avec échappement des données et sans JavaScript, une vue locale filtrable et des workers d'arrière-plan pour le scan et les opérations GitHub. Ces derniers changements attendent leur validation CI. Le commit antérieur `45e601e` a passé intégralement Clippy, tests, build Release et upload d'artefact Windows.
+
+
+## 18. Validation UI et rapport HTML — 2026-11-13
+
+Le commit `6310f92` du dépôt Rust a passé le pipeline Windows complet (Clippy, tests, build Release et upload d'artefact). Il valide le scan local en arrière-plan, les opérations GitHub asynchrones, la détection des doublons exacts par SHA-256, la vue locale filtrable et le rapport HTML autonome. L'ajout postérieur des métadonnées alpha raster doit encore passer la CI.
