@@ -17,7 +17,6 @@
 | V3.81 | Définition des transitions, de la réduction des mouvements, de la stabilité du défilement, du chargement et du traitement local des erreurs dans les sections |
 | V3.80 | Définition du comportement des sections repliables, de leur état initial, de la conservation des états, des commandes globales et de l'accessibilité clavier |
 | V3.79 | Définition de l'état sans sélection, de l'organisation du détail, de sa navigation, de la présentation des fonctionnalités indisponibles et des commandes persistantes |
-| V3.78 | Précision de l'actualisation du détail, des entrées indisponibles, de la liste vide, de l'annonce accessible et de la sélection au retour |
 
 # 1. Présentation générale
 
