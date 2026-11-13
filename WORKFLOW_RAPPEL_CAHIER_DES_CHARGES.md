@@ -110,7 +110,7 @@ Les questions Q594 à Q618 ont été proposées dans un message précédent sans
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.95, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q624.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.95. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.95, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q625.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.95. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -167,3 +167,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.95, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
+
+
+- **2026-11-13 — Correction de cohérence du point de reprise :** lors de la reprise, l'audit a constaté que le rappel indiquait encore Q624 comme prochain numéro alors que Q624 était déjà publiée dans V3.95 et indexée. Le prochain identifiant disponible est corrigé à **Q625**. Aucun numéro déjà utilisé n'est réattribué.
