@@ -99,3 +99,8 @@ La CI Windows a mis en évidence une erreur Clippy bloquante, corrigée dans un 
 ## 11. Renforcement du parcours distant et raster — 2026-11-13
 
 L'exploration GitHub a été renforcée : la référence branche/tag/commit est résolue vers le SHA du commit et le SHA de l'arbre est extrait explicitement. Si l'arbre récursif est tronqué, l'application descend dans les sous-arbres en protégeant les cycles et la profondeur. Les chemins de téléchargement contrôlent les composants et rejettent les liens symboliques. Le scan local relève maintenant le format et les dimensions raster sans décoder les pixels. Les vérifications CI Windows associées sont encore en cours.
+
+
+## 12. Analyse SVG, polices et ZIP — 2026-11-13
+
+Le scan local contrôle les SVG comme XML sans les exécuter, extrait le viewBox et signale les références externes détectées. Les polices prises en charge fournissent famille et sous-famille. Les archives ZIP sont inspectées sans extraction : nombre d'entrées, taille décompressée déclarée, chemins suspects et ratios inhabituels. Les limites de taille et d'entrées protègent le scan. La CI sur le commit SVG/polices a passé Clippy et les tests ; le build Release restait en cours. Le code ZIP, ajouté ensuite, attend sa propre validation CI.
