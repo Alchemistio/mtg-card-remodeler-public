@@ -22,10 +22,10 @@ Ces chiffres ne doivent pas être codés en dur dans l'application. Le logiciel 
 
 Le cahier des charges complet est maintenu dans le dépôt de l'outil, fichier docs/REQUIREMENTS.md. Les fonctions incluent l'inventaire local et distant, SHA-256 binaire, métadonnées raster/SVG/fonts, inspection sûre des ZIP et packages MSE, planches de contact, galerie HTML, détection de doublons, classification assistée, provenance/licences, revue humaine persistante, rapports JSON/CSV/HTML, cache, reprise, progression et annulation.
 
-## État au 2026-11-13
+## État au 2026-11-13 — mise à jour
 
-Le dépôt Rust a été initialisé. Le premier socle comprend une interface desktop, l'exploration initiale d'un arbre GitHub, la sélection et le téléchargement de blobs vers un workspace. La résolution de la branche par défaut et la protection contre l'écrasement de fichiers locaux sont ajoutées.
+Le dépôt Rust dispose désormais, en plus du socle GitHub initial, d'un premier moteur de scan local récursif en lecture seule. Il calcule les SHA-256 en flux, produit un inventaire JSON versionné (schéma v1) et un CSV UTF-8, classe les fichiers de façon indicative par extension et refuse les exports placés dans le dossier source analysé. L'interface permet de choisir le dossier, lancer le scan et exporter les résultats. L'interface GitHub accepte maintenant une URL de dépôt ou owner/repo ; les branches/tags/commits sont résolus en SHA de commit avant lecture de l'arbre.
 
-Les phases d'analyse locale, d'analyse visuelle, de provenance/licences et de rapports restent à développer. Le workflow Windows GitHub Actions est en cours de première exécution ; aucun exécutable n'est déclaré validé à ce stade.
+La CI Windows a révélé un avertissement Clippy bloquant (`needless_question_mark`) sur le premier socle. Le correctif est commité ; plusieurs exécutions CI correspondant aux commits successifs sont encore en file/en cours de vérification. Les tests et la compilation ne sont pas déclarés réussis tant qu'un run sur le dernier commit n'a pas terminé avec succès.
 
-Aucune ressource de Assets/ n'a été déplacée, modifiée ou supprimée par ce développement.
+Restent à développer : arbres tronqués par parcours de sous-arbres, téléchargement streaming/cache/reprise, gestion sécurisée persistante du jeton, filtres avancés, métadonnées visuelles et analyseurs SVG/fonts/ZIP/MSE, galerie/planches, provenance/licences, revue humaine, rapport HTML et release Windows. Aucun asset du dépôt principal n'a été déplacé, modifié, supprimé ou intégré à LIBRARY.
