@@ -4,7 +4,7 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.95](MTG_Card_Remodeler_Cahier_des_charges_V3.95.md)
+- Cahier des charges de référence au dernier contrôle : [V3.96](MTG_Card_Remodeler_Cahier_des_charges_V3.96.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q624**
 - Dernière section : **10.594**
@@ -17,7 +17,7 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 1. Se reconnecter au dépôt GitHub indiqué ci-dessus.
 2. Lire ce document de rappel, puis l'index `INDEX_CAHIER_DES_CHARGES.md`.
-3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.95 est toujours la dernière version.
+3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.96 est toujours la dernière version.
 4. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de poser de nouvelles questions.
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
@@ -96,7 +96,7 @@ Pour toute série validée :
 
 ## 5. Prévention des doublons — repères déjà connus
 
-À la reprise depuis l'état V3.95, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
+À la reprise depuis l'état V3.96, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
 
 - **Gestion des projets — section 10.10 / Q32** : création, nommage, sauvegarde, duplication, suppression, bascule, ressources intégrées ou partagées, paramètres de projet, récupération, historique, versions, import/export, dépendances, conflits, ressources manquantes et transfert entre ordinateurs.
 - **Dépendances des extensions — Q564 à Q568** : contraintes de versions, résolution déterministe, ordonnancement, cycles et dépendances facultatives.
@@ -106,11 +106,11 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.95, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
+Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.96, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.95, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q625.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.95. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.96, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q625.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.96. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -163,10 +163,13 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.94 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
 
 
-- **2026-11-13 — Point de reprise après audit Q619–Q623 (historique, remplacé par Q624) :** le prochain identifiant disponible était Q624. Ce point de reprise est clos depuis l'enregistrement de Q624 dans V3.95.
+- **2026-11-13 — Point de reprise après audit Q619–Q623 (historique, remplacé par Q624) :** le prochain identifiant disponible était Q624. Ce point de reprise est clos depuis l'enregistrement de Q624 dans V3.96.
 
 
-- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.95, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
+- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.96, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
 
 
-- **2026-11-13 — Correction de cohérence du point de reprise :** lors de la reprise, l'audit a constaté que le rappel indiquait encore Q624 comme prochain numéro alors que Q624 était déjà publiée dans V3.95 et indexée. Le prochain identifiant disponible est corrigé à **Q625**. Aucun numéro déjà utilisé n'est réattribué.
+- **2026-11-13 — Correction de cohérence du point de reprise :** lors de la reprise, l'audit a constaté que le rappel indiquait encore Q624 comme prochain numéro alors que Q624 était déjà publiée dans V3.96 et indexée. Le prochain identifiant disponible est corrigé à **Q625**. Aucun numéro déjà utilisé n'est réattribué.
+
+
+- **2026-11-14 — Enregistrement des décisions Q625–Q627 :** publication du cahier des charges V3.96, sections 10.595 à 10.597. Le logiciel reste privé et destiné à l'usage personnel ; le code source peut être consulté publiquement mais sans autorisation générale de réutilisation ou redistribution ; aucune monétisation n'est définie pour le moment et cette décision est reportée. L'index a été actualisé avec les nouveaux thèmes, ancres et lignes. Prochain identifiant disponible : Q628. Le périmètre reste exclusivement celui de la définition documentaire ; aucun développement du remodeler n'est autorisé à ce stade.
