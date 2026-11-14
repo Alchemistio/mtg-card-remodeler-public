@@ -6,8 +6,8 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.101](MTG_Card_Remodeler_Cahier_des_charges_V3.101.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q631**
-- Dernière section : **10.601**
+- Dernière question enregistrée : **Q632**
+- Dernière section : **10.602**
 - Prochain numéro disponible : **Q633** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.101
 - État : **phase de définition du cahier des charges uniquement**.
 
