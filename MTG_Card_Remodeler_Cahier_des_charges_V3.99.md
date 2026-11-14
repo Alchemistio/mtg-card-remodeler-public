@@ -118,10 +118,10 @@ Les sauvegardes comprennent la base de données, les projets, templates, variant
 
 ## 2.8 Mises à jour
 
-Trois modes :
-- Automatique.
-- Notification avec installation à la demande.
-- Vérification manuelle uniquement.
+Politique retenue :
+- Vérification automatique de disponibilité, désactivable dans les paramètres, conformément à la section 10.599.
+- Notification uniquement lorsqu'une nouvelle version est disponible.
+- Téléchargement et installation manuels, chacun après une action explicite distincte de l'utilisateur, conformément à la section 10.600.
 
 L'utilisateur peut différer une mise à jour. Les données, emplacements personnalisés et configurations doivent être préservés. Les migrations doivent inclure des contrôles de compatibilité.
 
