@@ -6,9 +6,9 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.119](MTG_Card_Remodeler_Cahier_des_charges_V3.119.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q673**
-- Dernière section : **10.642**
-- Prochain numéro disponible : **Q674** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.118
+- Dernière question enregistrée : **Q698**
+- Dernière section : **10.667**
+- Prochain numéro disponible : **Q699** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.119
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -248,3 +248,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Enregistrement des cinq séries de décisions techniques Q674–Q698 :** après consultation de l'index et du cahier des charges V3.118, aucun arbitrage fonctionnel crucial n'a nécessité l'intervention de l'utilisateur. L'assistant a documenté 25 décisions techniques autonomes en cinq séries : portabilité des chemins et noms de fichiers ; coordination des projets et accès externes ; cycle de vie et récupération ; observabilité et journalisation sûre ; ordonnancement et réactivité. Elles sont explicitement attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Publication de V3.119, sections 10.643 à 10.667 ; index actualisé vers V3.119 avec 646 questions et références. Dernière question : Q698 ; dernière section : 10.667 ; prochaine question : Q699. La branche `main` doit conserver V3.117, V3.118 et V3.119 ; V3.116 a été retirée de `main` après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
 
 - **2026-11-14 — Clarification de cohérence du workflow :** suppression de l'ambiguïté entre les anciennes consignes de présentation de cinq questions et la règle actuelle de prise en charge autonome des détails. Les cinq séries de cinq décisions techniques sont désormais explicitement traitées par l'assistant ; seules les décisions fonctionnelles cruciales sont soumises à l'utilisateur dans un bloc unique.
+
+
+- **Contrôle de reprise du 14 novembre 2026 :** le document de workflow présentait encore Q673/10.642 comme point de reprise malgré la publication de V3.119. Correction effectuée : dernier point Q698/10.667, prochaine question Q699. L'index reste référencé sur V3.119 et la branche `main` conserve V3.117, V3.118 et V3.119.
