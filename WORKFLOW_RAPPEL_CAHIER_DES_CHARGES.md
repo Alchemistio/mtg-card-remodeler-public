@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.116](MTG_Card_Remodeler_Cahier_des_charges_V3.116.md)
+- Cahier des charges de référence au dernier contrôle : [V3.117](MTG_Card_Remodeler_Cahier_des_charges_V3.117.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q647**
-- Dernière section : **10.616**
-- Prochain numéro disponible : **Q648** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.116
+- Dernière question enregistrée : **Q648**
+- Dernière section : **10.617**
+- Prochain numéro disponible : **Q649** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.117
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -236,3 +236,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q647 :** l'utilisateur choisit l'option 3. L'audit d'une version corrective est proportionnel au risque : vérification ciblée pour les corrections mineures, audit complet pour les corrections majeures, critiques, transversales ou insuffisamment circonscrites. Les critères d'acceptation restent inchangés et aucun défaut connu, même mineur, ne peut subsister avant acceptation. Publication de V3.116, section 10.616 ; index recalculé et repointé vers V3.116. Point de reprise : Q647 / section 10.616 ; prochaine question Q648. La branche `main` conserve V3.114, V3.115 et V3.116 ; V3.113 est retirée de `main`, historique Git préservé. Aucun code du remodeler n'a été modifié.
+
+
+- **2026-11-14 — Enregistrement de Q648 :** l'utilisateur choisit l'option 3 : protection proportionnelle au risque face à un défaut grave découvert après publication. Les opérations présentant un risque critique pour la sécurité ou l'intégrité des données sont bloquées jusqu'à correction ou protection fiable ; les risques moins élevés font l'objet d'avertissements clairs et de solutions temporaires vérifiées lorsqu'elles existent. Publication de V3.117, section 10.617 ; index repointé vers V3.117 et liens de toutes les questions recalculés à partir du document complet. Dernière question : Q648 ; dernière section : 10.617 ; prochaine question : Q649. La branche `main` doit conserver V3.115, V3.116 et V3.117 ; V3.114 est retirée de `main` après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
