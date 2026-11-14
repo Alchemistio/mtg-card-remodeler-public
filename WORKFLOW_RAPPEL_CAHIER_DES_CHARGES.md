@@ -4,7 +4,7 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.118](MTG_Card_Remodeler_Cahier_des_charges_V3.118.md)
+- Cahier des charges de référence au dernier contrôle : [V3.119](MTG_Card_Remodeler_Cahier_des_charges_V3.119.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q673**
 - Dernière section : **10.642**
@@ -104,12 +104,13 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.116.**
-- **Dernière question enregistrée : Q647.**
-- **Dernière section : 10.616.**
-- **Prochaine question disponible : Q648.**
-- Q643 à Q647 définissent le périmètre complet visé, le développement modulaire sans autorisation anticipée, la validation mixte avec audit global, l'absence de tout défaut connu avant acceptation, le cycle de maintenance après acceptation et l'audit proportionnel au risque pour chaque version corrective.
-- **Rétention :** la branche `main` doit conserver uniquement V3.114, V3.115 et V3.116. Les versions antérieures restent consultables dans l'historique Git.
+- **Version courante : V3.119.**
+- **Dernière question enregistrée : Q698.**
+- **Dernière section : 10.667.**
+- **Prochaine question disponible : Q699.**
+- Q674 à Q678 traitent de la portabilité des noms et chemins entre systèmes ; Q679 à Q683 de la coordination des accès concurrents et externes ; Q684 à Q688 du cycle de vie et de la récupération ; Q689 à Q693 de la journalisation structurée et sûre ; Q694 à Q698 de l'ordonnancement et de la réactivité.
+- Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
+- **Rétention :** la branche `main` doit conserver uniquement V3.117, V3.118 et V3.119. Après vérification de V3.119 et de son index, V3.116 peut être retirée de `main`, historique Git préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -242,3 +243,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement des cinq séries de décisions techniques Q649 à Q673 :** après audit de l'index et des sections existantes, aucun nouvel arbitrage fonctionnel crucial n'a nécessité l'intervention de l'utilisateur. L'assistant a documenté 25 décisions de détail en cinq séries : (1) importation sûre des fichiers et archives ; (2) intégrité des données et persistance ; (3) chaîne d'approvisionnement et publication sécurisée ; (4) internationalisation et accessibilité ; (5) tests de robustesse et validation multiplateforme. Ces choix sont explicitement identifiés comme décisions techniques de l'assistant, non comme validations de l'utilisateur. Publication de V3.118, sections 10.618 à 10.642 ; index recalculé et vérifié. Dernière question : Q673 ; dernière section : 10.642 ; prochaine question : Q674. La branche `main` doit conserver V3.116, V3.117 et V3.118 ; V3.115 est retirée de `main`, historique Git préservé. Aucun code du remodeler n'a été modifié.
+
+
+- **2026-11-14 — Enregistrement des cinq séries de décisions techniques Q674–Q698 :** après consultation de l'index et du cahier des charges V3.118, aucun arbitrage fonctionnel crucial n'a nécessité l'intervention de l'utilisateur. L'assistant a documenté 25 décisions techniques autonomes en cinq séries : portabilité des chemins et noms de fichiers ; coordination des projets et accès externes ; cycle de vie et récupération ; observabilité et journalisation sûre ; ordonnancement et réactivité. Elles sont explicitement attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Publication de V3.119, sections 10.643 à 10.667 ; index actualisé vers V3.119 avec 646 questions et références. Dernière question : Q698 ; dernière section : 10.667 ; prochaine question : Q699. La branche `main` doit conserver V3.117, V3.118 et V3.119 ; V3.116 sera retirée après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
