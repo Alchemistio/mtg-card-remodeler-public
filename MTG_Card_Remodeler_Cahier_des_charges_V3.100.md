@@ -5594,7 +5594,7 @@ La disponibilité d'une nouvelle version de MTG Card Remodeler doit être signal
 - La vérification de disponibilité suit la politique définie à la section 10.599 : activée par défaut, désactivable dans les paramètres, non bloquante et différée lorsqu'aucune connexion réseau n'est disponible.
 - Lorsqu'une nouvelle version est détectée, l'application affiche une notification claire indiquant qu'une mise à jour est disponible et fournit les informations utiles déjà prévues sur la version proposée.
 - La détection d'une mise à jour ne déclenche aucun téléchargement automatique, en arrière-plan ou différé.
-- Le téléchargement ne commence qu'après une action explicite de l'utilisateur depuis l'interface de mise à jour.
+- Le fichier de mise à jour est récupéré manuellement en dehors de l'application, conformément à la section 10.601 ; aucun téléchargement intégré n'est proposé.
 - L'installation ne commence qu'après une action explicite distincte de l'utilisateur, une fois le téléchargement terminé et les contrôles requis réussis.
 - L'utilisateur conserve la possibilité d'ignorer ou de différer la mise à jour. Une notification ignorée ne doit pas provoquer de téléchargement ultérieur automatique.
 - La vérification, le téléchargement, la validation cryptographique, les contrôles de compatibilité, la sauvegarde préalable et l'installation restent des étapes distinctes. Les protections d'intégrité, de compatibilité, de préservation des données et de retour arrière définies ailleurs dans le cahier des charges demeurent obligatoires.
