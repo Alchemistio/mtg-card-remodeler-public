@@ -4546,18 +4546,6 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
 - Architecture technique détaillée.
  Les questions 354 à 358 définissent une architecture modulaire extensible pouvant accueillir des extensions externes, des modules internes indépendants activables ou désactivables lorsque cela est pertinent, la préservation de la compatibilité des projets existants, le versionnement et la migration automatique des formats avec possibilité de restauration, ainsi qu'une documentation technique complète couvrant l'architecture, les modules, les dépendances, les interfaces internes et les procédures de maintenance.
 
-## 10.616 Audit proportionnel au risque des versions correctives — Question 647, décision validée par l'utilisateur
-
-L'étendue de la vérification préalable à l'acceptation d'une version corrective est proportionnelle au risque, à la portée et aux conséquences potentielles de la correction. Une correction localisée et à faible risque ne nécessite pas automatiquement de répéter l'intégralité de l'audit du produit ; les changements susceptibles d'affecter largement le logiciel imposent en revanche une vérification étendue.
-
-- Pour une correction mineure, localisée et dont les effets sont circonscrits, la vérification porte au minimum sur le défaut corrigé, les fonctionnalités directement concernées, les dépendances pertinentes et les tests de non-régression ciblés.
-- Pour une correction majeure, critique, touchant plusieurs modules ou susceptible d'affecter des fonctions transversales, la vérification est étendue et comprend un audit complet de conformité au cahier des charges ainsi que la reprise des tests de validation pertinents à l'échelle du produit.
-- Le niveau de vérification est déterminé et justifié à partir de la gravité du défaut initial, de l'étendue des changements, des dépendances, de la sensibilité des données et des opérations touchées, ainsi que du risque de régression.
-- Lorsque plusieurs catégories de risque se cumulent ou que l'impact ne peut pas être circonscrit de manière fiable, le niveau supérieur de vérification est retenu. Une incertitude importante ne peut pas être utilisée pour réduire l'étendue de l'audit.
-- Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
-- Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
-- Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
-
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -5827,6 +5815,18 @@ L'acceptation finale d'une version demeure valable pour cette version même si u
 - La décision d'accepter une version corrective en tant que nouvelle version appartient à l'utilisateur selon les critères d'acceptation et d'audit définis aux sections 10.613 et 10.614.
 
 
+## 10.616 Audit proportionnel au risque des versions correctives — Question 647, décision validée par l'utilisateur
+
+L'étendue de la vérification préalable à l'acceptation d'une version corrective est proportionnelle au risque, à la portée et aux conséquences potentielles de la correction. Une correction localisée et à faible risque ne nécessite pas automatiquement de répéter l'intégralité de l'audit du produit ; les changements susceptibles d'affecter largement le logiciel imposent en revanche une vérification étendue.
+
+- Pour une correction mineure, localisée et dont les effets sont circonscrits, la vérification porte au minimum sur le défaut corrigé, les fonctionnalités directement concernées, les dépendances pertinentes et les tests de non-régression ciblés.
+- Pour une correction majeure, critique, touchant plusieurs modules ou susceptible d'affecter des fonctions transversales, la vérification est étendue et comprend un audit complet de conformité au cahier des charges ainsi que la reprise des tests de validation pertinents à l'échelle du produit.
+- Le niveau de vérification est déterminé et justifié à partir de la gravité du défaut initial, de l'étendue des changements, des dépendances, de la sensibilité des données et des opérations touchées, ainsi que du risque de régression.
+- Lorsque plusieurs catégories de risque se cumulent ou que l'impact ne peut pas être circonscrit de manière fiable, le niveau supérieur de vérification est retenu. Une incertitude importante ne peut pas être utilisée pour réduire l'étendue de l'audit.
+- Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
+- Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
+- Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
+
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -5841,12 +5841,12 @@ L'acceptation finale d'une version demeure valable pour cette version même si u
 
 # 12. État du cahier des charges
 
-**Version actuelle : V3.115**  
-**Dernière décision enregistrée : Q646 — section 10.615.**  
-**Prochaine question disponible : Q647.**  
+**Version actuelle : V3.116**  
+**Dernière décision enregistrée : Q647 — section 10.616.**  
+**Prochaine question disponible : Q648.**  
 **Statut :** cahier des charges en cours de définition ; aucune clôture ni autorisation de développement n'a été prononcée.
 
-Le présent document consolide les décisions fonctionnelles et techniques validées jusqu'à Q646. Il définit un objectif de réalisation couvrant l'ensemble des fonctionnalités retenues, avec une progression de développement par modules, des validations intermédiaires et des tests associés. Cette organisation ne réduit pas le périmètre final.
+Le présent document consolide les décisions fonctionnelles et techniques validées jusqu'à Q647. Il définit un objectif de réalisation couvrant l'ensemble des fonctionnalités retenues, avec une progression de développement par modules, des validations intermédiaires et des tests associés. Cette organisation ne réduit pas le périmètre final. La Q647 impose un audit proportionnel au risque pour les versions correctives : vérification ciblée pour les corrections mineures et audit complet pour les corrections majeures, critiques, transversales ou dont l'impact ne peut pas être circonscrit. Les critères d'acceptation restent inchangés et aucun défaut connu, même mineur, ne peut subsister avant acceptation.
 
 Les exigences décrites constituent la référence de conception. Elles ne doivent pas être considérées comme implémentées tant que le développement correspondant n'a pas été réalisé et vérifié. La phase de développement ne pourra commencer qu'après une clôture explicite du cahier des charges et une autorisation distincte de l'utilisateur.
 
