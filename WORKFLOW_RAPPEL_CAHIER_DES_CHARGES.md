@@ -6,9 +6,9 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.96](MTG_Card_Remodeler_Cahier_des_charges_V3.96.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q624**
-- Dernière section : **10.594**
-- Prochain numéro disponible : **Q625** ; prochain bloc de questions à constituer après audit, sans forcer cinq sujets s'il n'existe pas cinq arbitrages cruciaux
+- Dernière question enregistrée : **Q627**
+- Dernière section : **10.597**
+- Prochain numéro disponible : **Q628** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.96
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -110,7 +110,7 @@ Les questions Q594 à Q618 ont été proposées dans un message précédent sans
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.96, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Prochain numéro disponible : Q625.** Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.96. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.96, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Q625 à Q627 ont désormais reçu une réponse et sont enregistrées dans V3.96, sections 10.595 à 10.597.** Le prochain identifiant disponible est Q628. Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.96. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
