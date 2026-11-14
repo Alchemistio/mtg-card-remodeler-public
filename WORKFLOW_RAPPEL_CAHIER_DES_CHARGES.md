@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.115](MTG_Card_Remodeler_Cahier_des_charges_V3.115.md)
+- Cahier des charges de référence au dernier contrôle : [V3.116](MTG_Card_Remodeler_Cahier_des_charges_V3.116.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q646**
-- Dernière section : **10.615**
-- Prochain numéro disponible : **Q647** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.115
+- Dernière question enregistrée : **Q647**
+- Dernière section : **10.616**
+- Prochain numéro disponible : **Q648** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.116
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -28,10 +28,8 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 - **Ne pas intégrer, modifier ou commencer à développer le code du remodeler tant que l'utilisateur n'a pas explicitement déclaré le cahier des charges terminé et autorisé la phase de développement.**
 - Dans cette phase, le travail porte sur la spécification, les décisions, les documents et leur vérification GitHub.
 - Continuer de manière proactive. Ne pas s'arrêter après une série si le contexte permet de poursuivre.
-- L'utilisateur souhaite des séries de **cinq questions** à la fois, avec réponses compactes sous forme de cinq chiffres (ex. `1,2,3,1,2`).
-- À chaque relance, poursuivre un cycle interne de cinq séries de cinq sujets (25 sujets examinés), sauf si le stock de décisions cruciales restantes est inférieur.
-- **Ne soumettre à l'utilisateur qu'un seul bloc de cinq questions par message.** Les quatre autres séries sont préparées et analysées en interne ; elles ne sont pas affichées dans le même message. Après la réponse de l'utilisateur, poursuivre avec le bloc suivant.
-- Ne jamais confondre le volume de travail interne (5 × 5) avec le volume de questions présenté à l'utilisateur (1 × 5).
+- L'utilisateur souhaite être sollicité uniquement pour les arbitrages réellement cruciaux. Ne pas fabriquer des séries de cinq questions ni maintenir un quota artificiel : analyser les sujets par lots en interne et ne présenter qu'un seul bloc compact lorsque plusieurs décisions cruciales indépendantes sont effectivement nécessaires.
+- Les détails et choix techniques ordinaires sont tranchés de manière autonome, cohérente avec les décisions existantes, puis documentés comme décisions de l'assistant et non comme choix validés par l'utilisateur.
 - Ne solliciter l'utilisateur que pour les arbitrages fonctionnels réellement cruciaux : décisions qui changent sensiblement le produit, son comportement, ses priorités, ses compromis ou ses limites. Éviter toute question de détail.
 - Pour les sujets de détail, conserver le même processus d'analyse et de documentation, mais **rechercher sur Internet les meilleures pratiques et réponses disponibles**, comparer prioritairement les sources officielles, normes, documentations techniques et références reconnues, puis choisir la solution la plus robuste et adaptée au projet.
 - Les réponses de détail retenues par l'assistant doivent être documentées comme des décisions techniques proposées/prises par l'assistant, avec les justifications et références utiles ; elles ne doivent pas être présentées comme des choix explicitement validés par l'utilisateur.
@@ -106,17 +104,13 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.115.**
-- **Dernière question enregistrée : Q644.**
-- **Dernière section : 10.613.**
-- **Prochaine question disponible : Q645.**
-- **Dernière décision enregistrée :** Q642 — les sauvegardes sont portables entre Windows, macOS et Linux, avec adaptation des chemins et paramètres propres au système cible et signalement des dépendances non transposables. Q641 impose une restauration complète strictement conforme à l'état sauvegardé, avec point de restauration préalable lorsque cela est techniquement possible. Q640 exclut le chiffrement applicatif spécifique au profit du chiffrement natif du système ou du support.
-- **Point d'attention GitHub :** un dépôt public peut être consulté et forké selon les conditions de la plateforme. Cette capacité de fork doit être distinguée d'une autorisation générale de redistribution ou d'exploitation commerciale ; si l'interdiction du fork lui-même devient impérative, la visibilité publique devra être réévaluée.
-- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. État vérifié après publication de V3.115 : V3.108, V3.109 et V3.115 sont les trois seules versions présentes ; V3.107 a été retirée de `main` et reste consultable dans l'historique Git.
-- Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
-- Q619 à Q642 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux, leur inclusion systématique dans toutes les sauvegardes locales et le recours au chiffrement natif du système ou du support.
-- Continuer l'audit à partir de l'index V3.108, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Q640 est enregistrée en section 10.609 ; Q641 est le prochain identifiant disponible. Le chiffrement applicatif des sauvegardes a été écarté au profit du chiffrement natif du système ou du support. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
-- **Aucun développement du remodeler n'est autorisé** avant que l'utilisateur ait explicitement déclaré le cahier des charges terminé et autorisé cette phase.
+- **Version courante : V3.116.**
+- **Dernière question enregistrée : Q647.**
+- **Dernière section : 10.616.**
+- **Prochaine question disponible : Q648.**
+- Q643 à Q647 définissent le périmètre complet visé, le développement modulaire sans autorisation anticipée, la validation mixte avec audit global, l'absence de tout défaut connu avant acceptation, le cycle de maintenance après acceptation et l'audit proportionnel au risque pour chaque version corrective.
+- **Rétention :** la branche `main` doit conserver uniquement V3.114, V3.115 et V3.116. Les versions antérieures restent consultables dans l'historique Git.
+- **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -236,7 +230,10 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Enregistrement de Q645 :** l'utilisateur choisit l'option 2 : aucun défaut, même mineur, ne peut subsister avant la validation finale. Tout défaut connu doit être corrigé et vérifié ; la validation est reportée tant qu'une anomalie reste ouverte. Publication de V3.115, section 10.614 ; index actualisé. Dernière question : Q645 ; dernière section : 10.614 ; prochaine question : Q646. La branche main doit conserver V3.112, V3.113 et V3.115 ; V3.111 est retirée de main après vérification, son historique Git restant intact. Aucun développement du remodeler n'est autorisé avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 
-- **2026-11-14 — Enregistrement de Q646 :** l'utilisateur choisit le cycle correctif normal après acceptation. L'acceptation de la version antérieure demeure valable ; tout défaut découvert ultérieurement est suivi dans la maintenance, corrigé et vérifié avant publication d'une version corrective distincte, avec traçabilité et tests de non-régression pertinents. Publication de V3.115, section 10.615 ; index mis à jour et liens de lignes recalculés pour toutes les sections repérées dans le cahier courant. Dernière question : Q646 ; dernière section : 10.615 ; prochaine question : Q647. La branche main conserve V3.113, V3.115 et V3.115 ; V3.112 est retirée de main après vérification, historique Git préservé. Aucune intégration au remodeler ni aucun développement avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
+- **2026-11-14 — Enregistrement de Q646 :** l'utilisateur choisit le cycle correctif normal après acceptation. L'acceptation de la version antérieure demeure valable ; tout défaut découvert ultérieurement est suivi dans la maintenance, corrigé et vérifié avant publication d'une version corrective distincte, avec traçabilité et tests de non-régression pertinents. Publication de V3.115, section 10.615 ; index mis à jour et liens de lignes recalculés pour toutes les sections repérées dans le cahier courant. Dernière question : Q646 ; dernière section : 10.615 ; prochaine question : Q648. La branche main conserve V3.113, V3.115 et V3.115 ; V3.112 est retirée de main après vérification, historique Git préservé. Aucune intégration au remodeler ni aucun développement avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 
 - **2026-11-14 — Restauration de l'intégrité documentaire et enregistrement de Q646 :** un contrôle croisé de l'index a révélé que les fichiers V3.113 et V3.114 publiés précédemment ne contenaient plus plusieurs sections pourtant présentes dans l'index. Le contenu intégral a été restauré à partir du fichier V3.111 conservé dans l'historique Git (commit source 365c670972f3c73bbbc43f41c461323f9f6829bc), puis les décisions Q644, Q645 et Q646 ont été réappliquées dans les versions successives. V3.113, V3.114 et V3.115 sont ainsi reconstruites avec le contenu complet et leurs décisions respectives. L'index est repointé vers V3.115 et les liens de sections recalculés à partir du document complet. Q646 : cycle correctif normal après acceptation ; le statut de la version précédente reste valable et le défaut découvert est traité dans une version corrective vérifiée. Dernière question : Q646 ; dernière section : 10.615 ; prochaine question : Q647. La branche main conserve V3.113, V3.114 et V3.115 ; V3.112 est retirée de main, historique Git préservé. Aucun développement ni intégration au remodeler avant clôture explicite et autorisation distincte de l'utilisateur.
+
+
+- **2026-11-14 — Enregistrement de Q647 :** l'utilisateur choisit l'option 3. L'audit d'une version corrective est proportionnel au risque : vérification ciblée pour les corrections mineures, audit complet pour les corrections majeures, critiques, transversales ou insuffisamment circonscrites. Les critères d'acceptation restent inchangés et aucun défaut connu, même mineur, ne peut subsister avant acceptation. Publication de V3.116, section 10.616 ; index recalculé et repointé vers V3.116. Point de reprise : Q647 / section 10.616 ; prochaine question Q648. La branche `main` conserve V3.114, V3.115 et V3.116 ; V3.113 est retirée de `main`, historique Git préservé. Aucun code du remodeler n'a été modifié.
