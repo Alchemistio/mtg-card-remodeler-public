@@ -128,9 +128,9 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 ## 8. Conventions de présentation et de collaboration
 
 - Répondre en français.
-- Présenter les séries de cinq questions de façon lisible et compacte.
-- Les choix doivent être numérotés clairement (1, 2, 3, etc.).
-- Une réponse de cinq chiffres correspond aux cinq questions dans l'ordre.
+- Ne présenter des questions à l'utilisateur que pour les arbitrages fonctionnels réellement cruciaux, dans un seul bloc compact.
+- Les choix cruciaux doivent être numérotés clairement (1, 2, 3, etc.).
+- Une réponse compacte peut être interprétée dans l'ordre des choix présentés ; les décisions de détail restent autonomes.
 - Si l'utilisateur répond partiellement ou ajoute une précision en texte, interpréter ce qui est clair et ne demander que l'information indispensable.
 - Pour les nouveaux raccourcis clavier, réutiliser les conventions générales de raccourcis déjà établies ; ne pas inventer un système concurrent.
 - Ne pas annoncer comme validée une option que l'utilisateur n'a pas choisie.
@@ -246,3 +246,5 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement des cinq séries de décisions techniques Q674–Q698 :** après consultation de l'index et du cahier des charges V3.118, aucun arbitrage fonctionnel crucial n'a nécessité l'intervention de l'utilisateur. L'assistant a documenté 25 décisions techniques autonomes en cinq séries : portabilité des chemins et noms de fichiers ; coordination des projets et accès externes ; cycle de vie et récupération ; observabilité et journalisation sûre ; ordonnancement et réactivité. Elles sont explicitement attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Publication de V3.119, sections 10.643 à 10.667 ; index actualisé vers V3.119 avec 646 questions et références. Dernière question : Q698 ; dernière section : 10.667 ; prochaine question : Q699. La branche `main` doit conserver V3.117, V3.118 et V3.119 ; V3.116 sera retirée après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
+
+- **2026-11-14 — Clarification de cohérence du workflow :** suppression de l'ambiguïté entre les anciennes consignes de présentation de cinq questions et la règle actuelle de prise en charge autonome des détails. Les cinq séries de cinq décisions techniques sont désormais explicitement traitées par l'assistant ; seules les décisions fonctionnelles cruciales sont soumises à l'utilisateur dans un bloc unique.
