@@ -12,7 +12,9 @@
 
 | Version | Description |
 |---|---|
-| V3.99 | Notification uniquement pour les mises à jour de l'application, sans téléchargement ni installation automatiques |\n| V3.98 | Vérification automatique des mises à jour désactivable dans les paramètres |\n| V3.97 | Fonctionnement hors ligne prioritaire et absence de dépendance Internet pour les fonctions locales |
+| V3.99 | Notification uniquement pour les mises à jour de l'application, sans téléchargement ni installation automatiques |
+| V3.98 | Vérification automatique des mises à jour désactivable dans les paramètres |
+| V3.97 | Fonctionnement hors ligne prioritaire et absence de dépendance Internet pour les fonctions locales |
 | V3.96 | Destination privée du logiciel, code source consultable sous restrictions et absence de monétisation décidée à ce stade |
 | V3.95 | Prise en charge officielle de Windows, macOS et Linux |
 | V3.94 | Fonctionnement local, transferts manuels et absence de services communautaires |
