@@ -6,9 +6,9 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.105](MTG_Card_Remodeler_Cahier_des_charges_V3.105.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q636**
-- Dernière section : **10.605**
-- Prochain numéro disponible : **Q637** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.105
+- Dernière question enregistrée : **Q637**
+- Dernière section : **10.606**
+- Prochain numéro disponible : **Q638** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.105
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -205,7 +205,7 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Enregistrement de Q636 :** l'utilisateur choisit l'option 3 : la confirmation explicite de suppression des données, avec le récapitulatif et les protections déjà définis en section 10.603, suffit. Aucune proposition systématique de dernière sauvegarde exportable n'est ajoutée au parcours de désinstallation ; les mécanismes de sauvegarde existants restent disponibles indépendamment. Publication de V3.103, section 10.604 ; index actualisé et liens recalculés. Dernière question : Q635 ; dernière section : 10.604 ; prochaine question : Q636. La rétention de trois versions implique de conserver V3.101, V3.102 et V3.103 dans `main`, puis de retirer V3.100 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
-- **2026-11-14 — Enregistrement de Q636 :** l'utilisateur choisit l'anonymisation automatique par défaut des rapports de diagnostic exportés, avec aperçu avant export. Les informations potentiellement identifiantes sont masquées ou remplacées en préservant autant que possible la valeur diagnostique ; les secrets restent toujours exclus ou masqués ; aucune transmission automatique n'est autorisée. Publication de V3.105, section 10.605 ; index et liens actualisés. Dernière question : Q636 ; dernière section : 10.605 ; prochaine question : Q637. La rétention de trois versions implique de conserver V3.102, V3.103 et V3.105 dans `main`, puis de retirer V3.101 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+- **2026-11-14 — Enregistrement de Q636 :** l'utilisateur choisit l'anonymisation automatique par défaut des rapports de diagnostic exportés, avec aperçu avant export. Les informations potentiellement identifiantes sont masquées ou remplacées en préservant autant que possible la valeur diagnostique ; les secrets restent toujours exclus ou masqués ; aucune transmission automatique n'est autorisée. Publication de V3.104, section 10.605 ; index et liens actualisés. Dernière question : Q636 ; dernière section : 10.605 ; prochaine question : Q637. La rétention de trois versions implique de conserver V3.102, V3.103 et V3.104 dans `main`, puis de retirer V3.101 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
 - **2026-11-14 — Enregistrement de Q637 :** l'utilisateur choisit l'anonymisation obligatoire, sans possibilité de dérogation, pour les rapports de diagnostic exportés. Aucun réglage ne peut désactiver la protection ni restaurer les informations identifiantes masquées ; l'aperçu reste obligatoire et les secrets restent exclus ou masqués. Publication de V3.105, section 10.606 ; index actualisé et liens recalculés. Dernière question : Q637 ; dernière section : 10.606 ; prochaine question : Q638. La rétention de trois versions implique de conserver V3.103, V3.104 et V3.105 dans `main`, puis de retirer V3.102 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
