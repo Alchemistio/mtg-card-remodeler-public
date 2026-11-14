@@ -4547,19 +4547,6 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
 - Architecture technique détaillée.
  Les questions 354 à 358 définissent une architecture modulaire extensible pouvant accueillir des extensions externes, des modules internes indépendants activables ou désactivables lorsque cela est pertinent, la préservation de la compatibilité des projets existants, le versionnement et la migration automatique des formats avec possibilité de restauration, ainsi qu'une documentation technique complète couvrant l'architecture, les modules, les dépendances, les interfaces internes et les procédures de maintenance.
 
-## 10.617 Protection proportionnelle au risque face à un défaut critique après publication — Question 648, décision validée par l'utilisateur
-
-Lorsqu'un défaut grave est découvert dans une version déjà acceptée et utilisée, et qu'aucune correction n'est encore disponible, l'application applique des mesures de protection proportionnelles au risque réel. Elle bloque les opérations présentant un risque critique pour la sécurité ou l'intégrité des données ; pour les risques moins élevés, elle avertit clairement l'utilisateur, explique le problème et présente les solutions temporaires fiables lorsqu'elles existent.
-
-- Les opérations susceptibles d'entraîner une perte, une corruption ou une altération irréversible des données, une atteinte à leur intégrité ou un risque critique pour la sécurité sont désactivées ou bloquées jusqu'à ce qu'une correction ou une mesure de protection fiable soit disponible.
-- Le blocage est limité aux fonctionnalités et opérations réellement concernées lorsque cette isolation est techniquement fiable. Les fonctions indépendantes et sans risque associé restent accessibles ; l'application ne doit pas être rendue globalement inutilisable sans nécessité démontrée.
-- Pour les défauts dont le risque ne justifie pas un blocage, l'application affiche un avertissement visible et compréhensible précisant le défaut connu, sa gravité, les fonctionnalités touchées et les conséquences possibles.
-- Lorsqu'une solution temporaire ou un contournement a été vérifié comme fiable, l'application le présente avec ses limites et les précautions nécessaires. Elle ne doit jamais présenter une mesure non vérifiée comme une garantie de sécurité.
-- Les restrictions et avertissements restent en vigueur tant que le défaut n'est pas corrigé ou que le risque n'a pas été réduit par une mesure validée. Leur levée doit être fondée sur une vérification documentée.
-- La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
-- Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
-- Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
-
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -5840,6 +5827,20 @@ L'étendue de la vérification préalable à l'acceptation d'une version correct
 - Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
 - Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
 - Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
+
+
+## 10.617 Protection proportionnelle au risque face à un défaut critique après publication — Question 648, décision validée par l'utilisateur
+
+Lorsqu'un défaut grave est découvert dans une version déjà acceptée et utilisée, et qu'aucune correction n'est encore disponible, l'application applique des mesures de protection proportionnelles au risque réel. Elle bloque les opérations présentant un risque critique pour la sécurité ou l'intégrité des données ; pour les risques moins élevés, elle avertit clairement l'utilisateur, explique le problème et présente les solutions temporaires fiables lorsqu'elles existent.
+
+- Les opérations susceptibles d'entraîner une perte, une corruption ou une altération irréversible des données, une atteinte à leur intégrité ou un risque critique pour la sécurité sont désactivées ou bloquées jusqu'à ce qu'une correction ou une mesure de protection fiable soit disponible.
+- Le blocage est limité aux fonctionnalités et opérations réellement concernées lorsque cette isolation est techniquement fiable. Les fonctions indépendantes et sans risque associé restent accessibles ; l'application ne doit pas être rendue globalement inutilisable sans nécessité démontrée.
+- Pour les défauts dont le risque ne justifie pas un blocage, l'application affiche un avertissement visible et compréhensible précisant le défaut connu, sa gravité, les fonctionnalités touchées et les conséquences possibles.
+- Lorsqu'une solution temporaire ou un contournement a été vérifié comme fiable, l'application le présente avec ses limites et les précautions nécessaires. Elle ne doit jamais présenter une mesure non vérifiée comme une garantie de sécurité.
+- Les restrictions et avertissements restent en vigueur tant que le défaut n'est pas corrigé ou que le risque n'a pas été réduit par une mesure validée. Leur levée doit être fondée sur une vérification documentée.
+- La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
+- Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
+- Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
 
 # 11. Principes généraux de conception
 
