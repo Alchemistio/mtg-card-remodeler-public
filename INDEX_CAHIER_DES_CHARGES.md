@@ -4,7 +4,7 @@
 
 - **Version de référence indexée : V3.121**
 - **Total des questions indexées : 696**
-- **Cahier des charges :** [MTG Card Remodeler V3.121](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.120.md)
+- **Cahier des charges :** [MTG Card Remodeler V3.121](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.121.md)
 - **Règle de maintenance :** à chaque nouvelle version, mettre à jour cet index, recalculer toutes les lignes et remplacer les liens. Seuls les trois fichiers de cahier des charges les plus récents restent dans la branche `main` ; les anciennes versions restent consultables dans l'historique Git.
 - **Méthode de recherche :** partir du numéro de question si connu ; sinon repérer le thème, puis ouvrir le lien de la ligne correspondante. Les identifiants de question et les titres de section sont plus stables que les numéros de ligne.
 
