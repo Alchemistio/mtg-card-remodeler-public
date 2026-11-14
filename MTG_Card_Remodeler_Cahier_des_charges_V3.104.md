@@ -13,8 +13,8 @@
 | Version | Description |
 |---|---|
 | V3.104 | Anonymisation automatique des rapports de diagnostic exportés |
+| V3.103 | Suppression des données à la désinstallation sans sauvegarde supplémentaire proposée |
 | V3.102 | Désinstallation de l'application et conservation des données par défaut |
-| V3.101 | Licence personnelle non commerciale du code source |
 
 # 1. Présentation générale
 
