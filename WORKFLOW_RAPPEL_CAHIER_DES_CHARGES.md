@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.101](MTG_Card_Remodeler_Cahier_des_charges_V3.101.md)
+- Cahier des charges de référence au dernier contrôle : [V3.102](MTG_Card_Remodeler_Cahier_des_charges_V3.101.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q632**
-- Dernière section : **10.602**
-- Prochain numéro disponible : **Q633** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.101
+- Dernière question enregistrée : **Q634**
+- Dernière section : **10.603**
+- Prochain numéro disponible : **Q635** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.102
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -197,3 +197,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q632 :** l'utilisateur choisit une licence personnelle non commerciale pour le code source. Le périmètre retenu autorise l'étude et l'utilisation privée non commerciale, mais interdit la redistribution et l'exploitation commerciale sans autorisation écrite distincte. Une licence logicielle personnalisée devra être rédigée et relue avant publication comme texte juridique définitif ; les licences tierces restent applicables. L'index signale également la limite propre aux dépôts publics GitHub, dont les utilisateurs peuvent consulter et forker le contenu au titre des conditions de la plateforme. Publication de V3.101, section 10.602 ; index mis à jour. Dernière question : Q632 ; dernière section : 10.602 ; prochaine question : Q633. La rétention de trois versions implique de conserver V3.99, V3.100 et V3.101 dans `main`, puis de retirer V3.98 après vérification, sans réécrire l'historique Git.
+
+
+- **2026-11-14 — Enregistrement de Q634 :** l'utilisateur choisit de demander lors de la désinstallation de l'application s'il souhaite conserver ou supprimer ses données, avec conservation sélectionnée par défaut. Toute suppression doit être clairement délimitée et confirmée explicitement. Publication de V3.102, section 10.603 ; index actualisé avec Q634 et ses liens. Dernière question : Q634 ; dernière section : 10.603 ; prochaine question : Q635. La rétention de trois versions implique de conserver V3.100, V3.101 et V3.102 dans `main`, puis de retirer V3.99 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
