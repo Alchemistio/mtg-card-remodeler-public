@@ -8,7 +8,7 @@
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Dernière question enregistrée : **Q748**
 - Dernière section : **10.717**
-- Prochain numéro disponible : **Q749** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.120
+- Prochain numéro disponible : **Q749** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.121
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
