@@ -29,7 +29,7 @@ Questions indexées : [625](#question-625) · [626](#question-626) · [627](#que
 
 ### Journaux locaux, sauvegardes et confidentialité des diagnostics (questions 343, 353 et 636 à 639)
 
-Les journaux détaillés restent locaux et leur durée de conservation ainsi que leurs limites de stockage sont configurables. Les rapports de diagnostic destinés à l'export sont anonymisés automatiquement et obligatoirement, sans possibilité de désactivation ou de réintroduction des données identifiantes. Un aperçu avant export reste obligatoire ; les secrets sont toujours exclus ou masqués.
+Les journaux détaillés restent locaux, leur durée de conservation et leurs limites de stockage sont configurables, et ils sont inclus systématiquement dans toutes les sauvegardes locales. Les rapports de diagnostic destinés à l'export sont anonymisés automatiquement et obligatoirement, sans possibilité de désactivation ou de réintroduction des données identifiantes. Un aperçu avant export reste obligatoire ; les secrets sont toujours exclus ou masqués.
 
 Questions indexées : [343](#question-343) · [353](#question-353) · [636](#question-636) · [637](#question-637) · [638](#question-638) · [639](#question-639)
 
