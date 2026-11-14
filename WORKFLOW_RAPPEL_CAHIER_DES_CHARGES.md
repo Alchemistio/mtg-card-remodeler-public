@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.102](MTG_Card_Remodeler_Cahier_des_charges_V3.101.md)
+- Cahier des charges de référence au dernier contrôle : [V3.103](MTG_Card_Remodeler_Cahier_des_charges_V3.103.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q634**
-- Dernière section : **10.603**
-- Prochain numéro disponible : **Q635** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.102
+- Dernière question enregistrée : **Q635**
+- Dernière section : **10.604**
+- Prochain numéro disponible : **Q636** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.103
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -96,7 +96,7 @@ Pour toute série validée :
 
 ## 5. Prévention des doublons — repères déjà connus
 
-À la reprise depuis l'état V3.101, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
+À la reprise depuis l'état V3.103, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
 
 - **Gestion des projets — section 10.10 / Q32** : création, nommage, sauvegarde, duplication, suppression, bascule, ressources intégrées ou partagées, paramètres de projet, récupération, historique, versions, import/export, dépendances, conflits, ressources manquantes et transfert entre ordinateurs.
 - **Dépendances des extensions — Q564 à Q568** : contraintes de versions, résolution déterministe, ordonnancement, cycles et dépendances facultatives.
@@ -106,16 +106,16 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.101.**
-- **Dernière question enregistrée : Q632.**
-- **Dernière section : 10.602.**
-- **Prochaine question disponible : Q633.**
+- **Version courante : V3.103.**
+- **Dernière question enregistrée : Q635.**
+- **Dernière section : 10.604.**
+- **Prochaine question disponible : Q636.**
 - **Dernière décision :** Q632 — licence personnelle non commerciale du code source : étude et usage privé non commercial autorisés ; redistribution et exploitation commerciale interdites sans autorisation écrite distincte. La licence logicielle personnalisée doit encore être rédigée et relue avant publication comme texte juridique définitif.
 - **Point d'attention GitHub :** un dépôt public peut être consulté et forké selon les conditions de la plateforme. Cette capacité de fork doit être distinguée d'une autorisation générale de redistribution ou d'exploitation commerciale ; si l'interdiction du fork lui-même devient impérative, la visibilité publique devra être réévaluée.
-- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. Après publication de V3.101, les versions conservées sont V3.99, V3.100 et V3.101. V3.98 doit être supprimée de la branche après vérification, sans suppression de son historique Git.
+- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. Après publication de V3.103, les versions conservées sont V3.101, V3.102 et V3.103. V3.100 doit être supprimée de la branche après vérification, sans suppression de son historique Git.
 - Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
-- Q619 à Q632 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour.
-- Continuer l'audit à partir de l'index V3.101, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
+- Q619 à Q635 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour.
+- Continuer l'audit à partir de l'index V3.103, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
 - **Aucun développement du remodeler n'est autorisé** avant que l'utilisateur ait explicitement déclaré le cahier des charges terminé et autorisé cette phase.
 
 ## 7. Domaines à explorer ensuite
@@ -200,3 +200,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q634 :** l'utilisateur choisit de demander lors de la désinstallation de l'application s'il souhaite conserver ou supprimer ses données, avec conservation sélectionnée par défaut. Toute suppression doit être clairement délimitée et confirmée explicitement. Publication de V3.102, section 10.603 ; index actualisé avec Q634 et ses liens. Dernière question : Q634 ; dernière section : 10.603 ; prochaine question : Q635. La rétention de trois versions implique de conserver V3.100, V3.101 et V3.102 dans `main`, puis de retirer V3.99 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+
+
+- **2026-11-14 — Enregistrement de Q635 :** l'utilisateur choisit l'option 3 : la confirmation explicite de suppression des données, avec le récapitulatif et les protections déjà définis en section 10.603, suffit. Aucune proposition systématique de dernière sauvegarde exportable n'est ajoutée au parcours de désinstallation ; les mécanismes de sauvegarde existants restent disponibles indépendamment. Publication de V3.103, section 10.604 ; index actualisé et liens recalculés. Dernière question : Q635 ; dernière section : 10.604 ; prochaine question : Q636. La rétention de trois versions implique de conserver V3.101, V3.102 et V3.103 dans `main`, puis de retirer V3.100 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
