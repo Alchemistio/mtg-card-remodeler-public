@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.112](MTG_Card_Remodeler_Cahier_des_charges_V3.112.md)
+- Cahier des charges de référence au dernier contrôle : [V3.113](MTG_Card_Remodeler_Cahier_des_charges_V3.113.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q643**
-- Dernière section : **10.612**
-- Prochain numéro disponible : **Q644** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.112
+- Dernière question enregistrée : **Q644**
+- Dernière section : **10.613**
+- Prochain numéro disponible : **Q645** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.113
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -106,13 +106,13 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.112.**
-- **Dernière question enregistrée : Q643.**
-- **Dernière section : 10.612.**
-- **Prochaine question disponible : Q644.**
+- **Version courante : V3.113.**
+- **Dernière question enregistrée : Q644.**
+- **Dernière section : 10.613.**
+- **Prochaine question disponible : Q645.**
 - **Dernière décision enregistrée :** Q642 — les sauvegardes sont portables entre Windows, macOS et Linux, avec adaptation des chemins et paramètres propres au système cible et signalement des dépendances non transposables. Q641 impose une restauration complète strictement conforme à l'état sauvegardé, avec point de restauration préalable lorsque cela est techniquement possible. Q640 exclut le chiffrement applicatif spécifique au profit du chiffrement natif du système ou du support.
 - **Point d'attention GitHub :** un dépôt public peut être consulté et forké selon les conditions de la plateforme. Cette capacité de fork doit être distinguée d'une autorisation générale de redistribution ou d'exploitation commerciale ; si l'interdiction du fork lui-même devient impérative, la visibilité publique devra être réévaluée.
-- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. État vérifié après publication de V3.112 : V3.108, V3.109 et V3.112 sont les trois seules versions présentes ; V3.107 a été retirée de `main` et reste consultable dans l'historique Git.
+- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. État vérifié après publication de V3.113 : V3.108, V3.109 et V3.113 sont les trois seules versions présentes ; V3.107 a été retirée de `main` et reste consultable dans l'historique Git.
 - Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
 - Q619 à Q642 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux, leur inclusion systématique dans toutes les sauvegardes locales et le recours au chiffrement natif du système ou du support.
 - Continuer l'audit à partir de l'index V3.108, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Q640 est enregistrée en section 10.609 ; Q641 est le prochain identifiant disponible. Le chiffrement applicatif des sauvegardes a été écarté au profit du chiffrement natif du système ou du support. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
@@ -221,10 +221,13 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Enregistrement de Q641 :** l'utilisateur choisit la restauration complète avec retour strict à l'état sauvegardé, sans fusion des modifications postérieures. L'état courant doit être protégé par un point de restauration préalable lorsque cela est techniquement possible. Publication de V3.109, section 10.610 ; index actualisé. Dernière question : Q641 ; dernière section : 10.610 ; prochaine question : Q642. La rétention de trois versions implique de conserver V3.107, V3.108 et V3.109 dans `main`, puis de retirer V3.106 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
-- **2026-11-14 — Enregistrement de Q642 :** l'utilisateur choisit la portabilité des sauvegardes entre Windows, macOS et Linux. Les chemins et paramètres propres au système cible sont adaptés lorsque cela est possible ; les dépendances non transposables doivent être signalées et résolues sans perte silencieuse de données. Publication de V3.112, section 10.611 ; index actualisé. Dernière question : Q642 ; dernière section : 10.611 ; prochaine question : Q643. La rétention de trois versions implique de conserver V3.108, V3.109 et V3.112 dans `main`, puis de retirer V3.107 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+- **2026-11-14 — Enregistrement de Q642 :** l'utilisateur choisit la portabilité des sauvegardes entre Windows, macOS et Linux. Les chemins et paramètres propres au système cible sont adaptés lorsque cela est possible ; les dépendances non transposables doivent être signalées et résolues sans perte silencieuse de données. Publication de V3.113, section 10.611 ; index actualisé. Dernière question : Q642 ; dernière section : 10.611 ; prochaine question : Q643. La rétention de trois versions implique de conserver V3.108, V3.109 et V3.113 dans `main`, puis de retirer V3.107 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
-- **2026-11-14 — Enregistrement de Q643 :** l'utilisateur choisit le périmètre complet comme objectif avant livraison finale. Le développement sera progressif par modules, avec tests et validations intermédiaires, sans transformer ces étapes en réduction du périmètre final. Publication de V3.112, section 10.612 ; index actualisé. Dernière question : Q643 ; dernière section : 10.612 ; prochaine question : Q644. La branche main doit conserver V3.109, V3.110 et V3.112 ; V3.108 est retirée de main après vérification, son historique Git restant intact. Aucun développement du remodeler n'est autorisé avant clôture explicite du cahier des charges et autorisation de l'utilisateur.
+- **2026-11-14 — Enregistrement de Q643 :** l'utilisateur choisit le périmètre complet comme objectif avant livraison finale. Le développement sera progressif par modules, avec tests et validations intermédiaires, sans transformer ces étapes en réduction du périmètre final. Publication de V3.113, section 10.612 ; index actualisé. Dernière question : Q643 ; dernière section : 10.612 ; prochaine question : Q644. La branche main doit conserver V3.109, V3.110 et V3.113 ; V3.108 est retirée de main après vérification, son historique Git restant intact. Aucun développement du remodeler n'est autorisé avant clôture explicite du cahier des charges et autorisation de l'utilisateur.
 
 
-- **2026-11-14 — Révision éditoriale V3.112 :** correction du chapitre 12, dont le récapitulatif était resté bloqué à V3.76, et actualisation du repère de version. Aucune décision fonctionnelle n'est modifiée. L'index est repointé vers V3.112 et Q643 est ajoutée au repérage thématique. Le point de reprise reste Q644 après audit de l'index et des sections pertinentes. La branche main conserve V3.110, V3.111 et V3.112 ; V3.109 est retirée de main, historique Git préservé. Aucun développement n'est autorisé avant clôture explicite et autorisation de l'utilisateur.
+- **2026-11-14 — Révision éditoriale V3.113 :** correction du chapitre 12, dont le récapitulatif était resté bloqué à V3.76, et actualisation du repère de version. Aucune décision fonctionnelle n'est modifiée. L'index est repointé vers V3.113 et Q643 est ajoutée au repérage thématique. Le point de reprise reste Q644 après audit de l'index et des sections pertinentes. La branche main conserve V3.110, V3.111 et V3.113 ; V3.109 est retirée de main, historique Git préservé. Aucun développement n'est autorisé avant clôture explicite et autorisation de l'utilisateur.
+
+
+- **2026-11-14 — Enregistrement de Q644 :** l'utilisateur choisit la validation mixte. Chaque fonctionnalité doit disposer de critères d'acceptation et de tests vérifiables ; un audit global confronte la version candidate à l'ensemble du cahier des charges ; l'utilisateur prononce la validation finale. Publication de V3.113, section 10.613 ; index actualisé. Dernière question : Q644 ; dernière section : 10.613 ; prochaine question : Q645. La branche main conserve V3.111, V3.112 et V3.113 ; V3.110 est retirée de main, historique Git préservé. Aucun développement n'est autorisé avant clôture explicite et autorisation de l'utilisateur.
