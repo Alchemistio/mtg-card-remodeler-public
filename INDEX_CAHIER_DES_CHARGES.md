@@ -772,4 +772,4 @@ Questions indexées : [564](#question-564) · [565](#question-565) · [566](#que
 
 **Important :** ne jamais utiliser cet index comme substitut au cahier des charges. En cas de divergence, le texte complet de la dernière version du cahier des charges fait foi.
 
-| <a id="question-629"></a>629 | 10.599 | [10.599 Vérification automatique des mises à jour désactivable dans les paramètres](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.98.md#L5584) | [5584](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.98.md#L5584) |
+| <a id="question-629"></a>629 | 10.599 | [10.599 Vérification automatique des mises à jour désactivable dans les paramètres](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.98.md#L5583) | [5583](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.98.md#L5583) |
