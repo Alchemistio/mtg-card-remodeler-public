@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.99](MTG_Card_Remodeler_Cahier_des_charges_V3.99.md)
+- Cahier des charges de référence au dernier contrôle : [V3.100](MTG_Card_Remodeler_Cahier_des_charges_V3.100.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q630**
-- Dernière section : **10.600**
-- Prochain numéro disponible : **Q631** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.99
+- Dernière question enregistrée : **Q631**
+- Dernière section : **10.601**
+- Prochain numéro disponible : **Q632** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.100
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -17,7 +17,7 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 1. Se reconnecter au dépôt GitHub indiqué ci-dessus.
 2. Lire ce document de rappel, puis l'index `INDEX_CAHIER_DES_CHARGES.md`.
-3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.99 est toujours la dernière version.
+3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.100 est toujours la dernière version.
 4. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de poser de nouvelles questions.
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
@@ -83,20 +83,20 @@ Ne demander à l'utilisateur que les choix cruciaux qui modifient réellement le
 
 Pour toute série validée :
 
-1. Ajouter les décisions au cahier des charges dans une nouvelle version, sans écraser les versions antérieures.
+1. Ajouter les décisions au cahier des charges dans une nouvelle version distincte, sans modifier le contenu des versions déjà publiées.
 2. Employer des exigences précises, testables et non ambiguës, plutôt que de simples résumés de conversation.
 3. Attribuer à chaque question sa section numérotée correspondante et conserver la continuité de numérotation.
 4. Mettre à jour `INDEX_CAHIER_DES_CHARGES.md` : version de référence, titres, questions, sections, lignes et liens.
 5. Recalculer les lignes après chaque modification du document complet ; ne jamais recopier aveuglément les anciens numéros de ligne.
 6. Vérifier les liens, ancres, numéros de questions, titres, version et correspondance index/document.
-7. Conserver toutes les versions précédentes du cahier des charges.
+7. **Règle de rétention : ne conserver dans la branche main que les trois fichiers des versions les plus récentes du cahier des charges.** Après publication et vérification d'une nouvelle version ainsi que de son index, supprimer du contenu courant du dépôt les fichiers de cahier des charges plus anciens que ces trois versions. Ne jamais réécrire l'historique Git : les anciennes versions supprimées de la branche restent consultables dans l'historique des commits. L'index et le rappel doivent toujours pointer vers la version courante.
 8. Mettre également à jour **ce document de rappel** dès qu'une modification du workflow, des règles de collaboration, de l'état de reprise ou des prochaines étapes intervient.
 9. Après écriture, relire les fichiers modifiés sur GitHub pour confirmer que le contenu enregistré correspond au contenu attendu.
 10. Signaler honnêtement les écritures ou vérifications qui n'ont pas pu être effectuées. Ne jamais prétendre qu'un document a été mis à jour sans confirmation de GitHub.
 
 ## 5. Prévention des doublons — repères déjà connus
 
-À la reprise depuis l'état V3.99, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
+À la reprise depuis l'état V3.100, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
 
 - **Gestion des projets — section 10.10 / Q32** : création, nommage, sauvegarde, duplication, suppression, bascule, ressources intégrées ou partagées, paramètres de projet, récupération, historique, versions, import/export, dépendances, conflits, ressources manquantes et transfert entre ordinateurs.
 - **Dépendances des extensions — Q564 à Q568** : contraintes de versions, résolution déterministe, ordonnancement, cycles et dépendances facultatives.
@@ -106,11 +106,16 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.99, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
-
-**Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
-
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.99, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Q625 à Q627 ont désormais reçu une réponse et sont enregistrées dans V3.99, sections 10.595 à 10.597.** Le prochain identifiant disponible est Q628. Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.99. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
+- **Version courante : V3.100.**
+- **Dernière question enregistrée : Q631.**
+- **Dernière section : 10.601.**
+- **Prochaine question disponible : Q632.**
+- **Dernière décision :** Q631 — récupération externe et manuelle des fichiers de mise à jour ; l'application ne propose aucun téléchargement intégré.
+- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. Après publication de V3.100, les versions conservées sont V3.98, V3.99 et V3.100. Les fichiers antérieurs sont supprimés de la branche, sans suppression de leur historique Git.
+- Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
+- Q619 à Q631 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour.
+- Continuer l'audit à partir de l'index V3.100, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
+- **Aucun développement du remodeler n'est autorisé** avant que l'utilisateur ait explicitement déclaré le cahier des charges terminé et autorisé cette phase.
 
 ## 7. Domaines à explorer ensuite
 
@@ -185,3 +190,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q630 :** l'utilisateur choisit une politique de notification uniquement pour les mises à jour de l'application. Aucun téléchargement ni installation ne doit démarrer automatiquement ; chacun exige une action explicite distincte, après notification et contrôles de sécurité. Publication du cahier des charges V3.99, section 10.600 ; index actualisé avec Q630 et les liens de ligne correspondants. Dernière question enregistrée : Q630 ; dernière section : 10.600 ; prochain identifiant disponible : Q631. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+
+
+- **2026-11-14 — Enregistrement de Q631 et règle de rétention des versions :** l'utilisateur choisit la récupération externe et manuelle des fichiers de mise à jour, sans téléchargement intégré dans l'application. Publication de V3.100, section 10.601 ; index actualisé avec Q631 et les liens de ligne recalculés. L'utilisateur demande également de ne conserver que les trois versions les plus récentes du cahier des charges dans la branche courante. Règle ajoutée : conserver V3.98, V3.99 et V3.100 ; supprimer les versions plus anciennes de la branche `main` après vérification, tout en laissant leur historique Git intact. Dernière question : Q631 ; dernière section : 10.601 ; prochaine question : Q632. Aucun développement du remodeler avant autorisation explicite.
