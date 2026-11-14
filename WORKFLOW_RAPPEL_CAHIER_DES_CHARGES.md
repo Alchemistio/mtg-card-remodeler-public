@@ -6,9 +6,9 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.98](MTG_Card_Remodeler_Cahier_des_charges_V3.98.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q628**
-- Dernière section : **10.598**
-- Prochain numéro disponible : **Q629** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.98
+- Dernière question enregistrée : **Q629**
+- Dernière section : **10.599**
+- Prochain numéro disponible : **Q630** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.98
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -179,3 +179,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q629 :** l'utilisateur choisit une vérification automatique des mises à jour désactivable dans les paramètres. Publication du cahier des charges V3.98, section 10.599. La vérification est non bloquante, suspendue en l'absence de réseau et réactivable/désactivable par l'utilisateur ; la vérification manuelle reste disponible et l'installation conserve ses validations et confirmations préalables. Index actualisé avec Q629 et les liens vers V3.98 ; prochain identifiant disponible : Q630. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+
+
+- **2026-11-14 — Correction du point de reprise après publication de Q629 :** l'audit croisé a relevé que le rappel opérationnel n'avait pas été actualisé malgré la publication de Q629 dans V3.98 et son indexation. Le dernier identifiant enregistré est corrigé à Q629, la dernière section à 10.599 et le prochain identifiant à Q630. Aucun numéro n'est réutilisé. Le workflow reste limité à la définition documentaire jusqu'à clôture explicite du cahier des charges.
