@@ -15,7 +15,6 @@
 | V3.107 | Inclusion systématique des journaux de diagnostic dans les sauvegardes |
 | V3.106 | Conservation configurable des journaux de diagnostic locaux |
 | V3.105 | Anonymisation obligatoire et non désactivable des rapports de diagnostic |
-| V3.104 | Anonymisation automatique des rapports de diagnostic exportés |
 
 # 1. Présentation générale
 
