@@ -4552,331 +4552,6 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
  Les questions 354 à 358 définissent une architecture modulaire extensible pouvant accueillir des extensions externes, des modules internes indépendants activables ou désactivables lorsque cela est pertinent, la préservation de la compatibilité des projets existants, le versionnement et la migration automatique des formats avec possibilité de restauration, ainsi qu'une documentation technique complète couvrant l'architecture, les modules, les dépendances, les interfaces internes et les procédures de maintenance.
 
 
-## 10.693 Historique Annuler/Rétablir fondé sur des commandes atomiques — Question 724, décision technique prise par l'assistant
-
-Chaque modification persistante du document graphique est représentée par une commande réversible décrivant explicitement son état antérieur et son état final.
-
-- Une commande ne modifie que les propriétés et objets qu'elle possède ; elle ne dépend pas d'un état d'interface volatil.
-- Les références aux objets utilisent des identifiants stables pendant la durée de vie de l'historique.
-- L'application d'une commande est atomique : si une étape échoue, les changements partiels sont compensés et le document reste cohérent.
-- Les actions purement visuelles (sélection, zoom, déplacement de vue) ne sont pas ajoutées à l'historique documentaire, sauf décision fonctionnelle explicite.
-- Une commande dont l'effet net est nul peut être écartée.
-- Une commande déjà validée dans l'historique n'est pas mutée ; toute correction passe par une nouvelle commande ou une reconstruction contrôlée.
-
-Référence : [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.694 Regroupement atomique des opérations composées — Question 725, décision technique prise par l'assistant
-
-Une action utilisateur constituée de plusieurs changements dépendants est représentée comme une seule opération composée dans l'historique.
-
-- Regrouper les transformations multi-objets, remplacements de ressources et réorganisations qui forment une intention unique.
-- L'annulation restaure l'ensemble de l'état antérieur ; le rétablissement réapplique le résultat dans le même ordre logique.
-- Si une sous-opération échoue, aucune partie de l'opération composée ne reste appliquée.
-- Les opérations indépendantes ne sont pas fusionnées artificiellement en raison de leur proximité temporelle.
-- Le libellé visible décrit l'intention globale de l'utilisateur ; les sous-commandes restent testables séparément.
-
-Référence : [Qt — Overview of the Undo Framework](https://doc.qt.io/qt-6/qundo.html).
-
-## 10.695 Compression contrôlée des commandes répétitives — Question 726, décision technique prise par l'assistant
-
-Les modifications répétitives de faible portée peuvent être regroupées lorsqu'elles correspondent à une même intention continue.
-
-- La compression vise uniquement des commandes de même nature, sur le même objet et des propriétés compatibles.
-- Une saisie continue, un déplacement ou un réglage numérique peut être regroupé selon des frontières temporelles et sémantiques documentées.
-- Un changement de cible, une validation explicite, une interruption ou une perte de focus clôt le groupe lorsque cela marque une nouvelle intention.
-- Les commandes dont l'ordre intermédiaire a une signification propre ne sont jamais fusionnées.
-- Le groupe conserve exactement l'état initial et l'état final nécessaires à l'annulation et au rétablissement.
-
-Référence : [Qt — QUndoStack, command compression](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.696 Budget mémoire de l'historique et éviction sûre — Question 727, décision technique prise par l'assistant
-
-L'historique Annuler/Rétablir est borné par le coût réel de ses données, et non uniquement par le nombre de commandes.
-
-- Estimer le coût mémoire des instantanés, différences, ressources référencées et structures conservées.
-- Définir un budget et une éviction déterministe des commandes les plus anciennes.
-- Ne jamais supprimer une ressource encore utilisée par le document, une sauvegarde ou un instantané de génération.
-- Si l'éviction rend inaccessible l'état sauvegardé par l'historique, l'indiquer sans prétendre que cet état reste atteignable.
-- L'éviction ne modifie jamais le document courant.
-- Si une opération dépasse le budget, appliquer une stratégie explicite (représentation compacte, stockage différé ou refus avant modification), sans perte partielle.
-
-Référence : [Qt — QUndoStack, undoLimit and clean state](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.697 Historique indépendant par document et invalidation du rétablissement — Question 728, décision technique prise par l'assistant
-
-Chaque projet ouvert possède un historique Annuler/Rétablir indépendant ; les commandes globales ciblent uniquement le document actif.
-
-- Le changement de projet actif bascule les commandes disponibles et leurs libellés vers l'historique correspondant.
-- Une nouvelle opération après annulation invalide la branche de rétablissement incompatible.
-- L'état sauvegardé est identifié de manière fiable et l'indicateur de modifications non enregistrées reste cohérent.
-- La fermeture d'un projet ne libère son historique qu'après les contrôles et confirmations de sauvegarde prévus.
-- Les historiques ne sont jamais mélangés entre fenêtres, projets ou documents détachés.
-- Tester le basculement entre projets, la fermeture/réouverture et les branches abandonnées.
-
-Références : [Qt — QUndoGroup](https://doc.qt.io/qt-6/qundogroup.html) ; [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.698 Format interne versionné pour le presse-papiers graphique — Question 729, décision technique prise par l'assistant
-
-La copie d'objets graphiques utilise un format interne versionné, en complément des formats standards lorsqu'ils sont utiles.
-
-- Le format décrit les objets sélectionnés, leurs propriétés, relations hiérarchiques et références nécessaires à leur reconstruction.
-- Il comporte un identifiant de format et une version de schéma ; une version inconnue ou incompatible est refusée proprement.
-- Les données copiées sont sérialisées comme données, jamais comme code ou script à évaluer.
-- Les formats standards de repli (texte, image ou autre format reconnu) sont fournis uniquement lorsque leur sens et leur conversion sont vérifiés.
-- Ne pas publier de chemins locaux, secrets ou métadonnées internes sans nécessité fonctionnelle.
-- Le presse-papiers système n'est lu qu'à la suite d'une action utilisateur pertinente et son contenu est relu au moment du collage.
-
-Références : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html) ; [Qt — QClipboard](https://doc.qt.io/qt-6/qclipboard.html).
-
-## 10.699 Copie des dépendances nécessaires et conservation de leur provenance — Question 730, décision technique prise par l'assistant
-
-Lorsqu'un objet copié dépend de ressources externes au sous-arbre sélectionné, le presse-papiers décrit les dépendances nécessaires à sa reconstruction.
-
-- Déterminer la fermeture des dépendances réellement utilisées : images, symboles, composants, styles et autres ressources requises.
-- N'inclure que les dépendances nécessaires ; ne pas exporter toute la bibliothèque.
-- Conserver pour chaque ressource son identifiant logique, son empreinte, sa provenance et les informations de licence disponibles.
-- Distinguer les ressources embarquées des références externes à résoudre au collage.
-- Si une dépendance ne peut être copiée pour des raisons de taille, licence ou indisponibilité, le signaler et proposer un repli explicite.
-- Borner la taille et le nombre de dépendances avant sérialisation.
-
-Référence : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
-
-## 10.700 Validation et assainissement des contenus collés depuis l'extérieur — Question 731, décision technique prise par l'assistant
-
-Tout contenu reçu depuis le presse-papiers d'une autre application ou origine est traité comme une entrée non fiable.
-
-- Identifier le type MIME réellement disponible et analyser le contenu avec le parseur correspondant.
-- Pour HTML, SVG, XML, images et formats structurés, appliquer les règles d'importation sécurisée propres au format ; ne jamais exécuter de script.
-- Refuser ou neutraliser les éléments actifs, liens dangereux, données cachées non nécessaires et références vers des fichiers locaux non autorisés.
-- Appliquer des plafonds de taille, dimensions, profondeur, nombre d'objets et consommation mémoire avant décodage complet.
-- Ne pas télécharger les ressources distantes mentionnées dans le contenu collé.
-- Signaler les pertes, neutralisations et conversions importantes avant validation.
-- Un échec d'analyse laisse le document inchangé.
-
-Références : [W3C — Clipboard API and events, security](https://www.w3.org/TR/clipboard-apis/) ; [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
-
-## 10.701 Transformation des coordonnées lors du collage — Question 732, décision technique prise par l'assistant
-
-Le collage convertit les coordonnées sans déformer la composition ni dépendre du zoom d'affichage.
-
-- Le format interne conserve le repère source, les unités, les dimensions de la zone de travail et les transformations relatives.
-- Dans un document de même repère, préserver les positions et dimensions relatives originales.
-- Dans un document de dimensions ou d'unités différentes, appliquer une conversion géométrique explicite ; ne pas modifier silencieusement les proportions.
-- La position d'insertion dépend du repère du document et de la zone visible, non des seuls pixels écran.
-- Le collage répété peut appliquer un décalage déterministe sans modifier dimensions ni échelle.
-- L'aperçu montre la position finale avant validation lorsque le placement est interactif.
-- Les conversions ambiguës sont signalées plutôt qu'approximées silencieusement.
-
-Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
-
-## 10.702 Réattribution des identifiants et collage transactionnel — Question 733, décision technique prise par l'assistant
-
-Le collage crée des objets distincts et cohérents dans le document cible.
-
-- Attribuer de nouveaux identifiants uniques aux objets copiés et reconstruire leurs relations internes par une table de correspondance.
-- Préserver les références externes intentionnelles lorsqu'elles sont valides ; aucune référence interne ne doit pointer accidentellement vers l'objet source.
-- Détecter collisions d'identifiants et références manquantes avant insertion.
-- Construire et valider le graphe d'objets et ses dépendances avant modification du document.
-- Appliquer le collage comme une transaction unique, annulable en une commande ; en cas d'échec, le document reste inchangé.
-- Le collage ne remplace ni ne modifie les objets sources.
-
-Référence : [Qt — QUndoStack, command macros](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.703 Capture du pointeur pendant une interaction continue — Question 734, décision technique prise par l'assistant
-
-Les interactions graphiques qui doivent se poursuivre après que le pointeur quitte la cible initiale conservent une capture contrôlée du pointeur.
-
-- Au démarrage d'un déplacement, redimensionnement ou tracé, associer l'interaction au pointeur initiateur jusqu'à validation ou annulation.
-- Les événements d'autres pointeurs ne modifient pas accidentellement l'interaction en cours.
-- Libérer systématiquement la capture après validation, annulation, perte de cible ou fermeture du document.
-- La capture ne doit pas empêcher les comportements de navigation tactile explicitement prévus.
-- L'état de capture est transitoire et ne fait pas partie du document sauvegardé.
-- Tester mouvements hors zone, changements de fenêtre, multi-écrans, souris, stylet et tactile.
-
-Référence : [W3C — Pointer Events, pointer capture](https://www.w3.org/TR/pointerevents/).
-
-## 10.704 Annulation sûre des interactions interrompues — Question 735, décision technique prise par l'assistant
-
-Une interaction au pointeur interrompue avant validation est annulée sans laisser d'état graphique partiel.
-
-- Traiter pointercancel, perte de capture, disparition de la cible, fermeture du projet et interruption système comme des terminaisons explicites.
-- Restaurer l'état initial si l'interaction n'a pas atteint son point de validation.
-- Ne créer aucune commande d'historique pour une interaction annulée ; retirer toute commande provisoire sans modifier l'état sauvegardé.
-- Libérer ressources temporaires, guides, aperçus et captures associées.
-- Si l'interruption survient après validation atomique, conserver le résultat validé.
-- Tester les interruptions à chaque phase : début, mouvement, aperçu, validation et nettoyage.
-
-Référence : [W3C — Pointer Events, pointercancel](https://www.w3.org/TR/pointerevents/).
-
-## 10.705 Exploitation contrôlée des événements de pointeur coalescés — Question 736, décision technique prise par l'assistant
-
-Les interactions nécessitant une trajectoire précise exploitent les échantillons de pointeur disponibles sans supposer qu'un événement de mouvement correspond à chaque mesure matérielle.
-
-- Pour les tracés libres, traiter les événements coalescés lorsqu'ils sont fournis.
-- Pour déplacements et redimensionnements, conserver les informations utiles au résultat final sans recalcul complet à chaque échantillon.
-- Les événements prédits, s'ils servent à l'aperçu, ne sont jamais intégrés comme données définitives sans confirmation par des mesures réelles.
-- Conserver l'ordre temporel des échantillons et leur repère de coordonnées.
-- Adapter la fréquence de rendu de l'aperçu sans perdre les échantillons nécessaires à la géométrie finale.
-- Tester trajectoires rapides et différences de fréquence entre souris, stylet et tactile.
-
-Référence : [W3C — Pointer Events, coalesced events](https://www.w3.org/TR/pointerevents/).
-
-## 10.706 Conversion stable entre coordonnées écran et coordonnées document — Question 737, décision technique prise par l'assistant
-
-Toutes les interactions convertissent les coordonnées du périphérique vers le repère du document à l'aide de la transformation inverse complète de la vue.
-
-- Prendre en compte zoom, déplacement de la vue, transformations de groupes, échelle de l'écran et unités du document.
-- Utiliser une chaîne de conversion partagée par sélection, déplacement, redimensionnement, guides et dessin.
-- Conserver une précision suffisante pendant les interactions ; ne pas arrondir prématurément aux pixels écran.
-- N'arrondir qu'aux étapes nécessaires à l'affichage ou à la sérialisation, selon une règle cohérente.
-- Recalculer la transformation lorsque fenêtre, écran, zoom ou disposition change pendant l'interaction.
-- Tester facteurs d'échelle élevés, rotations, transformations imbriquées et changements de moniteur.
-
-Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
-
-## 10.707 Validation unique des gestes de déplacement et de transformation — Question 738, décision technique prise par l'assistant
-
-Un geste graphique continu constitue une opération unique dans le document et son historique.
-
-- Conserver l'état initial et afficher un aperçu transitoire ; publier les propriétés persistantes uniquement à la validation.
-- Au relâchement normal, valider l'état final en une seule commande Annuler/Rétablir.
-- En cas d'annulation, restaurer l'état initial sans conserver de déplacement intermédiaire.
-- Les contraintes, alignements et magnétismes ajustent l'aperçu ; le résultat validé correspond à la dernière géométrie présentée.
-- Les mises à jour intermédiaires ne déclenchent pas chacune une sauvegarde ou écriture persistante.
-- Tester les gestes multi-objets et les interruptions.
-
-Référence : [Qt — QUndoStack, command compression and macros](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.708 Édition et suppression respectant les graphèmes Unicode étendus — Question 739, décision technique prise par l'assistant
-
-Les opérations d'édition textuelle respectent les graphèmes Unicode étendus plutôt que de traiter chaque point de code comme un caractère visible indépendant.
-
-- Les déplacements du curseur, sélections par caractère, suppressions et remplacements unitaires ne coupent pas une séquence constituant un graphème étendu.
-- Prendre en charge séquences combinées, emoji avec modificateurs, séquences ZWJ, indicateurs régionaux et écritures complexes selon Unicode.
-- Distinguer indices internes de stockage et frontières perceptibles utilisées par l'interface.
-- Ne pas normaliser ou réécrire le texte source lors d'une simple navigation ou suppression.
-- Mettre à jour les règles de segmentation avec la version Unicode prise en charge et conserver les tests de régression.
-- Les sélections par mot et phrase utilisent des règles distinctes de celles des graphèmes.
-
-Référence : [Unicode — UAX #29, Text Segmentation](https://www.unicode.org/reports/tr29/).
-
-## 10.709 Gestion transactionnelle de la composition par méthode de saisie — Question 740, décision technique prise par l'assistant
-
-Les méthodes de saisie complexes (IME) présentent et modifient une composition temporaire sans valider chaque étape intermédiaire comme texte définitif.
-
-- Distinguer début, mises à jour et fin de composition ; le texte en cours reste identifiable comme provisoire.
-- Ne pas déclencher à chaque mise à jour les traitements définitifs de validation, remplacement automatique ou génération d'historique.
-- À la validation, appliquer le remplacement final comme une seule opération cohérente et annulable.
-- En cas d'annulation de composition par le système ou l'utilisateur, restaurer le texte antérieur et la sélection.
-- Préserver les événements de composition natifs plutôt que simuler la saisie par les seules touches clavier.
-- Tester claviers virtuels et IME de plusieurs langues et plateformes.
-
-Référence : [W3C — Input Events Level 2, composition event order](https://www.w3.org/TR/input-events-2/).
-
-## 10.710 Ordre logique du texte et affichage bidirectionnel — Question 741, décision technique prise par l'assistant
-
-Le texte est conservé dans son ordre logique Unicode ; le réordonnancement nécessaire à l'affichage est calculé par le moteur de texte.
-
-- Appliquer l'algorithme Unicode Bidirectional Algorithm aux paragraphes contenant des écritures de directions différentes.
-- Ne jamais réordonner physiquement la chaîne enregistrée pour reproduire son apparence visuelle.
-- Distinguer position logique du curseur et position visuelle ; gérer les déplacements gauche/droite dans les séquences bidirectionnelles.
-- Sélections, copies, suppressions et exports opèrent sur le texte logique avec un surlignage visuel correct.
-- Interpréter les caractères de contrôle directionnel conformément à la spécification ; rendre leur présence visible dans les diagnostics utiles.
-- Tester les mélanges de français, chiffres, symboles, hébreu, arabe et autres écritures prises en charge.
-
-Référence : [Unicode — UAX #9, Bidirectional Algorithm](https://www.unicode.org/reports/tr9/).
-
-## 10.711 Coupures de ligne conformes aux classes Unicode — Question 742, décision technique prise par l'assistant
-
-Le retour à la ligne automatique s'appuie sur des opportunités de coupure adaptées aux propriétés Unicode du texte.
-
-- Utiliser l'algorithme Unicode de coupure de ligne ou une implémentation documentée produisant des résultats équivalents pour les langues prises en charge.
-- Respecter les interdictions de coupure dans les séquences numériques, unités, mots protégés et séquences insécables.
-- Distinguer sauts de ligne explicites, opportunités automatiques et coupures imposées par les contraintes du cadre.
-- Les symboles de mana, icônes en ligne, champs dynamiques et jetons non textuels sont indivisibles lorsque leur définition l'exige.
-- Toute césure linguistique supplémentaire repose sur un dictionnaire ou moteur identifié et versionné.
-- Le changement de largeur du cadre recalcule les lignes sans modifier la chaîne source.
-
-Référence : [Unicode — UAX #14, Line Breaking Algorithm](https://www.unicode.org/reports/tr14/).
-
-## 10.712 Ancrage logique des sélections et du curseur après modification — Question 743, décision technique prise par l'assistant
-
-Les sélections et positions de curseur restent cohérentes lorsque le texte est modifié ou façonné en glyphes.
-
-- Représenter les positions d'édition dans un repère logique stable associé au texte source, puis les convertir vers les positions visuelles du texte façonné.
-- Préserver les correspondances entre caractères d'entrée, clusters et glyphes, y compris ligatures, décompositions et réordonnancements.
-- Après insertion, suppression, remplacement ou changement de police, recalculer les ancres sans pointer au milieu d'une unité d'édition invalide.
-- Les sélections bidirectionnelles peuvent être visuellement discontinues ; copie et suppression restent basées sur les intervalles logiques.
-- Ne pas déduire une position de curseur par simple addition des largeurs nominales des caractères.
-- Tester ligatures, marques combinées, scripts complexes et changements de direction.
-
-Références : [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html) ; [Unicode — UAX #29](https://www.unicode.org/reports/tr29/).
-
-## 10.713 Façonnage typographique selon le script, la langue et la direction — Question 744, décision technique prise par l'assistant
-
-Le rendu du texte utilise un moteur de façonnage typographique qui transforme les séquences Unicode en glyphes correctement substitués et positionnés.
-
-- Segmenter le texte selon changements de script, langue, direction et police lorsque nécessaire.
-- Appliquer les règles de façonnage appropriées : substitutions, ligatures, positionnement des marques et ajustements de glyphes.
-- Ne pas supposer qu'un caractère Unicode correspond à un glyphe unique ni que les largeurs nominales suffisent.
-- Transmettre au moteur les propriétés de script, langue et direction de chaque segment.
-- Préserver le texte Unicode source indépendamment de la séquence de glyphes rendue.
-- Vérifier les scripts effectivement pris en charge, y compris les écritures complexes.
-
-Références : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html) ; [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html).
-
-## 10.714 Repli typographique par segments et détection des glyphes absents — Question 745, décision technique prise par l'assistant
-
-Lorsqu'une police ne couvre pas tous les caractères d'un segment, le moteur sélectionne un repli contrôlé sans altérer le texte.
-
-- Détecter les glyphes absents et distinguer une absence réelle d'un glyphe volontairement invisible.
-- Sélectionner une police de repli compatible au niveau du segment nécessaire, plutôt que remplacer arbitrairement toute la ligne.
-- Conserver script, langue, direction et style lors du façonnage du segment de repli.
-- Signaler les substitutions qui modifient sensiblement les métriques ou provoquent un débordement.
-- Ne jamais remplacer silencieusement les caractères manquants par un autre caractère ni supprimer le texte source.
-- Le choix du repli est déterministe à configuration et polices disponibles identiques.
-
-Référence : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html).
-
-## 10.715 Mesure du texte à partir des glyphes réellement façonnés — Question 746, décision technique prise par l'assistant
-
-La mesure utilisée pour la mise en page provient du même résultat de façonnage que celui utilisé pour dessiner le texte.
-
-- Calculer avances et décalages à partir des glyphes façonnés, et non d'une somme simplifiée de largeurs de caractères.
-- Inclure métriques verticales, marques, ligatures, crénage, variations de police et direction dans la géométrie effective.
-- Utiliser les mêmes données pour mesure, aperçu, calcul de débordement et export lorsque les moteurs partagent le pipeline.
-- Si un moteur d'export distinct est nécessaire, comparer ses métriques et son résultat au moteur de référence et signaler les écarts hors tolérance.
-- Invalider les mesures après changement de police, taille, largeur, fonctionnalités ou contenu.
-- Tester les textes proches des limites de cadre et les scripts avec marques combinées.
-
-Références : [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html) ; [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html).
-
-## 10.716 Paramètres OpenType et axes de polices variables explicites — Question 747, décision technique prise par l'assistant
-
-Les fonctionnalités OpenType et axes de polices variables qui influencent le rendu sont représentés explicitement dans le style textuel.
-
-- Enregistrer les fonctionnalités typographiques activées ou désactivées lorsque le moteur permet de les contrôler.
-- Pour les polices variables, conserver les valeurs des axes réellement appliqués, leurs bornes et les valeurs par défaut de la police.
-- Ne pas supposer que deux environnements utilisent les mêmes valeurs par défaut ; les paramètres significatifs sont explicites dans le projet.
-- Signaler les axes et fonctionnalités inconnus ou non pris en charge au lieu de prétendre les appliquer.
-- Préserver ces paramètres lors de duplication, héritage, sauvegarde et export.
-- Les paramètres typographiques ne confèrent aucun droit supplémentaire sur le fichier de police.
-
-Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Utilities](https://harfbuzz.github.io/utilities.html).
-
-## 10.717 Cache de façonnage typographique à clés complètes — Question 748, décision technique prise par l'assistant
-
-Les résultats de façonnage peuvent être mis en cache si la clé identifie toutes les entrées qui influencent le résultat.
-
-- Construire la clé à partir du contenu Unicode, de l'empreinte et version de la police, du script, de la langue, de la direction, de la taille, des fonctionnalités OpenType et des axes variables.
-- Inclure la version du moteur de façonnage et les paramètres de segmentation pertinents.
-- Ne pas partager un résultat entre polices ou contextes typographiques distincts au seul motif que le texte est identique.
-- Borner le cache par son coût mémoire réel et appliquer une éviction déterministe ; le cache reste reconstructible et n'est jamais la source canonique du texte.
-- Invalider les entrées lorsque contenu, police, paramètres, moteur ou propriétés du segment changent.
-- Tester que chaque paramètre pertinent affecte correctement la clé.
-
-Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html).
-
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -7181,6 +6856,331 @@ Les traitements concurrents sont admis selon un budget mémoire partagé, en com
 Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
 
 
+## 10.693 Historique Annuler/Rétablir fondé sur des commandes atomiques — Question 724, décision technique prise par l'assistant
+
+Chaque modification persistante du document graphique est représentée par une commande réversible décrivant explicitement son état antérieur et son état final.
+
+- Une commande ne modifie que les propriétés et objets qu'elle possède ; elle ne dépend pas d'un état d'interface volatil.
+- Les références aux objets utilisent des identifiants stables pendant la durée de vie de l'historique.
+- L'application d'une commande est atomique : si une étape échoue, les changements partiels sont compensés et le document reste cohérent.
+- Les actions purement visuelles (sélection, zoom, déplacement de vue) ne sont pas ajoutées à l'historique documentaire, sauf décision fonctionnelle explicite.
+- Une commande dont l'effet net est nul peut être écartée.
+- Une commande déjà validée dans l'historique n'est pas mutée ; toute correction passe par une nouvelle commande ou une reconstruction contrôlée.
+
+Référence : [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.694 Regroupement atomique des opérations composées — Question 725, décision technique prise par l'assistant
+
+Une action utilisateur constituée de plusieurs changements dépendants est représentée comme une seule opération composée dans l'historique.
+
+- Regrouper les transformations multi-objets, remplacements de ressources et réorganisations qui forment une intention unique.
+- L'annulation restaure l'ensemble de l'état antérieur ; le rétablissement réapplique le résultat dans le même ordre logique.
+- Si une sous-opération échoue, aucune partie de l'opération composée ne reste appliquée.
+- Les opérations indépendantes ne sont pas fusionnées artificiellement en raison de leur proximité temporelle.
+- Le libellé visible décrit l'intention globale de l'utilisateur ; les sous-commandes restent testables séparément.
+
+Référence : [Qt — Overview of the Undo Framework](https://doc.qt.io/qt-6/qundo.html).
+
+## 10.695 Compression contrôlée des commandes répétitives — Question 726, décision technique prise par l'assistant
+
+Les modifications répétitives de faible portée peuvent être regroupées lorsqu'elles correspondent à une même intention continue.
+
+- La compression vise uniquement des commandes de même nature, sur le même objet et des propriétés compatibles.
+- Une saisie continue, un déplacement ou un réglage numérique peut être regroupé selon des frontières temporelles et sémantiques documentées.
+- Un changement de cible, une validation explicite, une interruption ou une perte de focus clôt le groupe lorsque cela marque une nouvelle intention.
+- Les commandes dont l'ordre intermédiaire a une signification propre ne sont jamais fusionnées.
+- Le groupe conserve exactement l'état initial et l'état final nécessaires à l'annulation et au rétablissement.
+
+Référence : [Qt — QUndoStack, command compression](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.696 Budget mémoire de l'historique et éviction sûre — Question 727, décision technique prise par l'assistant
+
+L'historique Annuler/Rétablir est borné par le coût réel de ses données, et non uniquement par le nombre de commandes.
+
+- Estimer le coût mémoire des instantanés, différences, ressources référencées et structures conservées.
+- Définir un budget et une éviction déterministe des commandes les plus anciennes.
+- Ne jamais supprimer une ressource encore utilisée par le document, une sauvegarde ou un instantané de génération.
+- Si l'éviction rend inaccessible l'état sauvegardé par l'historique, l'indiquer sans prétendre que cet état reste atteignable.
+- L'éviction ne modifie jamais le document courant.
+- Si une opération dépasse le budget, appliquer une stratégie explicite (représentation compacte, stockage différé ou refus avant modification), sans perte partielle.
+
+Référence : [Qt — QUndoStack, undoLimit and clean state](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.697 Historique indépendant par document et invalidation du rétablissement — Question 728, décision technique prise par l'assistant
+
+Chaque projet ouvert possède un historique Annuler/Rétablir indépendant ; les commandes globales ciblent uniquement le document actif.
+
+- Le changement de projet actif bascule les commandes disponibles et leurs libellés vers l'historique correspondant.
+- Une nouvelle opération après annulation invalide la branche de rétablissement incompatible.
+- L'état sauvegardé est identifié de manière fiable et l'indicateur de modifications non enregistrées reste cohérent.
+- La fermeture d'un projet ne libère son historique qu'après les contrôles et confirmations de sauvegarde prévus.
+- Les historiques ne sont jamais mélangés entre fenêtres, projets ou documents détachés.
+- Tester le basculement entre projets, la fermeture/réouverture et les branches abandonnées.
+
+Références : [Qt — QUndoGroup](https://doc.qt.io/qt-6/qundogroup.html) ; [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.698 Format interne versionné pour le presse-papiers graphique — Question 729, décision technique prise par l'assistant
+
+La copie d'objets graphiques utilise un format interne versionné, en complément des formats standards lorsqu'ils sont utiles.
+
+- Le format décrit les objets sélectionnés, leurs propriétés, relations hiérarchiques et références nécessaires à leur reconstruction.
+- Il comporte un identifiant de format et une version de schéma ; une version inconnue ou incompatible est refusée proprement.
+- Les données copiées sont sérialisées comme données, jamais comme code ou script à évaluer.
+- Les formats standards de repli (texte, image ou autre format reconnu) sont fournis uniquement lorsque leur sens et leur conversion sont vérifiés.
+- Ne pas publier de chemins locaux, secrets ou métadonnées internes sans nécessité fonctionnelle.
+- Le presse-papiers système n'est lu qu'à la suite d'une action utilisateur pertinente et son contenu est relu au moment du collage.
+
+Références : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html) ; [Qt — QClipboard](https://doc.qt.io/qt-6/qclipboard.html).
+
+## 10.699 Copie des dépendances nécessaires et conservation de leur provenance — Question 730, décision technique prise par l'assistant
+
+Lorsqu'un objet copié dépend de ressources externes au sous-arbre sélectionné, le presse-papiers décrit les dépendances nécessaires à sa reconstruction.
+
+- Déterminer la fermeture des dépendances réellement utilisées : images, symboles, composants, styles et autres ressources requises.
+- N'inclure que les dépendances nécessaires ; ne pas exporter toute la bibliothèque.
+- Conserver pour chaque ressource son identifiant logique, son empreinte, sa provenance et les informations de licence disponibles.
+- Distinguer les ressources embarquées des références externes à résoudre au collage.
+- Si une dépendance ne peut être copiée pour des raisons de taille, licence ou indisponibilité, le signaler et proposer un repli explicite.
+- Borner la taille et le nombre de dépendances avant sérialisation.
+
+Référence : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
+
+## 10.700 Validation et assainissement des contenus collés depuis l'extérieur — Question 731, décision technique prise par l'assistant
+
+Tout contenu reçu depuis le presse-papiers d'une autre application ou origine est traité comme une entrée non fiable.
+
+- Identifier le type MIME réellement disponible et analyser le contenu avec le parseur correspondant.
+- Pour HTML, SVG, XML, images et formats structurés, appliquer les règles d'importation sécurisée propres au format ; ne jamais exécuter de script.
+- Refuser ou neutraliser les éléments actifs, liens dangereux, données cachées non nécessaires et références vers des fichiers locaux non autorisés.
+- Appliquer des plafonds de taille, dimensions, profondeur, nombre d'objets et consommation mémoire avant décodage complet.
+- Ne pas télécharger les ressources distantes mentionnées dans le contenu collé.
+- Signaler les pertes, neutralisations et conversions importantes avant validation.
+- Un échec d'analyse laisse le document inchangé.
+
+Références : [W3C — Clipboard API and events, security](https://www.w3.org/TR/clipboard-apis/) ; [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
+
+## 10.701 Transformation des coordonnées lors du collage — Question 732, décision technique prise par l'assistant
+
+Le collage convertit les coordonnées sans déformer la composition ni dépendre du zoom d'affichage.
+
+- Le format interne conserve le repère source, les unités, les dimensions de la zone de travail et les transformations relatives.
+- Dans un document de même repère, préserver les positions et dimensions relatives originales.
+- Dans un document de dimensions ou d'unités différentes, appliquer une conversion géométrique explicite ; ne pas modifier silencieusement les proportions.
+- La position d'insertion dépend du repère du document et de la zone visible, non des seuls pixels écran.
+- Le collage répété peut appliquer un décalage déterministe sans modifier dimensions ni échelle.
+- L'aperçu montre la position finale avant validation lorsque le placement est interactif.
+- Les conversions ambiguës sont signalées plutôt qu'approximées silencieusement.
+
+Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
+
+## 10.702 Réattribution des identifiants et collage transactionnel — Question 733, décision technique prise par l'assistant
+
+Le collage crée des objets distincts et cohérents dans le document cible.
+
+- Attribuer de nouveaux identifiants uniques aux objets copiés et reconstruire leurs relations internes par une table de correspondance.
+- Préserver les références externes intentionnelles lorsqu'elles sont valides ; aucune référence interne ne doit pointer accidentellement vers l'objet source.
+- Détecter collisions d'identifiants et références manquantes avant insertion.
+- Construire et valider le graphe d'objets et ses dépendances avant modification du document.
+- Appliquer le collage comme une transaction unique, annulable en une commande ; en cas d'échec, le document reste inchangé.
+- Le collage ne remplace ni ne modifie les objets sources.
+
+Référence : [Qt — QUndoStack, command macros](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.703 Capture du pointeur pendant une interaction continue — Question 734, décision technique prise par l'assistant
+
+Les interactions graphiques qui doivent se poursuivre après que le pointeur quitte la cible initiale conservent une capture contrôlée du pointeur.
+
+- Au démarrage d'un déplacement, redimensionnement ou tracé, associer l'interaction au pointeur initiateur jusqu'à validation ou annulation.
+- Les événements d'autres pointeurs ne modifient pas accidentellement l'interaction en cours.
+- Libérer systématiquement la capture après validation, annulation, perte de cible ou fermeture du document.
+- La capture ne doit pas empêcher les comportements de navigation tactile explicitement prévus.
+- L'état de capture est transitoire et ne fait pas partie du document sauvegardé.
+- Tester mouvements hors zone, changements de fenêtre, multi-écrans, souris, stylet et tactile.
+
+Référence : [W3C — Pointer Events, pointer capture](https://www.w3.org/TR/pointerevents/).
+
+## 10.704 Annulation sûre des interactions interrompues — Question 735, décision technique prise par l'assistant
+
+Une interaction au pointeur interrompue avant validation est annulée sans laisser d'état graphique partiel.
+
+- Traiter pointercancel, perte de capture, disparition de la cible, fermeture du projet et interruption système comme des terminaisons explicites.
+- Restaurer l'état initial si l'interaction n'a pas atteint son point de validation.
+- Ne créer aucune commande d'historique pour une interaction annulée ; retirer toute commande provisoire sans modifier l'état sauvegardé.
+- Libérer ressources temporaires, guides, aperçus et captures associées.
+- Si l'interruption survient après validation atomique, conserver le résultat validé.
+- Tester les interruptions à chaque phase : début, mouvement, aperçu, validation et nettoyage.
+
+Référence : [W3C — Pointer Events, pointercancel](https://www.w3.org/TR/pointerevents/).
+
+## 10.705 Exploitation contrôlée des événements de pointeur coalescés — Question 736, décision technique prise par l'assistant
+
+Les interactions nécessitant une trajectoire précise exploitent les échantillons de pointeur disponibles sans supposer qu'un événement de mouvement correspond à chaque mesure matérielle.
+
+- Pour les tracés libres, traiter les événements coalescés lorsqu'ils sont fournis.
+- Pour déplacements et redimensionnements, conserver les informations utiles au résultat final sans recalcul complet à chaque échantillon.
+- Les événements prédits, s'ils servent à l'aperçu, ne sont jamais intégrés comme données définitives sans confirmation par des mesures réelles.
+- Conserver l'ordre temporel des échantillons et leur repère de coordonnées.
+- Adapter la fréquence de rendu de l'aperçu sans perdre les échantillons nécessaires à la géométrie finale.
+- Tester trajectoires rapides et différences de fréquence entre souris, stylet et tactile.
+
+Référence : [W3C — Pointer Events, coalesced events](https://www.w3.org/TR/pointerevents/).
+
+## 10.706 Conversion stable entre coordonnées écran et coordonnées document — Question 737, décision technique prise par l'assistant
+
+Toutes les interactions convertissent les coordonnées du périphérique vers le repère du document à l'aide de la transformation inverse complète de la vue.
+
+- Prendre en compte zoom, déplacement de la vue, transformations de groupes, échelle de l'écran et unités du document.
+- Utiliser une chaîne de conversion partagée par sélection, déplacement, redimensionnement, guides et dessin.
+- Conserver une précision suffisante pendant les interactions ; ne pas arrondir prématurément aux pixels écran.
+- N'arrondir qu'aux étapes nécessaires à l'affichage ou à la sérialisation, selon une règle cohérente.
+- Recalculer la transformation lorsque fenêtre, écran, zoom ou disposition change pendant l'interaction.
+- Tester facteurs d'échelle élevés, rotations, transformations imbriquées et changements de moniteur.
+
+Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
+
+## 10.707 Validation unique des gestes de déplacement et de transformation — Question 738, décision technique prise par l'assistant
+
+Un geste graphique continu constitue une opération unique dans le document et son historique.
+
+- Conserver l'état initial et afficher un aperçu transitoire ; publier les propriétés persistantes uniquement à la validation.
+- Au relâchement normal, valider l'état final en une seule commande Annuler/Rétablir.
+- En cas d'annulation, restaurer l'état initial sans conserver de déplacement intermédiaire.
+- Les contraintes, alignements et magnétismes ajustent l'aperçu ; le résultat validé correspond à la dernière géométrie présentée.
+- Les mises à jour intermédiaires ne déclenchent pas chacune une sauvegarde ou écriture persistante.
+- Tester les gestes multi-objets et les interruptions.
+
+Référence : [Qt — QUndoStack, command compression and macros](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.708 Édition et suppression respectant les graphèmes Unicode étendus — Question 739, décision technique prise par l'assistant
+
+Les opérations d'édition textuelle respectent les graphèmes Unicode étendus plutôt que de traiter chaque point de code comme un caractère visible indépendant.
+
+- Les déplacements du curseur, sélections par caractère, suppressions et remplacements unitaires ne coupent pas une séquence constituant un graphème étendu.
+- Prendre en charge séquences combinées, emoji avec modificateurs, séquences ZWJ, indicateurs régionaux et écritures complexes selon Unicode.
+- Distinguer indices internes de stockage et frontières perceptibles utilisées par l'interface.
+- Ne pas normaliser ou réécrire le texte source lors d'une simple navigation ou suppression.
+- Mettre à jour les règles de segmentation avec la version Unicode prise en charge et conserver les tests de régression.
+- Les sélections par mot et phrase utilisent des règles distinctes de celles des graphèmes.
+
+Référence : [Unicode — UAX #29, Text Segmentation](https://www.unicode.org/reports/tr29/).
+
+## 10.709 Gestion transactionnelle de la composition par méthode de saisie — Question 740, décision technique prise par l'assistant
+
+Les méthodes de saisie complexes (IME) présentent et modifient une composition temporaire sans valider chaque étape intermédiaire comme texte définitif.
+
+- Distinguer début, mises à jour et fin de composition ; le texte en cours reste identifiable comme provisoire.
+- Ne pas déclencher à chaque mise à jour les traitements définitifs de validation, remplacement automatique ou génération d'historique.
+- À la validation, appliquer le remplacement final comme une seule opération cohérente et annulable.
+- En cas d'annulation de composition par le système ou l'utilisateur, restaurer le texte antérieur et la sélection.
+- Préserver les événements de composition natifs plutôt que simuler la saisie par les seules touches clavier.
+- Tester claviers virtuels et IME de plusieurs langues et plateformes.
+
+Référence : [W3C — Input Events Level 2, composition event order](https://www.w3.org/TR/input-events-2/).
+
+## 10.710 Ordre logique du texte et affichage bidirectionnel — Question 741, décision technique prise par l'assistant
+
+Le texte est conservé dans son ordre logique Unicode ; le réordonnancement nécessaire à l'affichage est calculé par le moteur de texte.
+
+- Appliquer l'algorithme Unicode Bidirectional Algorithm aux paragraphes contenant des écritures de directions différentes.
+- Ne jamais réordonner physiquement la chaîne enregistrée pour reproduire son apparence visuelle.
+- Distinguer position logique du curseur et position visuelle ; gérer les déplacements gauche/droite dans les séquences bidirectionnelles.
+- Sélections, copies, suppressions et exports opèrent sur le texte logique avec un surlignage visuel correct.
+- Interpréter les caractères de contrôle directionnel conformément à la spécification ; rendre leur présence visible dans les diagnostics utiles.
+- Tester les mélanges de français, chiffres, symboles, hébreu, arabe et autres écritures prises en charge.
+
+Référence : [Unicode — UAX #9, Bidirectional Algorithm](https://www.unicode.org/reports/tr9/).
+
+## 10.711 Coupures de ligne conformes aux classes Unicode — Question 742, décision technique prise par l'assistant
+
+Le retour à la ligne automatique s'appuie sur des opportunités de coupure adaptées aux propriétés Unicode du texte.
+
+- Utiliser l'algorithme Unicode de coupure de ligne ou une implémentation documentée produisant des résultats équivalents pour les langues prises en charge.
+- Respecter les interdictions de coupure dans les séquences numériques, unités, mots protégés et séquences insécables.
+- Distinguer sauts de ligne explicites, opportunités automatiques et coupures imposées par les contraintes du cadre.
+- Les symboles de mana, icônes en ligne, champs dynamiques et jetons non textuels sont indivisibles lorsque leur définition l'exige.
+- Toute césure linguistique supplémentaire repose sur un dictionnaire ou moteur identifié et versionné.
+- Le changement de largeur du cadre recalcule les lignes sans modifier la chaîne source.
+
+Référence : [Unicode — UAX #14, Line Breaking Algorithm](https://www.unicode.org/reports/tr14/).
+
+## 10.712 Ancrage logique des sélections et du curseur après modification — Question 743, décision technique prise par l'assistant
+
+Les sélections et positions de curseur restent cohérentes lorsque le texte est modifié ou façonné en glyphes.
+
+- Représenter les positions d'édition dans un repère logique stable associé au texte source, puis les convertir vers les positions visuelles du texte façonné.
+- Préserver les correspondances entre caractères d'entrée, clusters et glyphes, y compris ligatures, décompositions et réordonnancements.
+- Après insertion, suppression, remplacement ou changement de police, recalculer les ancres sans pointer au milieu d'une unité d'édition invalide.
+- Les sélections bidirectionnelles peuvent être visuellement discontinues ; copie et suppression restent basées sur les intervalles logiques.
+- Ne pas déduire une position de curseur par simple addition des largeurs nominales des caractères.
+- Tester ligatures, marques combinées, scripts complexes et changements de direction.
+
+Références : [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html) ; [Unicode — UAX #29](https://www.unicode.org/reports/tr29/).
+
+## 10.713 Façonnage typographique selon le script, la langue et la direction — Question 744, décision technique prise par l'assistant
+
+Le rendu du texte utilise un moteur de façonnage typographique qui transforme les séquences Unicode en glyphes correctement substitués et positionnés.
+
+- Segmenter le texte selon changements de script, langue, direction et police lorsque nécessaire.
+- Appliquer les règles de façonnage appropriées : substitutions, ligatures, positionnement des marques et ajustements de glyphes.
+- Ne pas supposer qu'un caractère Unicode correspond à un glyphe unique ni que les largeurs nominales suffisent.
+- Transmettre au moteur les propriétés de script, langue et direction de chaque segment.
+- Préserver le texte Unicode source indépendamment de la séquence de glyphes rendue.
+- Vérifier les scripts effectivement pris en charge, y compris les écritures complexes.
+
+Références : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html) ; [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html).
+
+## 10.714 Repli typographique par segments et détection des glyphes absents — Question 745, décision technique prise par l'assistant
+
+Lorsqu'une police ne couvre pas tous les caractères d'un segment, le moteur sélectionne un repli contrôlé sans altérer le texte.
+
+- Détecter les glyphes absents et distinguer une absence réelle d'un glyphe volontairement invisible.
+- Sélectionner une police de repli compatible au niveau du segment nécessaire, plutôt que remplacer arbitrairement toute la ligne.
+- Conserver script, langue, direction et style lors du façonnage du segment de repli.
+- Signaler les substitutions qui modifient sensiblement les métriques ou provoquent un débordement.
+- Ne jamais remplacer silencieusement les caractères manquants par un autre caractère ni supprimer le texte source.
+- Le choix du repli est déterministe à configuration et polices disponibles identiques.
+
+Référence : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html).
+
+## 10.715 Mesure du texte à partir des glyphes réellement façonnés — Question 746, décision technique prise par l'assistant
+
+La mesure utilisée pour la mise en page provient du même résultat de façonnage que celui utilisé pour dessiner le texte.
+
+- Calculer avances et décalages à partir des glyphes façonnés, et non d'une somme simplifiée de largeurs de caractères.
+- Inclure métriques verticales, marques, ligatures, crénage, variations de police et direction dans la géométrie effective.
+- Utiliser les mêmes données pour mesure, aperçu, calcul de débordement et export lorsque les moteurs partagent le pipeline.
+- Si un moteur d'export distinct est nécessaire, comparer ses métriques et son résultat au moteur de référence et signaler les écarts hors tolérance.
+- Invalider les mesures après changement de police, taille, largeur, fonctionnalités ou contenu.
+- Tester les textes proches des limites de cadre et les scripts avec marques combinées.
+
+Références : [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html) ; [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html).
+
+## 10.716 Paramètres OpenType et axes de polices variables explicites — Question 747, décision technique prise par l'assistant
+
+Les fonctionnalités OpenType et axes de polices variables qui influencent le rendu sont représentés explicitement dans le style textuel.
+
+- Enregistrer les fonctionnalités typographiques activées ou désactivées lorsque le moteur permet de les contrôler.
+- Pour les polices variables, conserver les valeurs des axes réellement appliqués, leurs bornes et les valeurs par défaut de la police.
+- Ne pas supposer que deux environnements utilisent les mêmes valeurs par défaut ; les paramètres significatifs sont explicites dans le projet.
+- Signaler les axes et fonctionnalités inconnus ou non pris en charge au lieu de prétendre les appliquer.
+- Préserver ces paramètres lors de duplication, héritage, sauvegarde et export.
+- Les paramètres typographiques ne confèrent aucun droit supplémentaire sur le fichier de police.
+
+Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Utilities](https://harfbuzz.github.io/utilities.html).
+
+## 10.717 Cache de façonnage typographique à clés complètes — Question 748, décision technique prise par l'assistant
+
+Les résultats de façonnage peuvent être mis en cache si la clé identifie toutes les entrées qui influencent le résultat.
+
+- Construire la clé à partir du contenu Unicode, de l'empreinte et version de la police, du script, de la langue, de la direction, de la taille, des fonctionnalités OpenType et des axes variables.
+- Inclure la version du moteur de façonnage et les paramètres de segmentation pertinents.
+- Ne pas partager un résultat entre polices ou contextes typographiques distincts au seul motif que le texte est identique.
+- Borner le cache par son coût mémoire réel et appliquer une éviction déterministe ; le cache reste reconstructible et n'est jamais la source canonique du texte.
+- Invalider les entrées lorsque contenu, police, paramètres, moteur ou propriétés du segment changent.
+- Tester que chaque paramètre pertinent affecte correctement la clé.
+
+Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html).
+
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -7195,7 +7195,7 @@ Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader
 
 # 12. État du cahier des charges
 
-**Version actuelle : V3.120**  
+**Version actuelle : V3.121**  
 **Dernière décision enregistrée : Q748 — section 10.717.**  
 **Prochaine question disponible : Q749.**  
 **Statut :** cahier des charges en cours de définition ; aucune clôture ni autorisation de développement n'a été prononcée.
