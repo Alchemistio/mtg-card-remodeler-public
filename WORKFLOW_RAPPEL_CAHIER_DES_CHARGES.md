@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.106](MTG_Card_Remodeler_Cahier_des_charges_V3.106.md)
+- Cahier des charges de référence au dernier contrôle : [V3.107](MTG_Card_Remodeler_Cahier_des_charges_V3.107.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q638**
-- Dernière section : **10.607**
-- Prochain numéro disponible : **Q639** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.106
+- Dernière question enregistrée : **Q639**
+- Dernière section : **10.608**
+- Prochain numéro disponible : **Q640** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.107
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -106,16 +106,16 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.106.**
-- **Dernière question enregistrée : Q638.**
-- **Dernière section : 10.607.**
-- **Prochaine question disponible : Q639.**
+- **Version courante : V3.107.**
+- **Dernière question enregistrée : Q639.**
+- **Dernière section : 10.608.**
+- **Prochaine question disponible : Q640.**
 - **Dernière décision :** Q632 — licence personnelle non commerciale du code source : étude et usage privé non commercial autorisés ; redistribution et exploitation commerciale interdites sans autorisation écrite distincte. La licence logicielle personnalisée doit encore être rédigée et relue avant publication comme texte juridique définitif.
 - **Point d'attention GitHub :** un dépôt public peut être consulté et forké selon les conditions de la plateforme. Cette capacité de fork doit être distinguée d'une autorisation générale de redistribution ou d'exploitation commerciale ; si l'interdiction du fork lui-même devient impérative, la visibilité publique devra être réévaluée.
-- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. Après publication de V3.106, les versions conservées sont V3.104, V3.105 et V3.106. V3.103 doit être supprimée de la branche après vérification, sans suppression de son historique Git.
+- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. Après publication de V3.107, les versions conservées sont V3.105, V3.106 et V3.107. V3.104 doit être supprimée de la branche après vérification, sans suppression de son historique Git.
 - Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
-- Q619 à Q638 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux.
-- Continuer l'audit à partir de l'index V3.105, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Q638 est enregistrée en section 10.607 ; Q639 est le prochain identifiant disponible. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
+- Q619 à Q639 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux.
+- Continuer l'audit à partir de l'index V3.105, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Q639 est enregistrée en section 10.608 ; Q640 est le prochain identifiant disponible. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
 - **Aucun développement du remodeler n'est autorisé** avant que l'utilisateur ait explicitement déclaré le cahier des charges terminé et autorisé cette phase.
 
 ## 7. Domaines à explorer ensuite
@@ -211,3 +211,5 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Enregistrement de Q637 :** l'utilisateur choisit l'anonymisation obligatoire, sans possibilité de dérogation, pour les rapports de diagnostic exportés. Aucun réglage ne peut désactiver la protection ni restaurer les informations identifiantes masquées ; l'aperçu reste obligatoire et les secrets restent exclus ou masqués. Publication de V3.105, section 10.606 ; index actualisé et liens recalculés. Dernière question : Q637 ; dernière section : 10.606 ; prochaine question : Q638. La rétention de trois versions implique de conserver V3.103, V3.104 et V3.105 dans `main`, puis de retirer V3.102 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 - **2026-11-14 — Enregistrement de Q638 :** l'utilisateur choisit l'option 3 : la durée de conservation des journaux de diagnostic locaux et leurs limites de stockage doivent être configurables dans les paramètres. Publication de V3.106, section 10.607 ; index actualisé avec Q638 et ses liens. Dernière question : Q638 ; dernière section : 10.607 ; prochaine question : Q639. La rétention de trois versions implique de conserver V3.104, V3.105 et V3.106 dans `main`, puis de retirer V3.103 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+
+- **2026-11-14 — Enregistrement de Q639 :** l'utilisateur choisit l'inclusion systématique des journaux de diagnostic locaux dans toutes les sauvegardes. Publication de V3.107, section 10.608, avec mise à jour complémentaire de la portée de la section 2.6 ; index et rappel de workflow actualisés. Dernière question : Q639 ; dernière section : 10.608 ; prochaine question : Q640. La rétention de trois versions implique de conserver V3.105, V3.106 et V3.107 dans `main`, puis de retirer V3.104 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
