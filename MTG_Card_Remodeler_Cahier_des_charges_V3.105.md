@@ -13,8 +13,8 @@
 | Version | Description |
 |---|---|
 | V3.105 | Anonymisation obligatoire et non désactivable des rapports de diagnostic |
+| V3.104 | Anonymisation automatique des rapports de diagnostic exportés |
 | V3.103 | Suppression des données à la désinstallation sans sauvegarde supplémentaire proposée |
-| V3.102 | Désinstallation de l'application et conservation des données par défaut |
 
 # 1. Présentation générale
 
