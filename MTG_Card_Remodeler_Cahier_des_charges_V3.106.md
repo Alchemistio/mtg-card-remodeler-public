@@ -15,7 +15,6 @@
 | V3.106 | Conservation configurable des journaux de diagnostic locaux |
 | V3.105 | Anonymisation obligatoire et non désactivable des rapports de diagnostic |
 | V3.104 | Anonymisation automatique des rapports de diagnostic exportés |
-| V3.103 | Suppression des données à la désinstallation sans sauvegarde supplémentaire proposée |
 
 # 1. Présentation générale
 
