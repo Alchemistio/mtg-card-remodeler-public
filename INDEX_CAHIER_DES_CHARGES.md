@@ -823,7 +823,7 @@ Questions indexées : [564](#question-564) · [565](#question-565) · [566](#que
 
 Chaque exigence doit être vérifiée par des critères d'acceptation et des preuves adaptées. L'audit global contrôle la couverture de l'ensemble du cahier des charges ; la décision finale d'acceptation appartient à l'utilisateur. Aucun défaut connu, même mineur, ne peut subsister au moment de cette acceptation.
 
-Questions indexées : [344](#question-344) · [345](#question-345) · [644](#question-644)
+Questions indexées : [344](#question-344) · [345](#question-345) · [644](#question-644) · [645](#question-645)
 
 | <a id="question-644"></a>644 | 10.613 | [10.613 Critères d'acceptation, audit global et validation finale mixte](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.114.md#L4561) | [4563](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.114.md#L4563) |
 | <a id="question-645"></a>645 | 10.614 | [10.614 Absence de défauts résiduels, y compris mineurs, avant acceptation finale](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.114.md#L4575) | [4577](https://github.com/Alchemistio/mtg-card-remodeler-public/blob/main/MTG_Card_Remodeler_Cahier_des_charges_V3.114.md#L4577) |
