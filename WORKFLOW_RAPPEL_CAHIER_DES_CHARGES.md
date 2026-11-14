@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.98](MTG_Card_Remodeler_Cahier_des_charges_V3.98.md)
+- Cahier des charges de référence au dernier contrôle : [V3.99](MTG_Card_Remodeler_Cahier_des_charges_V3.99.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q629**
-- Dernière section : **10.599**
-- Prochain numéro disponible : **Q630** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.98
+- Dernière question enregistrée : **Q630**
+- Dernière section : **10.600**
+- Prochain numéro disponible : **Q631** ; prochain bloc à constituer après audit de l'index puis des sections pertinentes de V3.99
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -17,7 +17,7 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 1. Se reconnecter au dépôt GitHub indiqué ci-dessus.
 2. Lire ce document de rappel, puis l'index `INDEX_CAHIER_DES_CHARGES.md`.
-3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.98 est toujours la dernière version.
+3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.99 est toujours la dernière version.
 4. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de poser de nouvelles questions.
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
@@ -96,7 +96,7 @@ Pour toute série validée :
 
 ## 5. Prévention des doublons — repères déjà connus
 
-À la reprise depuis l'état V3.98, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
+À la reprise depuis l'état V3.99, les sujets suivants sont déjà couverts et ne doivent pas être reposés sous une forme générique :
 
 - **Gestion des projets — section 10.10 / Q32** : création, nommage, sauvegarde, duplication, suppression, bascule, ressources intégrées ou partagées, paramètres de projet, récupération, historique, versions, import/export, dépendances, conflits, ressources manquantes et transfert entre ordinateurs.
 - **Dépendances des extensions — Q564 à Q568** : contraintes de versions, résolution déterministe, ordonnancement, cycles et dépendances facultatives.
@@ -106,11 +106,11 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.98, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
+Les questions Q594 à Q618 ont été proposées dans un message précédent sans réponse de l'utilisateur. Après vérification méthodique de l'index et du cahier des charges V3.99, plusieurs propositions se sont révélées déjà couvertes : sauvegardes quotidiennes et hebdomadaires, nombre de sauvegardes conservées, destination configurable, restauration complète ou sélective, vérification d'intégrité, récupération des projets endommagés, points de restauration, journalisation, diagnostics, migration et mises à jour.
 
 **Ces propositions sont retirées et ne doivent pas être reposées.** Les identifiants Q594 à Q618 sont réservés comme propositions abandonnées et ne doivent pas être réattribués.
 
-**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.98, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Q625 à Q627 ont désormais reçu une réponse et sont enregistrées dans V3.98, sections 10.595 à 10.597.** Le prochain identifiant disponible est Q628. Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.98. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
+**Q619 à Q623 ont désormais reçu une réponse et sont enregistrées dans V3.99, sections 10.589 à 10.593.** Les décisions portent sur l'absence de synchronisation automatique, l'absence de collaboration multi-utilisateur, le partage exclusivement par fichiers exportés, l'absence de catalogue communautaire intégré et l'absence de compte utilisateur. **Q625 à Q627 ont désormais reçu une réponse et sont enregistrées dans V3.99, sections 10.595 à 10.597.** Le prochain identifiant disponible est Q628. Le prochain bloc de questions reste à constituer après consultation de l'index puis lecture des sections pertinentes de V3.99. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux ; signaler alors le nombre inférieur et ne soumettre que ce qui est indispensable. Les autres sujets du cycle 5 × 5 sont préparés et examinés en interne, sans être affichés à l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
 
@@ -163,22 +163,25 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-13 — Enregistrement des décisions Q619–Q623 :** publication du cahier des charges V3.94 avec les sections 10.589 à 10.593 ; mise à jour et vérification de l'index ; point de reprise déplacé à Q624–Q628. Les cinq choix retenus privilégient un fonctionnement local sans compte, synchronisation, collaboration ni catalogue communautaire, avec transfert et partage manuels par fichiers.
 
 
-- **2026-11-13 — Point de reprise après audit Q619–Q623 (historique, remplacé par Q624) :** le prochain identifiant disponible était Q624. Ce point de reprise est clos depuis l'enregistrement de Q624 dans V3.98.
+- **2026-11-13 — Point de reprise après audit Q619–Q623 (historique, remplacé par Q624) :** le prochain identifiant disponible était Q624. Ce point de reprise est clos depuis l'enregistrement de Q624 dans V3.99.
 
 
-- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.98, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
+- **2026-11-13 — Enregistrement de Q624 :** choix utilisateur en faveur de la prise en charge officielle de Windows, macOS et Linux. Publication de V3.99, section 10.594 ; index mis à jour, liens de ligne recalculés et vérifiés ; prochain identifiant disponible Q625. La dernière question enregistrée est Q624 et la dernière section est 10.594.
 
 
-- **2026-11-13 — Correction de cohérence du point de reprise :** lors de la reprise, l'audit a constaté que le rappel indiquait encore Q624 comme prochain numéro alors que Q624 était déjà publiée dans V3.98 et indexée. Le prochain identifiant disponible est corrigé à **Q625**. Aucun numéro déjà utilisé n'est réattribué.
+- **2026-11-13 — Correction de cohérence du point de reprise :** lors de la reprise, l'audit a constaté que le rappel indiquait encore Q624 comme prochain numéro alors que Q624 était déjà publiée dans V3.99 et indexée. Le prochain identifiant disponible est corrigé à **Q625**. Aucun numéro déjà utilisé n'est réattribué.
 
 
-- **2026-11-14 — Enregistrement des décisions Q625–Q627 :** publication du cahier des charges V3.98, sections 10.595 à 10.597. Le logiciel reste privé et destiné à l'usage personnel ; le code source peut être consulté publiquement mais sans autorisation générale de réutilisation ou redistribution ; aucune monétisation n'est définie pour le moment et cette décision est reportée. L'index a été actualisé avec les nouveaux thèmes, ancres et lignes. Prochain identifiant disponible : Q628. Le périmètre reste exclusivement celui de la définition documentaire ; aucun développement du remodeler n'est autorisé à ce stade.
+- **2026-11-14 — Enregistrement des décisions Q625–Q627 :** publication du cahier des charges V3.99, sections 10.595 à 10.597. Le logiciel reste privé et destiné à l'usage personnel ; le code source peut être consulté publiquement mais sans autorisation générale de réutilisation ou redistribution ; aucune monétisation n'est définie pour le moment et cette décision est reportée. L'index a été actualisé avec les nouveaux thèmes, ancres et lignes. Prochain identifiant disponible : Q628. Le périmètre reste exclusivement celui de la définition documentaire ; aucun développement du remodeler n'est autorisé à ce stade.
 
 
-- **2026-11-14 — Enregistrement de Q628 :** choix utilisateur en faveur d'un fonctionnement hors ligne prioritaire. Publication du cahier des charges V3.98, section 10.598 ; l'application doit rester pleinement utilisable pour ses fonctions locales sans connexion, tandis que les fonctions intrinsèquement dépendantes d'un service externe peuvent être indisponibles hors ligne sans bloquer le reste. Index actualisé, ancres et liens de ligne vérifiés. Dernière question enregistrée : Q628 ; dernière section : 10.598 ; prochain identifiant disponible : Q629. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+- **2026-11-14 — Enregistrement de Q628 :** choix utilisateur en faveur d'un fonctionnement hors ligne prioritaire. Publication du cahier des charges V3.99, section 10.598 ; l'application doit rester pleinement utilisable pour ses fonctions locales sans connexion, tandis que les fonctions intrinsèquement dépendantes d'un service externe peuvent être indisponibles hors ligne sans bloquer le reste. Index actualisé, ancres et liens de ligne vérifiés. Dernière question enregistrée : Q628 ; dernière section : 10.598 ; prochain identifiant disponible : Q629. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
-- **2026-11-14 — Enregistrement de Q629 :** l'utilisateur choisit une vérification automatique des mises à jour désactivable dans les paramètres. Publication du cahier des charges V3.98, section 10.599. La vérification est non bloquante, suspendue en l'absence de réseau et réactivable/désactivable par l'utilisateur ; la vérification manuelle reste disponible et l'installation conserve ses validations et confirmations préalables. Index actualisé avec Q629 et les liens vers V3.98 ; prochain identifiant disponible : Q630. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+- **2026-11-14 — Enregistrement de Q629 :** l'utilisateur choisit une vérification automatique des mises à jour désactivable dans les paramètres. Publication du cahier des charges V3.99, section 10.599. La vérification est non bloquante, suspendue en l'absence de réseau et réactivable/désactivable par l'utilisateur ; la vérification manuelle reste disponible et l'installation conserve ses validations et confirmations préalables. Index actualisé avec Q629 et les liens vers V3.99 ; prochain identifiant disponible : Q630. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
 
 
-- **2026-11-14 — Correction du point de reprise après publication de Q629 :** l'audit croisé a relevé que le rappel opérationnel n'avait pas été actualisé malgré la publication de Q629 dans V3.98 et son indexation. Le dernier identifiant enregistré est corrigé à Q629, la dernière section à 10.599 et le prochain identifiant à Q630. Aucun numéro n'est réutilisé. Le workflow reste limité à la définition documentaire jusqu'à clôture explicite du cahier des charges.
+- **2026-11-14 — Correction du point de reprise après publication de Q629 :** l'audit croisé a relevé que le rappel opérationnel n'avait pas été actualisé malgré la publication de Q629 dans V3.99 et son indexation. Le dernier identifiant enregistré est corrigé à Q629, la dernière section à 10.599 et le prochain identifiant à Q630. Aucun numéro n'est réutilisé. Le workflow reste limité à la définition documentaire jusqu'à clôture explicite du cahier des charges.
+
+
+- **2026-11-14 — Enregistrement de Q630 :** l'utilisateur choisit une politique de notification uniquement pour les mises à jour de l'application. Aucun téléchargement ni installation ne doit démarrer automatiquement ; chacun exige une action explicite distincte, après notification et contrôles de sécurité. Publication du cahier des charges V3.99, section 10.600 ; index actualisé avec Q630 et les liens de ligne correspondants. Dernière question enregistrée : Q630 ; dernière section : 10.600 ; prochain identifiant disponible : Q631. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
