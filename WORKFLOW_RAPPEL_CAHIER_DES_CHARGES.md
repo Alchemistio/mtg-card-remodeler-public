@@ -56,9 +56,9 @@ Après ces vérifications, appliquer la méthode de préparation ci-dessous :
 3. Vérifier les exigences déjà définies, y compris les décisions indirectement liées.
 4. Écarter ou reformuler les sujets redondants. Ne pas reposer une question simplement parce qu'elle est ancienne ou difficile à retrouver.
 5. Préférer les lacunes concrètes, les cas limites, les interactions entre fonctions, la sécurité, la récupération, la traçabilité, l'accessibilité et la robustesse.
-6. Rédiger cinq questions indépendantes autant que possible. Chaque question doit proposer des choix compréhensibles et progressifs, sans cacher une décision majeure dans une option technique.
-7. Présenter les cinq questions en français et demander une réponse compacte.
-8. Après la réponse, interpréter les choix, puis documenter les décisions et leurs implications normatives.
+6. Pour les décisions de détail, préparer cinq séries de cinq décisions autonomes et les trancher par recherche documentaire ; ne pas les transformer en questions adressées à l'utilisateur.
+7. Si un arbitrage fonctionnel réellement crucial subsiste, le présenter seul dans un bloc compact en français, avec des choix compréhensibles et sans cacher une décision majeure dans une option technique.
+8. Documenter les décisions techniques prises par l'assistant comme telles ; ne documenter comme validés par l'utilisateur que les choix qu'il a effectivement exprimés.
 
 ### Règle essentielle sur les questions de détail — recherche et décision autonomes
 
