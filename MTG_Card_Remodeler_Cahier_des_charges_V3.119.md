@@ -4549,331 +4549,6 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
  Les questions 354 à 358 définissent une architecture modulaire extensible pouvant accueillir des extensions externes, des modules internes indépendants activables ou désactivables lorsque cela est pertinent, la préservation de la compatibilité des projets existants, le versionnement et la migration automatique des formats avec possibilité de restauration, ainsi qu'une documentation technique complète couvrant l'architecture, les modules, les dépendances, les interfaces internes et les procédures de maintenance.
 
 
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.643 Noms de fichiers portables et caractères réservés — Question 674, décision technique prise par l'assistant
-
-Les noms créés ou importés doivent rester utilisables sur Windows, macOS et Linux.
-
-- Valider les noms selon un profil commun de compatibilité, plus strict que le seul système courant.
-- Refuser les caractères interdits, contrôles, séparateurs et noms de périphériques réservés sur le système cible.
-- Conserver le nom original dans les métadonnées si une adaptation est nécessaire à l'export.
-- Ne jamais fusionner ni écraser silencieusement deux ressources distinctes.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.644 Gestion explicite des chemins trop longs — Question 675, décision technique prise par l'assistant
-
-L'application détecte les limites de longueur du système cible avant toute copie, importation, sauvegarde ou export.
-
-- Évaluer le chemin complet selon les capacités réelles des API et du système cible.
-- Ne jamais tronquer silencieusement un nom ou un chemin.
-- Bloquer avant toute écriture partielle et proposer une destination plus courte.
-- Tester chemins imbriqués, noms Unicode et chemins proches des limites documentées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.645 Détection des collisions selon le système de fichiers cible — Question 676, décision technique prise par l'assistant
-
-Avant un transfert, détecter les noms qui deviennent équivalents selon la casse ou la normalisation du système cible.
-
-- Simuler les règles de casse et d'équivalence pertinentes pour la destination.
-- Signaler chaque collision avant l'écriture.
-- Ne jamais choisir arbitrairement la ressource à conserver.
-- Permettre renommage explicite ou annulation complète, avec traçabilité.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/technologyoverviews/files-and-directories).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.646 Détection prudente des caractères Unicode confondables — Question 677, décision technique prise par l'assistant
-
-Les identifiants techniques sensibles peuvent signaler les caractères Unicode visuellement confondables.
-
-- Appliquer une analyse inspirée d'Unicode UTS #39 aux identifiants de ressources, extensions et manifestes.
-- Signaler sans transformer ni remplacer automatiquement le texte original.
-- Préserver la liberté Unicode des contenus éditoriaux et noms de cartes.
-- Ne bloquer que les ambiguïtés techniques exploitables ; distinguer similarité et identité.
-
-Référence : [Référence technique](https://www.unicode.org/reports/tr39/).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.647 Résolution des répertoires applicatifs par les API des plateformes — Question 678, décision technique prise par l'assistant
-
-Les emplacements de données, paramètres, caches et fichiers temporaires sont déterminés par les API et conventions de chaque système.
-
-- Séparer les répertoires selon leur finalité et leur durée de vie.
-- Ne pas construire les chemins personnels par concaténation de répertoires supposés ou codés en dur.
-- Ne pas placer de données persistantes dans un répertoire temporaire ou d'exécution.
-- Tester profils déplacés, permissions restreintes et chemins personnalisés.
-
-Référence : [Référence technique](https://specifications.freedesktop.org/basedir/).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.648 Verrou exclusif d'un projet ouvert dans plusieurs instances — Question 679, décision technique prise par l'assistant
-
-Un projet ne peut être modifié simultanément par plusieurs instances sans coordination explicite.
-
-- Acquérir un verrou interprocessus avant toute édition ou écriture.
-- Si le verrou est détenu, proposer lecture seule ou annulation ; ne jamais le contourner silencieusement.
-- Libérer le verrou à la fermeture normale et contrôler son état après interruption.
-- Documenter les garanties selon le système de fichiers utilisé.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.649 Vérification prudente des verrous obsolètes — Question 680, décision technique prise par l'assistant
-
-Un verrou laissé après un plantage ne peut être supprimé qu'après vérification suffisante de son obsolescence.
-
-- Combiner processus, instance, hôte et âge ; l'âge seul ne suffit pas pour un verrou long.
-- En cas d'incertitude, conserver le verrou et présenter les informations pour arbitrage manuel.
-- Exiger confirmation avant de supprimer un verrou potentiellement actif.
-- Traiter PID réutilisé, horloge décalée, hôte distant et stockage réseau comme cas incertains.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.650 Surveillance des modifications externes des projets ouverts — Question 681, décision technique prise par l'assistant
-
-Surveiller les modifications externes pertinentes sans considérer les notifications du système de fichiers comme exhaustives.
-
-- Utiliser les notifications pour déclencher une vérification, pas comme preuve complète.
-- Vérifier existence, taille, date et empreinte lorsque nécessaire.
-- Rétablir les surveillances invalidées après renommage ou remplacement.
-- Compléter les notifications par une vérification de cohérence aux points de sauvegarde.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qfilesystemwatcher.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.651 Détection des conflits avant écrasement d'un projet modifié à l'extérieur — Question 682, décision technique prise par l'assistant
-
-Comparer l'état de référence du projet ouvert à celui présent sur le stockage avant chaque sauvegarde.
-
-- Utiliser empreinte ou version fiable, pas seulement date de modification.
-- Suspendre l'écriture si le contenu a changé depuis le chargement.
-- Proposer rechargement, copie distincte ou comparaison lorsque possible.
-- Ne jamais détruire automatiquement la version externe ou la version en mémoire.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.652 Mode lecture seule si la coordination du stockage est incertaine — Question 683, décision technique prise par l'assistant
-
-Si les garanties de verrouillage ne sont pas fiables, privilégier la lecture seule.
-
-- Évaluer les capacités des emplacements réseau, virtuels et amovibles.
-- Avertir avant ouverture et proposer lecture seule ou copie locale.
-- Ne pas prétendre qu'un verrou local protège d'autres machines si le stockage ne le propage pas.
-- Tracer la provenance des copies locales et leur réintégration.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.653 Fermeture ordonnée et séquencée de l'application — Question 684, décision technique prise par l'assistant
-
-La fermeture suit une séquence contrôlée avant de libérer les ressources.
-
-- Cesser l'acceptation de nouveaux travaux, puis demander l'arrêt coopératif des tâches.
-- Valider ou annuler proprement les écritures critiques engagées.
-- Enregistrer les états de session récupérables avant de libérer verrous et ressources.
-- Appliquer un délai maximal et signaler les tâches non terminées sans prétendre qu'elles ont été sauvegardées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.654 Annulation coopérative des tâches longues — Question 685, décision technique prise par l'assistant
-
-Les tâches longues s'annulent à des points de contrôle définis sans interrompre arbitrairement une opération critique.
-
-- Déclarer les points d'annulation et les étapes non interruptibles.
-- Arrêter la création de sous-tâches et nettoyer les ressources temporaires.
-- Ne pas interrompre un commit atomique ou une transaction en cours.
-- Distinguer demande d'annulation, annulation terminée et tâche temporairement non annulable.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.655 Récupération de session après arrêt anormal — Question 686, décision technique prise par l'assistant
-
-Proposer une récupération de session depuis un état de reprise cohérent, distinct de la sauvegarde définitive du projet.
-
-- Conserver seulement le contexte nécessaire : projets ouverts, documents actifs, sélection et modifications récupérables.
-- Écrire l'état de reprise atomiquement, le versionner et l'associer à l'empreinte du projet.
-- Vérifier les éléments à la relance et présenter un aperçu de ce qui est restaurable.
-- Ne jamais remplacer automatiquement le projet sauvegardé ou une version externe plus récente.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.656 Redémarrage après incident sans boucle de plantage — Question 687, décision technique prise par l'assistant
-
-Le redémarrage après incident ne doit pas créer de boucle ni réexécuter automatiquement l'opération fautive.
-
-- Limiter la fréquence des relances et désactiver le redémarrage après échecs consécutifs ou fermeture volontaire.
-- Restaurer d'abord un état sûr ; ne pas relancer automatiquement les opérations modifiant des données.
-- Présenter les tâches interrompues et les possibilités de récupération.
-- Respecter les choix utilisateur et les mécanismes natifs de chaque plateforme.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/registering-for-application-restart).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.657 Démarrage de diagnostic sans extensions tierces — Question 688, décision technique prise par l'assistant
-
-Proposer un mode de démarrage sans chargement des extensions tierces en cas de dysfonctionnement.
-
-- Désactiver temporairement leur chargement sans supprimer fichiers ni paramètres.
-- Permettre une activation explicite après diagnostic, extension par extension.
-- Conserver les fonctions internes indispensables si leur intégrité est vérifiée.
-- Ne rétablir le mode normal qu'après action explicite et afficher les extensions neutralisées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.658 Format structuré et versionné des événements — Question 689, décision technique prise par l'assistant
-
-Les journaux utilisent un format structuré et versionné, analysable sans dépendre de textes libres.
-
-- Chaque événement contient identifiant stable, horodatage normalisé, gravité, composant et code.
-- Séparer paramètres typés et message affiché.
-- Versionner le schéma et définir la compatibilité de lecture.
-- Encoder les données non fiables et ignorer les champs inconnus sans perdre l'événement.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.659 Identifiant de corrélation des opérations multi-composants — Question 690, décision technique prise par l'assistant
-
-Chaque opération utilisateur significative reçoit un identifiant propagé à tous les composants participants.
-
-- Relier les événements même lorsqu'une opération traverse plusieurs tâches ou processus internes.
-- Autoriser des identifiants de sous-opération liés à une opération parente.
-- Ne jamais intégrer de données personnelles ou métier dans l'identifiant.
-- Permettre le filtrage local d'une opération complète sans transmission réseau automatique.
-
-Référence : [Référence technique](https://opentelemetry.io/docs/concepts/context-propagation/).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.660 Minimisation des données sensibles dès l'émission — Question 691, décision technique prise par l'assistant
-
-Limiter les données consignées dès la création de l'événement plutôt que compter uniquement sur un nettoyage à l'export.
-
-- Exclure par défaut contenus de cartes, textes de création, images, secrets et jetons.
-- Omettre ou pseudonymiser les chemins locaux si leur valeur exacte n'est pas nécessaire.
-- Préférer identifiants techniques et catégories d'erreur aux contenus complets.
-- Tester les journaux produits par les scénarios représentatifs et les échecs.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.661 Neutralisation des injections et encodage des événements — Question 692, décision technique prise par l'assistant
-
-Toute donnée externe intégrée à un journal est validée et encodée selon le format de sortie.
-
-- Encoder les retours à la ligne, caractères de contrôle et séparateurs non fiables.
-- Utiliser un sérialiseur structuré, jamais une concaténation libre de lignes.
-- Limiter la longueur des champs et signaler les troncatures.
-- Tester CR/LF, séparateurs, contrôles Unicode et charges malformées.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.662 Isolation des défaillances du système de journalisation — Question 693, décision technique prise par l'assistant
-
-Une panne de journalisation ne doit pas bloquer l'interface ni compromettre une opération métier cohérente.
-
-- Découpler les écritures de journal des chemins critiques avec une file bornée.
-- Définir une politique de saturation qui préserve autant que possible les événements prioritaires.
-- Signaler erreurs de permission ou d'espace disque sans boucle de tentatives agressive.
-- Éviter toute récursion lorsque le logger lui-même échoue.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.663 Limitation globale des travailleurs concurrents — Question 694, décision technique prise par l'assistant
-
-Les traitements en arrière-plan utilisent un nombre de travailleurs borné.
-
-- Définir un plafond selon les capacités disponibles et une limite applicative documentée.
-- Partager un ordonnanceur borné au lieu de créer un pool illimité par tâche.
-- Appliquer des limites plus strictes aux opérations consommatrices de mémoire.
-- Exposer les paramètres et la charge dans le diagnostic local.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.664 Files de tâches bornées et régulation de surcharge — Question 695, décision technique prise par l'assistant
-
-Les files d'attente sont bornées et régulent les demandes dépassant la capacité de traitement.
-
-- Éviter l'accumulation illimitée de rendus ou de demandes redondantes.
-- Fusionner les demandes identiques en attente lorsque leur résultat attendu est équivalent.
-- Différer ou refuser explicitement les nouvelles demandes à saturation.
-- Ne jamais supprimer silencieusement une tâche engagée ou une sauvegarde.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.665 Priorité des tâches selon l'impact utilisateur — Question 696, décision technique prise par l'assistant
-
-L'ordonnanceur distingue les tâches nécessaires à l'interaction des traitements secondaires.
-
-- Prioriser les actions explicites nécessaires à la poursuite du travail.
-- Empêcher les tâches de fond de monopoliser durablement les travailleurs.
-- Ne pas contourner les dépendances ou l'ordre de validation des données.
-- Éviter la famine des tâches de faible priorité et tester la réactivité sous charge.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.666 Progression cohérente des tâches longues — Question 697, décision technique prise par l'assistant
-
-Les tâches longues exposent une progression fidèle sans mises à jour excessives ou trompeuses.
-
-- Déclarer phases et état courant ; utiliser un indicateur indéterminé si le total est inconnu.
-- Regrouper et limiter la fréquence des mises à jour visuelles.
-- Distinguer attente, exécution, suspension, annulation demandée, succès, annulation et échec.
-- Ne jamais annoncer 100 % avant validation effective du résultat.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.667 Absence d'opérations bloquantes sur le thread d'interface — Question 698, décision technique prise par l'assistant
-
-Les opérations de fichiers, calcul, rendu et import/export susceptibles de durer ne bloquent pas l'interface.
-
-- Exécuter les accès disque et calculs longs en arrière-plan.
-- Réserver le thread d'interface aux mises à jour visuelles et opérations courtes.
-- Transmettre les résultats par des mécanismes sûrs sans accès concurrent aux composants graphiques.
-- Mesurer la réactivité lors de l'ouverture de projets volumineux et de traitements simultanés.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
-
 # 11. Principes généraux de conception
 
 1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
@@ -6525,6 +6200,332 @@ L'intégration continue vérifie les changements sur Windows, macOS et Linux, co
 - Les artefacts de validation sont associés au commit, à la plateforme et à la configuration utilisés.
 
 Référence : [GitHub Actions — Matrix strategies](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.643 Noms de fichiers portables et caractères réservés — Question 674, décision technique prise par l'assistant
+
+Les noms créés ou importés doivent rester utilisables sur Windows, macOS et Linux.
+
+- Valider les noms selon un profil commun de compatibilité, plus strict que le seul système courant.
+- Refuser les caractères interdits, contrôles, séparateurs et noms de périphériques réservés sur le système cible.
+- Conserver le nom original dans les métadonnées si une adaptation est nécessaire à l'export.
+- Ne jamais fusionner ni écraser silencieusement deux ressources distinctes.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.644 Gestion explicite des chemins trop longs — Question 675, décision technique prise par l'assistant
+
+L'application détecte les limites de longueur du système cible avant toute copie, importation, sauvegarde ou export.
+
+- Évaluer le chemin complet selon les capacités réelles des API et du système cible.
+- Ne jamais tronquer silencieusement un nom ou un chemin.
+- Bloquer avant toute écriture partielle et proposer une destination plus courte.
+- Tester chemins imbriqués, noms Unicode et chemins proches des limites documentées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.645 Détection des collisions selon le système de fichiers cible — Question 676, décision technique prise par l'assistant
+
+Avant un transfert, détecter les noms qui deviennent équivalents selon la casse ou la normalisation du système cible.
+
+- Simuler les règles de casse et d'équivalence pertinentes pour la destination.
+- Signaler chaque collision avant l'écriture.
+- Ne jamais choisir arbitrairement la ressource à conserver.
+- Permettre renommage explicite ou annulation complète, avec traçabilité.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/technologyoverviews/files-and-directories).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.646 Détection prudente des caractères Unicode confondables — Question 677, décision technique prise par l'assistant
+
+Les identifiants techniques sensibles peuvent signaler les caractères Unicode visuellement confondables.
+
+- Appliquer une analyse inspirée d'Unicode UTS #39 aux identifiants de ressources, extensions et manifestes.
+- Signaler sans transformer ni remplacer automatiquement le texte original.
+- Préserver la liberté Unicode des contenus éditoriaux et noms de cartes.
+- Ne bloquer que les ambiguïtés techniques exploitables ; distinguer similarité et identité.
+
+Référence : [Référence technique](https://www.unicode.org/reports/tr39/).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.647 Résolution des répertoires applicatifs par les API des plateformes — Question 678, décision technique prise par l'assistant
+
+Les emplacements de données, paramètres, caches et fichiers temporaires sont déterminés par les API et conventions de chaque système.
+
+- Séparer les répertoires selon leur finalité et leur durée de vie.
+- Ne pas construire les chemins personnels par concaténation de répertoires supposés ou codés en dur.
+- Ne pas placer de données persistantes dans un répertoire temporaire ou d'exécution.
+- Tester profils déplacés, permissions restreintes et chemins personnalisés.
+
+Référence : [Référence technique](https://specifications.freedesktop.org/basedir/).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.648 Verrou exclusif d'un projet ouvert dans plusieurs instances — Question 679, décision technique prise par l'assistant
+
+Un projet ne peut être modifié simultanément par plusieurs instances sans coordination explicite.
+
+- Acquérir un verrou interprocessus avant toute édition ou écriture.
+- Si le verrou est détenu, proposer lecture seule ou annulation ; ne jamais le contourner silencieusement.
+- Libérer le verrou à la fermeture normale et contrôler son état après interruption.
+- Documenter les garanties selon le système de fichiers utilisé.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.649 Vérification prudente des verrous obsolètes — Question 680, décision technique prise par l'assistant
+
+Un verrou laissé après un plantage ne peut être supprimé qu'après vérification suffisante de son obsolescence.
+
+- Combiner processus, instance, hôte et âge ; l'âge seul ne suffit pas pour un verrou long.
+- En cas d'incertitude, conserver le verrou et présenter les informations pour arbitrage manuel.
+- Exiger confirmation avant de supprimer un verrou potentiellement actif.
+- Traiter PID réutilisé, horloge décalée, hôte distant et stockage réseau comme cas incertains.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.650 Surveillance des modifications externes des projets ouverts — Question 681, décision technique prise par l'assistant
+
+Surveiller les modifications externes pertinentes sans considérer les notifications du système de fichiers comme exhaustives.
+
+- Utiliser les notifications pour déclencher une vérification, pas comme preuve complète.
+- Vérifier existence, taille, date et empreinte lorsque nécessaire.
+- Rétablir les surveillances invalidées après renommage ou remplacement.
+- Compléter les notifications par une vérification de cohérence aux points de sauvegarde.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qfilesystemwatcher.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.651 Détection des conflits avant écrasement d'un projet modifié à l'extérieur — Question 682, décision technique prise par l'assistant
+
+Comparer l'état de référence du projet ouvert à celui présent sur le stockage avant chaque sauvegarde.
+
+- Utiliser empreinte ou version fiable, pas seulement date de modification.
+- Suspendre l'écriture si le contenu a changé depuis le chargement.
+- Proposer rechargement, copie distincte ou comparaison lorsque possible.
+- Ne jamais détruire automatiquement la version externe ou la version en mémoire.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.652 Mode lecture seule si la coordination du stockage est incertaine — Question 683, décision technique prise par l'assistant
+
+Si les garanties de verrouillage ne sont pas fiables, privilégier la lecture seule.
+
+- Évaluer les capacités des emplacements réseau, virtuels et amovibles.
+- Avertir avant ouverture et proposer lecture seule ou copie locale.
+- Ne pas prétendre qu'un verrou local protège d'autres machines si le stockage ne le propage pas.
+- Tracer la provenance des copies locales et leur réintégration.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.653 Fermeture ordonnée et séquencée de l'application — Question 684, décision technique prise par l'assistant
+
+La fermeture suit une séquence contrôlée avant de libérer les ressources.
+
+- Cesser l'acceptation de nouveaux travaux, puis demander l'arrêt coopératif des tâches.
+- Valider ou annuler proprement les écritures critiques engagées.
+- Enregistrer les états de session récupérables avant de libérer verrous et ressources.
+- Appliquer un délai maximal et signaler les tâches non terminées sans prétendre qu'elles ont été sauvegardées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.654 Annulation coopérative des tâches longues — Question 685, décision technique prise par l'assistant
+
+Les tâches longues s'annulent à des points de contrôle définis sans interrompre arbitrairement une opération critique.
+
+- Déclarer les points d'annulation et les étapes non interruptibles.
+- Arrêter la création de sous-tâches et nettoyer les ressources temporaires.
+- Ne pas interrompre un commit atomique ou une transaction en cours.
+- Distinguer demande d'annulation, annulation terminée et tâche temporairement non annulable.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.655 Récupération de session après arrêt anormal — Question 686, décision technique prise par l'assistant
+
+Proposer une récupération de session depuis un état de reprise cohérent, distinct de la sauvegarde définitive du projet.
+
+- Conserver seulement le contexte nécessaire : projets ouverts, documents actifs, sélection et modifications récupérables.
+- Écrire l'état de reprise atomiquement, le versionner et l'associer à l'empreinte du projet.
+- Vérifier les éléments à la relance et présenter un aperçu de ce qui est restaurable.
+- Ne jamais remplacer automatiquement le projet sauvegardé ou une version externe plus récente.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.656 Redémarrage après incident sans boucle de plantage — Question 687, décision technique prise par l'assistant
+
+Le redémarrage après incident ne doit pas créer de boucle ni réexécuter automatiquement l'opération fautive.
+
+- Limiter la fréquence des relances et désactiver le redémarrage après échecs consécutifs ou fermeture volontaire.
+- Restaurer d'abord un état sûr ; ne pas relancer automatiquement les opérations modifiant des données.
+- Présenter les tâches interrompues et les possibilités de récupération.
+- Respecter les choix utilisateur et les mécanismes natifs de chaque plateforme.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/registering-for-application-restart).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.657 Démarrage de diagnostic sans extensions tierces — Question 688, décision technique prise par l'assistant
+
+Proposer un mode de démarrage sans chargement des extensions tierces en cas de dysfonctionnement.
+
+- Désactiver temporairement leur chargement sans supprimer fichiers ni paramètres.
+- Permettre une activation explicite après diagnostic, extension par extension.
+- Conserver les fonctions internes indispensables si leur intégrité est vérifiée.
+- Ne rétablir le mode normal qu'après action explicite et afficher les extensions neutralisées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.658 Format structuré et versionné des événements — Question 689, décision technique prise par l'assistant
+
+Les journaux utilisent un format structuré et versionné, analysable sans dépendre de textes libres.
+
+- Chaque événement contient identifiant stable, horodatage normalisé, gravité, composant et code.
+- Séparer paramètres typés et message affiché.
+- Versionner le schéma et définir la compatibilité de lecture.
+- Encoder les données non fiables et ignorer les champs inconnus sans perdre l'événement.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.659 Identifiant de corrélation des opérations multi-composants — Question 690, décision technique prise par l'assistant
+
+Chaque opération utilisateur significative reçoit un identifiant propagé à tous les composants participants.
+
+- Relier les événements même lorsqu'une opération traverse plusieurs tâches ou processus internes.
+- Autoriser des identifiants de sous-opération liés à une opération parente.
+- Ne jamais intégrer de données personnelles ou métier dans l'identifiant.
+- Permettre le filtrage local d'une opération complète sans transmission réseau automatique.
+
+Référence : [Référence technique](https://opentelemetry.io/docs/concepts/context-propagation/).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.660 Minimisation des données sensibles dès l'émission — Question 691, décision technique prise par l'assistant
+
+Limiter les données consignées dès la création de l'événement plutôt que compter uniquement sur un nettoyage à l'export.
+
+- Exclure par défaut contenus de cartes, textes de création, images, secrets et jetons.
+- Omettre ou pseudonymiser les chemins locaux si leur valeur exacte n'est pas nécessaire.
+- Préférer identifiants techniques et catégories d'erreur aux contenus complets.
+- Tester les journaux produits par les scénarios représentatifs et les échecs.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.661 Neutralisation des injections et encodage des événements — Question 692, décision technique prise par l'assistant
+
+Toute donnée externe intégrée à un journal est validée et encodée selon le format de sortie.
+
+- Encoder les retours à la ligne, caractères de contrôle et séparateurs non fiables.
+- Utiliser un sérialiseur structuré, jamais une concaténation libre de lignes.
+- Limiter la longueur des champs et signaler les troncatures.
+- Tester CR/LF, séparateurs, contrôles Unicode et charges malformées.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.662 Isolation des défaillances du système de journalisation — Question 693, décision technique prise par l'assistant
+
+Une panne de journalisation ne doit pas bloquer l'interface ni compromettre une opération métier cohérente.
+
+- Découpler les écritures de journal des chemins critiques avec une file bornée.
+- Définir une politique de saturation qui préserve autant que possible les événements prioritaires.
+- Signaler erreurs de permission ou d'espace disque sans boucle de tentatives agressive.
+- Éviter toute récursion lorsque le logger lui-même échoue.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.663 Limitation globale des travailleurs concurrents — Question 694, décision technique prise par l'assistant
+
+Les traitements en arrière-plan utilisent un nombre de travailleurs borné.
+
+- Définir un plafond selon les capacités disponibles et une limite applicative documentée.
+- Partager un ordonnanceur borné au lieu de créer un pool illimité par tâche.
+- Appliquer des limites plus strictes aux opérations consommatrices de mémoire.
+- Exposer les paramètres et la charge dans le diagnostic local.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.664 Files de tâches bornées et régulation de surcharge — Question 695, décision technique prise par l'assistant
+
+Les files d'attente sont bornées et régulent les demandes dépassant la capacité de traitement.
+
+- Éviter l'accumulation illimitée de rendus ou de demandes redondantes.
+- Fusionner les demandes identiques en attente lorsque leur résultat attendu est équivalent.
+- Différer ou refuser explicitement les nouvelles demandes à saturation.
+- Ne jamais supprimer silencieusement une tâche engagée ou une sauvegarde.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.665 Priorité des tâches selon l'impact utilisateur — Question 696, décision technique prise par l'assistant
+
+L'ordonnanceur distingue les tâches nécessaires à l'interaction des traitements secondaires.
+
+- Prioriser les actions explicites nécessaires à la poursuite du travail.
+- Empêcher les tâches de fond de monopoliser durablement les travailleurs.
+- Ne pas contourner les dépendances ou l'ordre de validation des données.
+- Éviter la famine des tâches de faible priorité et tester la réactivité sous charge.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.666 Progression cohérente des tâches longues — Question 697, décision technique prise par l'assistant
+
+Les tâches longues exposent une progression fidèle sans mises à jour excessives ou trompeuses.
+
+- Déclarer phases et état courant ; utiliser un indicateur indéterminé si le total est inconnu.
+- Regrouper et limiter la fréquence des mises à jour visuelles.
+- Distinguer attente, exécution, suspension, annulation demandée, succès, annulation et échec.
+- Ne jamais annoncer 100 % avant validation effective du résultat.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.667 Absence d'opérations bloquantes sur le thread d'interface — Question 698, décision technique prise par l'assistant
+
+Les opérations de fichiers, calcul, rendu et import/export susceptibles de durer ne bloquent pas l'interface.
+
+- Exécuter les accès disque et calculs longs en arrière-plan.
+- Réserver le thread d'interface aux mises à jour visuelles et opérations courtes.
+- Transmettre les résultats par des mécanismes sûrs sans accès concurrent aux composants graphiques.
+- Mesurer la réactivité lors de l'ouverture de projets volumineux et de traitements simultanés.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
+
 
 # 11. Principes généraux de conception
 
