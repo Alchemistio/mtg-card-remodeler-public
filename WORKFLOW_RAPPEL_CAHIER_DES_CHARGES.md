@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.107](MTG_Card_Remodeler_Cahier_des_charges_V3.107.md)
+- Cahier des charges de référence au dernier contrôle : [V3.110](MTG_Card_Remodeler_Cahier_des_charges_V3.110.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q639**
-- Dernière section : **10.608**
-- Prochain numéro disponible : **Q640** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.107
+- Dernière question enregistrée : **Q642**
+- Dernière section : **10.611**
+- Prochain numéro disponible : **Q643** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.110
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -106,15 +106,15 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.109.**
-- **Dernière question enregistrée : Q641.**
-- **Dernière section : 10.610.**
-- **Prochaine question disponible : Q642.**
-- **Dernière décision enregistrée :** Q641 — une restauration complète rétablit strictement l'état couvert par la sauvegarde sélectionnée, sans fusion des modifications postérieures ; l'état courant doit être protégé préalablement par un point de restauration lorsque cela est techniquement possible. Q640 exclut le chiffrement applicatif spécifique des sauvegardes au profit du chiffrement natif du système ou du support. Q639 maintient l'inclusion systématique des journaux de diagnostic locaux.
+- **Version courante : V3.110.**
+- **Dernière question enregistrée : Q642.**
+- **Dernière section : 10.611.**
+- **Prochaine question disponible : Q643.**
+- **Dernière décision enregistrée :** Q642 — les sauvegardes sont portables entre Windows, macOS et Linux, avec adaptation des chemins et paramètres propres au système cible et signalement des dépendances non transposables. Q641 impose une restauration complète strictement conforme à l'état sauvegardé, avec point de restauration préalable lorsque cela est techniquement possible. Q640 exclut le chiffrement applicatif spécifique au profit du chiffrement natif du système ou du support.
 - **Point d'attention GitHub :** un dépôt public peut être consulté et forké selon les conditions de la plateforme. Cette capacité de fork doit être distinguée d'une autorisation générale de redistribution ou d'exploitation commerciale ; si l'interdiction du fork lui-même devient impérative, la visibilité publique devra être réévaluée.
-- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. État vérifié après publication de V3.109 : V3.107, V3.108 et V3.109 sont les trois seules versions présentes ; V3.106 a été retirée de `main` et reste consultable dans l'historique Git.
+- **Rétention des versions :** seuls les trois fichiers de cahier des charges les plus récents doivent rester dans la branche `main`. État vérifié après publication de V3.110 : V3.108, V3.109 et V3.110 sont les trois seules versions présentes ; V3.107 a été retirée de `main` et reste consultable dans l'historique Git.
 - Les questions Q594 à Q618 ont été proposées sans réponse puis retirées après audit de redondance. Leurs identifiants restent réservés et ne doivent pas être réutilisés.
-- Q619 à Q641 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux, leur inclusion systématique dans toutes les sauvegardes locales et le recours au chiffrement natif du système ou du support.
+- Q619 à Q642 sont enregistrées dans le cahier des charges courant. Les décisions portent notamment sur l'absence de synchronisation automatique, de collaboration multi-utilisateur, de catalogue communautaire et de compte utilisateur ; la prise en charge de Windows, macOS et Linux ; le caractère privé de l'application ; la consultation publique du code sous restrictions et la licence personnelle non commerciale ; l'absence de monétisation définie ; le fonctionnement hors ligne prioritaire ; la vérification des mises à jour désactivable ; la notification seule ; et la récupération externe et manuelle des mises à jour ; l'anonymisation automatique obligatoire et non désactivable des rapports de diagnostic exportés, ainsi que la conservation configurable des journaux de diagnostic locaux, leur inclusion systématique dans toutes les sauvegardes locales et le recours au chiffrement natif du système ou du support.
 - Continuer l'audit à partir de l'index V3.108, puis lire les sections pertinentes du cahier complet avant toute nouvelle question. Q640 est enregistrée en section 10.609 ; Q641 est le prochain identifiant disponible. Le chiffrement applicatif des sauvegardes a été écarté au profit du chiffrement natif du système ou du support. Ne pas fabriquer cinq questions si l'audit ne révèle pas cinq arbitrages réellement cruciaux.
 - **Aucun développement du remodeler n'est autorisé** avant que l'utilisateur ait explicitement déclaré le cahier des charges terminé et autorisé cette phase.
 
@@ -219,3 +219,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q641 :** l'utilisateur choisit la restauration complète avec retour strict à l'état sauvegardé, sans fusion des modifications postérieures. L'état courant doit être protégé par un point de restauration préalable lorsque cela est techniquement possible. Publication de V3.109, section 10.610 ; index actualisé. Dernière question : Q641 ; dernière section : 10.610 ; prochaine question : Q642. La rétention de trois versions implique de conserver V3.107, V3.108 et V3.109 dans `main`, puis de retirer V3.106 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
+
+
+- **2026-11-14 — Enregistrement de Q642 :** l'utilisateur choisit la portabilité des sauvegardes entre Windows, macOS et Linux. Les chemins et paramètres propres au système cible sont adaptés lorsque cela est possible ; les dépendances non transposables doivent être signalées et résolues sans perte silencieuse de données. Publication de V3.110, section 10.611 ; index actualisé. Dernière question : Q642 ; dernière section : 10.611 ; prochaine question : Q643. La rétention de trois versions implique de conserver V3.108, V3.109 et V3.110 dans `main`, puis de retirer V3.107 après vérification, sans réécrire l'historique Git. Aucun développement du remodeler n'est autorisé avant la clôture explicite du cahier des charges.
