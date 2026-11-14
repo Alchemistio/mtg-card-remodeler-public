@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.120](MTG_Card_Remodeler_Cahier_des_charges_V3.120.md)
+- Cahier des charges de référence au dernier contrôle : [V3.121](MTG_Card_Remodeler_Cahier_des_charges_V3.121.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q723**
-- Dernière section : **10.692**
-- Prochain numéro disponible : **Q724** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.120
+- Dernière question enregistrée : **Q748**
+- Dernière section : **10.717**
+- Prochain numéro disponible : **Q749** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.120
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -254,3 +254,5 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Publication V3.120 :** cinq séries de cinq décisions techniques autonomes Q699–Q723, sections 10.668–10.692 : décodage et mémoire des ressources graphiques ; recherche locale et indexation ; accessibilité des interactions ; licences et incorporation des polices ; mesure et maîtrise des performances. Index actualisé vers V3.120, 671 entrées. Dernière question Q723 ; prochaine Q724. Aucun code du remodeler modifié. La branche `main` doit conserver V3.118, V3.119 et V3.120 ; V3.117 est à retirer après vérification, historique Git préservé.
+
+- **2026-11-14 — Publication V3.121 :** cinq séries de décisions techniques autonomes Q724–Q748, sections 10.693–10.717 : historique Annuler/Rétablir ; presse-papiers graphique et collage sécurisé ; interactions de pointage ; édition Unicode et texte bidirectionnel ; façonnage et métriques typographiques. Les décisions sont attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Index actualisé vers V3.121 avec 696 entrées uniques ; liens et lignes recalculés. Dernière question Q748 ; prochaine Q749. Aucun code du remodeler modifié. La branche `main` doit conserver V3.119, V3.120 et V3.121 ; V3.118 doit être retirée après vérification, historique Git préservé.
