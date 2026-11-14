@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.117](MTG_Card_Remodeler_Cahier_des_charges_V3.117.md)
+- Cahier des charges de référence au dernier contrôle : [V3.118](MTG_Card_Remodeler_Cahier_des_charges_V3.118.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q648**
-- Dernière section : **10.617**
-- Prochain numéro disponible : **Q649** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.117
+- Dernière question enregistrée : **Q673**
+- Dernière section : **10.642**
+- Prochain numéro disponible : **Q674** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.118
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -28,7 +28,7 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 - **Ne pas intégrer, modifier ou commencer à développer le code du remodeler tant que l'utilisateur n'a pas explicitement déclaré le cahier des charges terminé et autorisé la phase de développement.**
 - Dans cette phase, le travail porte sur la spécification, les décisions, les documents et leur vérification GitHub.
 - Continuer de manière proactive. Ne pas s'arrêter après une série si le contexte permet de poursuivre.
-- L'utilisateur souhaite être sollicité uniquement pour les arbitrages réellement cruciaux. Ne pas fabriquer des séries de cinq questions ni maintenir un quota artificiel : analyser les sujets par lots en interne et ne présenter qu'un seul bloc compact lorsque plusieurs décisions cruciales indépendantes sont effectivement nécessaires.
+- L'utilisateur souhaite être sollicité uniquement pour les arbitrages réellement cruciaux. Pour les détails techniques, poursuivre de manière autonome par cinq séries de cinq décisions (25 au total) lorsqu'il existe 25 sujets distincts, utiles et non redondants ; ne pas inventer de décisions pour remplir un quota si le cahier des charges est déjà complet sur les thèmes examinés. Ces décisions sont documentées comme choix techniques de l'assistant, jamais comme validations de l'utilisateur. Si un arbitrage réellement crucial apparaît, suspendre la série et présenter un seul bloc compact de questions cruciales.
 - Les détails et choix techniques ordinaires sont tranchés de manière autonome, cohérente avec les décisions existantes, puis documentés comme décisions de l'assistant et non comme choix validés par l'utilisateur.
 - Ne solliciter l'utilisateur que pour les arbitrages fonctionnels réellement cruciaux : décisions qui changent sensiblement le produit, son comportement, ses priorités, ses compromis ou ses limites. Éviter toute question de détail.
 - Pour les sujets de détail, conserver le même processus d'analyse et de documentation, mais **rechercher sur Internet les meilleures pratiques et réponses disponibles**, comparer prioritairement les sources officielles, normes, documentations techniques et références reconnues, puis choisir la solution la plus robuste et adaptée au projet.
@@ -62,7 +62,7 @@ Après ces vérifications, appliquer la méthode de préparation ci-dessous :
 
 ### Règle essentielle sur les questions de détail — recherche et décision autonomes
 
-L'assistant ne pose pas à l'utilisateur de questions sur les détails techniques ou opérationnels. Il suit le même workflow que pour une décision ordinaire (identifier le besoin, vérifier l'existant, évaluer les options, arrêter une décision, la documenter et l'indexer), mais remplace la question à l'utilisateur par une recherche documentaire sur Internet.
+L'assistant ne pose pas à l'utilisateur de questions sur les détails techniques ou opérationnels. Il suit le même workflow que pour une décision ordinaire (identifier le besoin, vérifier l'existant, évaluer les options, arrêter une décision, la documenter et l'indexer), mais remplace la question à l'utilisateur par une recherche documentaire sur Internet. Lorsque l'utilisateur le demande, l'assistant traite cinq séries de cinq décisions de détail autonomes par cycle, sans transformer ces décisions en questions à valider.
 
 Pour ces recherches :
 - rechercher les meilleures réponses et pratiques actuelles adaptées au contexte du projet ;
@@ -239,3 +239,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-14 — Enregistrement de Q648 :** l'utilisateur choisit l'option 3 : protection proportionnelle au risque face à un défaut grave découvert après publication. Les opérations présentant un risque critique pour la sécurité ou l'intégrité des données sont bloquées jusqu'à correction ou protection fiable ; les risques moins élevés font l'objet d'avertissements clairs et de solutions temporaires vérifiées lorsqu'elles existent. Publication de V3.117, section 10.617 ; index repointé vers V3.117 et liens de toutes les questions recalculés à partir du document complet. Dernière question : Q648 ; dernière section : 10.617 ; prochaine question : Q649. La branche `main` doit conserver V3.115, V3.116 et V3.117 ; V3.114 est retirée de `main` après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
+
+
+- **2026-11-14 — Enregistrement des cinq séries de décisions techniques Q649 à Q673 :** après audit de l'index et des sections existantes, aucun nouvel arbitrage fonctionnel crucial n'a nécessité l'intervention de l'utilisateur. L'assistant a documenté 25 décisions de détail en cinq séries : (1) importation sûre des fichiers et archives ; (2) intégrité des données et persistance ; (3) chaîne d'approvisionnement et publication sécurisée ; (4) internationalisation et accessibilité ; (5) tests de robustesse et validation multiplateforme. Ces choix sont explicitement identifiés comme décisions techniques de l'assistant, non comme validations de l'utilisateur. Publication de V3.118, sections 10.618 à 10.642 ; index recalculé et vérifié. Dernière question : Q673 ; dernière section : 10.642 ; prochaine question : Q674. La branche `main` doit conserver V3.116, V3.117 et V3.118 ; V3.115 est retirée de `main`, historique Git préservé. Aucun code du remodeler n'a été modifié.
