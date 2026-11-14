@@ -15,7 +15,6 @@
 | V3.101 | Licence personnelle non commerciale du code source |
 | V3.100 | Récupération externe et manuelle des mises à jour de l'application |
 | V3.99 | Notification uniquement pour les mises à jour de l'application, sans téléchargement ni installation automatiques |
-| V3.98 | Vérification automatique des mises à jour désactivable dans les paramètres |
 
 # 1. Présentation générale
 
