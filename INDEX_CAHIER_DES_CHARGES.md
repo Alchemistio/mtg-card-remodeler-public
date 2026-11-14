@@ -9,11 +9,11 @@
 
 ## Repérage par thème
 
-### Fonctionnement hors ligne et mises à jour (questions 628 à 630)
+### Fonctionnement hors ligne et mises à jour (questions 628 à 631)
 
 Priorité au fonctionnement local sans connexion ; vérification automatique désactivable, notification seule et récupération externe et manuelle des fichiers de mise à jour.
 
-Questions indexées : [628](#question-628) · [629](#question-629) · [630](#question-630) · [631](#question-631) · [630](#question-630)
+Questions indexées : [628](#question-628) · [629](#question-629) · [630](#question-630) · [631](#question-631)
 
 ### Plateformes et compatibilité des systèmes d'exploitation (question 624)
 
