@@ -9,8 +9,8 @@
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q812**
 - Dernière section : **10.781**
-- Prochain numéro disponible : **Q813** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.133
-- État : **cahier des charges V3.133 prêt pour clôture utilisateur ; aucun développement n'est autorisé avant validation explicite**.
+- Prochain numéro disponible : **Q813**, réservé uniquement à une lacune réelle découverte lors du développement ou d'un nouvel audit ; aucun questionnaire supplémentaire n'est prévu à ce stade.
+- État : **cahier des charges V3.133 complet et logiciel prêt à entrer dans le Lot A ; clôture formelle et autorisation distincte de développement encore requises**.
 
 ## 1. Instruction de reprise — à appliquer en premier
 
