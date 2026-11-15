@@ -6,6 +6,7 @@
 - Branche de référence : `main`
 - Cahier des charges de référence au dernier contrôle : [V3.122](MTG_Card_Remodeler_Cahier_des_charges_V3.122.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
+- Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q773**
 - Dernière section : **10.742**
 - Prochain numéro disponible : **Q774** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.122
@@ -22,6 +23,18 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
 7. Poursuivre directement le workflow, sans demander à l'utilisateur de répéter les décisions déjà prises.
+
+## 1 bis. Consultation obligatoire de la feuille de route et critères de sortie
+
+À chaque reprise, après lecture de ce rappel et avant toute nouvelle décision :
+1. Consulter `docs/ROADMAP.md` et relever les cases ouvertes de la phase 0.
+2. Pour chaque case, rechercher la catégorie dans l'index, puis lire les sections pertinentes de la dernière version complète du cahier des charges.
+3. Classer chaque sujet : déjà spécifié, partiellement spécifié, non spécifié, contradictoire, ou exigeant une preuve externe/de dépôt.
+4. Ne pas transformer un point déjà défini en nouvelle question. Pour les détails techniques non tranchés, rechercher les références officielles et arrêter une décision autonome documentée. Soumettre uniquement les arbitrages fonctionnels cruciaux à l'utilisateur.
+5. Mettre à jour la feuille de route uniquement lorsqu'une preuve vérifiable permet de changer le statut d'une case. Ne jamais cocher une tâche sur la seule base d'une intention ou d'une hypothèse.
+6. Continuer les audits jusqu'à ce que la phase 0 soit objectivement prête ; ne pas s'arrêter après une série de décisions si d'autres vérifications utiles restent possibles.
+
+La préparation au développement est acquise lorsque le cahier des charges est complet, cohérent et testable ; les contrats techniques, plateformes, performances, formats, dépendances et critères d'acceptation sont établis ; les risques de licences sont traités ou explicitement exclus du périmètre distribuable ; l'état du dépôt et de la CI est comparé à la spécification ; le plan de lots et les critères d'entrée sont prêts. La clôture du cahier des charges et l'autorisation de modifier le code restent deux actes explicites distincts de l'utilisateur. Jusqu'à ces deux actes, aucun code produit ne doit être modifié.
 
 ## 2. Priorités et limites de travail
 
@@ -259,3 +272,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication et audit documentaire V3.122 :** cinq séries de décisions techniques autonomes Q749–Q773, sections 10.718–10.742 : contrat réseau Scryfall et résilience ; recherche et pagination ; synchronisation de catalogue par Bulk Data ; modèle des identifiants, impressions et langues ; provenance, attribution et téléchargements d'illustrations. Les décisions sont attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Un audit structurel a ensuite rétabli l'ordre chronologique des sections Q22–Q773, supprimé le doublon de sections finales et reconstruit l'index : 720 sections/questions réelles, 720 entrées uniques, ancres et lignes vérifiées. L'ancienne entrée erronée en double pour la section 10.4 a été retirée. Point de reprise : Q773 / section 10.742 ; prochaine question Q774. La branche `main` conserve V3.120, V3.121 et V3.122 ; V3.119 est retirée après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
+
+
+- **2026-11-15 — Intégration de la feuille de route de clôture :** ajout d'une phase 0 préalable dans `docs/ROADMAP.md`, couvrant l'audit documentaire/fonctionnel, les contrats techniques FeSens et persistance, les formats de projet, la compatibilité OS, les objectifs de performance, la cohérence des rendus, les tests, les licences/dépendances et la préparation du plan de réalisation. Le présent workflow impose désormais la consultation de cette feuille de route à chaque reprise, puis le repérage dans l'index et la lecture du cahier des charges courant. Les cases ne peuvent être cochées qu'avec une preuve vérifiable. Aucun développement produit avant clôture explicite et autorisation distincte. Point de reprise maintenu : V3.122 / Q773 / section 10.742 ; prochaine question candidate Q774 après audit anti-doublon.
