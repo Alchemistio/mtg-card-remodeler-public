@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.122](MTG_Card_Remodeler_Cahier_des_charges_V3.122.md)
+- Cahier des charges de référence au dernier contrôle : [V3.123](MTG_Card_Remodeler_Cahier_des_charges_V3.123.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
-- Dernière question enregistrée : **Q773**
-- Dernière section : **10.742**
-- Prochain numéro disponible : **Q774** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.122
+- Dernière question enregistrée : **Q798**
+- Dernière section : **10.767**
+- Prochain numéro disponible : **Q799** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.123
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -117,13 +117,13 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.122.**
-- **Dernière question enregistrée : Q773.**
-- **Dernière section : 10.742.**
-- **Prochaine question disponible : Q774.**
+- **Version courante : V3.123.**
+- **Dernière question enregistrée : Q798.**
+- **Dernière section : 10.767.**
+- **Prochaine question disponible : Q799.**
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
-- **Rétention :** la branche `main` doit conserver uniquement V3.120, V3.121 et V3.122. V3.119 a été retirée de `main` après vérification de V3.122 et de son index ; l'historique Git est préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.121, V3.122 et V3.123. V3.120 est à retirer de `main` après vérification de V3.123 et de son index ; l'historique Git est préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -275,3 +275,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Intégration de la feuille de route de clôture :** ajout d'une phase 0 préalable dans `docs/ROADMAP.md`, couvrant l'audit documentaire/fonctionnel, les contrats techniques FeSens et persistance, les formats de projet, la compatibilité OS, les objectifs de performance, la cohérence des rendus, les tests, les licences/dépendances et la préparation du plan de réalisation. Le présent workflow impose désormais la consultation de cette feuille de route à chaque reprise, puis le repérage dans l'index et la lecture du cahier des charges courant. Les cases ne peuvent être cochées qu'avec une preuve vérifiable. Aucun développement produit avant clôture explicite et autorisation distincte. Point de reprise maintenu : V3.122 / Q773 / section 10.742 ; prochaine question candidate Q774 après audit anti-doublon.
+
+
+- **2026-11-15 — Publication V3.123 :** ajout de 25 décisions techniques autonomes Q774–Q798, sections 10.743–10.767 : persistance SQLite/IndexedDB par environnement et contrats de dépôts ; conteneur ZIP portable, manifeste et intégrité ; intégration FeSens, versionnement, tests et transparence des exports ; politique de support Windows/macOS/Linux, architectures et WebView ; budgets de performance, corpus visuel et matrice de tests multiplateformes. L'index est repointé vers V3.123 avec 745 entrées uniques. Ces décisions sont des choix techniques de l'assistant et ne constituent pas des validations personnelles de l'utilisateur. Point de reprise : Q798 / section 10.767 ; prochaine question Q799. La rétention cible est V3.121, V3.122 et V3.123 ; V3.120 sera supprimée de la branche principale après contrôle final. Aucun code produit n'a été modifié.
