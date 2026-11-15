@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.127](MTG_Card_Remodeler_Cahier_des_charges_V3.127.md)
+- Cahier des charges de référence au dernier contrôle : [V3.128](MTG_Card_Remodeler_Cahier_des_charges_V3.128.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q806**
 - Dernière section : **10.775**
-- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.127
+- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.128
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -118,7 +118,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.127.**
+- **Version courante : V3.128.**
 - **Dernière question enregistrée : Q806.**
 - **Dernière section : 10.775.**
 - **Prochaine question disponible : Q807.**
@@ -307,3 +307,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.127 — vérification finale :** 753 sections/questions, 753 entrées uniques dans l'index, zéro erreur de référence. Les 75 décisions Q519–Q593 sont toutes reclassées comme décisions techniques prises par l'assistant. La branche main conserve V3.125, V3.126 et V3.127 ; V3.124 est retirée après contrôle, historique Git préservé. Le point de reprise reste Q806 / 10.775 ; prochaine question candidate Q807. La feuille de route reste la première référence à consulter après ce rappel. Aucun code produit modifié.
+
+
+- **2026-11-15 — Publication V3.128 :** retrait du bloc 10.348 « Chapitres restant à développer », obsolète, dupliqué et non indexé, qui interrompait l'ordre des sections. Les 753 décisions/questions indexées sont conservées. Index recalculé après suppression et métadonnées de version. Point de reprise Q806 / section 10.775 ; prochaine question Q807. Rétention cible V3.126, V3.127 et V3.128 ; V3.125 à retirer après vérification. Aucun code produit modifié.
