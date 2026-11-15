@@ -54,7 +54,7 @@ La préparation au développement est acquise lorsque le cahier des charges est 
 
 **Vérification obligatoire avant toute question adressée à l'utilisateur :**
 
-1. Consulter d'abord l'index du cahier des charges.
+1. Consulter d'abord la feuille de route `docs/ROADMAP.md`, puis l'index du cahier des charges.
 2. Repérer la catégorie thématique pertinente et suivre les indications de navigation de l'index pour identifier les questions, sections et zones du document susceptibles de contenir la réponse.
 3. Ouvrir les sections correspondantes dans la version la plus récente du cahier des charges, et pas seulement les extraits de l'index.
 4. Vérifier les exigences directes et indirectes, les décisions associées et leurs éventuelles limites.
