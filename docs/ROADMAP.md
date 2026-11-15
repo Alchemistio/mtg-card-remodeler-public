@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.123, dernière décision Q798 / section 10.767. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.124, dernière décision Q803 / section 10.772. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -19,6 +19,14 @@
 - [x] Publier V3.123 avec 25 décisions techniques supplémentaires (Q774–Q798).
 - [x] Recalculer et vérifier 745 entrées uniques de l'index, avec zéro erreur de référence.
 - [x] Appliquer la règle de rétention : V3.121, V3.122 et V3.123 uniquement dans la branche principale ; V3.120 retirée, historique Git préservé.
+
+### Contrôle documentaire V3.124
+
+- [x] Fixer une matrice initiale des OS et architectures à partir des cycles de support officiels.
+- [x] Définir le profil matériel de référence des mesures de performance.
+- [x] Définir le minimum et les critères de couverture du corpus visuel.
+- [x] Définir le contrôle bloquant des droits d'assets avant inclusion dans un paquet distribué.
+- [x] Définir les formats d'artefacts Windows, macOS et Linux, avec conditions de validation.
 
 Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.123 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
 
