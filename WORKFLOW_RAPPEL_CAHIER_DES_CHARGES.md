@@ -325,3 +325,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.131 :** ajout des décisions Q807–Q811 pour rendre testables les durées de notification et d'animation, la largeur minimale du panneau, l'espace RGB par défaut et les seuils PPI d'impression. Index recalculé. Point de reprise Q811 / 10.780 ; prochaine question Q812. Rétention cible V3.129–V3.131 ; V3.128 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.131 :** 758 identifiants indexés (756 exigences actives, 2 fusionnées), 758 sections de question, aucune section vide, ordre strict et zéro erreur de référence. V3.128 retirée de main après contrôle ; seules V3.129, V3.130 et V3.131 sont conservées. Point de reprise Q811 / 10.780 ; prochaine question Q812. Aucun code produit modifié.
