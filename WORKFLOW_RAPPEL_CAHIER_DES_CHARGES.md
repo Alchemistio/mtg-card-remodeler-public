@@ -17,9 +17,10 @@
 Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 
 1. Se reconnecter au dépôt GitHub indiqué ci-dessus.
-2. Lire ce document de rappel, puis l'index `INDEX_CAHIER_DES_CHARGES.md`.
-3. Identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt. Ne pas supposer que V3.100 est toujours la dernière version.
-4. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de poser de nouvelles questions.
+2. Lire ce document de rappel.
+3. Lire `docs/ROADMAP.md` et relever les contrôles ouverts de la phase 0.
+4. Lire `INDEX_CAHIER_DES_CHARGES.md`, identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt, puis ouvrir les sections liées aux contrôles ouverts.
+5. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de préparer de nouvelles décisions.
 5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
 6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
 7. Poursuivre directement le workflow, sans demander à l'utilisateur de répéter les décisions déjà prises.
