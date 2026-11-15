@@ -269,3 +269,8 @@ La section non indexée 10.348, intitulée « Chapitres restant à développer �
 ## 15. Restauration des exigences d'animation Q478/Q483 — V3.129
 
 L'audit de testabilité avait repéré deux sections sans corps. Les phrases correspondantes existaient mais avaient été placées après Q488 : l'animation de glissement a été replacée sous Q478 et l'adaptation au redimensionnement sous Q483. Q488 conserve désormais uniquement l'exigence d'annonce du panneau aux technologies d'assistance. Les identifiants et le nombre de questions ne changent pas.
+
+
+## 16. Consolidation des doublons — V3.130
+
+L'audit de similarité a identifié deux paires redondantes. Q437 était identique à Q440 ; Q489 reformulait la même règle de focus que Q485. Les exigences normatives sont conservées en Q440 et Q485. Q437 et Q489 sont désormais des entrées de traçabilité indiquant leur fusion, sans exigence autonome. L'index compte 753 identifiants, dont 751 exigences actives et deux identifiants fusionnés.
