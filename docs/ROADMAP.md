@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.124, dernière décision Q803 / section 10.772. L'index contient 750 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.125, dernière décision Q805 / section 10.774. L'index contient 750 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -94,6 +94,12 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 **Règle de sortie — prêt à entrer en développement :** la phase 0 est prête lorsque le cahier des charges est complet, cohérent et testable ; les contrats techniques, plateformes, performances, formats et critères d'acceptation sont établis ; l'état réel du dépôt et de la CI est comparé à la spécification ; les dépendances sont identifiées ; les risques de droits non résolus sont soit levés, soit explicitement exclus de tout artefact distribué ; et le plan de lots ainsi que les critères d'entrée sont prêts. Les ressources FeSens/Figma et autres assets non vérifiés peuvent rester en usage interne de développement uniquement si cet usage est autorisé, mais aucun artefact les contenant ne peut être distribué avant clarification des droits. La rédaction/relecture de la licence personnalisée du code et la validation des droits de chaque asset constituent un **jalon distinct de distribution**, pas une raison pour modifier le code avant la clôture du cahier des charges. La clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur restent obligatoires avant toute modification du code produit. Une case cochée doit être étayée par une preuve ou un lien de vérification.
 
 ---
+### Contrôle documentaire V3.125
+
+- [x] Formaliser la liste des layouts Scryfall et la politique de repli pour les layouts inconnus (Q804).
+- [x] Formaliser les champs de faces, relations meld et structures mécaniques (Q805).
+- [ ] Implémenter et tester chaque layout ; la définition fonctionnelle ne vaut pas réalisation.
+
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
 Ce plan organise la réalisation sans réduire le périmètre final validé. Il s'agit d'un plan de préparation : aucun lot ne peut commencer avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
@@ -210,8 +216,8 @@ Ce plan organise la réalisation sans réduire le périmètre final validé. Il 
 - [x] Rendu inline des symboles de mana et d'activation sous forme de glyphes vectoriels provisoires.
 - [x] Compositions initiales pour Saga, split, planeswalker, recto-verso et bataille dans le moteur local.
 - [x] Intégrer le moteur FeSens pour les cadres classique, Saga, planeswalker et Aventure.
-- [ ] Layouts complets split, bataille, classe, prototype et modal DFC ; uniformiser le rendu des layouts pris en charge par les deux moteurs.
-- [ ] Rendu des coûts alternatifs, rappels, marqueurs et capacités structurées.
+- [ ] Implémenter et valider la matrice exhaustive des layouts Scryfall définie en Q804–Q805 (normal, split, flip, transform, modal DFC, meld, leveler, class, saga, adventure, planar, scheme, vanguard, token, double-faced token, emblem, augment, host, art series, reversible card, mutate, prototype, battle, case et layouts futurs) ; uniformiser le rendu des deux moteurs.
+- [ ] Implémenter le modèle structuré des faces, relations meld, coûts/statistiques alternatifs, chapitres/niveaux, textes de rappel et marqueurs défini en Q805.
 - [ ] Gestion des polices locales et de métriques typographiques reproductibles.
 - [ ] Corpus visuel de référence et tests de régression par famille de cartes.
 
