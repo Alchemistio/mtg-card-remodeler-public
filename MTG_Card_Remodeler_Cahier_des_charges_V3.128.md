@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.128 | Nettoyage structurel : retrait du bloc 10.348 obsolète et rétablissement de l'ordre strict des sections |\n| V3.127 | Adoption des 75 décisions techniques recommandées Q519–Q593 après audit de cohérence et de sécurité |
+| V3.128 | Nettoyage structurel : retrait du bloc 10.348 obsolète et rétablissement de l'ordre strict des sections |
+| V3.127 | Adoption des 75 décisions techniques recommandées Q519–Q593 après audit de cohérence et de sécurité |
 | V3.126 | Import sécurisé de decks publics par URL via accès natif et repli navigateur (Q806) |
 | V3.125 | Matrice exhaustive des layouts Scryfall et modèle structuré des faces/mécaniques (Q804–Q805) |
 | V3.124 | Matrice OS et matériel de référence, corpus visuel, contrôle des assets et formats de livraison (Q799–Q803) |
