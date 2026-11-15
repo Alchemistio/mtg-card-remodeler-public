@@ -156,12 +156,18 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 
 - [x] Fusionner le doublon exact Q437 dans Q440 et le doublon sémantique Q489 dans Q485.
 - [x] Conserver les identifiants retirés comme références historiques non réutilisables.
-- [x] Mettre à jour l'index : 753 identifiants, 751 exigences actives, 2 entrées fusionnées.
+- [x] Mettre à jour l'index : 753 identifiants, 756 exigences actives, 2 entrées fusionnées.
 
 ### Contrôle documentaire V3.131
 
 - [x] Fixer les durées de notification et de transition, la largeur minimale du panneau, l'espace RGB et les seuils de résolution d'impression.
 - [x] Rendre testables les choix auparavant exprimés par « quelques secondes », « court » ou « largeur minimale fixe ».
+
+### Contrôle documentaire V3.131 — index et rétention
+
+- [x] Vérifier 758 identifiants d'index, dont 756 exigences actives et deux identifiants fusionnés.
+- [x] Vérifier zéro section vide, ordre strict des sections et zéro erreur de lien.
+- [x] Conserver V3.129, V3.130 et V3.131 ; V3.128 retirée de main, historique préservé.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
