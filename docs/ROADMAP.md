@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.127, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.127, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.127 est la version courante ; V3.125, V3.126 et V3.127 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
