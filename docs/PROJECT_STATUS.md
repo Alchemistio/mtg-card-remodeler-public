@@ -1,6 +1,6 @@
 # Rapport d'état — MTG Card Remodeller
 
-**Date : 5 novembre 2026**  
+**Rapport initial : 5 novembre 2026 — audit complémentaire : 15 novembre 2026**  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public  
 **Branche de travail :** `feat/frames-fesens` (fusionnée dans `main`)  
 **Pull request :** [#4 — fusionnée](https://github.com/Alchemistio/mtg-card-remodeler-public/pull/4)
@@ -176,3 +176,38 @@ L'intégration FeSens est une avancée importante pour la fidélité graphique, 
 - Une première couche CSS reprend la palette nuit, les bandeaux noirs, les sélections dorées, les champs sombres et les panneaux d'aperçu.
 - Un workflow manuel Windows produit les installateurs NSIS et MSI en artefacts éphémères (14 jours). Aucun Release public automatique n'est créé.
 - La validation visuelle sur la machine cible et l'exécution réelle du workflow d'installation restent à faire.
+
+
+## 8. Audit de cohérence au 15 novembre 2026
+
+Cet addendum actualise l'état documentaire après comparaison de fichiers de code, configuration, workflows et cahier des charges V3.123. Il ne remplace pas les tests d'exécution ; aucune modification du code produit n'a été réalisée pendant cet audit.
+
+### Éléments constatés dans le dépôt
+
+- La persistance desktop utilise SQLite via le plugin SQL Tauri, avec migrations versionnées et cache Scryfall.
+- La persistance navigateur utilise IndexedDB, avec repli localStorage actuellement employé pour les cartes, projets et cache lorsque IndexedDB est indisponible.
+- Le moteur FeSens est utilisé via le paquet npm mtg-card ; le code adapte le modèle interne et conserve le moteur SVG local pour les layouts non couverts.
+- Le projet contient une CI Linux pour les tests web, le build Vite et la compilation Tauri/Rust, ainsi qu'un workflow Windows produisant des artefacts NSIS/MSI.
+- Le workflow Windows est déclenché manuellement et lors des push sur main ; les artefacts sont conservés 14 jours.
+- Le dépôt ne contient actuellement aucun package-lock.json, npm-shrinkwrap.json, pnpm-lock.yaml ou yarn.lock.
+- Le dépôt ne contient actuellement aucun fichier LICENSE racine ou LICENSE.md, ni configuration Playwright dédiée.
+
+### Écarts avec les décisions du cahier des charges V3.123
+
+| Sujet | État observé | Exigence de référence | Suite nécessaire |
+|---|---|---|---|
+| Repli localStorage | Écrit les cartes et projets si IndexedDB est indisponible | Q776 : localStorage limité aux préférences et à la migration de compatibilité | Remplacer le repli de persistance par un état dégradé sûr et une migration contrôlée |
+| Verrouillage des dépendances | Aucun fichier de verrouillage présent ; CI utilise npm install | Q659 et Q784 : dépendances reproductibles et FeSens épinglé | Générer et versionner un lockfile, passer à npm ci et épingler mtg-card |
+| FeSens | package.json déclare mtg-card avec la plage ^0.1.1 | Q784–Q788 : version exacte, adaptateur, tests et contrôle des droits | Fixer la version approuvée et compléter la revue de provenance/licence |
+| Tests visuels | Aucun Playwright ni corpus de snapshots identifié | Q755, Q766 et Q797–Q798 | Ajouter une suite visuelle reproductible et des références légalement utilisables |
+| Matrice de plateformes | CI générale Linux ; workflow de packaging Windows ; aucune CI macOS identifiée dans les workflows examinés | Q758–Q763 et Q767 | Ajouter les validations par cible et tester les installateurs sur environnements propres |
+| Licence du projet | Aucun fichier LICENSE racine | Q632 et feuille de route phase 0.3 | Rédiger et faire relire le texte de licence personnelle non commerciale retenu |
+
+### Limites de la vérification
+
+- Les fichiers de workflow ont été lus, mais aucun résultat de CI concluant n'a été obtenu pour le commit documentaire courant ; un statut vide ne constitue pas une preuve de réussite.
+- Le rapport d'état et certains documents d'architecture décrivent l'implémentation présente, y compris le repli localStorage. Ils ne doivent pas être interprétés comme la cible normative après V3.123.
+- Les droits des ressources FeSens/Figma, des polices et des collections graphiques ne sont pas établis par cet audit technique.
+- La présence d'un build ou d'un artefact CI ne vaut pas validation d'installation, de rendu ou de conformité sur une machine propre.
+
+**Conclusion :** le dépôt contient un prototype avancé, mais il ne satisfait pas encore toutes les conditions de reproductibilité, de conformité documentaire, de validation visuelle et de distribution définies par V3.123. Les écarts ci-dessus doivent être traités dans les lots de développement et de préparation de publication ; ils ne justifient pas de modifier le périmètre fonctionnel déjà spécifié.
