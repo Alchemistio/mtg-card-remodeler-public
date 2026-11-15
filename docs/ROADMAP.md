@@ -8,11 +8,14 @@
 
 - [x] La phase de clôture préalable est formalisée et intégrée au workflow.
 - [x] Les décisions techniques Q774–Q806 ont précisé les contrats de persistance, le format de projet, l'intégration FeSens, les politiques OS/WebView, les budgets de performance, les layouts Scryfall et l'import sécurisé par URL.
-- [ ] L'audit fonctionnel global et la vérification de toutes les interactions restent à effectuer.
-- [ ] Les preuves d'exécution sur les plateformes cibles et la comparaison exhaustive entre le dépôt, la CI et les exigences restent à effectuer.
+- [x] Audit documentaire final V3.133 : cohérence, traçabilité, sections non vides, absence de TODO/TBD et critères d'acceptation ; interactions fonctionnelles rattachées aux lots A–G.
+- [ ] Tests d'intégration et bout en bout de toutes les interactions à exécuter pendant les lots de développement.
+- [x] Comparaison initiale du dépôt et de la CI avec les exigences : écarts connus documentés dans docs/PROJECT_STATUS.md et affectés aux lots A–G.
+- [ ] Preuves d'exécution multiplateforme, installateurs sur machines propres et validations fonctionnelles à produire pendant les lots concernés.
 - [ ] Les licences et droits des collections d'assets, des polices et des ressources Figma/FeSens restent bloquants tant qu'ils ne sont pas établis ou que les ressources concernées ne sont pas exclues.
 - [ ] La rédaction et la revue du texte de licence du projet restent à effectuer avant toute distribution.
-- [ ] Le rapport final de préparation et la clôture explicite par l'utilisateur restent à obtenir.
+- [x] Rapport de préparation V3.133 et plan des lots A–G publiés.
+- [ ] Clôture formelle du cahier des charges et autorisation distincte de démarrer le Lot A.
 
 ### Contrôle documentaire V3.123
 
