@@ -182,7 +182,7 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 
 ## Évaluation finale de préparation au développement — V3.133
 
-<badge color="success">Prêt pour clôture utilisateur</badge>
+**Statut : prêt pour clôture utilisateur.**
 
 - Le périmètre fonctionnel et technique est défini ; aucune décision cruciale utilisateur ne reste en attente.
 - Les 75 décisions techniques Q519–Q593 ont été adoptées ; les décisions techniques ultérieures sont documentées.
