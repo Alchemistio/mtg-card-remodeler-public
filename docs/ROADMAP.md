@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.128, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.128 est la version courante ; V3.126, V3.127 et V3.128 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.129, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.128 est la version courante ; V3.126, V3.127 et V3.128 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -139,6 +139,12 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 **Résultat de l'audit de couverture :** les chantiers actuellement ouverts dans les phases 1 à 4 de cette feuille de route disposent maintenant d'exigences de référence identifiées dans V3.128. Cela valide la traçabilité du périmètre, mais ne prouve ni l'implémentation ni l'exécution des tests. Toute lacune découverte pendant un lot doit être ajoutée à la spécification avant sa réalisation, sans réduire le périmètre existant.
 
 ---
+
+### Contrôle documentaire V3.129
+
+- [x] Restaurer le contenu des questions Q478 et Q483 depuis les phrases mal placées sous Q488.
+- [x] Vérifier que les 753 sections de question ont un contenu et que Q488 ne contient plus ces exigences d'animation.
+- [x] Recalculer l'index après restauration.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
