@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.125, dernière décision Q805 / section 10.774. L'index contient 752 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.126, dernière décision Q806 / section 10.775. L'index contient 752 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -99,6 +99,11 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 - [x] Formaliser la liste des layouts Scryfall et la politique de repli pour les layouts inconnus (Q804).
 - [x] Formaliser les champs de faces, relations meld et structures mécaniques (Q805).
 - [ ] Implémenter et tester chaque layout ; la définition fonctionnelle ne vaut pas réalisation.
+
+### Contrôle documentaire V3.126
+
+- [x] Définir le parcours d'import de decks publics par URL et ses contrôles de sécurité réseau (Q806).
+- [ ] Implémenter le service réseau natif et les tests de fournisseurs/SSRF ; l'exigence est définie, pas réalisée.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
@@ -227,7 +232,7 @@ Ce plan organise la réalisation sans réduire le périmètre final validé. Il 
 - [ ] Éditeur de cadres et de zones de texte.
 - [ ] Séparation des données Scryfall et des surcharges utilisateur.
 - [x] Import de decklists texte/TXT/CSV avec quantités, sections de deck et résolution en lots Scryfall.\n- [x] Import best-effort des decks publics Moxfield et Archidekt (les API tierces peuvent bloquer les requêtes).\n- [ ] Gestion avancée des projets, favoris et collections.
-- [ ] Import direct des URLs tierces sans dépendre des politiques CORS du WebView.
+- [ ] Implémenter l'import direct des URLs tierces selon Q806 : accès réseau natif Tauri, hôtes autorisés, protections SSRF et repli fichier/texte dans le navigateur sans proxy.
 - [ ] Cache d'images et de données, synchronisation et nettoyage.
 
 ## Phase 4 — Export et distribution
