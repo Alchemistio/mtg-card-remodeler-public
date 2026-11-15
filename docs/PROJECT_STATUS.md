@@ -259,3 +259,8 @@ Q806 formalise l'import des decks publics par URL avec un service réseau natif 
 Les 75 sections Q519–Q593 (10.514–10.588) ont été relues. Elles couvrent l'interface du gestionnaire d'extensions, la validation de leurs paramètres, les autorisations et la sécurité d'exécution/installation, la résolution des dépendances, la géométrie et la composition SVG, la gestion ICC, la résolution d'image, l'imposition, ainsi que la traçabilité et la publication sûre des générations.
 
 Ces recommandations ont été adoptées comme décisions techniques prises par l'assistant dans V3.127. Les sujets sont donc définis au niveau du cahier des charges ; leur implémentation et leurs tests restent des tâches de développement. Aucune décision fonctionnelle supplémentaire de l'utilisateur n'est nécessaire pour ce bloc.
+
+
+## 14. Nettoyage structurel V3.128
+
+La section non indexée 10.348, intitulée « Chapitres restant à développer », était placée après 10.503, répétait trois fois une liste devenue obsolète et résumait des sujets désormais couverts par les sections détaillées. Elle a été retirée de V3.128. Les 753 sections/questions indexées sont conservées, leur ordre est strictement croissant et toutes les références de titres/lignes ont été recalculées. La branche main conserve V3.126, V3.127 et V3.128.
