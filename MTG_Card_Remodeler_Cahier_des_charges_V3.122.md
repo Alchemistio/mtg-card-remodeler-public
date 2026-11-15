@@ -4553,6 +4553,1340 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
  Les questions 354 à 358 définissent une architecture modulaire extensible pouvant accueillir des extensions externes, des modules internes indépendants activables ou désactivables lorsque cela est pertinent, la préservation de la compatibilité des projets existants, le versionnement et la migration automatique des formats avec possibilité de restauration, ainsi qu'une documentation technique complète couvrant l'architecture, les modules, les dépendances, les interfaces internes et les procédures de maintenance.
 
 
+### Série 1 — Importation sûre des fichiers et archives
+
+## 10.618 Validation des formats à l'importation — Question 649, décision technique prise par l'assistant
+
+Tout fichier importé est contrôlé à partir d'une liste de formats explicitement pris en charge pour l'opération demandée. L'extension du nom, le type MIME déclaré et le nom du fichier ne constituent jamais, isolément, une preuve de format. L'application confronte ces indications à la signature du contenu et à la structure effectivement analysée par un parseur adapté.
+
+- Les formats acceptés sont définis par fonction : projet, sauvegarde, image, police, document vectoriel, PDF, extension ou autre ressource.
+- Les formats non pris en charge, ambigus, incohérents ou contenant des structures actives non attendues sont refusés ou isolés selon le risque.
+- Le nom d'origine est conservé comme métadonnée informative, mais n'est jamais utilisé comme instruction d'exécution ou comme chemin de destination sans validation.
+- Les erreurs de validation précisent le contrôle échoué sans exécuter ni afficher le contenu actif du fichier.
+- Une extension de fichier autorisée ne dispense jamais des contrôles de structure, d'intégrité et de limites de ressources.
+
+Référence : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+
+### Série 1 — Importation sûre des fichiers et archives
+
+## 10.619 Extraction confinée et prévention des traversées de répertoires — Question 650, décision technique prise par l'assistant
+
+Toute extraction d'archive doit rester strictement confinée au répertoire temporaire prévu pour l'opération. Avant l'écriture, chaque chemin interne est normalisé et vérifié afin de démontrer que sa destination finale demeure à l'intérieur de la racine d'extraction.
+
+- Refuser les chemins absolus, les préfixes de volume ou de partage, les séquences de remontée de répertoire et les chemins qui sortent de la racine après normalisation.
+- Refuser par défaut les liens symboliques, liens physiques et autres entrées spéciales susceptibles de rediriger une écriture ou une lecture hors du périmètre autorisé.
+- Détecter les collisions de noms après normalisation, y compris les différences de casse, séparateurs, caractères Unicode ou noms réservés propres à une plateforme.
+- Ne jamais écraser un fichier existant hors de l'espace temporaire de l'importation.
+- Vérifier de nouveau la destination effective au moment de l'écriture afin de réduire les risques liés aux changements de chemin entre contrôle et utilisation.
+
+Références : [OWASP WSTG — Upload of Malicious Files](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files) ; [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+
+### Série 1 — Importation sûre des fichiers et archives
+
+## 10.620 Limitation des volumes et prévention des archives explosives — Question 651, décision technique prise par l'assistant
+
+L'analyse et l'extraction d'un fichier sont soumises à des budgets de ressources contrôlés par l'application, indépendamment des tailles annoncées par le fichier source.
+
+- Contrôler la taille compressée, la taille totale décompressée, le nombre d'entrées, la taille maximale d'une entrée, la profondeur d'imbrication et le taux d'expansion.
+- Appliquer les limites pendant le traitement en flux, et non uniquement à partir des métadonnées déclarées par l'archive.
+- Fixer des budgets de temps, de mémoire et d'espace temporaire adaptés au type de fichier et à l'opération.
+- Interrompre proprement le traitement lorsqu'une limite est atteinte, supprimer les éléments temporaires incomplets et conserver l'état existant.
+- Présenter la limite atteinte et la possibilité éventuelle de réessayer avec un fichier plus petit ou une opération découpée ; ne jamais contourner silencieusement une limite de sécurité.
+
+Référence : [OWASP — File Upload Cheat Sheet, Upload and Download Limits](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+
+### Série 1 — Importation sûre des fichiers et archives
+
+## 10.621 Durcissement et isolation du traitement des fichiers non fiables — Question 652, décision technique prise par l'assistant
+
+Les fichiers externes sont considérés comme des entrées non fiables, y compris lorsqu'ils proviennent d'une source connue ou portent une extension autorisée. Leur analyse utilise des bibliothèques maintenues et des paramètres de traitement stricts.
+
+- Les parseurs et décodeurs sont configurés pour refuser les structures invalides, récursions excessives, dimensions impossibles et références externes non autorisées.
+- Lorsque la plateforme et l'architecture le permettent, les traitements les plus exposés sont exécutés dans un processus séparé avec droits minimaux, accès aux fichiers limité et budgets de ressources.
+- Le contenu d'un fichier importé n'est jamais exécuté automatiquement ; les scripts, macros, actions embarquées et liens externes sont désactivés ou refusés sauf prise en charge explicite, contrôlée et autorisée.
+- Une erreur, un dépassement de temps ou un arrêt du parseur ne doit pas corrompre le projet ouvert ni laisser une importation partielle visible.
+- Les composants de parsing sont maintenus à jour et leurs versions sont tracées pour permettre l'analyse d'une vulnérabilité.
+
+Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [NIST SP 800-218 — Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final).
+
+### Série 1 — Importation sûre des fichiers et archives
+
+## 10.622 Isolation des espaces temporaires et protection contre les liens symboliques — Question 653, décision technique prise par l'assistant
+
+Chaque opération d'importation, d'extraction ou de conversion utilise un espace temporaire propre à la transaction, avec un identifiant non prédictible et des permissions minimales.
+
+- L'espace temporaire est distinct des projets actifs, des sauvegardes conservées et des extensions installées.
+- Les fichiers préparés ne sont publiés dans la bibliothèque ou le projet qu'après la réussite des contrôles et de la validation de l'opération.
+- Les chemins sont manipulés autant que possible à partir de descripteurs ou références de fichiers déjà ouverts et vérifiés, plutôt que par concaténation de chaînes de chemins.
+- Les liens symboliques inattendus, changements de cible et collisions sont refusés ; une ressource temporaire ne peut pas rediriger l'écriture vers un emplacement extérieur.
+- En cas de réussite, d'annulation, d'échec ou de fermeture inattendue, le nettoyage est exécuté de manière sûre et idempotente. Les éléments nécessaires à un diagnostic peuvent être conservés uniquement selon les règles locales de journalisation.
+
+Cette règle généralise le principe de préparation isolée déjà retenu pour l'installation des extensions, sans remplacer ses contrôles spécifiques.
+
+### Série 2 — Intégrité des données et persistance
+
+## 10.623 Écriture atomique des projets et ressources critiques — Question 654, décision technique prise par l'assistant
+
+L'enregistrement d'un projet ou d'une ressource critique ne doit jamais exposer un fichier final partiellement écrit. Lorsque le système de fichiers le permet, l'application écrit d'abord une nouvelle version complète dans un fichier temporaire situé sur le même volume que la destination, vérifie son contenu, puis remplace la destination par une opération atomique.
+
+- L'ancien fichier valide est conservé jusqu'à la publication réussie de la nouvelle version.
+- Les tampons et données nécessaires sont vidés vers le stockage selon les garanties de durabilité offertes par la plateforme avant de déclarer l'enregistrement terminé.
+- En cas d'échec avant le remplacement, le fichier d'origine reste utilisable et le fichier temporaire est nettoyé ou conservé pour récupération contrôlée.
+- Les limites propres à certains systèmes de fichiers, volumes réseau ou périphériques sont détectées et documentées ; aucune atomicité universelle n'est promise.
+- L'interface ne confirme la sauvegarde qu'après réussite de l'opération de publication et des vérifications requises.
+
+Références : [SQLite — Atomic Commit](https://www.sqlite.org/atomiccommit.html) ; [SQLite — Write-Ahead Logging](https://www.sqlite.org/wal.html).
+
+### Série 2 — Intégrité des données et persistance
+
+## 10.624 Manifeste d'intégrité des sauvegardes et vérification des contenus — Question 655, décision technique prise par l'assistant
+
+Chaque sauvegarde complète possède un manifeste d'intégrité permettant de vérifier les fichiers et données qu'elle contient avant restauration.
+
+- Le manifeste décrit les éléments attendus, leur taille, leur rôle et une empreinte cryptographique calculée sur leur contenu ; l'algorithme retenu doit être moderne et adapté à la vérification d'intégrité.
+- Le manifeste est lui-même protégé contre les modifications non détectées par une structure d'archive cohérente et une vérification globale.
+- L'application vérifie les entrées avant de proposer une restauration et signale les fichiers manquants, supplémentaires inattendus, tronqués ou dont l'empreinte diffère.
+- Une sauvegarde dont l'intégrité est insuffisante ne peut pas être présentée comme restaurable sans réserve ; les données existantes ne sont pas remplacées par une restauration partielle silencieuse.
+- Le rapport de vérification distingue l'intégrité confirmée, l'échec, l'impossibilité de vérifier et les éléments non applicables.
+
+Cette vérification d'intégrité ne constitue pas un chiffrement ni une preuve d'origine de la sauvegarde ; ces propriétés restent distinctes.
+
+### Série 2 — Intégrité des données et persistance
+
+## 10.625 Journal de récupération après interruption d'une opération — Question 656, décision technique prise par l'assistant
+
+Les opérations de modification qui peuvent laisser un projet dans un état incohérent en cas de fermeture inattendue utilisent un mécanisme de journal ou de point de reprise adapté à leur portée.
+
+- Avant une opération multi-étapes, enregistrer les informations minimales nécessaires pour identifier l'état initial, l'opération commencée et les étapes déjà publiées.
+- Au redémarrage, détecter les opérations inachevées et proposer ou appliquer une récupération déterministe qui restaure un état cohérent.
+- La récupération ne doit jamais rejouer aveuglément une opération non idempotente ni dupliquer des ressources déjà créées.
+- Les données récupérées sont distinguées des données enregistrées normalement jusqu'à confirmation de leur cohérence.
+- Les journaux de récupération sont bornés, nettoyés après validation et protégés contre toute modification par une extension non autorisée.
+
+Ce mécanisme complète les sauvegardes automatiques et les transactions d'importation ; il ne les remplace pas.
+
+### Série 2 — Intégrité des données et persistance
+
+## 10.626 Migrations de schéma versionnées, contrôlées et réversibles — Question 657, décision technique prise par l'assistant
+
+Toute évolution du schéma des projets, de la bibliothèque ou des données persistantes est associée à une version de format explicite et à une migration identifiée.
+
+- Chaque migration indique ses versions source et cible, ses préconditions, les données modifiées et les vérifications attendues.
+- Une migration est déterministe et idempotente dans la mesure du possible ; elle ne s'exécute pas une seconde fois sur un état déjà migré.
+- Avant une migration à risque, l'application crée ou vérifie un point de restauration approprié conformément aux règles de sauvegarde.
+- La migration est appliquée dans une transaction lorsque le stockage le permet. Si elle échoue, l'application conserve l'état source ou restaure un état cohérent sans mélanger les deux schémas.
+- Les migrations destructrices ou non réversibles sont explicitement identifiées, justifiées et accompagnées d'une stratégie de récupération testée.
+- L'application refuse une version de format qu'elle ne sait pas interpréter plutôt que de réécrire les données en les dégradant.
+
+Cette décision précise le cycle de migration déjà prévu dans l'architecture ; elle n'autorise aucune suppression silencieuse de données.
+
+### Série 2 — Intégrité des données et persistance
+
+## 10.627 Contrôle préalable de l'espace disponible pour les opérations volumineuses — Question 658, décision technique prise par l'assistant
+
+Avant une génération, une importation, une extraction, une sauvegarde ou une restauration volumineuse, l'application estime l'espace temporaire et final nécessaire et vérifie l'espace disponible lorsque la plateforme le permet.
+
+- L'estimation tient compte des fichiers existants à préserver, des copies temporaires, des sorties simultanées et des marges nécessaires au système.
+- Les opérations qui risquent de remplir le volume sont différées ou refusées avant de modifier les données d'origine.
+- Lorsque la taille finale ne peut être connue exactement, l'application effectue une estimation prudente et contrôle l'espace restant pendant le traitement.
+- Une perte d'espace en cours d'opération déclenche un arrêt contrôlé, le nettoyage des sorties incomplètes et la conservation de l'état précédent.
+- Le message indique le volume concerné, l'espace estimé et les solutions possibles, sans prétendre garantir qu'un espace disponible restera libre jusqu'à la fin.
+
+Cette mesure complète les limites de ressources des extensions et des importations ; elle ne remplace pas la gestion des erreurs d'écriture.
+
+### Série 3 — Chaîne d'approvisionnement et publication sécurisée
+
+## 10.628 Verrouillage reproductible des dépendances de construction — Question 659, décision technique prise par l'assistant
+
+Les dépendances nécessaires à la construction et aux tests de l'application sont décrites par les manifestes et fichiers de verrouillage natifs de chaque écosystème utilisé.
+
+- Les fichiers de verrouillage pertinents sont conservés dans le dépôt et pris en compte dans les builds de validation et de publication.
+- Les constructions de référence échouent si la résolution modifie implicitement les versions verrouillées ou nécessite une dépendance non déclarée.
+- Les mises à jour de dépendances sont effectuées dans des changements identifiables, examinés et testés, et non par une résolution flottante à chaque publication.
+- Les dépendances directes et transitives sont suivies ; les versions dupliquées ou incompatibles sont analysées lorsqu'elles créent un risque de maintenance ou de sécurité.
+- Le verrouillage garantit la stabilité de la résolution, pas l'absence de vulnérabilité : les contrôles de sécurité et mises à jour restent obligatoires.
+
+Références : [The Cargo Book — Why have Cargo.lock in version control?](https://doc.rust-lang.org/cargo/faq.html#why-have-cargolock-in-version-control) ; [The Cargo Book — cargo install, lockfile](https://doc.rust-lang.org/cargo/commands/cargo-install.html).
+
+### Série 3 — Chaîne d'approvisionnement et publication sécurisée
+
+## 10.629 Attestation de provenance pour chaque version publiée — Question 660, décision technique prise par l'assistant
+
+Chaque version distribuée doit être accompagnée d'informations de provenance permettant d'identifier le code source, l'environnement et le processus ayant produit les artefacts.
+
+- L'attestation identifie au minimum le dépôt et la révision source, le workflow ou système de construction, les paramètres significatifs, les dépendances déclarées et les empreintes des artefacts livrés.
+- Les attestations sont générées par le processus de construction et protégées contre les modifications postérieures non détectées.
+- Lorsque l'infrastructure le permet, la provenance est signée et vérifiable indépendamment du paquet.
+- Les artefacts publiés sont reliés sans ambiguïté à leur attestation ; une attestation absente ou incohérente est signalée et empêche de prétendre que la provenance a été vérifiée.
+- Les niveaux de garantie effectivement atteints sont décrits sans revendiquer un niveau SLSA non démontré.
+
+Références : [SLSA — Build Provenance](https://slsa.dev/spec/v1.2/build-provenance) ; [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final).
+
+### Série 3 — Chaîne d'approvisionnement et publication sécurisée
+
+## 10.630 Signature et vérification des paquets distribués par plateforme — Question 661, décision technique prise par l'assistant
+
+Les paquets d'installation et exécutables publiés doivent être signés au moyen des mécanismes reconnus par chaque système cible lorsque ces mécanismes sont disponibles et adaptés au mode de distribution.
+
+- Sous Windows, les paquets distribués hors Store sont signés avec un certificat de signature de code valide et une chaîne de confiance vérifiable ; les paquets MSIX suivent les exigences de signature propres à ce format.
+- Sous macOS, les exécutables distribués hors App Store sont signés avec une identité Developer ID appropriée et soumis à la notarisation Apple lorsque le parcours de distribution l'exige.
+- Sous Linux, les paquets et dépôts utilisent les mécanismes de signature et de vérification correspondant au format et au canal de distribution retenus.
+- La signature couvre les composants exécutables distribués et est vérifiée avant installation ou lancement lorsque la plateforme le permet.
+- Une signature invalide, absente lorsqu'elle est obligatoire, expirée ou associée à une identité inattendue est signalée et entraîne le refus du paquet selon les règles de sécurité de la plateforme.
+- Les environnements de développement peuvent utiliser des certificats distincts, mais leurs artefacts ne sont jamais présentés comme des versions de production signées.
+
+Références : [Microsoft — Code-signing options for Windows apps](https://learn.microsoft.com/windows/apps/package-and-deploy/code-signing-options) ; [Apple — Notarizing macOS software before distribution](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
+
+### Série 3 — Chaîne d'approvisionnement et publication sécurisée
+
+## 10.631 Moindre privilège et séparation des environnements de construction — Question 662, décision technique prise par l'assistant
+
+Les environnements de construction, de test et de publication sont séparés et appliquent le principe du moindre privilège.
+
+- Un workflow ne reçoit que les permissions de dépôt, d'artefact et de publication strictement nécessaires à son étape.
+- Les tests exécutant du code non fiable, notamment des extensions ou contributions externes, ne disposent pas des secrets de publication.
+- Les secrets de signature et de publication ne sont accessibles qu'à une étape dédiée, après réussite des contrôles requis et avec une portée minimale.
+- Les jetons et identifiants sont à durée de vie limitée lorsque le fournisseur le permet ; ils ne sont jamais inscrits dans le dépôt, les journaux ou les artefacts.
+- Les étapes de construction et de publication produisent des journaux et traces permettant d'identifier le workflow responsable sans exposer les secrets.
+- Une modification du workflow de publication est examinée comme un changement sensible de sécurité.
+
+Références : [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) ; [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
+
+### Série 3 — Chaîne d'approvisionnement et publication sécurisée
+
+## 10.632 Analyse continue des vulnérabilités des dépendances et artefacts — Question 663, décision technique prise par l'assistant
+
+Les dépendances directes et transitives ainsi que les composants réellement présents dans les paquets livrés font l'objet d'analyses de vulnérabilités régulières.
+
+- Les contrôles sont exécutés lors des changements de dépendances, dans l'intégration continue et avant chaque publication.
+- Les résultats sont rapprochés des versions réellement utilisées et du périmètre affecté ; une alerte générique ne suffit pas à conclure qu'un composant est exploitable dans l'application.
+- Les vulnérabilités sont classées selon leur sévérité, leur exploitabilité, l'exposition du composant et la disponibilité d'une correction.
+- Les vulnérabilités critiques ou à risque élevé exploitable bloquent la publication tant qu'elles ne sont pas corrigées ou qu'une mesure de réduction du risque formellement documentée n'a pas été approuvée.
+- Les exceptions temporaires indiquent le responsable, la justification, le périmètre et une échéance de réévaluation ; elles ne deviennent pas des exemptions permanentes implicites.
+- Les composants abandonnés, non maintenus ou d'origine incertaine sont signalés même lorsqu'aucune CVE connue n'est recensée.
+
+Références : [NIST — Software Supply Chain Security](https://www.nist.gov/itl/executive-order-14028-improving-nations-cybersecurity/software-security-supply-chains) ; [GitHub — Dependency Review](https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/customize-dependency-review-action).
+
+### Série 4 — Internationalisation et accessibilité
+
+## 10.633 Formatage des nombres, dates et unités selon la locale — Question 664, décision technique prise par l'assistant
+
+Les valeurs numériques, dates, heures, durées et unités affichées dans l'interface sont formatées selon la locale active et les règles culturelles correspondantes, sans modifier les valeurs internes.
+
+- Les données sont stockées dans une représentation indépendante de la présentation ; le formatage local intervient au moment de l'affichage ou de la saisie.
+- Les séparateurs décimaux et de milliers, calendriers, ordre des dates, symboles d'unité et formats horaires proviennent d'une bibliothèque ou de données de localisation reconnues.
+- Les conversions d'unités sont distinguées du simple changement de format d'affichage ; aucune conversion de valeur n'est faite silencieusement.
+- Les champs de saisie acceptent les formes locales documentées et présentent clairement les erreurs ou ambiguïtés.
+- Les formats techniques destinés aux fichiers, échanges et protocoles restent indépendants de la locale de l'utilisateur.
+
+Référence : [Unicode CLDR — Core Specification](https://www.unicode.org/reports/tr35/).
+
+### Série 4 — Internationalisation et accessibilité
+
+## 10.634 Messages dynamiques et règles grammaticales localisées — Question 665, décision technique prise par l'assistant
+
+Les messages de l'interface qui intègrent des valeurs variables sont construits au moyen de mécanismes de formatage localisés, et non par concaténation manuelle de fragments de phrases.
+
+- Les nombres d'éléments, fichiers, cartes, erreurs et tâches utilisent les règles de pluriel de la locale, y compris les catégories grammaticales nécessaires aux langues prises en charge.
+- Les variables sont typées et formatées selon leur nature : nombre, date, durée, nom de fichier ou unité.
+- L'ordre des éléments dans une phrase peut varier selon la langue ; les traducteurs disposent d'un message complet et de paramètres identifiés.
+- Les messages d'erreur et de confirmation conservent un identifiant stable indépendant de leur texte traduit afin de faciliter les tests et diagnostics.
+- En cas de traduction manquante, l'application utilise une langue de repli explicitement définie et n'affiche pas de marqueurs techniques ou de fragments incohérents.
+
+Référence : [Unicode CLDR — MessageFormat](https://www.unicode.org/reports/tr35/tr35-messageFormat.html).
+
+### Série 4 — Internationalisation et accessibilité
+
+## 10.635 Prise en charge des textes bidirectionnels — Question 666, décision technique prise par l'assistant
+
+L'interface doit pouvoir présenter correctement les contenus mêlant écritures de gauche à droite et de droite à gauche lorsque ces langues ou ces contenus sont pris en charge.
+
+- La direction de lecture des libellés et paragraphes est déterminée à partir de la langue ou du contexte, et non par une inversion globale simpliste de l'interface.
+- Les noms de cartes, noms propres, chemins, URL, nombres et fragments techniques intégrés dans un texte de direction opposée sont isolés afin d'éviter les réordonnancements visuels trompeurs.
+- Les contrôles d'édition conservent le texte saisi sans ajouter de caractères de contrôle invisibles dans les données métier.
+- Les tests couvrent les chaînes mixtes, ponctuations, parenthèses, chiffres, noms de fichiers et messages d'erreur.
+- Les caractères de contrôle bidirectionnels non attendus dans les identifiants ou chemins sont détectés et présentés de manière sûre lorsqu'ils peuvent masquer une différence visuelle.
+
+Référence : [Unicode CLDR — MessageFormat, Bidirectional Text](https://www.unicode.org/reports/tr35/tr35-messageFormat.html).
+
+### Série 4 — Internationalisation et accessibilité
+
+## 10.636 Normalisation Unicode sans altération des contenus originaux — Question 667, décision technique prise par l'assistant
+
+Les recherches, comparaisons et détections de doublons doivent tenir compte des équivalences Unicode pertinentes sans altérer silencieusement les textes originaux saisis ou importés.
+
+- L'application définit une forme de normalisation stable pour les clés de comparaison et de recherche lorsque cela est nécessaire.
+- La valeur originale est conservée pour l'affichage, l'export et la restitution fidèle des données.
+- Les comparaisons peuvent appliquer des règles adaptées à la locale, à la casse et aux diacritiques, mais ces règles ne sont jamais confondues avec une égalité binaire des contenus.
+- Les identifiants techniques, chemins, URL et données signées ne sont pas normalisés de manière destructive.
+- Les collisions créées par une normalisation ou une comparaison insensible à la casse sont signalées au lieu de fusionner automatiquement deux éléments distincts.
+- Les tests couvrent les formes composées et décomposées, caractères combinés, alphabets non latins et caractères visuellement proches.
+
+Référence : [Unicode CLDR — Core Specification](https://www.unicode.org/reports/tr35/).
+
+### Série 4 — Internationalisation et accessibilité
+
+## 10.637 Sémantique accessible des contrôles et annonces d'état — Question 668, décision technique prise par l'assistant
+
+Les composants d'interface exposent leur rôle, leur nom accessible, leur état et leurs relations aux technologies d'assistance au moyen des API d'accessibilité natives de la plateforme.
+
+- Les contrôles personnalisés fournissent un nom et un rôle compréhensibles ; leur état actif, sélectionné, désactivé, développé ou en erreur est exposé sans dépendre uniquement de la couleur ou de l'icône.
+- Les changements d'état importants, résultats de validation et fins de tâches asynchrones sont annoncés de manière non intrusive lorsque la plateforme le permet.
+- Les zones décoratives sont exclues de l'arbre d'accessibilité lorsqu'elles n'apportent aucune information utile.
+- Le focus clavier reste visible, cohérent et restitué après fermeture des fenêtres, dialogues et panneaux.
+- Les opérations essentielles restent réalisables sans souris et sans gestes de glisser-déposer exclusifs lorsqu'une alternative raisonnable peut être proposée.
+- Les contrôles sont vérifiés avec les lecteurs d'écran et outils d'accessibilité disponibles sur Windows, macOS et Linux ; les différences de prise en charge sont documentées.
+
+Référence de principes : [W3C — Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/wcag/).
+
+### Série 5 — Tests de robustesse et validation multiplateforme
+
+## 10.638 Fuzzing des parseurs et décodeurs exposés aux fichiers externes — Question 669, décision technique prise par l'assistant
+
+Les parseurs de fichiers, décodeurs d'images, lecteurs SVG/PDF, analyseurs de manifestes et extracteurs d'archives sont couverts par des campagnes de fuzzing adaptées à leurs interfaces d'entrée.
+
+- Les corpus incluent des fichiers valides, limites, tronqués, malformés et générés aléatoirement, ainsi que des cas connus de régression.
+- Les campagnes recherchent notamment les plantages, dépassements de ressources, blocages, erreurs de mémoire, violations d'invariants et sorties incohérentes.
+- Les entrées qui révèlent un défaut sont conservées comme cas de régression minimisés et reproductibles.
+- Les campagnes automatisées sont exécutées dans un environnement isolé et avec des budgets de temps et de ressources.
+- Les résultats sont triés, corrigés et reliés aux composants et versions concernés ; un plantage reproductible dans un parseur exposé bloque sa validation.
+
+Référence : [Google — OSS-Fuzz Documentation](https://google.github.io/oss-fuzz/).
+
+### Série 5 — Tests de robustesse et validation multiplateforme
+
+## 10.639 Tests fondés sur les propriétés et invariants géométriques — Question 670, décision technique prise par l'assistant
+
+Les fonctions de géométrie, transformations, imposition et conversion de coordonnées sont vérifiées par des tests fondés sur des propriétés et invariants, en complément des exemples unitaires.
+
+- Tester que l'application successive de transformations respecte les règles de composition définies et que les transformations inversibles suivies de leur inverse retrouvent le résultat attendu dans une tolérance numérique documentée.
+- Vérifier que les dimensions physiques, marges, fonds perdus et positions restent cohérents après conversions d'unités et changements de résolution.
+- Vérifier que les opérations qui ne doivent pas modifier la géométrie — changement de profil de sortie, changement de zoom ou déplacement de fenêtre — laissent les coordonnées logiques inchangées.
+- Générer des combinaisons de valeurs limites, rotations, échelles, groupes imbriqués et formats de page afin de révéler les cas non prévus.
+- Toute tolérance numérique est explicite et proportionnée à l'opération ; elle ne doit pas masquer une dérive visuelle ou physique significative.
+
+Cette stratégie complète les tests de conformité SVG et de reproductibilité déjà définis.
+
+### Série 5 — Tests de robustesse et validation multiplateforme
+
+## 10.640 Tests de non-régression visuelle avec tolérances maîtrisées — Question 671, décision technique prise par l'assistant
+
+Les moteurs de rendu et d'export disposent de tests visuels de référence permettant de détecter les changements involontaires d'apparence.
+
+- Les cas de référence couvrent les cartes, polices, symboles, transparences, masques, filtres, images, profils colorimétriques, découpes et compositions complexes.
+- Les comparaisons distinguent les écarts strictement binaires des écarts visuels ; des tolérances adaptées sont utilisées lorsque les moteurs ou systèmes produisent de légères différences connues.
+- Les seuils de comparaison sont documentés et ne peuvent pas être élargis uniquement pour faire passer une régression.
+- Les changements intentionnels de rendu entraînent une mise à jour motivée des références, avec preuve de revue.
+- Les différences sont consultables sous forme de superposition ou de carte d'écarts et reliées au moteur, à la plateforme et aux paramètres du rendu.
+
+Cette décision complète les critères d'audit visuel et la distinction déjà établie entre reproductibilité visuelle et binaire.
+
+### Série 5 — Tests de robustesse et validation multiplateforme
+
+## 10.641 Tests de panne et d'interruption sur les opérations de stockage — Question 672, décision technique prise par l'assistant
+
+Les opérations critiques de sauvegarde, restauration, importation, migration et publication de fichiers font l'objet de tests d'interruption et de panne simulée.
+
+- Simuler l'arrêt du processus, la fermeture forcée, la perte d'accès au volume, les erreurs d'écriture, l'espace disque épuisé et les fichiers sources modifiés pendant le traitement.
+- Vérifier qu'après chaque point d'interruption possible, les données restent dans un état cohérent : état initial conservé, opération entièrement publiée ou récupération clairement identifiée.
+- Vérifier qu'aucun fichier temporaire n'est présenté comme un résultat final et qu'aucune confirmation de réussite n'est affichée avant validation.
+- Répéter les scénarios sur les systèmes de fichiers et plateformes officiellement pris en charge lorsque leurs comportements diffèrent.
+- Les défauts trouvés sont convertis en tests de non-régression permanents et associés à la fonctionnalité concernée.
+
+Références : [SQLite — Atomic Commit](https://www.sqlite.org/atomiccommit.html) ; [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final).
+
+### Série 5 — Tests de robustesse et validation multiplateforme
+
+## 10.642 Matrice de validation continue sur les trois systèmes pris en charge — Question 673, décision technique prise par l'assistant
+
+L'intégration continue vérifie les changements sur Windows, macOS et Linux, conformément au périmètre multiplateforme retenu.
+
+- Les tests automatisés pertinents sont exécutés sur les trois systèmes pour chaque changement ayant un impact sur le code commun, les fichiers, les chemins, le rendu, les sauvegardes ou l'interface.
+- La matrice distingue les tests unitaires rapides, les tests d'intégration, les tests de bout en bout et les tests spécifiques aux pilotes ou périphériques.
+- Les versions de systèmes testées couvrent les versions minimales officiellement prises en charge et une version récente représentative ; les versions exactes sont consignées avec les résultats.
+- Un échec sur une plateforme prise en charge ne peut pas être masqué par la réussite sur les autres. Les tests impossibles à exécuter sont identifiés comme non exécutés ou bloqués, jamais comme réussis.
+- Les artefacts de validation sont associés au commit, à la plateforme et à la configuration utilisés.
+
+Référence : [GitHub Actions — Matrix strategies](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.643 Noms de fichiers portables et caractères réservés — Question 674, décision technique prise par l'assistant
+
+Les noms créés ou importés doivent rester utilisables sur Windows, macOS et Linux.
+
+- Valider les noms selon un profil commun de compatibilité, plus strict que le seul système courant.
+- Refuser les caractères interdits, contrôles, séparateurs et noms de périphériques réservés sur le système cible.
+- Conserver le nom original dans les métadonnées si une adaptation est nécessaire à l'export.
+- Ne jamais fusionner ni écraser silencieusement deux ressources distinctes.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.644 Gestion explicite des chemins trop longs — Question 675, décision technique prise par l'assistant
+
+L'application détecte les limites de longueur du système cible avant toute copie, importation, sauvegarde ou export.
+
+- Évaluer le chemin complet selon les capacités réelles des API et du système cible.
+- Ne jamais tronquer silencieusement un nom ou un chemin.
+- Bloquer avant toute écriture partielle et proposer une destination plus courte.
+- Tester chemins imbriqués, noms Unicode et chemins proches des limites documentées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.645 Détection des collisions selon le système de fichiers cible — Question 676, décision technique prise par l'assistant
+
+Avant un transfert, détecter les noms qui deviennent équivalents selon la casse ou la normalisation du système cible.
+
+- Simuler les règles de casse et d'équivalence pertinentes pour la destination.
+- Signaler chaque collision avant l'écriture.
+- Ne jamais choisir arbitrairement la ressource à conserver.
+- Permettre renommage explicite ou annulation complète, avec traçabilité.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/technologyoverviews/files-and-directories).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.646 Détection prudente des caractères Unicode confondables — Question 677, décision technique prise par l'assistant
+
+Les identifiants techniques sensibles peuvent signaler les caractères Unicode visuellement confondables.
+
+- Appliquer une analyse inspirée d'Unicode UTS #39 aux identifiants de ressources, extensions et manifestes.
+- Signaler sans transformer ni remplacer automatiquement le texte original.
+- Préserver la liberté Unicode des contenus éditoriaux et noms de cartes.
+- Ne bloquer que les ambiguïtés techniques exploitables ; distinguer similarité et identité.
+
+Référence : [Référence technique](https://www.unicode.org/reports/tr39/).
+
+### Série 1 — Portabilité des chemins et noms de fichiers
+
+## 10.647 Résolution des répertoires applicatifs par les API des plateformes — Question 678, décision technique prise par l'assistant
+
+Les emplacements de données, paramètres, caches et fichiers temporaires sont déterminés par les API et conventions de chaque système.
+
+- Séparer les répertoires selon leur finalité et leur durée de vie.
+- Ne pas construire les chemins personnels par concaténation de répertoires supposés ou codés en dur.
+- Ne pas placer de données persistantes dans un répertoire temporaire ou d'exécution.
+- Tester profils déplacés, permissions restreintes et chemins personnalisés.
+
+Référence : [Référence technique](https://specifications.freedesktop.org/basedir/).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.648 Verrou exclusif d'un projet ouvert dans plusieurs instances — Question 679, décision technique prise par l'assistant
+
+Un projet ne peut être modifié simultanément par plusieurs instances sans coordination explicite.
+
+- Acquérir un verrou interprocessus avant toute édition ou écriture.
+- Si le verrou est détenu, proposer lecture seule ou annulation ; ne jamais le contourner silencieusement.
+- Libérer le verrou à la fermeture normale et contrôler son état après interruption.
+- Documenter les garanties selon le système de fichiers utilisé.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.649 Vérification prudente des verrous obsolètes — Question 680, décision technique prise par l'assistant
+
+Un verrou laissé après un plantage ne peut être supprimé qu'après vérification suffisante de son obsolescence.
+
+- Combiner processus, instance, hôte et âge ; l'âge seul ne suffit pas pour un verrou long.
+- En cas d'incertitude, conserver le verrou et présenter les informations pour arbitrage manuel.
+- Exiger confirmation avant de supprimer un verrou potentiellement actif.
+- Traiter PID réutilisé, horloge décalée, hôte distant et stockage réseau comme cas incertains.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.650 Surveillance des modifications externes des projets ouverts — Question 681, décision technique prise par l'assistant
+
+Surveiller les modifications externes pertinentes sans considérer les notifications du système de fichiers comme exhaustives.
+
+- Utiliser les notifications pour déclencher une vérification, pas comme preuve complète.
+- Vérifier existence, taille, date et empreinte lorsque nécessaire.
+- Rétablir les surveillances invalidées après renommage ou remplacement.
+- Compléter les notifications par une vérification de cohérence aux points de sauvegarde.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qfilesystemwatcher.html).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.651 Détection des conflits avant écrasement d'un projet modifié à l'extérieur — Question 682, décision technique prise par l'assistant
+
+Comparer l'état de référence du projet ouvert à celui présent sur le stockage avant chaque sauvegarde.
+
+- Utiliser empreinte ou version fiable, pas seulement date de modification.
+- Suspendre l'écriture si le contenu a changé depuis le chargement.
+- Proposer rechargement, copie distincte ou comparaison lorsque possible.
+- Ne jamais détruire automatiquement la version externe ou la version en mémoire.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
+
+### Série 2 — Coordination des projets et accès externes
+
+## 10.652 Mode lecture seule si la coordination du stockage est incertaine — Question 683, décision technique prise par l'assistant
+
+Si les garanties de verrouillage ne sont pas fiables, privilégier la lecture seule.
+
+- Évaluer les capacités des emplacements réseau, virtuels et amovibles.
+- Avertir avant ouverture et proposer lecture seule ou copie locale.
+- Ne pas prétendre qu'un verrou local protège d'autres machines si le stockage ne le propage pas.
+- Tracer la provenance des copies locales et leur réintégration.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.653 Fermeture ordonnée et séquencée de l'application — Question 684, décision technique prise par l'assistant
+
+La fermeture suit une séquence contrôlée avant de libérer les ressources.
+
+- Cesser l'acceptation de nouveaux travaux, puis demander l'arrêt coopératif des tâches.
+- Valider ou annuler proprement les écritures critiques engagées.
+- Enregistrer les états de session récupérables avant de libérer verrous et ressources.
+- Appliquer un délai maximal et signaler les tâches non terminées sans prétendre qu'elles ont été sauvegardées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.654 Annulation coopérative des tâches longues — Question 685, décision technique prise par l'assistant
+
+Les tâches longues s'annulent à des points de contrôle définis sans interrompre arbitrairement une opération critique.
+
+- Déclarer les points d'annulation et les étapes non interruptibles.
+- Arrêter la création de sous-tâches et nettoyer les ressources temporaires.
+- Ne pas interrompre un commit atomique ou une transaction en cours.
+- Distinguer demande d'annulation, annulation terminée et tâche temporairement non annulable.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.655 Récupération de session après arrêt anormal — Question 686, décision technique prise par l'assistant
+
+Proposer une récupération de session depuis un état de reprise cohérent, distinct de la sauvegarde définitive du projet.
+
+- Conserver seulement le contexte nécessaire : projets ouverts, documents actifs, sélection et modifications récupérables.
+- Écrire l'état de reprise atomiquement, le versionner et l'associer à l'empreinte du projet.
+- Vérifier les éléments à la relance et présenter un aperçu de ce qui est restaurable.
+- Ne jamais remplacer automatiquement le projet sauvegardé ou une version externe plus récente.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.656 Redémarrage après incident sans boucle de plantage — Question 687, décision technique prise par l'assistant
+
+Le redémarrage après incident ne doit pas créer de boucle ni réexécuter automatiquement l'opération fautive.
+
+- Limiter la fréquence des relances et désactiver le redémarrage après échecs consécutifs ou fermeture volontaire.
+- Restaurer d'abord un état sûr ; ne pas relancer automatiquement les opérations modifiant des données.
+- Présenter les tâches interrompues et les possibilités de récupération.
+- Respecter les choix utilisateur et les mécanismes natifs de chaque plateforme.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/registering-for-application-restart).
+
+### Série 3 — Cycle de vie et récupération
+
+## 10.657 Démarrage de diagnostic sans extensions tierces — Question 688, décision technique prise par l'assistant
+
+Proposer un mode de démarrage sans chargement des extensions tierces en cas de dysfonctionnement.
+
+- Désactiver temporairement leur chargement sans supprimer fichiers ni paramètres.
+- Permettre une activation explicite après diagnostic, extension par extension.
+- Conserver les fonctions internes indispensables si leur intégrité est vérifiée.
+- Ne rétablir le mode normal qu'après action explicite et afficher les extensions neutralisées.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.658 Format structuré et versionné des événements — Question 689, décision technique prise par l'assistant
+
+Les journaux utilisent un format structuré et versionné, analysable sans dépendre de textes libres.
+
+- Chaque événement contient identifiant stable, horodatage normalisé, gravité, composant et code.
+- Séparer paramètres typés et message affiché.
+- Versionner le schéma et définir la compatibilité de lecture.
+- Encoder les données non fiables et ignorer les champs inconnus sans perdre l'événement.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.659 Identifiant de corrélation des opérations multi-composants — Question 690, décision technique prise par l'assistant
+
+Chaque opération utilisateur significative reçoit un identifiant propagé à tous les composants participants.
+
+- Relier les événements même lorsqu'une opération traverse plusieurs tâches ou processus internes.
+- Autoriser des identifiants de sous-opération liés à une opération parente.
+- Ne jamais intégrer de données personnelles ou métier dans l'identifiant.
+- Permettre le filtrage local d'une opération complète sans transmission réseau automatique.
+
+Référence : [Référence technique](https://opentelemetry.io/docs/concepts/context-propagation/).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.660 Minimisation des données sensibles dès l'émission — Question 691, décision technique prise par l'assistant
+
+Limiter les données consignées dès la création de l'événement plutôt que compter uniquement sur un nettoyage à l'export.
+
+- Exclure par défaut contenus de cartes, textes de création, images, secrets et jetons.
+- Omettre ou pseudonymiser les chemins locaux si leur valeur exacte n'est pas nécessaire.
+- Préférer identifiants techniques et catégories d'erreur aux contenus complets.
+- Tester les journaux produits par les scénarios représentatifs et les échecs.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.661 Neutralisation des injections et encodage des événements — Question 692, décision technique prise par l'assistant
+
+Toute donnée externe intégrée à un journal est validée et encodée selon le format de sortie.
+
+- Encoder les retours à la ligne, caractères de contrôle et séparateurs non fiables.
+- Utiliser un sérialiseur structuré, jamais une concaténation libre de lignes.
+- Limiter la longueur des champs et signaler les troncatures.
+- Tester CR/LF, séparateurs, contrôles Unicode et charges malformées.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 4 — Observabilité et journalisation sûre
+
+## 10.662 Isolation des défaillances du système de journalisation — Question 693, décision technique prise par l'assistant
+
+Une panne de journalisation ne doit pas bloquer l'interface ni compromettre une opération métier cohérente.
+
+- Découpler les écritures de journal des chemins critiques avec une file bornée.
+- Définir une politique de saturation qui préserve autant que possible les événements prioritaires.
+- Signaler erreurs de permission ou d'espace disque sans boucle de tentatives agressive.
+- Éviter toute récursion lorsque le logger lui-même échoue.
+
+Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.663 Limitation globale des travailleurs concurrents — Question 694, décision technique prise par l'assistant
+
+Les traitements en arrière-plan utilisent un nombre de travailleurs borné.
+
+- Définir un plafond selon les capacités disponibles et une limite applicative documentée.
+- Partager un ordonnanceur borné au lieu de créer un pool illimité par tâche.
+- Appliquer des limites plus strictes aux opérations consommatrices de mémoire.
+- Exposer les paramètres et la charge dans le diagnostic local.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.664 Files de tâches bornées et régulation de surcharge — Question 695, décision technique prise par l'assistant
+
+Les files d'attente sont bornées et régulent les demandes dépassant la capacité de traitement.
+
+- Éviter l'accumulation illimitée de rendus ou de demandes redondantes.
+- Fusionner les demandes identiques en attente lorsque leur résultat attendu est équivalent.
+- Différer ou refuser explicitement les nouvelles demandes à saturation.
+- Ne jamais supprimer silencieusement une tâche engagée ou une sauvegarde.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.665 Priorité des tâches selon l'impact utilisateur — Question 696, décision technique prise par l'assistant
+
+L'ordonnanceur distingue les tâches nécessaires à l'interaction des traitements secondaires.
+
+- Prioriser les actions explicites nécessaires à la poursuite du travail.
+- Empêcher les tâches de fond de monopoliser durablement les travailleurs.
+- Ne pas contourner les dépendances ou l'ordre de validation des données.
+- Éviter la famine des tâches de faible priorité et tester la réactivité sous charge.
+
+Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.666 Progression cohérente des tâches longues — Question 697, décision technique prise par l'assistant
+
+Les tâches longues exposent une progression fidèle sans mises à jour excessives ou trompeuses.
+
+- Déclarer phases et état courant ; utiliser un indicateur indéterminé si le total est inconnu.
+- Regrouper et limiter la fréquence des mises à jour visuelles.
+- Distinguer attente, exécution, suspension, annulation demandée, succès, annulation et échec.
+- Ne jamais annoncer 100 % avant validation effective du résultat.
+
+Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
+
+### Série 5 — Ordonnancement et réactivité
+
+## 10.667 Absence d'opérations bloquantes sur le thread d'interface — Question 698, décision technique prise par l'assistant
+
+Les opérations de fichiers, calcul, rendu et import/export susceptibles de durer ne bloquent pas l'interface.
+
+- Exécuter les accès disque et calculs longs en arrière-plan.
+- Réserver le thread d'interface aux mises à jour visuelles et opérations courtes.
+- Transmettre les résultats par des mécanismes sûrs sans accès concurrent aux composants graphiques.
+- Mesurer la réactivité lors de l'ouverture de projets volumineux et de traitements simultanés.
+
+Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
+
+
+### Série 1 — Décodage et mémoire des ressources graphiques
+
+## 10.668 Prévalidation des dimensions avant décodage — Question 699, décision technique prise par l'assistant
+
+Les dimensions, le nombre de pixels et le coût mémoire estimé d'une image sont contrôlés avant son allocation complète.
+
+- Lire les métadonnées de dimensions lorsque le décodeur le permet avant de charger les pixels.
+- Appliquer un plafond de pixels et un plafond mémoire calculé sur le format de travail réel, au minimum 32 bits par pixel si la conversion l'impose.
+- Refuser ou réduire explicitement les ressources dépassant les limites ; ne jamais désactiver silencieusement les contrôles.
+- Conserver l'original non modifié et fournir un diagnostic compréhensible.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
+
+### Série 1 — Décodage et mémoire des ressources graphiques
+
+## 10.669 Budget cumulatif des images animées — Question 700, décision technique prise par l'assistant
+
+Le décodage d'images animées tient compte du coût cumulé des images et non de la seule première frame.
+
+- Contrôler le nombre total de frames, leurs dimensions, la durée cumulée et les répétitions lorsque les métadonnées sont disponibles.
+- Appliquer un budget global de pixels décodés et de mémoire pour toute l'animation.
+- Arrêter proprement le décodage si une limite est atteinte et proposer une représentation statique si elle est pertinente.
+- Ne pas interpréter une valeur inconnue comme une animation sans limite autorisée.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
+
+### Série 1 — Décodage et mémoire des ressources graphiques
+
+## 10.670 Application cohérente de l'orientation intégrée aux images — Question 701, décision technique prise par l'assistant
+
+Les métadonnées d'orientation sont interprétées de manière cohérente à l'importation et dans les aperçus.
+
+- Détecter l'orientation EXIF ou équivalente lorsque le format et le décodeur la prennent en charge.
+- Appliquer la transformation une seule fois dans la représentation normalisée utilisée par l'application.
+- Préserver les octets et métadonnées d'origine dans la ressource source lorsque la conservation est requise.
+- Tester les huit orientations et les cas où le format ne fournit aucune information.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
+
+### Série 1 — Décodage et mémoire des ressources graphiques
+
+## 10.671 Cache graphique borné par le coût mémoire réel — Question 702, décision technique prise par l'assistant
+
+Les caches de ressources graphiques sont bornés selon le coût mémoire estimé, et non uniquement selon le nombre d'éléments.
+
+- Calculer un coût pondéré par dimensions, profondeur, format et copies conservées.
+- Évincer les éléments les moins récemment utilisés lorsque le plafond est atteint.
+- Ne jamais considérer le cache comme l'unique exemplaire d'une donnée persistante ou non reproductible.
+- Rendre la limite configurable dans des bornes sûres et observable en diagnostic.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
+
+### Série 1 — Décodage et mémoire des ressources graphiques
+
+## 10.672 Clés de cache liées au contenu et aux paramètres de transformation — Question 703, décision technique prise par l'assistant
+
+Une entrée de cache est invalidée lorsque le contenu source ou un paramètre influençant le résultat change.
+
+- Construire la clé à partir de l'empreinte du contenu source et de paramètres normalisés de transformation, rendu, taille et profil colorimétrique.
+- Ne pas se fier uniquement au chemin ou au nom du fichier, qui peuvent désigner un contenu remplacé.
+- Versionner la stratégie de rendu dans la clé afin d'éviter de réutiliser des résultats produits par une ancienne implémentation.
+- Permettre la suppression et la reconstruction intégrales du cache sans perte des données du projet.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
+
+### Série 2 — Recherche locale et indexation
+
+## 10.673 Versionnement du tokenizer et de la stratégie d'indexation — Question 704, décision technique prise par l'assistant
+
+La stratégie de tokenisation et de normalisation de la recherche est versionnée indépendamment des contenus originaux.
+
+- Définir explicitement la gestion de la casse, des diacritiques, des signes, des apostrophes et des caractères Unicode.
+- Associer une version de tokenizer à chaque index et reconstruire l'index dérivé lors d'un changement incompatible.
+- Ne jamais modifier les textes sources pour satisfaire le moteur de recherche.
+- Tester les noms de cartes, termes de règles, symboles, langues et variantes accentuées.
+
+Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
+
+### Série 2 — Recherche locale et indexation
+
+## 10.674 Séparation entre saisie utilisateur et syntaxe avancée du moteur — Question 705, décision technique prise par l'assistant
+
+La saisie ordinaire est traitée comme du texte de recherche littéral ; la syntaxe avancée n'est interprétée que dans un mode explicite.
+
+- Utiliser des paramètres SQL liés pour les valeurs de recherche.
+- Échapper ou construire les expressions FTS via un parseur contrôlé ; ne pas concaténer directement la saisie à une expression MATCH.
+- Limiter la longueur, la profondeur et la complexité des expressions avancées.
+- Présenter une erreur de syntaxe localisée sans exposer de détail SQL interne.
+
+Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
+
+### Série 2 — Recherche locale et indexation
+
+## 10.675 Ordre de résultats stable en cas d'égalité de pertinence — Question 706, décision technique prise par l'assistant
+
+Les résultats de recherche conservent un ordre déterministe lorsque plusieurs éléments ont une pertinence équivalente.
+
+- Trier d'abord selon le score documenté puis selon une clé stable, par exemple le nom normalisé et l'identifiant immuable.
+- Ne pas dépendre de l'ordre arbitraire de retour du moteur de base de données.
+- Conserver le même ordre entre relances et reconstructions d'index à contenu identique.
+- Tester les égalités, les changements de locale et les mises à jour de l'index.
+
+Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
+
+### Série 2 — Recherche locale et indexation
+
+## 10.676 Mise à jour transactionnelle des index de recherche dérivés — Question 707, décision technique prise par l'assistant
+
+Les changements du contenu canonique et les mises à jour de son index de recherche sont coordonnés de manière transactionnelle.
+
+- Effectuer les insertions, modifications et suppressions de l'index dans la même transaction logique que les données sources lorsque l'architecture le permet.
+- Pour les index externes, maintenir des mécanismes de synchronisation explicites et testés.
+- Ne pas afficher un résultat issu d'un index connu comme obsolète sans signalement.
+- Prévoir une reconstruction complète depuis les données canoniques.
+
+Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
+
+### Série 2 — Recherche locale et indexation
+
+## 10.677 Vérification et reconstruction des index dérivés — Question 708, décision technique prise par l'assistant
+
+L'application peut vérifier l'intégrité d'un index de recherche et le reconstruire sans altérer les données canoniques.
+
+- Exécuter des contrôles d'intégrité adaptés au moteur et comparer l'index à sa source lorsqu'il s'agit d'un index externe.
+- Marquer l'index comme indisponible si une incohérence est détectée, plutôt que retourner des résultats potentiellement trompeurs.
+- Recréer l'index dans une opération contrôlée, avec progression et possibilité de reprise.
+- Conserver les contenus sources et les identifiants stables pendant toute reconstruction.
+
+Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
+
+### Série 3 — Accessibilité des interactions
+
+## 10.678 Alternative sans glisser-déposer pour les actions de déplacement — Question 709, décision technique prise par l'assistant
+
+Toute fonction reposant sur un glisser-déposer dispose d'une méthode alternative réalisable avec un pointeur sans mouvement de glissement.
+
+- Fournir des commandes déplacer avant/après, monter/descendre ou une sélection suivie d'une destination.
+- Rendre l'alternative accessible au clavier et aux technologies d'assistance.
+- Conserver les mêmes possibilités fonctionnelles et contrôles de validation que le glisser-déposer.
+- Ne réserver le glissement exclusif qu'aux opérations dont la nature le rend réellement essentiel.
+
+Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
+
+### Série 3 — Accessibilité des interactions
+
+## 10.679 Indicateur de focus visible et suffisamment contrasté — Question 710, décision technique prise par l'assistant
+
+Le focus clavier reste visible, identifiable et non masqué par les panneaux ou fenêtres de l'application.
+
+- Fournir un indicateur visuel distinct de l'état normal, avec contraste suffisant contre les couleurs adjacentes.
+- Ne pas supprimer l'indicateur natif sans remplacement accessible.
+- Éviter que les fenêtres flottantes, menus ou panneaux superposés masquent le contrôle focalisé.
+- Tester thèmes clair et sombre, navigation clavier, zoom et fenêtres détachées.
+
+Référence : [Documentation de référence](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance).
+
+### Série 3 — Accessibilité des interactions
+
+## 10.680 Dimensions et espacement minimaux des cibles interactives — Question 711, décision technique prise par l'assistant
+
+Les contrôles fréquemment activés au pointeur ou au toucher disposent de cibles suffisamment grandes et espacées.
+
+- Viser au minimum l'équivalent de 24 × 24 pixels CSS ou respecter les exceptions d'espacement documentées par WCAG 2.2.
+- Prévoir des cibles plus généreuses pour les commandes tactiles et les actions fréquentes, en cohérence avec les plateformes.
+- Ne pas réduire les zones actives à la seule icône visible lorsque le contrôle peut raisonnablement être agrandi.
+- Vérifier les densités d'affichage, facteurs DPI et interfaces redimensionnées.
+
+Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
+
+### Série 3 — Accessibilité des interactions
+
+## 10.681 Agrandissement du texte sans perte de contenu ou de fonction — Question 712, décision technique prise par l'assistant
+
+L'interface conserve son contenu et ses fonctionnalités lorsque le texte est agrandi jusqu'à 200 %.
+
+- Privilégier des mises en page adaptatives plutôt que des dimensions fixes qui coupent le texte.
+- Autoriser le retour à la ligne, l'agrandissement des panneaux et le défilement lorsque nécessaire.
+- Ne pas masquer les libellés ou actions essentielles lorsque l'espace devient insuffisant.
+- Tester les fenêtres principales, flottantes, dialogues, listes et rapports à plusieurs niveaux d'échelle.
+
+Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
+
+### Série 3 — Accessibilité des interactions
+
+## 10.682 Espacement du texte personnalisable sans perte d'information — Question 713, décision technique prise par l'assistant
+
+Les contenus textuels restent lisibles et fonctionnels lorsque l'espacement des lignes, paragraphes, lettres et mots est augmenté.
+
+- Permettre aux composants concernés de s'adapter aux espacements utilisateur sans chevauchement ni troncature définitive.
+- Prendre comme cas de test WCAG les espacements de ligne 1,5, paragraphe 2, lettres 0,12 et mots 0,16 fois la taille du texte lorsque ces propriétés s'appliquent.
+- Prévoir une révélation du contenu tronqué lorsque les contraintes d'une colonne sont incompressibles.
+- Adapter les tests aux écritures et langues qui n'utilisent pas toutes ces propriétés.
+
+Référence : [Documentation de référence](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing).
+
+### Série 4 — Licences et incorporation des polices
+
+## 10.683 Lecture des droits d'incorporation des polices — Question 714, décision technique prise par l'assistant
+
+Avant d'incorporer une police dans un document exporté, l'application vérifie les droits d'incorporation indiqués par la police et sa licence.
+
+- Lire le champ fsType de la table OS/2 pour les polices OpenType/TrueType lorsque disponible.
+- Refuser l'incorporation en cas de restriction explicite ou d'indication incohérente ; ne pas déduire une autorisation du seul fait que la police est installée.
+- Conserver la licence et la provenance déclarées par le fournisseur comme éléments complémentaires au champ technique.
+- Afficher un diagnostic et proposer une solution de remplacement licite.
+
+Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
+
+### Série 4 — Licences et incorporation des polices
+
+## 10.684 Respect de l'interdiction de sous-ensemble de police — Question 715, décision technique prise par l'assistant
+
+Le sous-ensemble d'une police n'est généré que lorsque ses conditions d'incorporation l'autorisent.
+
+- Interpréter le bit No Subsetting du champ fsType et toute restriction équivalente de licence.
+- Si le sous-ensemble est interdit mais l'incorporation complète permise, incorporer la police entière uniquement si les autres conditions sont respectées.
+- Si aucune incorporation n'est autorisée, ne pas tenter de contourner la restriction par conversion ou renommage.
+- Tester les différentes combinaisons de drapeaux définies par les versions de la spécification OpenType.
+
+Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
+
+### Série 4 — Licences et incorporation des polices
+
+## 10.685 Distinction entre incorporation aperçu-impression et incorporation éditable — Question 716, décision technique prise par l'assistant
+
+Le type de droit d'incorporation est respecté selon l'usage du fichier exporté.
+
+- Distinguer les droits Preview & Print, Editable et Installable.
+- Ne pas présenter un PDF en lecture seule comme autorisant une édition de texte avec une police limitée à Preview & Print.
+- Ne jamais installer durablement une police extraite d'un document lorsque seul un chargement temporaire est autorisé.
+- Documenter les limites propres aux formats et lecteurs de destination.
+
+Référence : [Documentation de référence](https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf).
+
+### Série 4 — Licences et incorporation des polices
+
+## 10.686 Traçabilité de la provenance et de la licence des polices — Question 717, décision technique prise par l'assistant
+
+Les polices utilisées dans les projets disposent de métadonnées de provenance et de droits suffisantes pour auditer leur usage.
+
+- Enregistrer si disponible le nom de famille, version, fournisseur, identifiant de fichier et empreinte cryptographique.
+- Associer une référence vers la licence ou les conditions d'utilisation consultées, sans supposer qu'un champ technique remplace le contrat.
+- Signaler les polices dont la provenance ou les droits sont inconnus avant une exportation qui les incorpore.
+- Ne pas ajouter ces informations sensibles ou internes aux métadonnées publiques du PDF sans nécessité.
+
+Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
+
+### Série 4 — Licences et incorporation des polices
+
+## 10.687 Repli explicite lorsqu'une police ne peut pas être incorporée — Question 718, décision technique prise par l'assistant
+
+Lorsqu'une police ne peut pas être incorporée, l'application ne modifie pas silencieusement la typographie du résultat.
+
+- Présenter les polices concernées et la raison de la restriction lorsque l'information est disponible.
+- Proposer une police de remplacement dont les droits sont vérifiés, ou une sortie sans incorporation si elle reste fiable.
+- Prévisualiser les différences de métriques, retours à la ligne et débordements avant validation.
+- Ne jamais convertir automatiquement le texte en tracés ou en image pour contourner une restriction d'incorporation.
+
+Référence : [Documentation de référence](https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf).
+
+### Série 5 — Mesure et maîtrise des performances
+
+## 10.688 Mesure des performances des caches graphiques — Question 719, décision technique prise par l'assistant
+
+Les caches graphiques exposent des mesures locales utiles à l'analyse de leur efficacité et de leur coût.
+
+- Mesurer au minimum les consultations, succès, échecs, insertions, évictions et octets estimés conservés.
+- Distinguer les caches par type de ressource et version de transformation.
+- Limiter la fréquence des mesures et éviter les identifiants de contenus personnels dans les métriques.
+- Utiliser les résultats pour ajuster les budgets sans vider arbitrairement les caches.
+
+Référence : [Documentation de référence](https://opentelemetry.io/docs/specs/semconv/general/metrics/).
+
+### Série 5 — Mesure et maîtrise des performances
+
+## 10.689 Traçage des étapes coûteuses du pipeline graphique — Question 720, décision technique prise par l'assistant
+
+Les opérations longues du pipeline disposent de mesures de durée et de sous-étapes corrélées.
+
+- Tracer chargement, décodage, transformation, composition, rendu et export comme opérations distinctes lorsque cela apporte une valeur diagnostique.
+- Associer les sous-opérations à une opération parente et enregistrer durée, statut et catégorie d'échec.
+- Ne pas inclure le contenu de carte, les chemins privés ou les images dans les attributs de télémétrie.
+- Conserver ces diagnostics localement par défaut et respecter les règles de confidentialité déjà définies.
+
+Référence : [Documentation de référence](https://opentelemetry.io/docs/concepts/signals/traces/).
+
+### Série 5 — Mesure et maîtrise des performances
+
+## 10.690 Budgets de performance vérifiables sur des scénarios représentatifs — Question 721, décision technique prise par l'assistant
+
+Les objectifs de performance sont mesurés sur des jeux de projets représentatifs et reproductibles.
+
+- Définir des scénarios de référence par taille de projet, nombre de ressources, complexité des calques et volume d'export.
+- Mesurer médianes et percentiles élevés, temps de réponse de l'interface, durée des opérations et mémoire maximale.
+- Séparer les mesures de développement des seuils bloquants de CI afin d'éviter les seuils arbitraires sur matériel hétérogène.
+- Documenter matériel, système, versions, données et méthode de mesure.
+
+Référence : [Documentation de référence](https://opentelemetry.io/docs/concepts/signals/metrics/).
+
+### Série 5 — Mesure et maîtrise des performances
+
+## 10.691 Réaction contrôlée à la pression mémoire — Question 722, décision technique prise par l'assistant
+
+En cas de pression mémoire, l'application réduit d'abord les ressources temporaires récupérables avant de compromettre le projet actif.
+
+- Libérer ou réduire les caches et aperçus reconstructibles selon leur priorité.
+- Suspendre ou différer les tâches non essentielles et empêcher le lancement de nouveaux décodages coûteux.
+- Préserver les données sources, états transactionnels et travaux non sauvegardés ; ne jamais purger une donnée utilisateur pour libérer de la mémoire.
+- Signaler l'état et proposer une action sûre si la mémoire reste insuffisante.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
+
+### Série 5 — Mesure et maîtrise des performances
+
+## 10.692 Admission des tâches selon un budget mémoire partagé — Question 723, décision technique prise par l'assistant
+
+Les traitements concurrents sont admis selon un budget mémoire partagé, en complément de la limite globale de travailleurs.
+
+- Estimer le coût des décodages, rendus et exports avant leur lancement lorsque cela est possible.
+- Réserver et libérer les budgets de façon atomique entre les tâches concurrentes.
+- Différer les tâches qui dépasseraient le budget au lieu de les lancer simultanément jusqu'à saturation.
+- Permettre une annulation coopérative et préserver la cohérence des opérations déjà engagées.
+
+Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
+
+
+## 10.693 Historique Annuler/Rétablir fondé sur des commandes atomiques — Question 724, décision technique prise par l'assistant
+
+Chaque modification persistante du document graphique est représentée par une commande réversible décrivant explicitement son état antérieur et son état final.
+
+- Une commande ne modifie que les propriétés et objets qu'elle possède ; elle ne dépend pas d'un état d'interface volatil.
+- Les références aux objets utilisent des identifiants stables pendant la durée de vie de l'historique.
+- L'application d'une commande est atomique : si une étape échoue, les changements partiels sont compensés et le document reste cohérent.
+- Les actions purement visuelles (sélection, zoom, déplacement de vue) ne sont pas ajoutées à l'historique documentaire, sauf décision fonctionnelle explicite.
+- Une commande dont l'effet net est nul peut être écartée.
+- Une commande déjà validée dans l'historique n'est pas mutée ; toute correction passe par une nouvelle commande ou une reconstruction contrôlée.
+
+Référence : [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.694 Regroupement atomique des opérations composées — Question 725, décision technique prise par l'assistant
+
+Une action utilisateur constituée de plusieurs changements dépendants est représentée comme une seule opération composée dans l'historique.
+
+- Regrouper les transformations multi-objets, remplacements de ressources et réorganisations qui forment une intention unique.
+- L'annulation restaure l'ensemble de l'état antérieur ; le rétablissement réapplique le résultat dans le même ordre logique.
+- Si une sous-opération échoue, aucune partie de l'opération composée ne reste appliquée.
+- Les opérations indépendantes ne sont pas fusionnées artificiellement en raison de leur proximité temporelle.
+- Le libellé visible décrit l'intention globale de l'utilisateur ; les sous-commandes restent testables séparément.
+
+Référence : [Qt — Overview of the Undo Framework](https://doc.qt.io/qt-6/qundo.html).
+
+## 10.695 Compression contrôlée des commandes répétitives — Question 726, décision technique prise par l'assistant
+
+Les modifications répétitives de faible portée peuvent être regroupées lorsqu'elles correspondent à une même intention continue.
+
+- La compression vise uniquement des commandes de même nature, sur le même objet et des propriétés compatibles.
+- Une saisie continue, un déplacement ou un réglage numérique peut être regroupé selon des frontières temporelles et sémantiques documentées.
+- Un changement de cible, une validation explicite, une interruption ou une perte de focus clôt le groupe lorsque cela marque une nouvelle intention.
+- Les commandes dont l'ordre intermédiaire a une signification propre ne sont jamais fusionnées.
+- Le groupe conserve exactement l'état initial et l'état final nécessaires à l'annulation et au rétablissement.
+
+Référence : [Qt — QUndoStack, command compression](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.696 Budget mémoire de l'historique et éviction sûre — Question 727, décision technique prise par l'assistant
+
+L'historique Annuler/Rétablir est borné par le coût réel de ses données, et non uniquement par le nombre de commandes.
+
+- Estimer le coût mémoire des instantanés, différences, ressources référencées et structures conservées.
+- Définir un budget et une éviction déterministe des commandes les plus anciennes.
+- Ne jamais supprimer une ressource encore utilisée par le document, une sauvegarde ou un instantané de génération.
+- Si l'éviction rend inaccessible l'état sauvegardé par l'historique, l'indiquer sans prétendre que cet état reste atteignable.
+- L'éviction ne modifie jamais le document courant.
+- Si une opération dépasse le budget, appliquer une stratégie explicite (représentation compacte, stockage différé ou refus avant modification), sans perte partielle.
+
+Référence : [Qt — QUndoStack, undoLimit and clean state](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.697 Historique indépendant par document et invalidation du rétablissement — Question 728, décision technique prise par l'assistant
+
+Chaque projet ouvert possède un historique Annuler/Rétablir indépendant ; les commandes globales ciblent uniquement le document actif.
+
+- Le changement de projet actif bascule les commandes disponibles et leurs libellés vers l'historique correspondant.
+- Une nouvelle opération après annulation invalide la branche de rétablissement incompatible.
+- L'état sauvegardé est identifié de manière fiable et l'indicateur de modifications non enregistrées reste cohérent.
+- La fermeture d'un projet ne libère son historique qu'après les contrôles et confirmations de sauvegarde prévus.
+- Les historiques ne sont jamais mélangés entre fenêtres, projets ou documents détachés.
+- Tester le basculement entre projets, la fermeture/réouverture et les branches abandonnées.
+
+Références : [Qt — QUndoGroup](https://doc.qt.io/qt-6/qundogroup.html) ; [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.698 Format interne versionné pour le presse-papiers graphique — Question 729, décision technique prise par l'assistant
+
+La copie d'objets graphiques utilise un format interne versionné, en complément des formats standards lorsqu'ils sont utiles.
+
+- Le format décrit les objets sélectionnés, leurs propriétés, relations hiérarchiques et références nécessaires à leur reconstruction.
+- Il comporte un identifiant de format et une version de schéma ; une version inconnue ou incompatible est refusée proprement.
+- Les données copiées sont sérialisées comme données, jamais comme code ou script à évaluer.
+- Les formats standards de repli (texte, image ou autre format reconnu) sont fournis uniquement lorsque leur sens et leur conversion sont vérifiés.
+- Ne pas publier de chemins locaux, secrets ou métadonnées internes sans nécessité fonctionnelle.
+- Le presse-papiers système n'est lu qu'à la suite d'une action utilisateur pertinente et son contenu est relu au moment du collage.
+
+Références : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html) ; [Qt — QClipboard](https://doc.qt.io/qt-6/qclipboard.html).
+
+## 10.699 Copie des dépendances nécessaires et conservation de leur provenance — Question 730, décision technique prise par l'assistant
+
+Lorsqu'un objet copié dépend de ressources externes au sous-arbre sélectionné, le presse-papiers décrit les dépendances nécessaires à sa reconstruction.
+
+- Déterminer la fermeture des dépendances réellement utilisées : images, symboles, composants, styles et autres ressources requises.
+- N'inclure que les dépendances nécessaires ; ne pas exporter toute la bibliothèque.
+- Conserver pour chaque ressource son identifiant logique, son empreinte, sa provenance et les informations de licence disponibles.
+- Distinguer les ressources embarquées des références externes à résoudre au collage.
+- Si une dépendance ne peut être copiée pour des raisons de taille, licence ou indisponibilité, le signaler et proposer un repli explicite.
+- Borner la taille et le nombre de dépendances avant sérialisation.
+
+Référence : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
+
+## 10.700 Validation et assainissement des contenus collés depuis l'extérieur — Question 731, décision technique prise par l'assistant
+
+Tout contenu reçu depuis le presse-papiers d'une autre application ou origine est traité comme une entrée non fiable.
+
+- Identifier le type MIME réellement disponible et analyser le contenu avec le parseur correspondant.
+- Pour HTML, SVG, XML, images et formats structurés, appliquer les règles d'importation sécurisée propres au format ; ne jamais exécuter de script.
+- Refuser ou neutraliser les éléments actifs, liens dangereux, données cachées non nécessaires et références vers des fichiers locaux non autorisés.
+- Appliquer des plafonds de taille, dimensions, profondeur, nombre d'objets et consommation mémoire avant décodage complet.
+- Ne pas télécharger les ressources distantes mentionnées dans le contenu collé.
+- Signaler les pertes, neutralisations et conversions importantes avant validation.
+- Un échec d'analyse laisse le document inchangé.
+
+Références : [W3C — Clipboard API and events, security](https://www.w3.org/TR/clipboard-apis/) ; [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
+
+## 10.701 Transformation des coordonnées lors du collage — Question 732, décision technique prise par l'assistant
+
+Le collage convertit les coordonnées sans déformer la composition ni dépendre du zoom d'affichage.
+
+- Le format interne conserve le repère source, les unités, les dimensions de la zone de travail et les transformations relatives.
+- Dans un document de même repère, préserver les positions et dimensions relatives originales.
+- Dans un document de dimensions ou d'unités différentes, appliquer une conversion géométrique explicite ; ne pas modifier silencieusement les proportions.
+- La position d'insertion dépend du repère du document et de la zone visible, non des seuls pixels écran.
+- Le collage répété peut appliquer un décalage déterministe sans modifier dimensions ni échelle.
+- L'aperçu montre la position finale avant validation lorsque le placement est interactif.
+- Les conversions ambiguës sont signalées plutôt qu'approximées silencieusement.
+
+Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
+
+## 10.702 Réattribution des identifiants et collage transactionnel — Question 733, décision technique prise par l'assistant
+
+Le collage crée des objets distincts et cohérents dans le document cible.
+
+- Attribuer de nouveaux identifiants uniques aux objets copiés et reconstruire leurs relations internes par une table de correspondance.
+- Préserver les références externes intentionnelles lorsqu'elles sont valides ; aucune référence interne ne doit pointer accidentellement vers l'objet source.
+- Détecter collisions d'identifiants et références manquantes avant insertion.
+- Construire et valider le graphe d'objets et ses dépendances avant modification du document.
+- Appliquer le collage comme une transaction unique, annulable en une commande ; en cas d'échec, le document reste inchangé.
+- Le collage ne remplace ni ne modifie les objets sources.
+
+Référence : [Qt — QUndoStack, command macros](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.703 Capture du pointeur pendant une interaction continue — Question 734, décision technique prise par l'assistant
+
+Les interactions graphiques qui doivent se poursuivre après que le pointeur quitte la cible initiale conservent une capture contrôlée du pointeur.
+
+- Au démarrage d'un déplacement, redimensionnement ou tracé, associer l'interaction au pointeur initiateur jusqu'à validation ou annulation.
+- Les événements d'autres pointeurs ne modifient pas accidentellement l'interaction en cours.
+- Libérer systématiquement la capture après validation, annulation, perte de cible ou fermeture du document.
+- La capture ne doit pas empêcher les comportements de navigation tactile explicitement prévus.
+- L'état de capture est transitoire et ne fait pas partie du document sauvegardé.
+- Tester mouvements hors zone, changements de fenêtre, multi-écrans, souris, stylet et tactile.
+
+Référence : [W3C — Pointer Events, pointer capture](https://www.w3.org/TR/pointerevents/).
+
+## 10.704 Annulation sûre des interactions interrompues — Question 735, décision technique prise par l'assistant
+
+Une interaction au pointeur interrompue avant validation est annulée sans laisser d'état graphique partiel.
+
+- Traiter pointercancel, perte de capture, disparition de la cible, fermeture du projet et interruption système comme des terminaisons explicites.
+- Restaurer l'état initial si l'interaction n'a pas atteint son point de validation.
+- Ne créer aucune commande d'historique pour une interaction annulée ; retirer toute commande provisoire sans modifier l'état sauvegardé.
+- Libérer ressources temporaires, guides, aperçus et captures associées.
+- Si l'interruption survient après validation atomique, conserver le résultat validé.
+- Tester les interruptions à chaque phase : début, mouvement, aperçu, validation et nettoyage.
+
+Référence : [W3C — Pointer Events, pointercancel](https://www.w3.org/TR/pointerevents/).
+
+## 10.705 Exploitation contrôlée des événements de pointeur coalescés — Question 736, décision technique prise par l'assistant
+
+Les interactions nécessitant une trajectoire précise exploitent les échantillons de pointeur disponibles sans supposer qu'un événement de mouvement correspond à chaque mesure matérielle.
+
+- Pour les tracés libres, traiter les événements coalescés lorsqu'ils sont fournis.
+- Pour déplacements et redimensionnements, conserver les informations utiles au résultat final sans recalcul complet à chaque échantillon.
+- Les événements prédits, s'ils servent à l'aperçu, ne sont jamais intégrés comme données définitives sans confirmation par des mesures réelles.
+- Conserver l'ordre temporel des échantillons et leur repère de coordonnées.
+- Adapter la fréquence de rendu de l'aperçu sans perdre les échantillons nécessaires à la géométrie finale.
+- Tester trajectoires rapides et différences de fréquence entre souris, stylet et tactile.
+
+Référence : [W3C — Pointer Events, coalesced events](https://www.w3.org/TR/pointerevents/).
+
+## 10.706 Conversion stable entre coordonnées écran et coordonnées document — Question 737, décision technique prise par l'assistant
+
+Toutes les interactions convertissent les coordonnées du périphérique vers le repère du document à l'aide de la transformation inverse complète de la vue.
+
+- Prendre en compte zoom, déplacement de la vue, transformations de groupes, échelle de l'écran et unités du document.
+- Utiliser une chaîne de conversion partagée par sélection, déplacement, redimensionnement, guides et dessin.
+- Conserver une précision suffisante pendant les interactions ; ne pas arrondir prématurément aux pixels écran.
+- N'arrondir qu'aux étapes nécessaires à l'affichage ou à la sérialisation, selon une règle cohérente.
+- Recalculer la transformation lorsque fenêtre, écran, zoom ou disposition change pendant l'interaction.
+- Tester facteurs d'échelle élevés, rotations, transformations imbriquées et changements de moniteur.
+
+Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
+
+## 10.707 Validation unique des gestes de déplacement et de transformation — Question 738, décision technique prise par l'assistant
+
+Un geste graphique continu constitue une opération unique dans le document et son historique.
+
+- Conserver l'état initial et afficher un aperçu transitoire ; publier les propriétés persistantes uniquement à la validation.
+- Au relâchement normal, valider l'état final en une seule commande Annuler/Rétablir.
+- En cas d'annulation, restaurer l'état initial sans conserver de déplacement intermédiaire.
+- Les contraintes, alignements et magnétismes ajustent l'aperçu ; le résultat validé correspond à la dernière géométrie présentée.
+- Les mises à jour intermédiaires ne déclenchent pas chacune une sauvegarde ou écriture persistante.
+- Tester les gestes multi-objets et les interruptions.
+
+Référence : [Qt — QUndoStack, command compression and macros](https://doc.qt.io/qt-6/qundostack.html).
+
+## 10.708 Édition et suppression respectant les graphèmes Unicode étendus — Question 739, décision technique prise par l'assistant
+
+Les opérations d'édition textuelle respectent les graphèmes Unicode étendus plutôt que de traiter chaque point de code comme un caractère visible indépendant.
+
+- Les déplacements du curseur, sélections par caractère, suppressions et remplacements unitaires ne coupent pas une séquence constituant un graphème étendu.
+- Prendre en charge séquences combinées, emoji avec modificateurs, séquences ZWJ, indicateurs régionaux et écritures complexes selon Unicode.
+- Distinguer indices internes de stockage et frontières perceptibles utilisées par l'interface.
+- Ne pas normaliser ou réécrire le texte source lors d'une simple navigation ou suppression.
+- Mettre à jour les règles de segmentation avec la version Unicode prise en charge et conserver les tests de régression.
+- Les sélections par mot et phrase utilisent des règles distinctes de celles des graphèmes.
+
+Référence : [Unicode — UAX #29, Text Segmentation](https://www.unicode.org/reports/tr29/).
+
+## 10.709 Gestion transactionnelle de la composition par méthode de saisie — Question 740, décision technique prise par l'assistant
+
+Les méthodes de saisie complexes (IME) présentent et modifient une composition temporaire sans valider chaque étape intermédiaire comme texte définitif.
+
+- Distinguer début, mises à jour et fin de composition ; le texte en cours reste identifiable comme provisoire.
+- Ne pas déclencher à chaque mise à jour les traitements définitifs de validation, remplacement automatique ou génération d'historique.
+- À la validation, appliquer le remplacement final comme une seule opération cohérente et annulable.
+- En cas d'annulation de composition par le système ou l'utilisateur, restaurer le texte antérieur et la sélection.
+- Préserver les événements de composition natifs plutôt que simuler la saisie par les seules touches clavier.
+- Tester claviers virtuels et IME de plusieurs langues et plateformes.
+
+Référence : [W3C — Input Events Level 2, composition event order](https://www.w3.org/TR/input-events-2/).
+
+## 10.710 Ordre logique du texte et affichage bidirectionnel — Question 741, décision technique prise par l'assistant
+
+Le texte est conservé dans son ordre logique Unicode ; le réordonnancement nécessaire à l'affichage est calculé par le moteur de texte.
+
+- Appliquer l'algorithme Unicode Bidirectional Algorithm aux paragraphes contenant des écritures de directions différentes.
+- Ne jamais réordonner physiquement la chaîne enregistrée pour reproduire son apparence visuelle.
+- Distinguer position logique du curseur et position visuelle ; gérer les déplacements gauche/droite dans les séquences bidirectionnelles.
+- Sélections, copies, suppressions et exports opèrent sur le texte logique avec un surlignage visuel correct.
+- Interpréter les caractères de contrôle directionnel conformément à la spécification ; rendre leur présence visible dans les diagnostics utiles.
+- Tester les mélanges de français, chiffres, symboles, hébreu, arabe et autres écritures prises en charge.
+
+Référence : [Unicode — UAX #9, Bidirectional Algorithm](https://www.unicode.org/reports/tr9/).
+
+## 10.711 Coupures de ligne conformes aux classes Unicode — Question 742, décision technique prise par l'assistant
+
+Le retour à la ligne automatique s'appuie sur des opportunités de coupure adaptées aux propriétés Unicode du texte.
+
+- Utiliser l'algorithme Unicode de coupure de ligne ou une implémentation documentée produisant des résultats équivalents pour les langues prises en charge.
+- Respecter les interdictions de coupure dans les séquences numériques, unités, mots protégés et séquences insécables.
+- Distinguer sauts de ligne explicites, opportunités automatiques et coupures imposées par les contraintes du cadre.
+- Les symboles de mana, icônes en ligne, champs dynamiques et jetons non textuels sont indivisibles lorsque leur définition l'exige.
+- Toute césure linguistique supplémentaire repose sur un dictionnaire ou moteur identifié et versionné.
+- Le changement de largeur du cadre recalcule les lignes sans modifier la chaîne source.
+
+Référence : [Unicode — UAX #14, Line Breaking Algorithm](https://www.unicode.org/reports/tr14/).
+
+## 10.712 Ancrage logique des sélections et du curseur après modification — Question 743, décision technique prise par l'assistant
+
+Les sélections et positions de curseur restent cohérentes lorsque le texte est modifié ou façonné en glyphes.
+
+- Représenter les positions d'édition dans un repère logique stable associé au texte source, puis les convertir vers les positions visuelles du texte façonné.
+- Préserver les correspondances entre caractères d'entrée, clusters et glyphes, y compris ligatures, décompositions et réordonnancements.
+- Après insertion, suppression, remplacement ou changement de police, recalculer les ancres sans pointer au milieu d'une unité d'édition invalide.
+- Les sélections bidirectionnelles peuvent être visuellement discontinues ; copie et suppression restent basées sur les intervalles logiques.
+- Ne pas déduire une position de curseur par simple addition des largeurs nominales des caractères.
+- Tester ligatures, marques combinées, scripts complexes et changements de direction.
+
+Références : [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html) ; [Unicode — UAX #29](https://www.unicode.org/reports/tr29/).
+
+## 10.713 Façonnage typographique selon le script, la langue et la direction — Question 744, décision technique prise par l'assistant
+
+Le rendu du texte utilise un moteur de façonnage typographique qui transforme les séquences Unicode en glyphes correctement substitués et positionnés.
+
+- Segmenter le texte selon changements de script, langue, direction et police lorsque nécessaire.
+- Appliquer les règles de façonnage appropriées : substitutions, ligatures, positionnement des marques et ajustements de glyphes.
+- Ne pas supposer qu'un caractère Unicode correspond à un glyphe unique ni que les largeurs nominales suffisent.
+- Transmettre au moteur les propriétés de script, langue et direction de chaque segment.
+- Préserver le texte Unicode source indépendamment de la séquence de glyphes rendue.
+- Vérifier les scripts effectivement pris en charge, y compris les écritures complexes.
+
+Références : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html) ; [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html).
+
+## 10.714 Repli typographique par segments et détection des glyphes absents — Question 745, décision technique prise par l'assistant
+
+Lorsqu'une police ne couvre pas tous les caractères d'un segment, le moteur sélectionne un repli contrôlé sans altérer le texte.
+
+- Détecter les glyphes absents et distinguer une absence réelle d'un glyphe volontairement invisible.
+- Sélectionner une police de repli compatible au niveau du segment nécessaire, plutôt que remplacer arbitrairement toute la ligne.
+- Conserver script, langue, direction et style lors du façonnage du segment de repli.
+- Signaler les substitutions qui modifient sensiblement les métriques ou provoquent un débordement.
+- Ne jamais remplacer silencieusement les caractères manquants par un autre caractère ni supprimer le texte source.
+- Le choix du repli est déterministe à configuration et polices disponibles identiques.
+
+Référence : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html).
+
+## 10.715 Mesure du texte à partir des glyphes réellement façonnés — Question 746, décision technique prise par l'assistant
+
+La mesure utilisée pour la mise en page provient du même résultat de façonnage que celui utilisé pour dessiner le texte.
+
+- Calculer avances et décalages à partir des glyphes façonnés, et non d'une somme simplifiée de largeurs de caractères.
+- Inclure métriques verticales, marques, ligatures, crénage, variations de police et direction dans la géométrie effective.
+- Utiliser les mêmes données pour mesure, aperçu, calcul de débordement et export lorsque les moteurs partagent le pipeline.
+- Si un moteur d'export distinct est nécessaire, comparer ses métriques et son résultat au moteur de référence et signaler les écarts hors tolérance.
+- Invalider les mesures après changement de police, taille, largeur, fonctionnalités ou contenu.
+- Tester les textes proches des limites de cadre et les scripts avec marques combinées.
+
+Références : [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html) ; [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html).
+
+## 10.716 Paramètres OpenType et axes de polices variables explicites — Question 747, décision technique prise par l'assistant
+
+Les fonctionnalités OpenType et axes de polices variables qui influencent le rendu sont représentés explicitement dans le style textuel.
+
+- Enregistrer les fonctionnalités typographiques activées ou désactivées lorsque le moteur permet de les contrôler.
+- Pour les polices variables, conserver les valeurs des axes réellement appliqués, leurs bornes et les valeurs par défaut de la police.
+- Ne pas supposer que deux environnements utilisent les mêmes valeurs par défaut ; les paramètres significatifs sont explicites dans le projet.
+- Signaler les axes et fonctionnalités inconnus ou non pris en charge au lieu de prétendre les appliquer.
+- Préserver ces paramètres lors de duplication, héritage, sauvegarde et export.
+- Les paramètres typographiques ne confèrent aucun droit supplémentaire sur le fichier de police.
+
+Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Utilities](https://harfbuzz.github.io/utilities.html).
+
+## 10.717 Cache de façonnage typographique à clés complètes — Question 748, décision technique prise par l'assistant
+
+Les résultats de façonnage peuvent être mis en cache si la clé identifie toutes les entrées qui influencent le résultat.
+
+- Construire la clé à partir du contenu Unicode, de l'empreinte et version de la police, du script, de la langue, de la direction, de la taille, des fonctionnalités OpenType et des axes variables.
+- Inclure la version du moteur de façonnage et les paramètres de segmentation pertinents.
+- Ne pas partager un résultat entre polices ou contextes typographiques distincts au seul motif que le texte est identique.
+- Borner le cache par son coût mémoire réel et appliquer une éviction déterministe ; le cache reste reconstructible et n'est jamais la source canonique du texte.
+- Invalider les entrées lorsque contenu, police, paramètres, moteur ou propriétés du segment changent.
+- Tester que chaque paramètre pertinent affecte correctement la clé.
+
+Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html).
+
+
 ### Série 1 — Contrat réseau et résilience de l'API
 
 ## 10.718 Contrat HTTP explicite du client Scryfall — Question 749, décision technique prise par l'assistant
@@ -6177,1340 +7511,6 @@ Lorsqu'un défaut grave est découvert dans une version déjà acceptée et util
 - La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
 - Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
 - Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
-
-
-### Série 1 — Importation sûre des fichiers et archives
-
-## 10.618 Validation des formats à l'importation — Question 649, décision technique prise par l'assistant
-
-Tout fichier importé est contrôlé à partir d'une liste de formats explicitement pris en charge pour l'opération demandée. L'extension du nom, le type MIME déclaré et le nom du fichier ne constituent jamais, isolément, une preuve de format. L'application confronte ces indications à la signature du contenu et à la structure effectivement analysée par un parseur adapté.
-
-- Les formats acceptés sont définis par fonction : projet, sauvegarde, image, police, document vectoriel, PDF, extension ou autre ressource.
-- Les formats non pris en charge, ambigus, incohérents ou contenant des structures actives non attendues sont refusés ou isolés selon le risque.
-- Le nom d'origine est conservé comme métadonnée informative, mais n'est jamais utilisé comme instruction d'exécution ou comme chemin de destination sans validation.
-- Les erreurs de validation précisent le contrôle échoué sans exécuter ni afficher le contenu actif du fichier.
-- Une extension de fichier autorisée ne dispense jamais des contrôles de structure, d'intégrité et de limites de ressources.
-
-Référence : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-
-### Série 1 — Importation sûre des fichiers et archives
-
-## 10.619 Extraction confinée et prévention des traversées de répertoires — Question 650, décision technique prise par l'assistant
-
-Toute extraction d'archive doit rester strictement confinée au répertoire temporaire prévu pour l'opération. Avant l'écriture, chaque chemin interne est normalisé et vérifié afin de démontrer que sa destination finale demeure à l'intérieur de la racine d'extraction.
-
-- Refuser les chemins absolus, les préfixes de volume ou de partage, les séquences de remontée de répertoire et les chemins qui sortent de la racine après normalisation.
-- Refuser par défaut les liens symboliques, liens physiques et autres entrées spéciales susceptibles de rediriger une écriture ou une lecture hors du périmètre autorisé.
-- Détecter les collisions de noms après normalisation, y compris les différences de casse, séparateurs, caractères Unicode ou noms réservés propres à une plateforme.
-- Ne jamais écraser un fichier existant hors de l'espace temporaire de l'importation.
-- Vérifier de nouveau la destination effective au moment de l'écriture afin de réduire les risques liés aux changements de chemin entre contrôle et utilisation.
-
-Références : [OWASP WSTG — Upload of Malicious Files](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files) ; [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-
-### Série 1 — Importation sûre des fichiers et archives
-
-## 10.620 Limitation des volumes et prévention des archives explosives — Question 651, décision technique prise par l'assistant
-
-L'analyse et l'extraction d'un fichier sont soumises à des budgets de ressources contrôlés par l'application, indépendamment des tailles annoncées par le fichier source.
-
-- Contrôler la taille compressée, la taille totale décompressée, le nombre d'entrées, la taille maximale d'une entrée, la profondeur d'imbrication et le taux d'expansion.
-- Appliquer les limites pendant le traitement en flux, et non uniquement à partir des métadonnées déclarées par l'archive.
-- Fixer des budgets de temps, de mémoire et d'espace temporaire adaptés au type de fichier et à l'opération.
-- Interrompre proprement le traitement lorsqu'une limite est atteinte, supprimer les éléments temporaires incomplets et conserver l'état existant.
-- Présenter la limite atteinte et la possibilité éventuelle de réessayer avec un fichier plus petit ou une opération découpée ; ne jamais contourner silencieusement une limite de sécurité.
-
-Référence : [OWASP — File Upload Cheat Sheet, Upload and Download Limits](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-
-### Série 1 — Importation sûre des fichiers et archives
-
-## 10.621 Durcissement et isolation du traitement des fichiers non fiables — Question 652, décision technique prise par l'assistant
-
-Les fichiers externes sont considérés comme des entrées non fiables, y compris lorsqu'ils proviennent d'une source connue ou portent une extension autorisée. Leur analyse utilise des bibliothèques maintenues et des paramètres de traitement stricts.
-
-- Les parseurs et décodeurs sont configurés pour refuser les structures invalides, récursions excessives, dimensions impossibles et références externes non autorisées.
-- Lorsque la plateforme et l'architecture le permettent, les traitements les plus exposés sont exécutés dans un processus séparé avec droits minimaux, accès aux fichiers limité et budgets de ressources.
-- Le contenu d'un fichier importé n'est jamais exécuté automatiquement ; les scripts, macros, actions embarquées et liens externes sont désactivés ou refusés sauf prise en charge explicite, contrôlée et autorisée.
-- Une erreur, un dépassement de temps ou un arrêt du parseur ne doit pas corrompre le projet ouvert ni laisser une importation partielle visible.
-- Les composants de parsing sont maintenus à jour et leurs versions sont tracées pour permettre l'analyse d'une vulnérabilité.
-
-Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [NIST SP 800-218 — Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final).
-
-### Série 1 — Importation sûre des fichiers et archives
-
-## 10.622 Isolation des espaces temporaires et protection contre les liens symboliques — Question 653, décision technique prise par l'assistant
-
-Chaque opération d'importation, d'extraction ou de conversion utilise un espace temporaire propre à la transaction, avec un identifiant non prédictible et des permissions minimales.
-
-- L'espace temporaire est distinct des projets actifs, des sauvegardes conservées et des extensions installées.
-- Les fichiers préparés ne sont publiés dans la bibliothèque ou le projet qu'après la réussite des contrôles et de la validation de l'opération.
-- Les chemins sont manipulés autant que possible à partir de descripteurs ou références de fichiers déjà ouverts et vérifiés, plutôt que par concaténation de chaînes de chemins.
-- Les liens symboliques inattendus, changements de cible et collisions sont refusés ; une ressource temporaire ne peut pas rediriger l'écriture vers un emplacement extérieur.
-- En cas de réussite, d'annulation, d'échec ou de fermeture inattendue, le nettoyage est exécuté de manière sûre et idempotente. Les éléments nécessaires à un diagnostic peuvent être conservés uniquement selon les règles locales de journalisation.
-
-Cette règle généralise le principe de préparation isolée déjà retenu pour l'installation des extensions, sans remplacer ses contrôles spécifiques.
-
-### Série 2 — Intégrité des données et persistance
-
-## 10.623 Écriture atomique des projets et ressources critiques — Question 654, décision technique prise par l'assistant
-
-L'enregistrement d'un projet ou d'une ressource critique ne doit jamais exposer un fichier final partiellement écrit. Lorsque le système de fichiers le permet, l'application écrit d'abord une nouvelle version complète dans un fichier temporaire situé sur le même volume que la destination, vérifie son contenu, puis remplace la destination par une opération atomique.
-
-- L'ancien fichier valide est conservé jusqu'à la publication réussie de la nouvelle version.
-- Les tampons et données nécessaires sont vidés vers le stockage selon les garanties de durabilité offertes par la plateforme avant de déclarer l'enregistrement terminé.
-- En cas d'échec avant le remplacement, le fichier d'origine reste utilisable et le fichier temporaire est nettoyé ou conservé pour récupération contrôlée.
-- Les limites propres à certains systèmes de fichiers, volumes réseau ou périphériques sont détectées et documentées ; aucune atomicité universelle n'est promise.
-- L'interface ne confirme la sauvegarde qu'après réussite de l'opération de publication et des vérifications requises.
-
-Références : [SQLite — Atomic Commit](https://www.sqlite.org/atomiccommit.html) ; [SQLite — Write-Ahead Logging](https://www.sqlite.org/wal.html).
-
-### Série 2 — Intégrité des données et persistance
-
-## 10.624 Manifeste d'intégrité des sauvegardes et vérification des contenus — Question 655, décision technique prise par l'assistant
-
-Chaque sauvegarde complète possède un manifeste d'intégrité permettant de vérifier les fichiers et données qu'elle contient avant restauration.
-
-- Le manifeste décrit les éléments attendus, leur taille, leur rôle et une empreinte cryptographique calculée sur leur contenu ; l'algorithme retenu doit être moderne et adapté à la vérification d'intégrité.
-- Le manifeste est lui-même protégé contre les modifications non détectées par une structure d'archive cohérente et une vérification globale.
-- L'application vérifie les entrées avant de proposer une restauration et signale les fichiers manquants, supplémentaires inattendus, tronqués ou dont l'empreinte diffère.
-- Une sauvegarde dont l'intégrité est insuffisante ne peut pas être présentée comme restaurable sans réserve ; les données existantes ne sont pas remplacées par une restauration partielle silencieuse.
-- Le rapport de vérification distingue l'intégrité confirmée, l'échec, l'impossibilité de vérifier et les éléments non applicables.
-
-Cette vérification d'intégrité ne constitue pas un chiffrement ni une preuve d'origine de la sauvegarde ; ces propriétés restent distinctes.
-
-### Série 2 — Intégrité des données et persistance
-
-## 10.625 Journal de récupération après interruption d'une opération — Question 656, décision technique prise par l'assistant
-
-Les opérations de modification qui peuvent laisser un projet dans un état incohérent en cas de fermeture inattendue utilisent un mécanisme de journal ou de point de reprise adapté à leur portée.
-
-- Avant une opération multi-étapes, enregistrer les informations minimales nécessaires pour identifier l'état initial, l'opération commencée et les étapes déjà publiées.
-- Au redémarrage, détecter les opérations inachevées et proposer ou appliquer une récupération déterministe qui restaure un état cohérent.
-- La récupération ne doit jamais rejouer aveuglément une opération non idempotente ni dupliquer des ressources déjà créées.
-- Les données récupérées sont distinguées des données enregistrées normalement jusqu'à confirmation de leur cohérence.
-- Les journaux de récupération sont bornés, nettoyés après validation et protégés contre toute modification par une extension non autorisée.
-
-Ce mécanisme complète les sauvegardes automatiques et les transactions d'importation ; il ne les remplace pas.
-
-### Série 2 — Intégrité des données et persistance
-
-## 10.626 Migrations de schéma versionnées, contrôlées et réversibles — Question 657, décision technique prise par l'assistant
-
-Toute évolution du schéma des projets, de la bibliothèque ou des données persistantes est associée à une version de format explicite et à une migration identifiée.
-
-- Chaque migration indique ses versions source et cible, ses préconditions, les données modifiées et les vérifications attendues.
-- Une migration est déterministe et idempotente dans la mesure du possible ; elle ne s'exécute pas une seconde fois sur un état déjà migré.
-- Avant une migration à risque, l'application crée ou vérifie un point de restauration approprié conformément aux règles de sauvegarde.
-- La migration est appliquée dans une transaction lorsque le stockage le permet. Si elle échoue, l'application conserve l'état source ou restaure un état cohérent sans mélanger les deux schémas.
-- Les migrations destructrices ou non réversibles sont explicitement identifiées, justifiées et accompagnées d'une stratégie de récupération testée.
-- L'application refuse une version de format qu'elle ne sait pas interpréter plutôt que de réécrire les données en les dégradant.
-
-Cette décision précise le cycle de migration déjà prévu dans l'architecture ; elle n'autorise aucune suppression silencieuse de données.
-
-### Série 2 — Intégrité des données et persistance
-
-## 10.627 Contrôle préalable de l'espace disponible pour les opérations volumineuses — Question 658, décision technique prise par l'assistant
-
-Avant une génération, une importation, une extraction, une sauvegarde ou une restauration volumineuse, l'application estime l'espace temporaire et final nécessaire et vérifie l'espace disponible lorsque la plateforme le permet.
-
-- L'estimation tient compte des fichiers existants à préserver, des copies temporaires, des sorties simultanées et des marges nécessaires au système.
-- Les opérations qui risquent de remplir le volume sont différées ou refusées avant de modifier les données d'origine.
-- Lorsque la taille finale ne peut être connue exactement, l'application effectue une estimation prudente et contrôle l'espace restant pendant le traitement.
-- Une perte d'espace en cours d'opération déclenche un arrêt contrôlé, le nettoyage des sorties incomplètes et la conservation de l'état précédent.
-- Le message indique le volume concerné, l'espace estimé et les solutions possibles, sans prétendre garantir qu'un espace disponible restera libre jusqu'à la fin.
-
-Cette mesure complète les limites de ressources des extensions et des importations ; elle ne remplace pas la gestion des erreurs d'écriture.
-
-### Série 3 — Chaîne d'approvisionnement et publication sécurisée
-
-## 10.628 Verrouillage reproductible des dépendances de construction — Question 659, décision technique prise par l'assistant
-
-Les dépendances nécessaires à la construction et aux tests de l'application sont décrites par les manifestes et fichiers de verrouillage natifs de chaque écosystème utilisé.
-
-- Les fichiers de verrouillage pertinents sont conservés dans le dépôt et pris en compte dans les builds de validation et de publication.
-- Les constructions de référence échouent si la résolution modifie implicitement les versions verrouillées ou nécessite une dépendance non déclarée.
-- Les mises à jour de dépendances sont effectuées dans des changements identifiables, examinés et testés, et non par une résolution flottante à chaque publication.
-- Les dépendances directes et transitives sont suivies ; les versions dupliquées ou incompatibles sont analysées lorsqu'elles créent un risque de maintenance ou de sécurité.
-- Le verrouillage garantit la stabilité de la résolution, pas l'absence de vulnérabilité : les contrôles de sécurité et mises à jour restent obligatoires.
-
-Références : [The Cargo Book — Why have Cargo.lock in version control?](https://doc.rust-lang.org/cargo/faq.html#why-have-cargolock-in-version-control) ; [The Cargo Book — cargo install, lockfile](https://doc.rust-lang.org/cargo/commands/cargo-install.html).
-
-### Série 3 — Chaîne d'approvisionnement et publication sécurisée
-
-## 10.629 Attestation de provenance pour chaque version publiée — Question 660, décision technique prise par l'assistant
-
-Chaque version distribuée doit être accompagnée d'informations de provenance permettant d'identifier le code source, l'environnement et le processus ayant produit les artefacts.
-
-- L'attestation identifie au minimum le dépôt et la révision source, le workflow ou système de construction, les paramètres significatifs, les dépendances déclarées et les empreintes des artefacts livrés.
-- Les attestations sont générées par le processus de construction et protégées contre les modifications postérieures non détectées.
-- Lorsque l'infrastructure le permet, la provenance est signée et vérifiable indépendamment du paquet.
-- Les artefacts publiés sont reliés sans ambiguïté à leur attestation ; une attestation absente ou incohérente est signalée et empêche de prétendre que la provenance a été vérifiée.
-- Les niveaux de garantie effectivement atteints sont décrits sans revendiquer un niveau SLSA non démontré.
-
-Références : [SLSA — Build Provenance](https://slsa.dev/spec/v1.2/build-provenance) ; [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final).
-
-### Série 3 — Chaîne d'approvisionnement et publication sécurisée
-
-## 10.630 Signature et vérification des paquets distribués par plateforme — Question 661, décision technique prise par l'assistant
-
-Les paquets d'installation et exécutables publiés doivent être signés au moyen des mécanismes reconnus par chaque système cible lorsque ces mécanismes sont disponibles et adaptés au mode de distribution.
-
-- Sous Windows, les paquets distribués hors Store sont signés avec un certificat de signature de code valide et une chaîne de confiance vérifiable ; les paquets MSIX suivent les exigences de signature propres à ce format.
-- Sous macOS, les exécutables distribués hors App Store sont signés avec une identité Developer ID appropriée et soumis à la notarisation Apple lorsque le parcours de distribution l'exige.
-- Sous Linux, les paquets et dépôts utilisent les mécanismes de signature et de vérification correspondant au format et au canal de distribution retenus.
-- La signature couvre les composants exécutables distribués et est vérifiée avant installation ou lancement lorsque la plateforme le permet.
-- Une signature invalide, absente lorsqu'elle est obligatoire, expirée ou associée à une identité inattendue est signalée et entraîne le refus du paquet selon les règles de sécurité de la plateforme.
-- Les environnements de développement peuvent utiliser des certificats distincts, mais leurs artefacts ne sont jamais présentés comme des versions de production signées.
-
-Références : [Microsoft — Code-signing options for Windows apps](https://learn.microsoft.com/windows/apps/package-and-deploy/code-signing-options) ; [Apple — Notarizing macOS software before distribution](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
-
-### Série 3 — Chaîne d'approvisionnement et publication sécurisée
-
-## 10.631 Moindre privilège et séparation des environnements de construction — Question 662, décision technique prise par l'assistant
-
-Les environnements de construction, de test et de publication sont séparés et appliquent le principe du moindre privilège.
-
-- Un workflow ne reçoit que les permissions de dépôt, d'artefact et de publication strictement nécessaires à son étape.
-- Les tests exécutant du code non fiable, notamment des extensions ou contributions externes, ne disposent pas des secrets de publication.
-- Les secrets de signature et de publication ne sont accessibles qu'à une étape dédiée, après réussite des contrôles requis et avec une portée minimale.
-- Les jetons et identifiants sont à durée de vie limitée lorsque le fournisseur le permet ; ils ne sont jamais inscrits dans le dépôt, les journaux ou les artefacts.
-- Les étapes de construction et de publication produisent des journaux et traces permettant d'identifier le workflow responsable sans exposer les secrets.
-- Une modification du workflow de publication est examinée comme un changement sensible de sécurité.
-
-Références : [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) ; [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
-
-### Série 3 — Chaîne d'approvisionnement et publication sécurisée
-
-## 10.632 Analyse continue des vulnérabilités des dépendances et artefacts — Question 663, décision technique prise par l'assistant
-
-Les dépendances directes et transitives ainsi que les composants réellement présents dans les paquets livrés font l'objet d'analyses de vulnérabilités régulières.
-
-- Les contrôles sont exécutés lors des changements de dépendances, dans l'intégration continue et avant chaque publication.
-- Les résultats sont rapprochés des versions réellement utilisées et du périmètre affecté ; une alerte générique ne suffit pas à conclure qu'un composant est exploitable dans l'application.
-- Les vulnérabilités sont classées selon leur sévérité, leur exploitabilité, l'exposition du composant et la disponibilité d'une correction.
-- Les vulnérabilités critiques ou à risque élevé exploitable bloquent la publication tant qu'elles ne sont pas corrigées ou qu'une mesure de réduction du risque formellement documentée n'a pas été approuvée.
-- Les exceptions temporaires indiquent le responsable, la justification, le périmètre et une échéance de réévaluation ; elles ne deviennent pas des exemptions permanentes implicites.
-- Les composants abandonnés, non maintenus ou d'origine incertaine sont signalés même lorsqu'aucune CVE connue n'est recensée.
-
-Références : [NIST — Software Supply Chain Security](https://www.nist.gov/itl/executive-order-14028-improving-nations-cybersecurity/software-security-supply-chains) ; [GitHub — Dependency Review](https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/customize-dependency-review-action).
-
-### Série 4 — Internationalisation et accessibilité
-
-## 10.633 Formatage des nombres, dates et unités selon la locale — Question 664, décision technique prise par l'assistant
-
-Les valeurs numériques, dates, heures, durées et unités affichées dans l'interface sont formatées selon la locale active et les règles culturelles correspondantes, sans modifier les valeurs internes.
-
-- Les données sont stockées dans une représentation indépendante de la présentation ; le formatage local intervient au moment de l'affichage ou de la saisie.
-- Les séparateurs décimaux et de milliers, calendriers, ordre des dates, symboles d'unité et formats horaires proviennent d'une bibliothèque ou de données de localisation reconnues.
-- Les conversions d'unités sont distinguées du simple changement de format d'affichage ; aucune conversion de valeur n'est faite silencieusement.
-- Les champs de saisie acceptent les formes locales documentées et présentent clairement les erreurs ou ambiguïtés.
-- Les formats techniques destinés aux fichiers, échanges et protocoles restent indépendants de la locale de l'utilisateur.
-
-Référence : [Unicode CLDR — Core Specification](https://www.unicode.org/reports/tr35/).
-
-### Série 4 — Internationalisation et accessibilité
-
-## 10.634 Messages dynamiques et règles grammaticales localisées — Question 665, décision technique prise par l'assistant
-
-Les messages de l'interface qui intègrent des valeurs variables sont construits au moyen de mécanismes de formatage localisés, et non par concaténation manuelle de fragments de phrases.
-
-- Les nombres d'éléments, fichiers, cartes, erreurs et tâches utilisent les règles de pluriel de la locale, y compris les catégories grammaticales nécessaires aux langues prises en charge.
-- Les variables sont typées et formatées selon leur nature : nombre, date, durée, nom de fichier ou unité.
-- L'ordre des éléments dans une phrase peut varier selon la langue ; les traducteurs disposent d'un message complet et de paramètres identifiés.
-- Les messages d'erreur et de confirmation conservent un identifiant stable indépendant de leur texte traduit afin de faciliter les tests et diagnostics.
-- En cas de traduction manquante, l'application utilise une langue de repli explicitement définie et n'affiche pas de marqueurs techniques ou de fragments incohérents.
-
-Référence : [Unicode CLDR — MessageFormat](https://www.unicode.org/reports/tr35/tr35-messageFormat.html).
-
-### Série 4 — Internationalisation et accessibilité
-
-## 10.635 Prise en charge des textes bidirectionnels — Question 666, décision technique prise par l'assistant
-
-L'interface doit pouvoir présenter correctement les contenus mêlant écritures de gauche à droite et de droite à gauche lorsque ces langues ou ces contenus sont pris en charge.
-
-- La direction de lecture des libellés et paragraphes est déterminée à partir de la langue ou du contexte, et non par une inversion globale simpliste de l'interface.
-- Les noms de cartes, noms propres, chemins, URL, nombres et fragments techniques intégrés dans un texte de direction opposée sont isolés afin d'éviter les réordonnancements visuels trompeurs.
-- Les contrôles d'édition conservent le texte saisi sans ajouter de caractères de contrôle invisibles dans les données métier.
-- Les tests couvrent les chaînes mixtes, ponctuations, parenthèses, chiffres, noms de fichiers et messages d'erreur.
-- Les caractères de contrôle bidirectionnels non attendus dans les identifiants ou chemins sont détectés et présentés de manière sûre lorsqu'ils peuvent masquer une différence visuelle.
-
-Référence : [Unicode CLDR — MessageFormat, Bidirectional Text](https://www.unicode.org/reports/tr35/tr35-messageFormat.html).
-
-### Série 4 — Internationalisation et accessibilité
-
-## 10.636 Normalisation Unicode sans altération des contenus originaux — Question 667, décision technique prise par l'assistant
-
-Les recherches, comparaisons et détections de doublons doivent tenir compte des équivalences Unicode pertinentes sans altérer silencieusement les textes originaux saisis ou importés.
-
-- L'application définit une forme de normalisation stable pour les clés de comparaison et de recherche lorsque cela est nécessaire.
-- La valeur originale est conservée pour l'affichage, l'export et la restitution fidèle des données.
-- Les comparaisons peuvent appliquer des règles adaptées à la locale, à la casse et aux diacritiques, mais ces règles ne sont jamais confondues avec une égalité binaire des contenus.
-- Les identifiants techniques, chemins, URL et données signées ne sont pas normalisés de manière destructive.
-- Les collisions créées par une normalisation ou une comparaison insensible à la casse sont signalées au lieu de fusionner automatiquement deux éléments distincts.
-- Les tests couvrent les formes composées et décomposées, caractères combinés, alphabets non latins et caractères visuellement proches.
-
-Référence : [Unicode CLDR — Core Specification](https://www.unicode.org/reports/tr35/).
-
-### Série 4 — Internationalisation et accessibilité
-
-## 10.637 Sémantique accessible des contrôles et annonces d'état — Question 668, décision technique prise par l'assistant
-
-Les composants d'interface exposent leur rôle, leur nom accessible, leur état et leurs relations aux technologies d'assistance au moyen des API d'accessibilité natives de la plateforme.
-
-- Les contrôles personnalisés fournissent un nom et un rôle compréhensibles ; leur état actif, sélectionné, désactivé, développé ou en erreur est exposé sans dépendre uniquement de la couleur ou de l'icône.
-- Les changements d'état importants, résultats de validation et fins de tâches asynchrones sont annoncés de manière non intrusive lorsque la plateforme le permet.
-- Les zones décoratives sont exclues de l'arbre d'accessibilité lorsqu'elles n'apportent aucune information utile.
-- Le focus clavier reste visible, cohérent et restitué après fermeture des fenêtres, dialogues et panneaux.
-- Les opérations essentielles restent réalisables sans souris et sans gestes de glisser-déposer exclusifs lorsqu'une alternative raisonnable peut être proposée.
-- Les contrôles sont vérifiés avec les lecteurs d'écran et outils d'accessibilité disponibles sur Windows, macOS et Linux ; les différences de prise en charge sont documentées.
-
-Référence de principes : [W3C — Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/wcag/).
-
-### Série 5 — Tests de robustesse et validation multiplateforme
-
-## 10.638 Fuzzing des parseurs et décodeurs exposés aux fichiers externes — Question 669, décision technique prise par l'assistant
-
-Les parseurs de fichiers, décodeurs d'images, lecteurs SVG/PDF, analyseurs de manifestes et extracteurs d'archives sont couverts par des campagnes de fuzzing adaptées à leurs interfaces d'entrée.
-
-- Les corpus incluent des fichiers valides, limites, tronqués, malformés et générés aléatoirement, ainsi que des cas connus de régression.
-- Les campagnes recherchent notamment les plantages, dépassements de ressources, blocages, erreurs de mémoire, violations d'invariants et sorties incohérentes.
-- Les entrées qui révèlent un défaut sont conservées comme cas de régression minimisés et reproductibles.
-- Les campagnes automatisées sont exécutées dans un environnement isolé et avec des budgets de temps et de ressources.
-- Les résultats sont triés, corrigés et reliés aux composants et versions concernés ; un plantage reproductible dans un parseur exposé bloque sa validation.
-
-Référence : [Google — OSS-Fuzz Documentation](https://google.github.io/oss-fuzz/).
-
-### Série 5 — Tests de robustesse et validation multiplateforme
-
-## 10.639 Tests fondés sur les propriétés et invariants géométriques — Question 670, décision technique prise par l'assistant
-
-Les fonctions de géométrie, transformations, imposition et conversion de coordonnées sont vérifiées par des tests fondés sur des propriétés et invariants, en complément des exemples unitaires.
-
-- Tester que l'application successive de transformations respecte les règles de composition définies et que les transformations inversibles suivies de leur inverse retrouvent le résultat attendu dans une tolérance numérique documentée.
-- Vérifier que les dimensions physiques, marges, fonds perdus et positions restent cohérents après conversions d'unités et changements de résolution.
-- Vérifier que les opérations qui ne doivent pas modifier la géométrie — changement de profil de sortie, changement de zoom ou déplacement de fenêtre — laissent les coordonnées logiques inchangées.
-- Générer des combinaisons de valeurs limites, rotations, échelles, groupes imbriqués et formats de page afin de révéler les cas non prévus.
-- Toute tolérance numérique est explicite et proportionnée à l'opération ; elle ne doit pas masquer une dérive visuelle ou physique significative.
-
-Cette stratégie complète les tests de conformité SVG et de reproductibilité déjà définis.
-
-### Série 5 — Tests de robustesse et validation multiplateforme
-
-## 10.640 Tests de non-régression visuelle avec tolérances maîtrisées — Question 671, décision technique prise par l'assistant
-
-Les moteurs de rendu et d'export disposent de tests visuels de référence permettant de détecter les changements involontaires d'apparence.
-
-- Les cas de référence couvrent les cartes, polices, symboles, transparences, masques, filtres, images, profils colorimétriques, découpes et compositions complexes.
-- Les comparaisons distinguent les écarts strictement binaires des écarts visuels ; des tolérances adaptées sont utilisées lorsque les moteurs ou systèmes produisent de légères différences connues.
-- Les seuils de comparaison sont documentés et ne peuvent pas être élargis uniquement pour faire passer une régression.
-- Les changements intentionnels de rendu entraînent une mise à jour motivée des références, avec preuve de revue.
-- Les différences sont consultables sous forme de superposition ou de carte d'écarts et reliées au moteur, à la plateforme et aux paramètres du rendu.
-
-Cette décision complète les critères d'audit visuel et la distinction déjà établie entre reproductibilité visuelle et binaire.
-
-### Série 5 — Tests de robustesse et validation multiplateforme
-
-## 10.641 Tests de panne et d'interruption sur les opérations de stockage — Question 672, décision technique prise par l'assistant
-
-Les opérations critiques de sauvegarde, restauration, importation, migration et publication de fichiers font l'objet de tests d'interruption et de panne simulée.
-
-- Simuler l'arrêt du processus, la fermeture forcée, la perte d'accès au volume, les erreurs d'écriture, l'espace disque épuisé et les fichiers sources modifiés pendant le traitement.
-- Vérifier qu'après chaque point d'interruption possible, les données restent dans un état cohérent : état initial conservé, opération entièrement publiée ou récupération clairement identifiée.
-- Vérifier qu'aucun fichier temporaire n'est présenté comme un résultat final et qu'aucune confirmation de réussite n'est affichée avant validation.
-- Répéter les scénarios sur les systèmes de fichiers et plateformes officiellement pris en charge lorsque leurs comportements diffèrent.
-- Les défauts trouvés sont convertis en tests de non-régression permanents et associés à la fonctionnalité concernée.
-
-Références : [SQLite — Atomic Commit](https://www.sqlite.org/atomiccommit.html) ; [NIST SP 800-218 — SSDF](https://csrc.nist.gov/pubs/sp/800/218/final).
-
-### Série 5 — Tests de robustesse et validation multiplateforme
-
-## 10.642 Matrice de validation continue sur les trois systèmes pris en charge — Question 673, décision technique prise par l'assistant
-
-L'intégration continue vérifie les changements sur Windows, macOS et Linux, conformément au périmètre multiplateforme retenu.
-
-- Les tests automatisés pertinents sont exécutés sur les trois systèmes pour chaque changement ayant un impact sur le code commun, les fichiers, les chemins, le rendu, les sauvegardes ou l'interface.
-- La matrice distingue les tests unitaires rapides, les tests d'intégration, les tests de bout en bout et les tests spécifiques aux pilotes ou périphériques.
-- Les versions de systèmes testées couvrent les versions minimales officiellement prises en charge et une version récente représentative ; les versions exactes sont consignées avec les résultats.
-- Un échec sur une plateforme prise en charge ne peut pas être masqué par la réussite sur les autres. Les tests impossibles à exécuter sont identifiés comme non exécutés ou bloqués, jamais comme réussis.
-- Les artefacts de validation sont associés au commit, à la plateforme et à la configuration utilisés.
-
-Référence : [GitHub Actions — Matrix strategies](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.643 Noms de fichiers portables et caractères réservés — Question 674, décision technique prise par l'assistant
-
-Les noms créés ou importés doivent rester utilisables sur Windows, macOS et Linux.
-
-- Valider les noms selon un profil commun de compatibilité, plus strict que le seul système courant.
-- Refuser les caractères interdits, contrôles, séparateurs et noms de périphériques réservés sur le système cible.
-- Conserver le nom original dans les métadonnées si une adaptation est nécessaire à l'export.
-- Ne jamais fusionner ni écraser silencieusement deux ressources distinctes.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.644 Gestion explicite des chemins trop longs — Question 675, décision technique prise par l'assistant
-
-L'application détecte les limites de longueur du système cible avant toute copie, importation, sauvegarde ou export.
-
-- Évaluer le chemin complet selon les capacités réelles des API et du système cible.
-- Ne jamais tronquer silencieusement un nom ou un chemin.
-- Bloquer avant toute écriture partielle et proposer une destination plus courte.
-- Tester chemins imbriqués, noms Unicode et chemins proches des limites documentées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.645 Détection des collisions selon le système de fichiers cible — Question 676, décision technique prise par l'assistant
-
-Avant un transfert, détecter les noms qui deviennent équivalents selon la casse ou la normalisation du système cible.
-
-- Simuler les règles de casse et d'équivalence pertinentes pour la destination.
-- Signaler chaque collision avant l'écriture.
-- Ne jamais choisir arbitrairement la ressource à conserver.
-- Permettre renommage explicite ou annulation complète, avec traçabilité.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/technologyoverviews/files-and-directories).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.646 Détection prudente des caractères Unicode confondables — Question 677, décision technique prise par l'assistant
-
-Les identifiants techniques sensibles peuvent signaler les caractères Unicode visuellement confondables.
-
-- Appliquer une analyse inspirée d'Unicode UTS #39 aux identifiants de ressources, extensions et manifestes.
-- Signaler sans transformer ni remplacer automatiquement le texte original.
-- Préserver la liberté Unicode des contenus éditoriaux et noms de cartes.
-- Ne bloquer que les ambiguïtés techniques exploitables ; distinguer similarité et identité.
-
-Référence : [Référence technique](https://www.unicode.org/reports/tr39/).
-
-### Série 1 — Portabilité des chemins et noms de fichiers
-
-## 10.647 Résolution des répertoires applicatifs par les API des plateformes — Question 678, décision technique prise par l'assistant
-
-Les emplacements de données, paramètres, caches et fichiers temporaires sont déterminés par les API et conventions de chaque système.
-
-- Séparer les répertoires selon leur finalité et leur durée de vie.
-- Ne pas construire les chemins personnels par concaténation de répertoires supposés ou codés en dur.
-- Ne pas placer de données persistantes dans un répertoire temporaire ou d'exécution.
-- Tester profils déplacés, permissions restreintes et chemins personnalisés.
-
-Référence : [Référence technique](https://specifications.freedesktop.org/basedir/).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.648 Verrou exclusif d'un projet ouvert dans plusieurs instances — Question 679, décision technique prise par l'assistant
-
-Un projet ne peut être modifié simultanément par plusieurs instances sans coordination explicite.
-
-- Acquérir un verrou interprocessus avant toute édition ou écriture.
-- Si le verrou est détenu, proposer lecture seule ou annulation ; ne jamais le contourner silencieusement.
-- Libérer le verrou à la fermeture normale et contrôler son état après interruption.
-- Documenter les garanties selon le système de fichiers utilisé.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.649 Vérification prudente des verrous obsolètes — Question 680, décision technique prise par l'assistant
-
-Un verrou laissé après un plantage ne peut être supprimé qu'après vérification suffisante de son obsolescence.
-
-- Combiner processus, instance, hôte et âge ; l'âge seul ne suffit pas pour un verrou long.
-- En cas d'incertitude, conserver le verrou et présenter les informations pour arbitrage manuel.
-- Exiger confirmation avant de supprimer un verrou potentiellement actif.
-- Traiter PID réutilisé, horloge décalée, hôte distant et stockage réseau comme cas incertains.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.650 Surveillance des modifications externes des projets ouverts — Question 681, décision technique prise par l'assistant
-
-Surveiller les modifications externes pertinentes sans considérer les notifications du système de fichiers comme exhaustives.
-
-- Utiliser les notifications pour déclencher une vérification, pas comme preuve complète.
-- Vérifier existence, taille, date et empreinte lorsque nécessaire.
-- Rétablir les surveillances invalidées après renommage ou remplacement.
-- Compléter les notifications par une vérification de cohérence aux points de sauvegarde.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qfilesystemwatcher.html).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.651 Détection des conflits avant écrasement d'un projet modifié à l'extérieur — Question 682, décision technique prise par l'assistant
-
-Comparer l'état de référence du projet ouvert à celui présent sur le stockage avant chaque sauvegarde.
-
-- Utiliser empreinte ou version fiable, pas seulement date de modification.
-- Suspendre l'écriture si le contenu a changé depuis le chargement.
-- Proposer rechargement, copie distincte ou comparaison lorsque possible.
-- Ne jamais détruire automatiquement la version externe ou la version en mémoire.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
-
-### Série 2 — Coordination des projets et accès externes
-
-## 10.652 Mode lecture seule si la coordination du stockage est incertaine — Question 683, décision technique prise par l'assistant
-
-Si les garanties de verrouillage ne sont pas fiables, privilégier la lecture seule.
-
-- Évaluer les capacités des emplacements réseau, virtuels et amovibles.
-- Avertir avant ouverture et proposer lecture seule ou copie locale.
-- Ne pas prétendre qu'un verrou local protège d'autres machines si le stockage ne le propage pas.
-- Tracer la provenance des copies locales et leur réintégration.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qlockfile.html).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.653 Fermeture ordonnée et séquencée de l'application — Question 684, décision technique prise par l'assistant
-
-La fermeture suit une séquence contrôlée avant de libérer les ressources.
-
-- Cesser l'acceptation de nouveaux travaux, puis demander l'arrêt coopératif des tâches.
-- Valider ou annuler proprement les écritures critiques engagées.
-- Enregistrer les états de session récupérables avant de libérer verrous et ressources.
-- Appliquer un délai maximal et signaler les tâches non terminées sans prétendre qu'elles ont été sauvegardées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.654 Annulation coopérative des tâches longues — Question 685, décision technique prise par l'assistant
-
-Les tâches longues s'annulent à des points de contrôle définis sans interrompre arbitrairement une opération critique.
-
-- Déclarer les points d'annulation et les étapes non interruptibles.
-- Arrêter la création de sous-tâches et nettoyer les ressources temporaires.
-- Ne pas interrompre un commit atomique ou une transaction en cours.
-- Distinguer demande d'annulation, annulation terminée et tâche temporairement non annulable.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.655 Récupération de session après arrêt anormal — Question 686, décision technique prise par l'assistant
-
-Proposer une récupération de session depuis un état de reprise cohérent, distinct de la sauvegarde définitive du projet.
-
-- Conserver seulement le contexte nécessaire : projets ouverts, documents actifs, sélection et modifications récupérables.
-- Écrire l'état de reprise atomiquement, le versionner et l'associer à l'empreinte du projet.
-- Vérifier les éléments à la relance et présenter un aperçu de ce qui est restaurable.
-- Ne jamais remplacer automatiquement le projet sauvegardé ou une version externe plus récente.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.656 Redémarrage après incident sans boucle de plantage — Question 687, décision technique prise par l'assistant
-
-Le redémarrage après incident ne doit pas créer de boucle ni réexécuter automatiquement l'opération fautive.
-
-- Limiter la fréquence des relances et désactiver le redémarrage après échecs consécutifs ou fermeture volontaire.
-- Restaurer d'abord un état sûr ; ne pas relancer automatiquement les opérations modifiant des données.
-- Présenter les tâches interrompues et les possibilités de récupération.
-- Respecter les choix utilisateur et les mécanismes natifs de chaque plateforme.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/registering-for-application-restart).
-
-### Série 3 — Cycle de vie et récupération
-
-## 10.657 Démarrage de diagnostic sans extensions tierces — Question 688, décision technique prise par l'assistant
-
-Proposer un mode de démarrage sans chargement des extensions tierces en cas de dysfonctionnement.
-
-- Désactiver temporairement leur chargement sans supprimer fichiers ni paramètres.
-- Permettre une activation explicite après diagnostic, extension par extension.
-- Conserver les fonctions internes indispensables si leur intégrité est vérifiée.
-- Ne rétablir le mode normal qu'après action explicite et afficher les extensions neutralisées.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/windows/win32/recovery/using-application-recovery-and-restart).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.658 Format structuré et versionné des événements — Question 689, décision technique prise par l'assistant
-
-Les journaux utilisent un format structuré et versionné, analysable sans dépendre de textes libres.
-
-- Chaque événement contient identifiant stable, horodatage normalisé, gravité, composant et code.
-- Séparer paramètres typés et message affiché.
-- Versionner le schéma et définir la compatibilité de lecture.
-- Encoder les données non fiables et ignorer les champs inconnus sans perdre l'événement.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.659 Identifiant de corrélation des opérations multi-composants — Question 690, décision technique prise par l'assistant
-
-Chaque opération utilisateur significative reçoit un identifiant propagé à tous les composants participants.
-
-- Relier les événements même lorsqu'une opération traverse plusieurs tâches ou processus internes.
-- Autoriser des identifiants de sous-opération liés à une opération parente.
-- Ne jamais intégrer de données personnelles ou métier dans l'identifiant.
-- Permettre le filtrage local d'une opération complète sans transmission réseau automatique.
-
-Référence : [Référence technique](https://opentelemetry.io/docs/concepts/context-propagation/).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.660 Minimisation des données sensibles dès l'émission — Question 691, décision technique prise par l'assistant
-
-Limiter les données consignées dès la création de l'événement plutôt que compter uniquement sur un nettoyage à l'export.
-
-- Exclure par défaut contenus de cartes, textes de création, images, secrets et jetons.
-- Omettre ou pseudonymiser les chemins locaux si leur valeur exacte n'est pas nécessaire.
-- Préférer identifiants techniques et catégories d'erreur aux contenus complets.
-- Tester les journaux produits par les scénarios représentatifs et les échecs.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.661 Neutralisation des injections et encodage des événements — Question 692, décision technique prise par l'assistant
-
-Toute donnée externe intégrée à un journal est validée et encodée selon le format de sortie.
-
-- Encoder les retours à la ligne, caractères de contrôle et séparateurs non fiables.
-- Utiliser un sérialiseur structuré, jamais une concaténation libre de lignes.
-- Limiter la longueur des champs et signaler les troncatures.
-- Tester CR/LF, séparateurs, contrôles Unicode et charges malformées.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 4 — Observabilité et journalisation sûre
-
-## 10.662 Isolation des défaillances du système de journalisation — Question 693, décision technique prise par l'assistant
-
-Une panne de journalisation ne doit pas bloquer l'interface ni compromettre une opération métier cohérente.
-
-- Découpler les écritures de journal des chemins critiques avec une file bornée.
-- Définir une politique de saturation qui préserve autant que possible les événements prioritaires.
-- Signaler erreurs de permission ou d'espace disque sans boucle de tentatives agressive.
-- Éviter toute récursion lorsque le logger lui-même échoue.
-
-Référence : [Référence technique](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.663 Limitation globale des travailleurs concurrents — Question 694, décision technique prise par l'assistant
-
-Les traitements en arrière-plan utilisent un nombre de travailleurs borné.
-
-- Définir un plafond selon les capacités disponibles et une limite applicative documentée.
-- Partager un ordonnanceur borné au lieu de créer un pool illimité par tâche.
-- Appliquer des limites plus strictes aux opérations consommatrices de mémoire.
-- Exposer les paramètres et la charge dans le diagnostic local.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.664 Files de tâches bornées et régulation de surcharge — Question 695, décision technique prise par l'assistant
-
-Les files d'attente sont bornées et régulent les demandes dépassant la capacité de traitement.
-
-- Éviter l'accumulation illimitée de rendus ou de demandes redondantes.
-- Fusionner les demandes identiques en attente lorsque leur résultat attendu est équivalent.
-- Différer ou refuser explicitement les nouvelles demandes à saturation.
-- Ne jamais supprimer silencieusement une tâche engagée ou une sauvegarde.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.665 Priorité des tâches selon l'impact utilisateur — Question 696, décision technique prise par l'assistant
-
-L'ordonnanceur distingue les tâches nécessaires à l'interaction des traitements secondaires.
-
-- Prioriser les actions explicites nécessaires à la poursuite du travail.
-- Empêcher les tâches de fond de monopoliser durablement les travailleurs.
-- Ne pas contourner les dépendances ou l'ordre de validation des données.
-- Éviter la famine des tâches de faible priorité et tester la réactivité sous charge.
-
-Référence : [Qt](https://doc.qt.io/qt-6/qthreadpool.html).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.666 Progression cohérente des tâches longues — Question 697, décision technique prise par l'assistant
-
-Les tâches longues exposent une progression fidèle sans mises à jour excessives ou trompeuses.
-
-- Déclarer phases et état courant ; utiliser un indicateur indéterminé si le total est inconnu.
-- Regrouper et limiter la fréquence des mises à jour visuelles.
-- Distinguer attente, exécution, suspension, annulation demandée, succès, annulation et échec.
-- Ne jamais annoncer 100 % avant validation effective du résultat.
-
-Référence : [Documentation officielle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services).
-
-### Série 5 — Ordonnancement et réactivité
-
-## 10.667 Absence d'opérations bloquantes sur le thread d'interface — Question 698, décision technique prise par l'assistant
-
-Les opérations de fichiers, calcul, rendu et import/export susceptibles de durer ne bloquent pas l'interface.
-
-- Exécuter les accès disque et calculs longs en arrière-plan.
-- Réserver le thread d'interface aux mises à jour visuelles et opérations courtes.
-- Transmettre les résultats par des mécanismes sûrs sans accès concurrent aux composants graphiques.
-- Mesurer la réactivité lors de l'ouverture de projets volumineux et de traitements simultanés.
-
-Référence : [Référence technique](https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system?language=objc).
-
-
-### Série 1 — Décodage et mémoire des ressources graphiques
-
-## 10.668 Prévalidation des dimensions avant décodage — Question 699, décision technique prise par l'assistant
-
-Les dimensions, le nombre de pixels et le coût mémoire estimé d'une image sont contrôlés avant son allocation complète.
-
-- Lire les métadonnées de dimensions lorsque le décodeur le permet avant de charger les pixels.
-- Appliquer un plafond de pixels et un plafond mémoire calculé sur le format de travail réel, au minimum 32 bits par pixel si la conversion l'impose.
-- Refuser ou réduire explicitement les ressources dépassant les limites ; ne jamais désactiver silencieusement les contrôles.
-- Conserver l'original non modifié et fournir un diagnostic compréhensible.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
-
-### Série 1 — Décodage et mémoire des ressources graphiques
-
-## 10.669 Budget cumulatif des images animées — Question 700, décision technique prise par l'assistant
-
-Le décodage d'images animées tient compte du coût cumulé des images et non de la seule première frame.
-
-- Contrôler le nombre total de frames, leurs dimensions, la durée cumulée et les répétitions lorsque les métadonnées sont disponibles.
-- Appliquer un budget global de pixels décodés et de mémoire pour toute l'animation.
-- Arrêter proprement le décodage si une limite est atteinte et proposer une représentation statique si elle est pertinente.
-- Ne pas interpréter une valeur inconnue comme une animation sans limite autorisée.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
-
-### Série 1 — Décodage et mémoire des ressources graphiques
-
-## 10.670 Application cohérente de l'orientation intégrée aux images — Question 701, décision technique prise par l'assistant
-
-Les métadonnées d'orientation sont interprétées de manière cohérente à l'importation et dans les aperçus.
-
-- Détecter l'orientation EXIF ou équivalente lorsque le format et le décodeur la prennent en charge.
-- Appliquer la transformation une seule fois dans la représentation normalisée utilisée par l'application.
-- Préserver les octets et métadonnées d'origine dans la ressource source lorsque la conservation est requise.
-- Tester les huit orientations et les cas où le format ne fournit aucune information.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
-
-### Série 1 — Décodage et mémoire des ressources graphiques
-
-## 10.671 Cache graphique borné par le coût mémoire réel — Question 702, décision technique prise par l'assistant
-
-Les caches de ressources graphiques sont bornés selon le coût mémoire estimé, et non uniquement selon le nombre d'éléments.
-
-- Calculer un coût pondéré par dimensions, profondeur, format et copies conservées.
-- Évincer les éléments les moins récemment utilisés lorsque le plafond est atteint.
-- Ne jamais considérer le cache comme l'unique exemplaire d'une donnée persistante ou non reproductible.
-- Rendre la limite configurable dans des bornes sûres et observable en diagnostic.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
-
-### Série 1 — Décodage et mémoire des ressources graphiques
-
-## 10.672 Clés de cache liées au contenu et aux paramètres de transformation — Question 703, décision technique prise par l'assistant
-
-Une entrée de cache est invalidée lorsque le contenu source ou un paramètre influençant le résultat change.
-
-- Construire la clé à partir de l'empreinte du contenu source et de paramètres normalisés de transformation, rendu, taille et profil colorimétrique.
-- Ne pas se fier uniquement au chemin ou au nom du fichier, qui peuvent désigner un contenu remplacé.
-- Versionner la stratégie de rendu dans la clé afin d'éviter de réutiliser des résultats produits par une ancienne implémentation.
-- Permettre la suppression et la reconstruction intégrales du cache sans perte des données du projet.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
-
-### Série 2 — Recherche locale et indexation
-
-## 10.673 Versionnement du tokenizer et de la stratégie d'indexation — Question 704, décision technique prise par l'assistant
-
-La stratégie de tokenisation et de normalisation de la recherche est versionnée indépendamment des contenus originaux.
-
-- Définir explicitement la gestion de la casse, des diacritiques, des signes, des apostrophes et des caractères Unicode.
-- Associer une version de tokenizer à chaque index et reconstruire l'index dérivé lors d'un changement incompatible.
-- Ne jamais modifier les textes sources pour satisfaire le moteur de recherche.
-- Tester les noms de cartes, termes de règles, symboles, langues et variantes accentuées.
-
-Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
-
-### Série 2 — Recherche locale et indexation
-
-## 10.674 Séparation entre saisie utilisateur et syntaxe avancée du moteur — Question 705, décision technique prise par l'assistant
-
-La saisie ordinaire est traitée comme du texte de recherche littéral ; la syntaxe avancée n'est interprétée que dans un mode explicite.
-
-- Utiliser des paramètres SQL liés pour les valeurs de recherche.
-- Échapper ou construire les expressions FTS via un parseur contrôlé ; ne pas concaténer directement la saisie à une expression MATCH.
-- Limiter la longueur, la profondeur et la complexité des expressions avancées.
-- Présenter une erreur de syntaxe localisée sans exposer de détail SQL interne.
-
-Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
-
-### Série 2 — Recherche locale et indexation
-
-## 10.675 Ordre de résultats stable en cas d'égalité de pertinence — Question 706, décision technique prise par l'assistant
-
-Les résultats de recherche conservent un ordre déterministe lorsque plusieurs éléments ont une pertinence équivalente.
-
-- Trier d'abord selon le score documenté puis selon une clé stable, par exemple le nom normalisé et l'identifiant immuable.
-- Ne pas dépendre de l'ordre arbitraire de retour du moteur de base de données.
-- Conserver le même ordre entre relances et reconstructions d'index à contenu identique.
-- Tester les égalités, les changements de locale et les mises à jour de l'index.
-
-Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
-
-### Série 2 — Recherche locale et indexation
-
-## 10.676 Mise à jour transactionnelle des index de recherche dérivés — Question 707, décision technique prise par l'assistant
-
-Les changements du contenu canonique et les mises à jour de son index de recherche sont coordonnés de manière transactionnelle.
-
-- Effectuer les insertions, modifications et suppressions de l'index dans la même transaction logique que les données sources lorsque l'architecture le permet.
-- Pour les index externes, maintenir des mécanismes de synchronisation explicites et testés.
-- Ne pas afficher un résultat issu d'un index connu comme obsolète sans signalement.
-- Prévoir une reconstruction complète depuis les données canoniques.
-
-Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
-
-### Série 2 — Recherche locale et indexation
-
-## 10.677 Vérification et reconstruction des index dérivés — Question 708, décision technique prise par l'assistant
-
-L'application peut vérifier l'intégrité d'un index de recherche et le reconstruire sans altérer les données canoniques.
-
-- Exécuter des contrôles d'intégrité adaptés au moteur et comparer l'index à sa source lorsqu'il s'agit d'un index externe.
-- Marquer l'index comme indisponible si une incohérence est détectée, plutôt que retourner des résultats potentiellement trompeurs.
-- Recréer l'index dans une opération contrôlée, avec progression et possibilité de reprise.
-- Conserver les contenus sources et les identifiants stables pendant toute reconstruction.
-
-Référence : [Documentation de référence](https://www.sqlite.org/fts5.html).
-
-### Série 3 — Accessibilité des interactions
-
-## 10.678 Alternative sans glisser-déposer pour les actions de déplacement — Question 709, décision technique prise par l'assistant
-
-Toute fonction reposant sur un glisser-déposer dispose d'une méthode alternative réalisable avec un pointeur sans mouvement de glissement.
-
-- Fournir des commandes déplacer avant/après, monter/descendre ou une sélection suivie d'une destination.
-- Rendre l'alternative accessible au clavier et aux technologies d'assistance.
-- Conserver les mêmes possibilités fonctionnelles et contrôles de validation que le glisser-déposer.
-- Ne réserver le glissement exclusif qu'aux opérations dont la nature le rend réellement essentiel.
-
-Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
-
-### Série 3 — Accessibilité des interactions
-
-## 10.679 Indicateur de focus visible et suffisamment contrasté — Question 710, décision technique prise par l'assistant
-
-Le focus clavier reste visible, identifiable et non masqué par les panneaux ou fenêtres de l'application.
-
-- Fournir un indicateur visuel distinct de l'état normal, avec contraste suffisant contre les couleurs adjacentes.
-- Ne pas supprimer l'indicateur natif sans remplacement accessible.
-- Éviter que les fenêtres flottantes, menus ou panneaux superposés masquent le contrôle focalisé.
-- Tester thèmes clair et sombre, navigation clavier, zoom et fenêtres détachées.
-
-Référence : [Documentation de référence](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance).
-
-### Série 3 — Accessibilité des interactions
-
-## 10.680 Dimensions et espacement minimaux des cibles interactives — Question 711, décision technique prise par l'assistant
-
-Les contrôles fréquemment activés au pointeur ou au toucher disposent de cibles suffisamment grandes et espacées.
-
-- Viser au minimum l'équivalent de 24 × 24 pixels CSS ou respecter les exceptions d'espacement documentées par WCAG 2.2.
-- Prévoir des cibles plus généreuses pour les commandes tactiles et les actions fréquentes, en cohérence avec les plateformes.
-- Ne pas réduire les zones actives à la seule icône visible lorsque le contrôle peut raisonnablement être agrandi.
-- Vérifier les densités d'affichage, facteurs DPI et interfaces redimensionnées.
-
-Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
-
-### Série 3 — Accessibilité des interactions
-
-## 10.681 Agrandissement du texte sans perte de contenu ou de fonction — Question 712, décision technique prise par l'assistant
-
-L'interface conserve son contenu et ses fonctionnalités lorsque le texte est agrandi jusqu'à 200 %.
-
-- Privilégier des mises en page adaptatives plutôt que des dimensions fixes qui coupent le texte.
-- Autoriser le retour à la ligne, l'agrandissement des panneaux et le défilement lorsque nécessaire.
-- Ne pas masquer les libellés ou actions essentielles lorsque l'espace devient insuffisant.
-- Tester les fenêtres principales, flottantes, dialogues, listes et rapports à plusieurs niveaux d'échelle.
-
-Référence : [Documentation de référence](https://www.w3.org/TR/WCAG22/).
-
-### Série 3 — Accessibilité des interactions
-
-## 10.682 Espacement du texte personnalisable sans perte d'information — Question 713, décision technique prise par l'assistant
-
-Les contenus textuels restent lisibles et fonctionnels lorsque l'espacement des lignes, paragraphes, lettres et mots est augmenté.
-
-- Permettre aux composants concernés de s'adapter aux espacements utilisateur sans chevauchement ni troncature définitive.
-- Prendre comme cas de test WCAG les espacements de ligne 1,5, paragraphe 2, lettres 0,12 et mots 0,16 fois la taille du texte lorsque ces propriétés s'appliquent.
-- Prévoir une révélation du contenu tronqué lorsque les contraintes d'une colonne sont incompressibles.
-- Adapter les tests aux écritures et langues qui n'utilisent pas toutes ces propriétés.
-
-Référence : [Documentation de référence](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing).
-
-### Série 4 — Licences et incorporation des polices
-
-## 10.683 Lecture des droits d'incorporation des polices — Question 714, décision technique prise par l'assistant
-
-Avant d'incorporer une police dans un document exporté, l'application vérifie les droits d'incorporation indiqués par la police et sa licence.
-
-- Lire le champ fsType de la table OS/2 pour les polices OpenType/TrueType lorsque disponible.
-- Refuser l'incorporation en cas de restriction explicite ou d'indication incohérente ; ne pas déduire une autorisation du seul fait que la police est installée.
-- Conserver la licence et la provenance déclarées par le fournisseur comme éléments complémentaires au champ technique.
-- Afficher un diagnostic et proposer une solution de remplacement licite.
-
-Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
-
-### Série 4 — Licences et incorporation des polices
-
-## 10.684 Respect de l'interdiction de sous-ensemble de police — Question 715, décision technique prise par l'assistant
-
-Le sous-ensemble d'une police n'est généré que lorsque ses conditions d'incorporation l'autorisent.
-
-- Interpréter le bit No Subsetting du champ fsType et toute restriction équivalente de licence.
-- Si le sous-ensemble est interdit mais l'incorporation complète permise, incorporer la police entière uniquement si les autres conditions sont respectées.
-- Si aucune incorporation n'est autorisée, ne pas tenter de contourner la restriction par conversion ou renommage.
-- Tester les différentes combinaisons de drapeaux définies par les versions de la spécification OpenType.
-
-Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
-
-### Série 4 — Licences et incorporation des polices
-
-## 10.685 Distinction entre incorporation aperçu-impression et incorporation éditable — Question 716, décision technique prise par l'assistant
-
-Le type de droit d'incorporation est respecté selon l'usage du fichier exporté.
-
-- Distinguer les droits Preview & Print, Editable et Installable.
-- Ne pas présenter un PDF en lecture seule comme autorisant une édition de texte avec une police limitée à Preview & Print.
-- Ne jamais installer durablement une police extraite d'un document lorsque seul un chargement temporaire est autorisé.
-- Documenter les limites propres aux formats et lecteurs de destination.
-
-Référence : [Documentation de référence](https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf).
-
-### Série 4 — Licences et incorporation des polices
-
-## 10.686 Traçabilité de la provenance et de la licence des polices — Question 717, décision technique prise par l'assistant
-
-Les polices utilisées dans les projets disposent de métadonnées de provenance et de droits suffisantes pour auditer leur usage.
-
-- Enregistrer si disponible le nom de famille, version, fournisseur, identifiant de fichier et empreinte cryptographique.
-- Associer une référence vers la licence ou les conditions d'utilisation consultées, sans supposer qu'un champ technique remplace le contrat.
-- Signaler les polices dont la provenance ou les droits sont inconnus avant une exportation qui les incorpore.
-- Ne pas ajouter ces informations sensibles ou internes aux métadonnées publiques du PDF sans nécessité.
-
-Référence : [Documentation de référence](https://learn.microsoft.com/en-us/typography/opentype/spec/os2).
-
-### Série 4 — Licences et incorporation des polices
-
-## 10.687 Repli explicite lorsqu'une police ne peut pas être incorporée — Question 718, décision technique prise par l'assistant
-
-Lorsqu'une police ne peut pas être incorporée, l'application ne modifie pas silencieusement la typographie du résultat.
-
-- Présenter les polices concernées et la raison de la restriction lorsque l'information est disponible.
-- Proposer une police de remplacement dont les droits sont vérifiés, ou une sortie sans incorporation si elle reste fiable.
-- Prévisualiser les différences de métriques, retours à la ligne et débordements avant validation.
-- Ne jamais convertir automatiquement le texte en tracés ou en image pour contourner une restriction d'incorporation.
-
-Référence : [Documentation de référence](https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf).
-
-### Série 5 — Mesure et maîtrise des performances
-
-## 10.688 Mesure des performances des caches graphiques — Question 719, décision technique prise par l'assistant
-
-Les caches graphiques exposent des mesures locales utiles à l'analyse de leur efficacité et de leur coût.
-
-- Mesurer au minimum les consultations, succès, échecs, insertions, évictions et octets estimés conservés.
-- Distinguer les caches par type de ressource et version de transformation.
-- Limiter la fréquence des mesures et éviter les identifiants de contenus personnels dans les métriques.
-- Utiliser les résultats pour ajuster les budgets sans vider arbitrairement les caches.
-
-Référence : [Documentation de référence](https://opentelemetry.io/docs/specs/semconv/general/metrics/).
-
-### Série 5 — Mesure et maîtrise des performances
-
-## 10.689 Traçage des étapes coûteuses du pipeline graphique — Question 720, décision technique prise par l'assistant
-
-Les opérations longues du pipeline disposent de mesures de durée et de sous-étapes corrélées.
-
-- Tracer chargement, décodage, transformation, composition, rendu et export comme opérations distinctes lorsque cela apporte une valeur diagnostique.
-- Associer les sous-opérations à une opération parente et enregistrer durée, statut et catégorie d'échec.
-- Ne pas inclure le contenu de carte, les chemins privés ou les images dans les attributs de télémétrie.
-- Conserver ces diagnostics localement par défaut et respecter les règles de confidentialité déjà définies.
-
-Référence : [Documentation de référence](https://opentelemetry.io/docs/concepts/signals/traces/).
-
-### Série 5 — Mesure et maîtrise des performances
-
-## 10.690 Budgets de performance vérifiables sur des scénarios représentatifs — Question 721, décision technique prise par l'assistant
-
-Les objectifs de performance sont mesurés sur des jeux de projets représentatifs et reproductibles.
-
-- Définir des scénarios de référence par taille de projet, nombre de ressources, complexité des calques et volume d'export.
-- Mesurer médianes et percentiles élevés, temps de réponse de l'interface, durée des opérations et mémoire maximale.
-- Séparer les mesures de développement des seuils bloquants de CI afin d'éviter les seuils arbitraires sur matériel hétérogène.
-- Documenter matériel, système, versions, données et méthode de mesure.
-
-Référence : [Documentation de référence](https://opentelemetry.io/docs/concepts/signals/metrics/).
-
-### Série 5 — Mesure et maîtrise des performances
-
-## 10.691 Réaction contrôlée à la pression mémoire — Question 722, décision technique prise par l'assistant
-
-En cas de pression mémoire, l'application réduit d'abord les ressources temporaires récupérables avant de compromettre le projet actif.
-
-- Libérer ou réduire les caches et aperçus reconstructibles selon leur priorité.
-- Suspendre ou différer les tâches non essentielles et empêcher le lancement de nouveaux décodages coûteux.
-- Préserver les données sources, états transactionnels et travaux non sauvegardés ; ne jamais purger une donnée utilisateur pour libérer de la mémoire.
-- Signaler l'état et proposer une action sûre si la mémoire reste insuffisante.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qcache.html).
-
-### Série 5 — Mesure et maîtrise des performances
-
-## 10.692 Admission des tâches selon un budget mémoire partagé — Question 723, décision technique prise par l'assistant
-
-Les traitements concurrents sont admis selon un budget mémoire partagé, en complément de la limite globale de travailleurs.
-
-- Estimer le coût des décodages, rendus et exports avant leur lancement lorsque cela est possible.
-- Réserver et libérer les budgets de façon atomique entre les tâches concurrentes.
-- Différer les tâches qui dépasseraient le budget au lieu de les lancer simultanément jusqu'à saturation.
-- Permettre une annulation coopérative et préserver la cohérence des opérations déjà engagées.
-
-Référence : [Documentation de référence](https://doc.qt.io/qt-6/qimagereader.html).
-
-
-## 10.693 Historique Annuler/Rétablir fondé sur des commandes atomiques — Question 724, décision technique prise par l'assistant
-
-Chaque modification persistante du document graphique est représentée par une commande réversible décrivant explicitement son état antérieur et son état final.
-
-- Une commande ne modifie que les propriétés et objets qu'elle possède ; elle ne dépend pas d'un état d'interface volatil.
-- Les références aux objets utilisent des identifiants stables pendant la durée de vie de l'historique.
-- L'application d'une commande est atomique : si une étape échoue, les changements partiels sont compensés et le document reste cohérent.
-- Les actions purement visuelles (sélection, zoom, déplacement de vue) ne sont pas ajoutées à l'historique documentaire, sauf décision fonctionnelle explicite.
-- Une commande dont l'effet net est nul peut être écartée.
-- Une commande déjà validée dans l'historique n'est pas mutée ; toute correction passe par une nouvelle commande ou une reconstruction contrôlée.
-
-Référence : [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.694 Regroupement atomique des opérations composées — Question 725, décision technique prise par l'assistant
-
-Une action utilisateur constituée de plusieurs changements dépendants est représentée comme une seule opération composée dans l'historique.
-
-- Regrouper les transformations multi-objets, remplacements de ressources et réorganisations qui forment une intention unique.
-- L'annulation restaure l'ensemble de l'état antérieur ; le rétablissement réapplique le résultat dans le même ordre logique.
-- Si une sous-opération échoue, aucune partie de l'opération composée ne reste appliquée.
-- Les opérations indépendantes ne sont pas fusionnées artificiellement en raison de leur proximité temporelle.
-- Le libellé visible décrit l'intention globale de l'utilisateur ; les sous-commandes restent testables séparément.
-
-Référence : [Qt — Overview of the Undo Framework](https://doc.qt.io/qt-6/qundo.html).
-
-## 10.695 Compression contrôlée des commandes répétitives — Question 726, décision technique prise par l'assistant
-
-Les modifications répétitives de faible portée peuvent être regroupées lorsqu'elles correspondent à une même intention continue.
-
-- La compression vise uniquement des commandes de même nature, sur le même objet et des propriétés compatibles.
-- Une saisie continue, un déplacement ou un réglage numérique peut être regroupé selon des frontières temporelles et sémantiques documentées.
-- Un changement de cible, une validation explicite, une interruption ou une perte de focus clôt le groupe lorsque cela marque une nouvelle intention.
-- Les commandes dont l'ordre intermédiaire a une signification propre ne sont jamais fusionnées.
-- Le groupe conserve exactement l'état initial et l'état final nécessaires à l'annulation et au rétablissement.
-
-Référence : [Qt — QUndoStack, command compression](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.696 Budget mémoire de l'historique et éviction sûre — Question 727, décision technique prise par l'assistant
-
-L'historique Annuler/Rétablir est borné par le coût réel de ses données, et non uniquement par le nombre de commandes.
-
-- Estimer le coût mémoire des instantanés, différences, ressources référencées et structures conservées.
-- Définir un budget et une éviction déterministe des commandes les plus anciennes.
-- Ne jamais supprimer une ressource encore utilisée par le document, une sauvegarde ou un instantané de génération.
-- Si l'éviction rend inaccessible l'état sauvegardé par l'historique, l'indiquer sans prétendre que cet état reste atteignable.
-- L'éviction ne modifie jamais le document courant.
-- Si une opération dépasse le budget, appliquer une stratégie explicite (représentation compacte, stockage différé ou refus avant modification), sans perte partielle.
-
-Référence : [Qt — QUndoStack, undoLimit and clean state](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.697 Historique indépendant par document et invalidation du rétablissement — Question 728, décision technique prise par l'assistant
-
-Chaque projet ouvert possède un historique Annuler/Rétablir indépendant ; les commandes globales ciblent uniquement le document actif.
-
-- Le changement de projet actif bascule les commandes disponibles et leurs libellés vers l'historique correspondant.
-- Une nouvelle opération après annulation invalide la branche de rétablissement incompatible.
-- L'état sauvegardé est identifié de manière fiable et l'indicateur de modifications non enregistrées reste cohérent.
-- La fermeture d'un projet ne libère son historique qu'après les contrôles et confirmations de sauvegarde prévus.
-- Les historiques ne sont jamais mélangés entre fenêtres, projets ou documents détachés.
-- Tester le basculement entre projets, la fermeture/réouverture et les branches abandonnées.
-
-Références : [Qt — QUndoGroup](https://doc.qt.io/qt-6/qundogroup.html) ; [Qt — QUndoStack](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.698 Format interne versionné pour le presse-papiers graphique — Question 729, décision technique prise par l'assistant
-
-La copie d'objets graphiques utilise un format interne versionné, en complément des formats standards lorsqu'ils sont utiles.
-
-- Le format décrit les objets sélectionnés, leurs propriétés, relations hiérarchiques et références nécessaires à leur reconstruction.
-- Il comporte un identifiant de format et une version de schéma ; une version inconnue ou incompatible est refusée proprement.
-- Les données copiées sont sérialisées comme données, jamais comme code ou script à évaluer.
-- Les formats standards de repli (texte, image ou autre format reconnu) sont fournis uniquement lorsque leur sens et leur conversion sont vérifiés.
-- Ne pas publier de chemins locaux, secrets ou métadonnées internes sans nécessité fonctionnelle.
-- Le presse-papiers système n'est lu qu'à la suite d'une action utilisateur pertinente et son contenu est relu au moment du collage.
-
-Références : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html) ; [Qt — QClipboard](https://doc.qt.io/qt-6/qclipboard.html).
-
-## 10.699 Copie des dépendances nécessaires et conservation de leur provenance — Question 730, décision technique prise par l'assistant
-
-Lorsqu'un objet copié dépend de ressources externes au sous-arbre sélectionné, le presse-papiers décrit les dépendances nécessaires à sa reconstruction.
-
-- Déterminer la fermeture des dépendances réellement utilisées : images, symboles, composants, styles et autres ressources requises.
-- N'inclure que les dépendances nécessaires ; ne pas exporter toute la bibliothèque.
-- Conserver pour chaque ressource son identifiant logique, son empreinte, sa provenance et les informations de licence disponibles.
-- Distinguer les ressources embarquées des références externes à résoudre au collage.
-- Si une dépendance ne peut être copiée pour des raisons de taille, licence ou indisponibilité, le signaler et proposer un repli explicite.
-- Borner la taille et le nombre de dépendances avant sérialisation.
-
-Référence : [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
-
-## 10.700 Validation et assainissement des contenus collés depuis l'extérieur — Question 731, décision technique prise par l'assistant
-
-Tout contenu reçu depuis le presse-papiers d'une autre application ou origine est traité comme une entrée non fiable.
-
-- Identifier le type MIME réellement disponible et analyser le contenu avec le parseur correspondant.
-- Pour HTML, SVG, XML, images et formats structurés, appliquer les règles d'importation sécurisée propres au format ; ne jamais exécuter de script.
-- Refuser ou neutraliser les éléments actifs, liens dangereux, données cachées non nécessaires et références vers des fichiers locaux non autorisés.
-- Appliquer des plafonds de taille, dimensions, profondeur, nombre d'objets et consommation mémoire avant décodage complet.
-- Ne pas télécharger les ressources distantes mentionnées dans le contenu collé.
-- Signaler les pertes, neutralisations et conversions importantes avant validation.
-- Un échec d'analyse laisse le document inchangé.
-
-Références : [W3C — Clipboard API and events, security](https://www.w3.org/TR/clipboard-apis/) ; [Qt — QMimeData](https://doc.qt.io/qt-6/qmimedata.html).
-
-## 10.701 Transformation des coordonnées lors du collage — Question 732, décision technique prise par l'assistant
-
-Le collage convertit les coordonnées sans déformer la composition ni dépendre du zoom d'affichage.
-
-- Le format interne conserve le repère source, les unités, les dimensions de la zone de travail et les transformations relatives.
-- Dans un document de même repère, préserver les positions et dimensions relatives originales.
-- Dans un document de dimensions ou d'unités différentes, appliquer une conversion géométrique explicite ; ne pas modifier silencieusement les proportions.
-- La position d'insertion dépend du repère du document et de la zone visible, non des seuls pixels écran.
-- Le collage répété peut appliquer un décalage déterministe sans modifier dimensions ni échelle.
-- L'aperçu montre la position finale avant validation lorsque le placement est interactif.
-- Les conversions ambiguës sont signalées plutôt qu'approximées silencieusement.
-
-Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
-
-## 10.702 Réattribution des identifiants et collage transactionnel — Question 733, décision technique prise par l'assistant
-
-Le collage crée des objets distincts et cohérents dans le document cible.
-
-- Attribuer de nouveaux identifiants uniques aux objets copiés et reconstruire leurs relations internes par une table de correspondance.
-- Préserver les références externes intentionnelles lorsqu'elles sont valides ; aucune référence interne ne doit pointer accidentellement vers l'objet source.
-- Détecter collisions d'identifiants et références manquantes avant insertion.
-- Construire et valider le graphe d'objets et ses dépendances avant modification du document.
-- Appliquer le collage comme une transaction unique, annulable en une commande ; en cas d'échec, le document reste inchangé.
-- Le collage ne remplace ni ne modifie les objets sources.
-
-Référence : [Qt — QUndoStack, command macros](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.703 Capture du pointeur pendant une interaction continue — Question 734, décision technique prise par l'assistant
-
-Les interactions graphiques qui doivent se poursuivre après que le pointeur quitte la cible initiale conservent une capture contrôlée du pointeur.
-
-- Au démarrage d'un déplacement, redimensionnement ou tracé, associer l'interaction au pointeur initiateur jusqu'à validation ou annulation.
-- Les événements d'autres pointeurs ne modifient pas accidentellement l'interaction en cours.
-- Libérer systématiquement la capture après validation, annulation, perte de cible ou fermeture du document.
-- La capture ne doit pas empêcher les comportements de navigation tactile explicitement prévus.
-- L'état de capture est transitoire et ne fait pas partie du document sauvegardé.
-- Tester mouvements hors zone, changements de fenêtre, multi-écrans, souris, stylet et tactile.
-
-Référence : [W3C — Pointer Events, pointer capture](https://www.w3.org/TR/pointerevents/).
-
-## 10.704 Annulation sûre des interactions interrompues — Question 735, décision technique prise par l'assistant
-
-Une interaction au pointeur interrompue avant validation est annulée sans laisser d'état graphique partiel.
-
-- Traiter pointercancel, perte de capture, disparition de la cible, fermeture du projet et interruption système comme des terminaisons explicites.
-- Restaurer l'état initial si l'interaction n'a pas atteint son point de validation.
-- Ne créer aucune commande d'historique pour une interaction annulée ; retirer toute commande provisoire sans modifier l'état sauvegardé.
-- Libérer ressources temporaires, guides, aperçus et captures associées.
-- Si l'interruption survient après validation atomique, conserver le résultat validé.
-- Tester les interruptions à chaque phase : début, mouvement, aperçu, validation et nettoyage.
-
-Référence : [W3C — Pointer Events, pointercancel](https://www.w3.org/TR/pointerevents/).
-
-## 10.705 Exploitation contrôlée des événements de pointeur coalescés — Question 736, décision technique prise par l'assistant
-
-Les interactions nécessitant une trajectoire précise exploitent les échantillons de pointeur disponibles sans supposer qu'un événement de mouvement correspond à chaque mesure matérielle.
-
-- Pour les tracés libres, traiter les événements coalescés lorsqu'ils sont fournis.
-- Pour déplacements et redimensionnements, conserver les informations utiles au résultat final sans recalcul complet à chaque échantillon.
-- Les événements prédits, s'ils servent à l'aperçu, ne sont jamais intégrés comme données définitives sans confirmation par des mesures réelles.
-- Conserver l'ordre temporel des échantillons et leur repère de coordonnées.
-- Adapter la fréquence de rendu de l'aperçu sans perdre les échantillons nécessaires à la géométrie finale.
-- Tester trajectoires rapides et différences de fréquence entre souris, stylet et tactile.
-
-Référence : [W3C — Pointer Events, coalesced events](https://www.w3.org/TR/pointerevents/).
-
-## 10.706 Conversion stable entre coordonnées écran et coordonnées document — Question 737, décision technique prise par l'assistant
-
-Toutes les interactions convertissent les coordonnées du périphérique vers le repère du document à l'aide de la transformation inverse complète de la vue.
-
-- Prendre en compte zoom, déplacement de la vue, transformations de groupes, échelle de l'écran et unités du document.
-- Utiliser une chaîne de conversion partagée par sélection, déplacement, redimensionnement, guides et dessin.
-- Conserver une précision suffisante pendant les interactions ; ne pas arrondir prématurément aux pixels écran.
-- N'arrondir qu'aux étapes nécessaires à l'affichage ou à la sérialisation, selon une règle cohérente.
-- Recalculer la transformation lorsque fenêtre, écran, zoom ou disposition change pendant l'interaction.
-- Tester facteurs d'échelle élevés, rotations, transformations imbriquées et changements de moniteur.
-
-Référence : [W3C — SVG 2, Coordinate Systems and Transformations](https://www.w3.org/TR/SVG/coords.html).
-
-## 10.707 Validation unique des gestes de déplacement et de transformation — Question 738, décision technique prise par l'assistant
-
-Un geste graphique continu constitue une opération unique dans le document et son historique.
-
-- Conserver l'état initial et afficher un aperçu transitoire ; publier les propriétés persistantes uniquement à la validation.
-- Au relâchement normal, valider l'état final en une seule commande Annuler/Rétablir.
-- En cas d'annulation, restaurer l'état initial sans conserver de déplacement intermédiaire.
-- Les contraintes, alignements et magnétismes ajustent l'aperçu ; le résultat validé correspond à la dernière géométrie présentée.
-- Les mises à jour intermédiaires ne déclenchent pas chacune une sauvegarde ou écriture persistante.
-- Tester les gestes multi-objets et les interruptions.
-
-Référence : [Qt — QUndoStack, command compression and macros](https://doc.qt.io/qt-6/qundostack.html).
-
-## 10.708 Édition et suppression respectant les graphèmes Unicode étendus — Question 739, décision technique prise par l'assistant
-
-Les opérations d'édition textuelle respectent les graphèmes Unicode étendus plutôt que de traiter chaque point de code comme un caractère visible indépendant.
-
-- Les déplacements du curseur, sélections par caractère, suppressions et remplacements unitaires ne coupent pas une séquence constituant un graphème étendu.
-- Prendre en charge séquences combinées, emoji avec modificateurs, séquences ZWJ, indicateurs régionaux et écritures complexes selon Unicode.
-- Distinguer indices internes de stockage et frontières perceptibles utilisées par l'interface.
-- Ne pas normaliser ou réécrire le texte source lors d'une simple navigation ou suppression.
-- Mettre à jour les règles de segmentation avec la version Unicode prise en charge et conserver les tests de régression.
-- Les sélections par mot et phrase utilisent des règles distinctes de celles des graphèmes.
-
-Référence : [Unicode — UAX #29, Text Segmentation](https://www.unicode.org/reports/tr29/).
-
-## 10.709 Gestion transactionnelle de la composition par méthode de saisie — Question 740, décision technique prise par l'assistant
-
-Les méthodes de saisie complexes (IME) présentent et modifient une composition temporaire sans valider chaque étape intermédiaire comme texte définitif.
-
-- Distinguer début, mises à jour et fin de composition ; le texte en cours reste identifiable comme provisoire.
-- Ne pas déclencher à chaque mise à jour les traitements définitifs de validation, remplacement automatique ou génération d'historique.
-- À la validation, appliquer le remplacement final comme une seule opération cohérente et annulable.
-- En cas d'annulation de composition par le système ou l'utilisateur, restaurer le texte antérieur et la sélection.
-- Préserver les événements de composition natifs plutôt que simuler la saisie par les seules touches clavier.
-- Tester claviers virtuels et IME de plusieurs langues et plateformes.
-
-Référence : [W3C — Input Events Level 2, composition event order](https://www.w3.org/TR/input-events-2/).
-
-## 10.710 Ordre logique du texte et affichage bidirectionnel — Question 741, décision technique prise par l'assistant
-
-Le texte est conservé dans son ordre logique Unicode ; le réordonnancement nécessaire à l'affichage est calculé par le moteur de texte.
-
-- Appliquer l'algorithme Unicode Bidirectional Algorithm aux paragraphes contenant des écritures de directions différentes.
-- Ne jamais réordonner physiquement la chaîne enregistrée pour reproduire son apparence visuelle.
-- Distinguer position logique du curseur et position visuelle ; gérer les déplacements gauche/droite dans les séquences bidirectionnelles.
-- Sélections, copies, suppressions et exports opèrent sur le texte logique avec un surlignage visuel correct.
-- Interpréter les caractères de contrôle directionnel conformément à la spécification ; rendre leur présence visible dans les diagnostics utiles.
-- Tester les mélanges de français, chiffres, symboles, hébreu, arabe et autres écritures prises en charge.
-
-Référence : [Unicode — UAX #9, Bidirectional Algorithm](https://www.unicode.org/reports/tr9/).
-
-## 10.711 Coupures de ligne conformes aux classes Unicode — Question 742, décision technique prise par l'assistant
-
-Le retour à la ligne automatique s'appuie sur des opportunités de coupure adaptées aux propriétés Unicode du texte.
-
-- Utiliser l'algorithme Unicode de coupure de ligne ou une implémentation documentée produisant des résultats équivalents pour les langues prises en charge.
-- Respecter les interdictions de coupure dans les séquences numériques, unités, mots protégés et séquences insécables.
-- Distinguer sauts de ligne explicites, opportunités automatiques et coupures imposées par les contraintes du cadre.
-- Les symboles de mana, icônes en ligne, champs dynamiques et jetons non textuels sont indivisibles lorsque leur définition l'exige.
-- Toute césure linguistique supplémentaire repose sur un dictionnaire ou moteur identifié et versionné.
-- Le changement de largeur du cadre recalcule les lignes sans modifier la chaîne source.
-
-Référence : [Unicode — UAX #14, Line Breaking Algorithm](https://www.unicode.org/reports/tr14/).
-
-## 10.712 Ancrage logique des sélections et du curseur après modification — Question 743, décision technique prise par l'assistant
-
-Les sélections et positions de curseur restent cohérentes lorsque le texte est modifié ou façonné en glyphes.
-
-- Représenter les positions d'édition dans un repère logique stable associé au texte source, puis les convertir vers les positions visuelles du texte façonné.
-- Préserver les correspondances entre caractères d'entrée, clusters et glyphes, y compris ligatures, décompositions et réordonnancements.
-- Après insertion, suppression, remplacement ou changement de police, recalculer les ancres sans pointer au milieu d'une unité d'édition invalide.
-- Les sélections bidirectionnelles peuvent être visuellement discontinues ; copie et suppression restent basées sur les intervalles logiques.
-- Ne pas déduire une position de curseur par simple addition des largeurs nominales des caractères.
-- Tester ligatures, marques combinées, scripts complexes et changements de direction.
-
-Références : [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html) ; [Unicode — UAX #29](https://www.unicode.org/reports/tr29/).
-
-## 10.713 Façonnage typographique selon le script, la langue et la direction — Question 744, décision technique prise par l'assistant
-
-Le rendu du texte utilise un moteur de façonnage typographique qui transforme les séquences Unicode en glyphes correctement substitués et positionnés.
-
-- Segmenter le texte selon changements de script, langue, direction et police lorsque nécessaire.
-- Appliquer les règles de façonnage appropriées : substitutions, ligatures, positionnement des marques et ajustements de glyphes.
-- Ne pas supposer qu'un caractère Unicode correspond à un glyphe unique ni que les largeurs nominales suffisent.
-- Transmettre au moteur les propriétés de script, langue et direction de chaque segment.
-- Préserver le texte Unicode source indépendamment de la séquence de glyphes rendue.
-- Vérifier les scripts effectivement pris en charge, y compris les écritures complexes.
-
-Références : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html) ; [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html).
-
-## 10.714 Repli typographique par segments et détection des glyphes absents — Question 745, décision technique prise par l'assistant
-
-Lorsqu'une police ne couvre pas tous les caractères d'un segment, le moteur sélectionne un repli contrôlé sans altérer le texte.
-
-- Détecter les glyphes absents et distinguer une absence réelle d'un glyphe volontairement invisible.
-- Sélectionner une police de repli compatible au niveau du segment nécessaire, plutôt que remplacer arbitrairement toute la ligne.
-- Conserver script, langue, direction et style lors du façonnage du segment de repli.
-- Signaler les substitutions qui modifient sensiblement les métriques ou provoquent un débordement.
-- Ne jamais remplacer silencieusement les caractères manquants par un autre caractère ni supprimer le texte source.
-- Le choix du repli est déterministe à configuration et polices disponibles identiques.
-
-Référence : [HarfBuzz — Shaping concepts](https://harfbuzz.github.io/shaping-concepts.html).
-
-## 10.715 Mesure du texte à partir des glyphes réellement façonnés — Question 746, décision technique prise par l'assistant
-
-La mesure utilisée pour la mise en page provient du même résultat de façonnage que celui utilisé pour dessiner le texte.
-
-- Calculer avances et décalages à partir des glyphes façonnés, et non d'une somme simplifiée de largeurs de caractères.
-- Inclure métriques verticales, marques, ligatures, crénage, variations de police et direction dans la géométrie effective.
-- Utiliser les mêmes données pour mesure, aperçu, calcul de débordement et export lorsque les moteurs partagent le pipeline.
-- Si un moteur d'export distinct est nécessaire, comparer ses métriques et son résultat au moteur de référence et signaler les écarts hors tolérance.
-- Invalider les mesures après changement de police, taille, largeur, fonctionnalités ou contenu.
-- Tester les textes proches des limites de cadre et les scripts avec marques combinées.
-
-Références : [HarfBuzz — Getting started](https://harfbuzz.github.io/getting-started.html) ; [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html).
-
-## 10.716 Paramètres OpenType et axes de polices variables explicites — Question 747, décision technique prise par l'assistant
-
-Les fonctionnalités OpenType et axes de polices variables qui influencent le rendu sont représentés explicitement dans le style textuel.
-
-- Enregistrer les fonctionnalités typographiques activées ou désactivées lorsque le moteur permet de les contrôler.
-- Pour les polices variables, conserver les valeurs des axes réellement appliqués, leurs bornes et les valeurs par défaut de la police.
-- Ne pas supposer que deux environnements utilisent les mêmes valeurs par défaut ; les paramètres significatifs sont explicites dans le projet.
-- Signaler les axes et fonctionnalités inconnus ou non pris en charge au lieu de prétendre les appliquer.
-- Préserver ces paramètres lors de duplication, héritage, sauvegarde et export.
-- Les paramètres typographiques ne confèrent aucun droit supplémentaire sur le fichier de police.
-
-Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Utilities](https://harfbuzz.github.io/utilities.html).
-
-## 10.717 Cache de façonnage typographique à clés complètes — Question 748, décision technique prise par l'assistant
-
-Les résultats de façonnage peuvent être mis en cache si la clé identifie toutes les entrées qui influencent le résultat.
-
-- Construire la clé à partir du contenu Unicode, de l'empreinte et version de la police, du script, de la langue, de la direction, de la taille, des fonctionnalités OpenType et des axes variables.
-- Inclure la version du moteur de façonnage et les paramètres de segmentation pertinents.
-- Ne pas partager un résultat entre polices ou contextes typographiques distincts au seul motif que le texte est identique.
-- Borner le cache par son coût mémoire réel et appliquer une éviction déterministe ; le cache reste reconstructible et n'est jamais la source canonique du texte.
-- Invalider les entrées lorsque contenu, police, paramètres, moteur ou propriétés du segment changent.
-- Tester que chaque paramètre pertinent affecte correctement la clé.
-
-Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io/shaping-and-shape-plans.html) ; [HarfBuzz — Clusters](https://harfbuzz.github.io/clusters.html).
 
 # 11. Principes généraux de conception
 
