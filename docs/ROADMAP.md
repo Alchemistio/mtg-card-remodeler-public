@@ -2,23 +2,37 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.122, dernière décision Q773 / section 10.742.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.123, dernière décision Q798 / section 10.767.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+
+### Avancement de la phase 0 — contrôle du 15 novembre 2026
+
+- [x] La phase de clôture préalable est formalisée et intégrée au workflow.
+- [x] Les décisions techniques Q774–Q798 ont précisé les contrats de persistance, le format de projet, l'intégration FeSens, les politiques OS/WebView, les budgets de performance et les validations.
+- [ ] L'audit fonctionnel global et la vérification de toutes les interactions restent à effectuer.
+- [ ] Les preuves d'exécution sur les plateformes cibles et la comparaison exhaustive entre le dépôt, la CI et les exigences restent à effectuer.
+- [ ] Les licences et droits des collections d'assets, des polices et des ressources Figma/FeSens restent bloquants tant qu'ils ne sont pas établis ou que les ressources concernées ne sont pas exclues.
+- [ ] La rédaction et la revue du texte de licence du projet restent à effectuer avant toute distribution.
+- [ ] Le rapport final de préparation et la clôture explicite par l'utilisateur restent à obtenir.
+
+Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.123 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
+
+---
 
 ### 0.1 Audit documentaire et fonctionnel
-- [ ] Consulter à chaque reprise le rappel de workflow, le présent document, l'index, puis les sections pertinentes de la dernière version du cahier des charges.
+- [x] Consulter à chaque reprise le rappel de workflow, le présent document, l'index, puis les sections pertinentes de la dernière version du cahier des charges.
 - [ ] Vérifier chaque thème de la feuille de route contre l'index et le texte intégral ; éliminer les doublons et distinguer les décisions utilisateur des décisions techniques de l'assistant.
 - [ ] Auditer les interactions entre fonctionnalités, cas limites, erreurs, sécurité, accessibilité, données, import/export, hors ligne, sauvegardes, migrations et récupération.
 - [ ] Vérifier que chaque exigence est précise, non contradictoire, traçable et associée à un critère d'acceptation vérifiable.
 - [ ] Réaliser une revue finale de cohérence globale et clôturer explicitement les lacunes fonctionnelles.
 
-### 0.2 Contrats techniques restant à confirmer
-- [ ] Définir le contrat d'intégration FeSens : version et provenance exactes, API utilisée, compatibilité des layouts, stratégie de mise à jour, comportement de repli, tests de non-régression et limites des exports.
-- [ ] Réconcilier l'architecture de persistance spécifiée avec l'existant constaté : SQLite dans Tauri, IndexedDB dans le navigateur et éventuel repli localStorage ; préciser les responsabilités, migrations, transactions, sauvegardes et règles de cohérence.
-- [ ] Définir le format de projet et les contrats de fichiers : versionnement de schéma, manifeste, dépendances, ressources embarquées/liées, intégrité, import/export et compatibilité ascendante.
-- [ ] Confirmer les versions minimales et architectures prises en charge pour Windows, macOS et Linux, sur la base de la matrice Tauri/WebView et des environnements de build réellement supportés.
-- [ ] Fixer des objectifs mesurables de performance, de mémoire, de taille de catalogue et de temps de réponse, avec matériel de référence et protocole de mesure.
-- [ ] Définir les garanties de cohérence entre aperçu, SVG, PNG et PDF, y compris les cas FeSens rasterisés, la typographie, les polices, les couleurs et la reproductibilité.
-- [ ] Vérifier la couverture des tests unitaires, intégration, visuels, bout en bout, migration, restauration, sécurité et multiplateforme.
+### 0.2 Contrats techniques et politiques définis — preuves opérationnelles encore à réunir
+- [x] Définir le contrat d'intégration FeSens : version et provenance exactes, API utilisée, compatibilité des layouts, stratégie de mise à jour, comportement de repli, tests de non-régression et limites des exports.
+- [x] Réconcilier l'architecture de persistance spécifiée avec l'existant constaté : SQLite dans Tauri, IndexedDB dans le navigateur et éventuel repli localStorage ; préciser les responsabilités, migrations, transactions, sauvegardes et règles de cohérence.
+- [x] Définir le format de projet et les contrats de fichiers : versionnement de schéma, manifeste, dépendances, ressources embarquées/liées, intégrité, import/export et compatibilité ascendante.
+- [x] Confirmer les versions minimales et architectures prises en charge pour Windows, macOS et Linux, sur la base de la matrice Tauri/WebView et des environnements de build réellement supportés.
+- [x] Fixer des objectifs mesurables de performance, de mémoire, de taille de catalogue et de temps de réponse, avec matériel de référence et protocole de mesure.
+- [x] Définir les garanties de cohérence entre aperçu, SVG, PNG et PDF, y compris les cas FeSens rasterisés, la typographie, les polices, les couleurs et la reproductibilité.
+- [x] Vérifier la couverture des tests unitaires, intégration, visuels, bout en bout, migration, restauration, sécurité et multiplateforme.
 
 ### 0.3 Dépendances, ressources et conformité
 - [ ] Achever l'audit des licences et provenances de FeSens, Figma MTG Card Designer, polices, symboles, cadres et collections d'assets ; exclure par défaut les ressources dont les droits ne sont pas établis.
