@@ -49,6 +49,9 @@ Les cases cochées dans la section 0.2 signifient que les contrats et politiques
 - [x] Vérifier la couverture des tests unitaires, intégration, visuels, bout en bout, migration, restauration, sécurité et multiplateforme.
 
 ### 0.3 Dépendances, ressources et conformité
+
+**Jalon de distribution séparé :** les contrôles juridiques non résolus n'autorisent jamais la redistribution. Ils ne bloquent l'entrée en développement que si le développement lui-même exige un usage non autorisé ; sinon, les ressources en attente sont isolées et les builds contenant ces ressources restent strictement internes. Aucun binaire ni code sous licence personnalisée ne doit être distribué avant revue du texte et des droits.
+
 - [ ] Achever l'audit des licences et provenances de FeSens, Figma MTG Card Designer, polices, symboles, cadres et collections d'assets ; exclure par défaut les ressources dont les droits ne sont pas établis.
 - [ ] Définir les notices, attributions et conditions de distribution nécessaires ; faire relire le texte de licence du projet avant toute distribution.
 - [ ] Vérifier séparément les droits sur les données, noms, symboles et illustrations MTG ; une provenance documentée ne vaut pas autorisation de redistribution.
@@ -88,7 +91,7 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 - [ ] Produire un rapport de préparation au développement avec écarts résiduels, risques acceptés, prérequis et plan de lots.
 - [ ] Obtenir la clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur avant toute modification du code produit.
 
-**Règle de sortie :** la phase 0 ne peut être déclarée terminée que lorsque tous les contrôles bloquants sont satisfaits, les exigences sont testables, les droits et dépendances critiques sont clarifiés, la CI et l'état réel sont audités, et l'utilisateur a explicitement clôturé le cahier des charges puis autorisé le développement. Une case cochée doit être étayée par une preuve ou un lien de vérification.
+**Règle de sortie — prêt à entrer en développement :** la phase 0 est prête lorsque le cahier des charges est complet, cohérent et testable ; les contrats techniques, plateformes, performances, formats et critères d'acceptation sont établis ; l'état réel du dépôt et de la CI est comparé à la spécification ; les dépendances sont identifiées ; les risques de droits non résolus sont soit levés, soit explicitement exclus de tout artefact distribué ; et le plan de lots ainsi que les critères d'entrée sont prêts. Les ressources FeSens/Figma et autres assets non vérifiés peuvent rester en usage interne de développement uniquement si cet usage est autorisé, mais aucun artefact les contenant ne peut être distribué avant clarification des droits. La rédaction/relecture de la licence personnalisée du code et la validation des droits de chaque asset constituent un **jalon distinct de distribution**, pas une raison pour modifier le code avant la clôture du cahier des charges. La clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur restent obligatoires avant toute modification du code produit. Une case cochée doit être étayée par une preuve ou un lien de vérification.
 
 ---
 ## Phase 1 — Fondations et premier éditeur (en cours)
