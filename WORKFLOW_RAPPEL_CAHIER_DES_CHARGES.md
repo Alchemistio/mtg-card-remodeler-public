@@ -124,7 +124,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
 - **Vérification des identifiants historiques :** Q594–Q618 sont explicitement réservées par l'audit du 13 novembre 2026, leurs propositions ayant été retirées pour doublons avec V3.93. Les identifiants Q499–Q503 et Q633 ne disposent pas de section correspondante dans le cahier des charges courant ; ils sont considérés comme non attribués/non réutilisables tant qu'une preuve historique ne justifie pas leur rétablissement. Les identifiants Q1–Q21 appartiennent à l'ancienne phase initiale sans entrée de question indexée. Ne jamais combler ces trous automatiquement ; le prochain identifiant courant reste Q804.
-- **Rétention :** la branche `main` doit conserver uniquement V3.122, V3.123 et V3.124. V3.121 est à retirer de `main` après vérification de V3.124 et de son index ; l'historique Git est préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.125, V3.126 et V3.127. V3.124 est à retirer de `main` après vérification de V3.127 et de son index ; l'historique Git est préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -303,3 +303,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.127 :** les 75 décisions techniques Q519–Q593 sont maintenant étiquetées comme décisions prises par l'assistant. L'index doit être contrôlé après recalcul : 753 entrées attendues, références de lignes/titres sans erreur. Rétention cible V3.125, V3.126 et V3.127 ; V3.124 à supprimer après vérification. Point de reprise Q806 / 10.775 ; prochaine question candidate Q807. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.127 — vérification finale :** 753 sections/questions, 753 entrées uniques dans l'index, zéro erreur de référence. Les 75 décisions Q519–Q593 sont toutes reclassées comme décisions techniques prises par l'assistant. La branche main conserve V3.125, V3.126 et V3.127 ; V3.124 est retirée après contrôle, historique Git préservé. Le point de reprise reste Q806 / 10.775 ; prochaine question candidate Q807. La feuille de route reste la première référence à consulter après ce rappel. Aucun code produit modifié.
