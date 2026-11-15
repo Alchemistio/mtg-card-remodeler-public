@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.126](MTG_Card_Remodeler_Cahier_des_charges_V3.126.md)
+- Cahier des charges de référence au dernier contrôle : [V3.127](MTG_Card_Remodeler_Cahier_des_charges_V3.127.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q806**
 - Dernière section : **10.775**
-- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.126
+- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.127
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -117,7 +117,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.126.**
+- **Version courante : V3.127.**
 - **Dernière question enregistrée : Q806.**
 - **Dernière section : 10.775.**
 - **Prochaine question disponible : Q807.**
@@ -300,3 +300,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.126 :** 753 sections/questions et 753 entrées uniques dans l'index ; toutes les références de titres et de lignes sont valides (zéro erreur). V3.123 supprimée de main après vérification ; seules V3.124, V3.125 et V3.126 sont conservées. Point de reprise Q806 / 10.775 ; prochaine question Q807. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.127 :** les 75 décisions techniques Q519–Q593 sont maintenant étiquetées comme décisions prises par l'assistant. L'index doit être contrôlé après recalcul : 753 entrées attendues, références de lignes/titres sans erreur. Rétention cible V3.125, V3.126 et V3.127 ; V3.124 à supprimer après vérification. Point de reprise Q806 / 10.775 ; prochaine question candidate Q807. Aucun code produit modifié.
