@@ -247,3 +247,8 @@ La matrice initiale de support est définie dans Q799, mais la compatibilité ef
 L'audit fonctionnel a montré que la spécification reconnaissait les types de cartes mais ne listait pas explicitement tous les layouts Scryfall. Les questions Q804–Q805 ajoutent cette matrice et le traitement des faces, côtés, relations meld, coûts et statistiques alternatifs, chapitres, niveaux, marqueurs et textes de rappel.
 
 La matrice fonctionnelle est désormais définie ; le code actuel ne couvre pas encore l'ensemble des layouts. Le statut de réalisation reste donc partiel et doit être vérifié layout par layout avec les fixtures visuelles de Q801/Q797. Les layouts inconnus doivent conserver leurs données et utiliser un repli générique clairement signalé.
+
+
+## 12. Import direct des decks par URL — V3.126
+
+Q806 formalise l'import des decks publics par URL avec un service réseau natif dans Tauri, des fournisseurs autorisés, des protections SSRF, des limites de réponse et un repli fichier/texte lorsque le navigateur bloque l'accès. Le code actuel ne possède pas encore ce parcours sécurisé complet ; l'import reste best-effort et soumis aux possibilités d'accès des plateformes. La fonctionnalité est spécifiée mais non réalisée.
