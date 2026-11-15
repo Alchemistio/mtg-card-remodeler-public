@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.131](MTG_Card_Remodeler_Cahier_des_charges_V3.131.md)
+- Cahier des charges de référence au dernier contrôle : [V3.132](MTG_Card_Remodeler_Cahier_des_charges_V3.132.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q806**
 - Dernière section : **10.775**
-- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.131
+- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.132
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -118,7 +118,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.131.**
+- **Version courante : V3.132.**
 - **Dernière question enregistrée : Q806.**
 - **Dernière section : 10.775.**
 - **Prochaine question disponible : Q807.**
@@ -328,3 +328,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.131 :** 758 identifiants indexés (756 exigences actives, 2 fusionnées), 758 sections de question, aucune section vide, ordre strict et zéro erreur de référence. V3.128 retirée de main après contrôle ; seules V3.129, V3.130 et V3.131 sont conservées. Point de reprise Q811 / 10.780 ; prochaine question Q812. Aucun code produit modifié.
+
+
+- **2026-11-15 — Publication V3.132 :** ajout de Q812 / 10.781 : rétention par défaut 30 jours, plafond 250 Mo, rotation à 10 Mo ou quotidienne, compression et choix utilisateur bornés. Les reports de Q624 sont remplacés par les matrices Q799/Q803 ; les valeurs de Q638 sont remplacées par Q812. Index recalculé. Point de reprise Q812 ; prochaine question Q813. Rétention cible V3.130–V3.132 ; V3.129 à retirer après vérification. Aucun code produit modifié.
