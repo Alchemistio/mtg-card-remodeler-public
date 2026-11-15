@@ -284,3 +284,12 @@ Q807–Q811 rendent numériques plusieurs exigences auparavant qualitatives : no
 ## 18. Paramètres de rétention des journaux — V3.132
 
 Q812 ferme le report technique de Q638 : conservation par défaut 30 jours, plafond 250 Mo, rotation d'un fichier à 10 Mo ou quotidienne, compression après fermeture, choix configurables de durée et de volume. Q624 renvoie désormais explicitement à la matrice OS Q799 et aux formats de livraison Q803. Ces paramètres sont définis mais restent à implémenter et tester.
+
+
+## 19. État de préparation V3.133
+
+L'audit final a vérifié les 759 identifiants du cahier des charges et de l'index : 757 exigences actives, deux identifiants fusionnés, aucune section vide, ordre strict et zéro erreur de référence. Les 75 décisions techniques Q519–Q593 ont été adoptées ; les reports techniques de Q624 et Q638 sont résolus ; les lacunes fonctionnelles détectées sur les layouts Scryfall et l'import URL sont formalisées en Q804–Q806. Les exigences des lots A–G sont reliées à des références du cahier des charges.
+
+Le logiciel est prêt à entrer dans le développement au niveau du périmètre et de l'organisation. Les écarts existants (stockage, lockfile, FeSens, tests visuels, manifeste d'assets et CI multiplateforme) sont identifiés et affectés aux lots correspondants. Aucun code produit n'a été modifié pendant l'audit.
+
+La clôture formelle du cahier des charges et l'autorisation de démarrer le Lot A restent à obtenir de l'utilisateur. Les vérifications de licence et de droits des ressources demeurent un jalon préalable à toute distribution, distinct de l'entrée en développement.
