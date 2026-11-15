@@ -274,3 +274,8 @@ L'audit de testabilité avait repéré deux sections sans corps. Les phrases cor
 ## 16. Consolidation des doublons — V3.130
 
 L'audit de similarité a identifié deux paires redondantes. Q437 était identique à Q440 ; Q489 reformulait la même règle de focus que Q485. Les exigences normatives sont conservées en Q440 et Q485. Q437 et Q489 sont désormais des entrées de traçabilité indiquant leur fusion, sans exigence autonome. L'index compte 753 identifiants, dont 751 exigences actives et deux identifiants fusionnés.
+
+
+## 17. Valeurs par défaut testables V3.131
+
+Q807–Q811 rendent numériques plusieurs exigences auparavant qualitatives : notifications non bloquantes 5 s, transitions 160 ms avec courbes adaptées et respect de prefers-reduced-motion, largeur minimale du panneau 260 px CSS, espace de travail RGB sRGB IEC 61966-2.1, seuils raster recommandés de 300 PPI (tons continus) et 600 PPI (trait monochrome). Ces valeurs sont des défauts modifiables par les profils prévus, pas des limites universelles imposées à tous les cas.
