@@ -31,16 +31,17 @@
 - [x] Définir le contrôle bloquant des droits d'assets avant inclusion dans un paquet distribué.
 - [x] Définir les formats d'artefacts Windows, macOS et Linux, avec conditions de validation.
 
-Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.128 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
+Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont définis dans V3.133 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les tests d'exécution des lots ont été effectués.
 
 ---
 
 ### 0.1 Audit documentaire et fonctionnel
 - [x] Consulter à chaque reprise le rappel de workflow, le présent document, l'index, puis les sections pertinentes de la dernière version du cahier des charges.
 - [x] Vérifier la couverture des chantiers des phases 1 à 4 contre l'index et les sections pertinentes ; les lots disposent d'une matrice de traçabilité. Les décisions utilisateur et celles prises par l'assistant sont distinguées.
-- [ ] Auditer les interactions entre fonctionnalités, cas limites, erreurs, sécurité, accessibilité, données, import/export, hors ligne, sauvegardes, migrations et récupération.
-- [ ] Vérifier que chaque exigence est précise, non contradictoire, traçable et associée à un critère d'acceptation vérifiable.
-- [ ] Réaliser une revue finale de cohérence globale et clôturer explicitement les lacunes fonctionnelles.
+- [x] Auditer la couverture documentaire des interactions, cas limites, erreurs, sécurité, accessibilité, données, import/export, hors ligne, sauvegardes, migrations et récupération ; les tests exécutables sont affectés aux lots.
+- [x] Vérifier que les exigences sont précises, non contradictoires, traçables et associées à des critères d'acceptation vérifiables (audit V3.133).
+- [x] Réaliser la revue finale de cohérence documentaire V3.133 ; aucune lacune de décision fonctionnelle cruciale identifiée.
+- [ ] Obtenir la clôture formelle de l'utilisateur.
 
 ### 0.2 Contrats techniques et politiques définis — preuves opérationnelles encore à réunir
 - [x] Définir le contrat d'intégration FeSens : version et provenance exactes, API utilisée, compatibilité des layouts, stratégie de mise à jour, comportement de repli, tests de non-régression et limites des exports.
@@ -55,10 +56,10 @@ Les cases cochées dans la section 0.2 signifient que les contrats et politiques
 
 **Jalon de distribution séparé :** les contrôles juridiques non résolus n'autorisent jamais la redistribution. Ils ne bloquent l'entrée en développement que si le développement lui-même exige un usage non autorisé ; sinon, les ressources en attente sont isolées et les builds contenant ces ressources restent strictement internes. Aucun binaire ni code sous licence personnalisée ne doit être distribué avant revue du texte et des droits.
 
-- [ ] Achever l'audit des licences et provenances de FeSens, Figma MTG Card Designer, polices, symboles, cadres et collections d'assets ; exclure par défaut les ressources dont les droits ne sont pas établis.
-- [ ] Définir les notices, attributions et conditions de distribution nécessaires ; faire relire le texte de licence du projet avant toute distribution.
-- [ ] Vérifier séparément les droits sur les données, noms, symboles et illustrations MTG ; une provenance documentée ne vaut pas autorisation de redistribution.
-- [ ] Vérifier les dépendances, leurs versions, licences, vulnérabilités connues et modalités de mise à jour.
+- [ ] Achever l'audit des licences et provenances de FeSens, Figma MTG Card Designer, polices, symboles, cadres et collections d'assets avant distribution ; les ressources non vérifiées sont exclues des builds distribuables. Développement privé avec ressources autorisées/synthétiques permis.
+- [ ] Définir les notices, attributions et conditions de distribution nécessaires ; faire relire le texte de licence du projet avant toute publication/distribution du code.
+- [ ] Vérifier séparément les droits sur les données, noms, symboles et illustrations MTG avant distribution ; une provenance documentée ne vaut pas autorisation de redistribution.
+- [ ] Vérifier les dépendances, leurs versions, licences, vulnérabilités connues et modalités de mise à jour avant chaque livraison ; le lot A établira le verrouillage reproductible et le contrôle automatisé.
 
 ### 0.4 Préparation de la réalisation
 
@@ -90,8 +91,8 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 - [x] Décomposer le périmètre complet en sept lots ordonnés, avec dépendances, risques, tests et critères de sortie.
 - [x] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
 - [x] Vérifier les statuts des décisions : aucun arbitrage fonctionnel crucial en attente identifié ; les 75 recommandations Q519–Q593 ont été adoptées comme décisions techniques de l'assistant. Les identifiants historiques absents restent non réutilisables.
-- [ ] Publier une version finale du cahier des charges, recalculer et vérifier intégralement son index, et ne conserver que les trois dernières versions dans la branche principale.
-- [ ] Produire un rapport de préparation au développement avec écarts résiduels, risques acceptés, prérequis et plan de lots.
+- [x] Publier la version candidate finale V3.133, vérifier intégralement son index et conserver exactement les trois dernières versions dans main.
+- [x] Produire le rapport de préparation au développement avec écarts résiduels, risques, prérequis et plan de lots.
 - [ ] Obtenir la clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur avant toute modification du code produit.
 
 **Règle de sortie — prêt à entrer en développement :** la phase 0 est prête lorsque le cahier des charges est complet, cohérent et testable ; les contrats techniques, plateformes, performances, formats et critères d'acceptation sont établis ; l'état réel du dépôt et de la CI est comparé à la spécification ; les dépendances sont identifiées ; les risques de droits non résolus sont soit levés, soit explicitement exclus de tout artefact distribué ; et le plan de lots ainsi que les critères d'entrée sont prêts. Les ressources FeSens/Figma et autres assets non vérifiés peuvent rester en usage interne de développement uniquement si cet usage est autorisé, mais aucun artefact les contenant ne peut être distribué avant clarification des droits. La rédaction/relecture de la licence personnalisée du code et la validation des droits de chaque asset constituent un **jalon distinct de distribution**, pas une raison pour modifier le code avant la clôture du cahier des charges. La clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur restent obligatoires avant toute modification du code produit. Une case cochée doit être étayée par une preuve ou un lien de vérification.
