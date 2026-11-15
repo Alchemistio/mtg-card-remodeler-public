@@ -56,6 +56,18 @@ Les cases cochées dans la section 0.2 signifient que les contrats et politiques
 
 ### 0.4 Préparation de la réalisation
 
+#### Audit des assets — état réel au 15 novembre 2026
+
+- [x] Inventorier les 37 371 fichiers des cinq collections source et produire les métadonnées individuelles.
+- [x] Définir la politique : aucune ressource pending-review ou de provenance inconnue ne peut entrer dans un paquet distribué.
+- [ ] Exécuter le générateur visuel sur un clone complet et examiner les planches de contact.
+- [ ] Compléter les droits par ressource et ne sélectionner que des lots dont l'usage et la redistribution sont autorisés.
+- [ ] Vérifier les six chemins déclarés par src/assets/manifest.ts : les SVG attendus ne sont pas présents dans l'arborescence examinée.
+- [ ] Ajouter une validation de build qui refuse tout asset embarqué dont le statut et la preuve de droits ne satisfont pas Q802.
+- [ ] Réconcilier le manifeste runtime avec les assets réellement présents et testés.
+
+L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothèque d'assets approuvés. Assets/LIBRARY reste vide volontairement. Le contrôle de droits du packaging est spécifié mais pas encore implémenté.
+
 #### Audit initial du code et des workflows — 15 novembre 2026
 
 - [~] Audit comparatif commencé ; rapport détaillé : [docs/PROJECT_STATUS.md](PROJECT_STATUS.md), section 8.
