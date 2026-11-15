@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.133 | Audit final de cohérence, de traçabilité et de testabilité ; version candidate à la clôture utilisateur |\n| V3.132 | Finalisation des paramètres de rétention/rotation des journaux et suppression des reports obsolètes Q624/Q638 (Q812) |
+| V3.133 | Audit final de cohérence, de traçabilité et de testabilité ; version candidate à la clôture utilisateur |
+| V3.132 | Finalisation des paramètres de rétention/rotation des journaux et suppression des reports obsolètes Q624/Q638 (Q812) |
 | V3.131 | Valeurs par défaut testables pour notifications, animations, panneau, couleur RGB et résolution d'impression (Q807–Q811) |
 | V3.130 | Consolidation des doublons Q437/Q440 et Q489/Q485, identifiants historiques préservés |
 | V3.129 | Réaffectation de deux exigences d'animation mal placées (Q478/Q483) et audit des sections vides |
@@ -7895,7 +7896,8 @@ Les valeurs par défaut de conservation des journaux locaux sont fixées afin de
 
 # 11. Principes généraux de conception
 
-1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
+1. **Liberté de création :** ne pas imposer de limites artificielles à la personnalisation graphique.
+2. **Modularité :** permettre la réutilisation des templates, composants, ressources et variantes.
 3. **Héritage contrôlé :** préserver les relations entre modèles et instances sans empêcher les personnalisations locales.
 4. **Réversibilité :** toute modification importante doit pouvoir être annulée ou restaurée.
 5. **Sécurité des données :** ne jamais écraser ou déplacer silencieusement les données utilisateur.
