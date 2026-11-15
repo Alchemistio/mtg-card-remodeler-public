@@ -7434,7 +7434,7 @@ Références : [Scryfall — API access and image-host limits](https://scryfall.
 
 
 
-## 10.743 Persistance principale selon le mode d'exécution — Question 34, décision technique prise par l'assistant
+## 10.743 Persistance principale selon le mode d'exécution — Question 774, décision technique prise par l'assistant
 
 Le stockage persistant principal est choisi explicitement selon le mode d'exécution : SQLite pour l'application desktop Tauri et IndexedDB pour l'exécution dans un navigateur pris en charge.
 
@@ -7447,7 +7447,7 @@ Le stockage persistant principal est choisi explicitement selon le mode d'exécu
 Références : [Tauri SQL plugin](https://v2.tauri.app/plugin/sql/) ; [MDN — IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
 
 
-## 10.744 Contrat de dépôt commun aux adaptateurs de persistance — Question 35, décision technique prise par l'assistant
+## 10.744 Contrat de dépôt commun aux adaptateurs de persistance — Question 775, décision technique prise par l'assistant
 
 Les fonctionnalités métier accèdent aux données par des interfaces de dépôt indépendantes du moteur de persistance.
 
@@ -7458,7 +7458,7 @@ Les fonctionnalités métier accèdent aux données par des interfaces de dépô
 - Les tests de contrat sont exécutés contre chaque adaptateur afin de vérifier l'équivalence des invariants métier.
 
 
-## 10.745 LocalStorage réservé aux préférences et à la migration de compatibilité — Question 36, décision technique prise par l'assistant
+## 10.745 LocalStorage réservé aux préférences et à la migration de compatibilité — Question 776, décision technique prise par l'assistant
 
 localStorage est limité aux préférences de faible volume et au mécanisme transitoire de migration depuis les anciennes versions.
 
@@ -7469,7 +7469,7 @@ localStorage est limité aux préférences de faible volume et au mécanisme tra
 - Les préférences ne contenant pas de données sensibles peuvent rester dans localStorage si leur usage est adapté et leur volume borné.
 
 
-## 10.746 Gestion des quotas et de la persistance IndexedDB — Question 37, décision technique prise par l'assistant
+## 10.746 Gestion des quotas et de la persistance IndexedDB — Question 777, décision technique prise par l'assistant
 
 L'adaptateur navigateur gère explicitement les quotas et l'éviction potentielle du stockage web.
 
@@ -7482,7 +7482,7 @@ L'adaptateur navigateur gère explicitement les quotas et l'éviction potentiell
 Référence : [MDN — IndexedDB API, storage limits and eviction](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
 
 
-## 10.747 Diagnostic de disponibilité et de cohérence du stockage — Question 38, décision technique prise par l'assistant
+## 10.747 Diagnostic de disponibilité et de cohérence du stockage — Question 778, décision technique prise par l'assistant
 
 L'application vérifie la disponibilité et la cohérence de son adaptateur de persistance avant les opérations sensibles.
 
@@ -7493,7 +7493,7 @@ L'application vérifie la disponibilité et la cohérence de son adaptateur de p
 - Inscrire les résultats techniques dans les diagnostics locaux sans exposer les contenus des cartes, chemins privés ou données personnelles.
 
 
-## 10.748 Conteneur portable des projets — Question 39, décision technique prise par l'assistant
+## 10.748 Conteneur portable des projets — Question 779, décision technique prise par l'assistant
 
 Le format d'échange d'un projet complet est un conteneur ZIP portant une extension applicative dédiée et contenant un manifeste, les données structurées et les ressources locales nécessaires.
 
@@ -7504,7 +7504,7 @@ Le format d'échange d'un projet complet est un conteneur ZIP portant une extens
 - L'application conserve la possibilité d'exporter les données dans un format de secours documenté si un conteneur complet ne peut pas être produit.
 
 
-## 10.749 Manifeste obligatoire du conteneur de projet — Question 40, décision technique prise par l'assistant
+## 10.749 Manifeste obligatoire du conteneur de projet — Question 780, décision technique prise par l'assistant
 
 Chaque conteneur de projet comporte un manifeste racine obligatoire qui décrit son identité et son contenu.
 
@@ -7515,7 +7515,7 @@ Chaque conteneur de projet comporte un manifeste racine obligatoire qui décrit 
 - L'absence ou l'invalidité du manifeste entraîne un refus d'importation du conteneur complet, sans tentative d'interprétation arbitraire.
 
 
-## 10.750 Chemins internes et identifiants des ressources de projet — Question 31, décision technique prise par l'assistant
+## 10.750 Chemins internes et identifiants des ressources de projet — Question 781, décision technique prise par l'assistant
 
 Les ressources d'un projet sont référencées par des identifiants stables et des chemins internes relatifs normalisés.
 
@@ -7526,7 +7526,7 @@ Les ressources d'un projet sont référencées par des identifiants stables et d
 - Préserver les noms d'origine à titre de métadonnées sans leur accorder de rôle de sécurité.
 
 
-## 10.751 Intégrité cryptographique des fichiers de projet — Question 32, décision technique prise par l'assistant
+## 10.751 Intégrité cryptographique des fichiers de projet — Question 782, décision technique prise par l'assistant
 
 L'intégrité du conteneur est vérifiée avant que son contenu soit publié dans la bibliothèque locale.
 
@@ -7537,7 +7537,7 @@ L'intégrité du conteneur est vérifiée avant que son contenu soit publié dan
 - Présenter un bilan d'intégrité avant importation et ne publier aucune donnée partielle comme un projet valide.
 
 
-## 10.752 Compatibilité des conteneurs issus d'une version future — Question 33, décision technique prise par l'assistant
+## 10.752 Compatibilité des conteneurs issus d'une version future — Question 783, décision technique prise par l'assistant
 
 Un conteneur dont la version de format est plus récente que la version prise en charge est traité en mode sûr.
 
@@ -7548,7 +7548,7 @@ Un conteneur dont la version de format est plus récente que la version prise en
 - Une conversion vers une version antérieure exige un export explicite, un rapport des pertes potentielles et une confirmation de l'utilisateur.
 
 
-## 10.753 Versionnement strict de la dépendance FeSens — Question 34, décision technique prise par l'assistant
+## 10.753 Versionnement strict de la dépendance FeSens — Question 784, décision technique prise par l'assistant
 
 La dépendance FeSens utilisée par le rendu est versionnée de manière reproductible.
 
@@ -7561,7 +7561,7 @@ La dépendance FeSens utilisée par le rendu est versionnée de manière reprodu
 Référence : [FeSens — mtg-card](https://github.com/FeSens/mtg-card).
 
 
-## 10.754 Frontière d'adaptation entre le modèle interne et FeSens — Question 35, décision technique prise par l'assistant
+## 10.754 Frontière d'adaptation entre le modèle interne et FeSens — Question 785, décision technique prise par l'assistant
 
 FeSens reste un moteur de rendu tiers derrière un adaptateur appartenant à l'application.
 
@@ -7572,7 +7572,7 @@ FeSens reste un moteur de rendu tiers derrière un adaptateur appartenant à l'a
 - Le moteur SVG local demeure le repli explicite pour les compositions non prises en charge, selon la matrice de capacités existante.
 
 
-## 10.755 Tests de conformité du moteur FeSens — Question 36, décision technique prise par l'assistant
+## 10.755 Tests de conformité du moteur FeSens — Question 786, décision technique prise par l'assistant
 
 Chaque version approuvée de FeSens est contrôlée par un corpus de tests ciblant les capacités réellement utilisées.
 
@@ -7585,7 +7585,7 @@ Chaque version approuvée de FeSens est contrôlée par un corpus de tests cibla
 Référence : [Playwright — Visual comparisons](https://playwright.dev/docs/test-snapshots).
 
 
-## 10.756 Déclaration explicite de la nature vectorielle ou raster des exports — Question 37, décision technique prise par l'assistant
+## 10.756 Déclaration explicite de la nature vectorielle ou raster des exports — Question 787, décision technique prise par l'assistant
 
 Le bilan d'export indique fidèlement la nature réelle du contenu graphique produit par chaque moteur.
 
@@ -7596,7 +7596,7 @@ Le bilan d'export indique fidèlement la nature réelle du contenu graphique pro
 - Les avertissements ou blocages suivent la matrice de capacités et les critères de qualité déjà définis.
 
 
-## 10.757 Séparation entre licence du paquet FeSens et droits des ressources graphiques — Question 38, décision technique prise par l'assistant
+## 10.757 Séparation entre licence du paquet FeSens et droits des ressources graphiques — Question 788, décision technique prise par l'assistant
 
 L'intégration de FeSens est soumise à une vérification distincte du code du paquet et des ressources graphiques dont il dérive.
 
@@ -7609,7 +7609,7 @@ L'intégration de FeSens est soumise à une vérification distincte du code du p
 Référence : [FeSens — dépôt et acknowledgements](https://github.com/FeSens/mtg-card).
 
 
-## 10.758 Politique de support des versions Windows — Question 39, décision technique prise par l'assistant
+## 10.758 Politique de support des versions Windows — Question 789, décision technique prise par l'assistant
 
 Les versions Windows prises en charge doivent être encore maintenues en sécurité par Microsoft au moment de la publication et compatibles avec la version de Tauri et de WebView2 utilisée.
 
@@ -7622,7 +7622,7 @@ Les versions Windows prises en charge doivent être encore maintenues en sécuri
 Références : [Microsoft — Windows 10 end of support](https://support.microsoft.com/en-us/windows/deployment/updates-lifecycle/windows-10-support-has-ended-on-october-14-2025) ; [Tauri — Webview versions](https://v2.tauri.app/reference/webview-versions/).
 
 
-## 10.759 Politique de support des versions macOS — Question 40, décision technique prise par l'assistant
+## 10.759 Politique de support des versions macOS — Question 790, décision technique prise par l'assistant
 
 Les versions macOS officiellement prises en charge sont limitées aux versions encore maintenues par Apple et compatibles avec la version de Tauri utilisée.
 
@@ -7635,7 +7635,7 @@ Les versions macOS officiellement prises en charge sont limitées aux versions e
 Référence : [Tauri — Prerequisites](https://v2.tauri.app/start/prerequisites/).
 
 
-## 10.760 Politique de support des distributions Linux — Question 31, décision technique prise par l'assistant
+## 10.760 Politique de support des distributions Linux — Question 791, décision technique prise par l'assistant
 
 La prise en charge Linux est définie par une matrice de distributions et de dépendances système vérifiées, et non par une promesse universelle pour toutes les distributions.
 
@@ -7648,7 +7648,7 @@ La prise en charge Linux est définie par une matrice de distributions et de dé
 Références : [Tauri — Prerequisites](https://v2.tauri.app/start/prerequisites/) ; [Ubuntu — Release cycle](https://ubuntu.com/about/release-cycle) ; [Debian — Stable release information](https://www.debian.org/releases/stable/index.en.html).
 
 
-## 10.761 Architectures processeur officiellement distribuées — Question 32, décision technique prise par l'assistant
+## 10.761 Architectures processeur officiellement distribuées — Question 792, décision technique prise par l'assistant
 
 Les architectures processeur sont annoncées individuellement et ne sont prises en charge que lorsqu'une chaîne de build et une validation complète existent.
 
@@ -7659,7 +7659,7 @@ Les architectures processeur sont annoncées individuellement et ne sont prises 
 - Les paquets et leur page de téléchargement indiquent clairement l'architecture de chaque artefact.
 
 
-## 10.762 Politique de mise à jour des moteurs WebView — Question 33, décision technique prise par l'assistant
+## 10.762 Politique de mise à jour des moteurs WebView — Question 793, décision technique prise par l'assistant
 
 L'application utilise les WebView système prises en charge par Tauri et ne tente pas de figer durablement un moteur de navigateur embarqué.
 
@@ -7672,7 +7672,7 @@ L'application utilise les WebView système prises en charge par Tauri et ne tent
 Référence : [Tauri — Webview versions](https://v2.tauri.app/reference/webview-versions/).
 
 
-## 10.763 Validation des installateurs et paquets par plateforme — Question 34, décision technique prise par l'assistant
+## 10.763 Validation des installateurs et paquets par plateforme — Question 794, décision technique prise par l'assistant
 
 Un artefact de distribution n'est considéré comme validé qu'après installation et exécution sur un environnement propre de la plateforme annoncée.
 
@@ -7683,7 +7683,7 @@ Un artefact de distribution n'est considéré comme validé qu'après installati
 - Les builds CI et artefacts temporaires ne remplacent pas une validation manuelle ou automatisée sur machine propre pour chaque plateforme.
 
 
-## 10.764 Environnement de référence des mesures de performance — Question 35, décision technique prise par l'assistant
+## 10.764 Environnement de référence des mesures de performance — Question 795, décision technique prise par l'assistant
 
 Les mesures de performance sont exécutées sur un environnement de référence documenté et reproductible.
 
@@ -7694,7 +7694,7 @@ Les mesures de performance sont exécutées sur un environnement de référence 
 - Toute modification de l'environnement de référence est versionnée et les résultats historiques restent consultables.
 
 
-## 10.765 Budgets initiaux de réactivité et scénarios de performance — Question 36, décision technique prise par l'assistant
+## 10.765 Budgets initiaux de réactivité et scénarios de performance — Question 796, décision technique prise par l'assistant
 
 Les budgets de performance initiaux sont évalués sur des scénarios représentatifs et deviennent des critères de régression mesurables.
 
@@ -7705,7 +7705,7 @@ Les budgets de performance initiaux sont évalués sur des scénarios représent
 - Ces budgets sont des objectifs de qualité, pas des garanties sur tout matériel ; toute exception doit être mesurée, expliquée et documentée, sans masquer les régressions.
 
 
-## 10.766 Corpus visuel de référence et gestion des snapshots — Question 37, décision technique prise par l'assistant
+## 10.766 Corpus visuel de référence et gestion des snapshots — Question 797, décision technique prise par l'assistant
 
 Les régressions visuelles sont contrôlées avec un corpus de référence versionné et dont les droits d'utilisation sont établis.
 
@@ -7718,7 +7718,7 @@ Les régressions visuelles sont contrôlées avec un corpus de référence versi
 Référence : [Playwright — Visual comparisons](https://playwright.dev/docs/test-snapshots).
 
 
-## 10.767 Matrice de tests et critères de sortie multiplateformes — Question 38, décision technique prise par l'assistant
+## 10.767 Matrice de tests et critères de sortie multiplateformes — Question 798, décision technique prise par l'assistant
 
 La validation de version combine tests automatisés communs et vérifications propres à chaque plateforme.
 
