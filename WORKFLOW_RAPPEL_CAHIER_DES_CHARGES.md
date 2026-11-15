@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.130](MTG_Card_Remodeler_Cahier_des_charges_V3.130.md)
+- Cahier des charges de référence au dernier contrôle : [V3.131](MTG_Card_Remodeler_Cahier_des_charges_V3.131.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q806**
 - Dernière section : **10.775**
-- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.130
+- Prochain numéro disponible : **Q807** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.131
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -118,7 +118,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.130.**
+- **Version courante : V3.131.**
 - **Dernière question enregistrée : Q806.**
 - **Dernière section : 10.775.**
 - **Prochaine question disponible : Q807.**
@@ -322,3 +322,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.130 :** consolidation de deux doublons sémantiques : Q437 est fusionnée dans Q440 et Q489 dans Q485. Les identifiants restent indexés comme retirés et ne seront pas réutilisés. Le nombre d'identifiants indexés reste 753, dont 751 exigences actives et 2 entrées de traçabilité fusionnées. Index recalculé. Point de reprise Q806 / 10.775 ; prochaine question candidate Q807. Rétention cible V3.128–V3.130 ; V3.127 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Publication V3.131 :** ajout des décisions Q807–Q811 pour rendre testables les durées de notification et d'animation, la largeur minimale du panneau, l'espace RGB par défaut et les seuils PPI d'impression. Index recalculé. Point de reprise Q811 / 10.780 ; prochaine question Q812. Rétention cible V3.129–V3.131 ; V3.128 à retirer après vérification. Aucun code produit modifié.
