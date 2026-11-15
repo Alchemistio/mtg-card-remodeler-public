@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.124](MTG_Card_Remodeler_Cahier_des_charges_V3.124.md)
+- Cahier des charges de référence au dernier contrôle : [V3.125](MTG_Card_Remodeler_Cahier_des_charges_V3.125.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
-- Dernière question enregistrée : **Q803**
-- Dernière section : **10.772**
-- Prochain numéro disponible : **Q804** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.124
+- Dernière question enregistrée : **Q805**
+- Dernière section : **10.774**
+- Prochain numéro disponible : **Q806** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.125
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -117,10 +117,10 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.124.**
-- **Dernière question enregistrée : Q803.**
-- **Dernière section : 10.772.**
-- **Prochaine question disponible : Q804.**
+- **Version courante : V3.125.**
+- **Dernière question enregistrée : Q805.**
+- **Dernière section : 10.774.**
+- **Prochaine question disponible : Q806.**
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
 - **Vérification des identifiants historiques :** Q594–Q618 sont explicitement réservées par l'audit du 13 novembre 2026, leurs propositions ayant été retirées pour doublons avec V3.93. Les identifiants Q499–Q503 et Q633 ne disposent pas de section correspondante dans le cahier des charges courant ; ils sont considérés comme non attribués/non réutilisables tant qu'une preuve historique ne justifie pas leur rétablissement. Les identifiants Q1–Q21 appartiennent à l'ancienne phase initiale sans entrée de question indexée. Ne jamais combler ces trous automatiquement ; le prochain identifiant courant reste Q804.
@@ -288,3 +288,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.124 :** V3.124 et son index ont été vérifiés : 750 sections/questions, 750 entrées uniques et zéro erreur de référence de titre ou de ligne. V3.121 a été supprimée de la branche principale après vérification ; la branche conserve désormais V3.122, V3.123 et V3.124. Le point de reprise est Q803 / section 10.772 ; prochaine question Q804. Aucun code produit n'a été modifié.
+
+
+- **2026-11-15 — Publication V3.125 :** ajout des décisions Q804–Q805 (sections 10.773–10.774) après audit des sections fonctionnelles et du modèle de données Scryfall. La matrice couvre les layouts connus (split, flip, transform, modal DFC, meld, leveler, class, saga, adventure, planar, scheme, vanguard, token, double-faced token, emblem, augment, host, art series, reversible card, mutate, prototype, battle, case, normal) et définit la conservation des faces, relations et mécaniques. Index à recalculer/vérifier après ajout. Point de reprise Q805 ; prochaine question Q806. Rétention cible V3.123, V3.124, V3.125 ; V3.122 à retirer après vérification. Aucun code produit modifié.
