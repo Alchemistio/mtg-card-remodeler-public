@@ -264,3 +264,8 @@ Ces recommandations ont été adoptées comme décisions techniques prises par l
 ## 14. Nettoyage structurel V3.128
 
 La section non indexée 10.348, intitulée « Chapitres restant à développer », était placée après 10.503, répétait trois fois une liste devenue obsolète et résumait des sujets désormais couverts par les sections détaillées. Elle a été retirée de V3.128. Les 753 sections/questions indexées sont conservées, leur ordre est strictement croissant et toutes les références de titres/lignes ont été recalculées. La branche main conserve V3.126, V3.127 et V3.128.
+
+
+## 15. Restauration des exigences d'animation Q478/Q483 — V3.129
+
+L'audit de testabilité avait repéré deux sections sans corps. Les phrases correspondantes existaient mais avaient été placées après Q488 : l'animation de glissement a été replacée sous Q478 et l'adaptation au redimensionnement sous Q483. Q488 conserve désormais uniquement l'exigence d'annonce du panneau aux technologies d'assistance. Les identifiants et le nombre de questions ne changent pas.
