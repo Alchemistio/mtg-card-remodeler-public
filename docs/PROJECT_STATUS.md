@@ -211,3 +211,19 @@ Cet addendum actualise l'état documentaire après comparaison de fichiers de co
 - La présence d'un build ou d'un artefact CI ne vaut pas validation d'installation, de rendu ou de conformité sur une machine propre.
 
 **Conclusion :** le dépôt contient un prototype avancé, mais il ne satisfait pas encore toutes les conditions de reproductibilité, de conformité documentaire, de validation visuelle et de distribution définies par V3.123. Les écarts ci-dessus doivent être traités dans les lots de développement et de préparation de publication ; ils ne justifient pas de modifier le périmètre fonctionnel déjà spécifié.
+
+
+## 9. Complément de spécification V3.124
+
+La V3.124 précise les versions minimales de systèmes et architectures, le profil de machine de référence, le corpus visuel minimal, le filtrage des ressources selon les droits et les formats de livraison.
+
+Ces décisions ne signifient pas que les builds ou tests multiplateformes existent déjà. Le dépôt doit encore :
+- ajouter les validations Windows et macOS et les paquets Linux annoncés ;
+- exécuter les installateurs sur des machines propres ;
+- remplacer le repli localStorage de cartes/projets par le comportement cible défini en Q776 ;
+- ajouter un lockfile npm et utiliser npm ci ; épingler mtg-card sans plage flottante ;
+- ajouter le corpus de 100 fixtures minimum et les tests visuels ;
+- exclure des paquets distribués les assets dont les droits ne sont pas établis.
+
+La matrice initiale de support est définie dans Q799, mais la compatibilité effective de chaque build reste à démontrer. Le statut des licences FeSens/Figma et des autres assets en attente demeure un blocage à toute distribution contenant ces ressources. Le texte définitif de licence du code, demandé par Q632, reste à rédiger et faire relire avant toute diffusion autorisée du code.
+
