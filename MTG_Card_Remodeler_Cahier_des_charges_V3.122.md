@@ -4555,6 +4555,1221 @@ L'ouverture et la fermeture du panneau latéral au moyen du raccourci clavier ut
 
 ### Série 1 — Importation sûre des fichiers et archives
 
+## 10.504 Navigation clavier entre les entrées de la liste — Question 509, validée
+
+Les flèches haut et bas permettent de parcourir directement les entrées de la liste du panneau latéral. La navigation par Tab reste régie par les règles générales de focus déjà validées.
+
+## 10.505 Activation d'une entrée sélectionnée avec la touche Entrée — Question 510, validée
+
+La touche Entrée ouvre immédiatement le détail de l'extension sélectionnée dans la liste.
+
+## 10.506 Navigation entre le panneau latéral et la zone de détail — Question 511, validée
+
+Les flèches gauche et droite permettent de passer du panneau latéral à la zone de détail et inversement, selon la zone actuellement active.
+
+## 10.507 Comportement de la touche Début (Home) dans la liste — Question 512, validée
+
+La touche Début (Home) sélectionne la première extension de la liste.
+
+## 10.508 Comportement de la touche Fin (End) dans la liste — Question 513, validée
+
+La touche Fin (End) sélectionne la dernière extension de la liste.
+
+
+## 10.509 Actualisation automatique du détail lors de la navigation clavier — Question 514, validée
+
+Lorsque les flèches haut et bas changent l'extension sélectionnée, la zone de détail affiche automatiquement les informations de cette nouvelle sélection.
+
+## 10.510 Sélection clavier des extensions désactivées ou indisponibles — Question 515, validée
+
+Les extensions désactivées ou indisponibles restent sélectionnables au clavier ; leur état doit être clairement affiché.
+
+## 10.511 Navigation clavier lorsque la liste est vide — Question 516, validée
+
+Lorsque la liste ne contient aucune extension, les commandes de navigation clavier restent sans effet et ne modifient pas le focus.
+
+## 10.512 Annonce accessible de l'extension sélectionnée — Question 517, validée
+
+La sélection d'une extension est signalée par un changement visuel et par une annonce aux lecteurs d'écran.
+
+## 10.513 Sélection après un retour depuis la zone de détail — Question 518, validée
+
+Lors du retour de la zone de détail vers le panneau latéral, la sélection précédente est effacée ; l'utilisateur doit sélectionner une entrée à nouveau.
+
+
+## 10.514 État de la zone de détail lorsqu'aucune extension n'est sélectionnée — Question 519, décision technique recommandée
+
+Lorsqu'aucune extension n'est sélectionnée, la zone de détail affiche un état vide explicatif invitant clairement l'utilisateur à sélectionner une extension dans la liste.
+
+Le message reste bref, visible et adapté au contexte, par exemple : « Sélectionnez une extension pour consulter ses informations. » Il ne présente pas de fausses données ni de commandes sans rapport avec l'action attendue. Cet état est distinct d'une liste vide, d'une recherche sans résultat, d'un chargement en cours ou d'une erreur ; chacun de ces cas doit recevoir un message correspondant à sa cause.
+
+Cette recommandation suit les pratiques de conception des états vides : expliquer ce qui devrait apparaître et guider vers l'étape suivante, sans surcharger une zone secondaire d'interface. Référence : [SAP Fiori — Empty States](https://www.sap.com/design-system/fiori-design-web/v1-96/foundations/best-practices/global-patterns/designing-for-empty-states).
+
+## 10.515 Organisation des informations dans le détail d'une extension — Question 520, décision technique recommandée
+
+Le détail d'une extension est organisé sur une seule page structurée en sections thématiques repliables et dépliables, plutôt qu'en une longue page totalement plate ou en onglets séparant les informations.
+
+Les sections doivent être clairement titrées et sémantiquement structurées. Les informations essentielles et le résumé de l'extension restent immédiatement visibles ; les sections secondaires peuvent être repliées afin de réduire la longueur initiale. L'utilisateur peut développer ou replier chaque section indépendamment. L'état ouvert ou fermé est perceptible visuellement et annoncé aux technologies d'assistance ; les commandes sont utilisables au clavier avec Entrée et Espace.
+
+Cette organisation conserve une vue d'ensemble unique et évite de masquer des catégories d'informations derrière plusieurs onglets. Elle utilise le modèle de divulgation progressive documenté par WAI-ARIA. Référence : [W3C WAI-ARIA APG — Disclosure Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
+
+## 10.516 Navigation dans un détail d'extension volumineux — Question 521, décision technique recommandée
+
+Les deux mécanismes sont disponibles : le défilement vertical continu dans le contenu et une navigation par sections permettant d'accéder directement à une partie du détail.
+
+Lorsque le contenu est suffisamment long pour le justifier, une navigation contextuelle présente les titres des sections et permet de rejoindre la section choisie par défilement jusqu'à celle-ci. La section actuellement consultée est signalée dans cette navigation. Celle-ci reste limitée à la zone de détail et ne doit pas remplacer le défilement normal, perturber le focus clavier ou masquer le contenu.
+
+La navigation par sections peut rester discrète ou être omise lorsque le détail est court. Cette approche reprend les recommandations des systèmes de conception pour les contenus longs. Référence : [U.S. Web Design System — In-page navigation](https://designsystem.digital.gov/components/in-page-navigation/).
+
+## 10.517 Présentation des informations d'une extension désactivée — Question 522, décision technique recommandée
+
+Le détail d'une extension désactivée ou indisponible présente toutes les informations normalement accessibles, tout en distinguant clairement les fonctionnalités qui ne peuvent pas être utilisées.
+
+L'interface doit conserver la description, les paramètres, les dépendances, les compatibilités et les informations de diagnostic disponibles. Chaque fonctionnalité indisponible est identifiée par un état explicite et, lorsque l'information est connue, par sa raison : extension désactivée, dépendance manquante, incompatibilité, permission absente ou autre condition pertinente. Les commandes impossibles à exécuter sont désactivées de manière cohérente et leur indisponibilité ne repose pas uniquement sur une couleur ou une icône.
+
+L'utilisateur doit pouvoir comprendre ce que l'extension ferait, ce qui est bloqué et, si possible, comment rétablir la disponibilité. L'état désactivé ne doit pas être confondu avec une erreur de chargement ni conduire à masquer les informations utiles.
+
+## 10.518 Emplacement des commandes principales du détail d'une extension — Question 523, décision technique recommandée
+
+Les commandes principales relatives à l'extension sont regroupées dans une barre d'actions persistante, indépendante du défilement du contenu de détail.
+
+La barre reste visible dans les limites de la zone de détail et s'adapte à sa largeur. Elle regroupe uniquement les actions principales pertinentes pour l'extension consultée ; les commandes secondaires peuvent rester dans leurs sections respectives ou dans un menu dédié. Les actions indisponibles sont désactivées et accompagnées d'une explication accessible lorsque nécessaire.
+
+La barre persistante ne doit jamais masquer la fin du contenu, un contrôle ayant le focus ou un indicateur de focus. Un espace de réservation doit être prévu dans la zone défilante et le comportement doit rester utilisable au clavier, avec zoom et redimensionnement de fenêtre. Cette contrainte est essentielle au regard du critère WCAG 2.4.11 relatif au focus qui ne doit pas être entièrement masqué par du contenu créé par l'auteur. Référence : [W3C — Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum).
+
+## 10.519 Ouverture indépendante et simultanée des sections du détail — Question 524, décision technique recommandée
+
+Chaque section repliable du détail d'une extension fonctionne indépendamment des autres. L'utilisateur peut développer plusieurs sections simultanément et les laisser ouvertes pendant la consultation ; l'ouverture d'une section ne provoque pas automatiquement le repli d'une autre.
+
+Ce comportement facilite la comparaison d'informations situées dans différentes sections et évite de faire perdre le contexte de lecture. Chaque en-tête indique clairement son propre état ouvert ou fermé et commande uniquement la section qui lui est associée.
+
+Cette recommandation suit le modèle d'accordéon WAI-ARIA, qui autorise explicitement plusieurs panneaux ouverts et décrit l'interaction indépendante de chaque en-tête. Référence : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+
+## 10.520 État initial des sections lors de l'ouverture d'un détail — Question 525, décision technique recommandée
+
+Lorsqu'un détail d'extension est affiché pour la première fois dans la session, la section générale présentant l'identité, la description et le résumé de l'extension est développée par défaut. Les autres sections sont initialement repliées.
+
+Si une section générale n'existe pas pour une extension donnée, la première section contenant les informations essentielles joue ce rôle. L'interface ne doit pas afficher un panneau vide uniquement pour respecter une structure théorique. L'utilisateur conserve la possibilité de développer immédiatement toute autre section.
+
+Ce choix privilégie une entrée en matière utile et limite la longueur initiale du détail sans cacher l'existence des autres catégories.
+
+## 10.521 Conservation de l'état des sections lors du changement d'extension — Question 526, décision technique recommandée
+
+L'état ouvert ou replié de chaque section est conservé séparément pour chaque extension pendant toute la session de l'application.
+
+Lorsqu'un utilisateur consulte une autre extension puis revient à la précédente, les sections retrouvent leur état antérieur. Les états d'une extension ne doivent jamais être appliqués par erreur à une autre extension. Si une extension est retirée de la liste ou devient inaccessible pendant la session, son état associé peut être supprimé avec son contexte de consultation.
+
+Cette conservation est limitée à la session en cours : elle ne constitue pas un réglage permanent ni une donnée de projet à sauvegarder. À la prochaine session, l'état initial défini dans la décision 10.520 est réappliqué.
+
+## 10.522 Commandes globales de développement et de repli des sections — Question 527, décision technique recommandée
+
+La zone de détail propose deux commandes globales distinctes : « Tout développer » et « Tout replier ».
+
+« Tout développer » ouvre toutes les sections disponibles du détail courant. « Tout replier » ferme toutes les sections, y compris la section générale ; l'état vide qui en résulte reste clairement compréhensible et ne doit pas être confondu avec l'absence de données. La section générale pourra ensuite être rouverte individuellement.
+
+Les commandes globales s'appliquent uniquement au détail de l'extension actuellement consultée et ne modifient pas les états mémorisés des autres extensions. Elles sont accessibles au clavier et exposent un nom et une fonction explicites aux technologies d'assistance.
+
+## 10.523 Navigation clavier dans les en-têtes des sections repliables — Question 528, décision technique recommandée
+
+Chaque en-tête de section est un véritable contrôle interactif accessible au clavier. La touche Entrée ou Espace développe une section repliée ou replie une section développée. La touche Tab déplace le focus vers le prochain élément interactif et Maj+Tab vers le précédent, selon l'ordre naturel de la page.
+
+Aucun déplacement obligatoire par flèches haut ou bas, ni raccourci Home ou End, n'est ajouté au comportement standard des en-têtes. Ces touches restent disponibles pour les usages habituels de l'application et du système ; une navigation par flèches ne pourra être introduite que dans un composant distinct dont le modèle d'interaction la justifie.
+
+Chaque en-tête est structuré comme un titre contenant un bouton natif. Le bouton expose son état au moyen de l'attribut accessible correspondant (aria-expanded) et référence le panneau qu'il contrôle (aria-controls). Le contenu replié est réellement retiré de l'ordre de tabulation et de l'arbre d'accessibilité tant qu'il est masqué. Les rôles de région ne sont employés que lorsque cela apporte une structure utile, afin d'éviter de multiplier inutilement les points de repère pour les lecteurs d'écran.
+
+Cette mise en œuvre suit les interactions clavier et les propriétés WAI-ARIA documentées par le W3C. Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [W3C — Accordion Example](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/).
+
+## 10.524 Animation lors du développement et du repli des sections — Question 529, décision technique recommandée
+
+Le développement et le repli d'une section peuvent utiliser une transition visuelle courte, discrète et cohérente, destinée à rendre le changement d'état perceptible sans ralentir la consultation. La transition ne doit pas provoquer de déplacement latéral, d'effet de zoom, de rebond ou d'animation décorative.
+
+L'état fonctionnel de la section change immédiatement du point de vue des interactions et des technologies d'assistance ; l'animation ne doit jamais retarder l'accès au contenu, bloquer une commande ou empêcher une nouvelle activation. La durée reste brève et homogène pour toutes les sections.
+
+Cette recommandation privilégie une animation fonctionnelle minimale, sans mouvement superflu. Référence : [W3C — Animation from Interactions (WCAG 2.3.3)](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions).
+
+## 10.525 Respect de la préférence de réduction des mouvements — Question 530, décision technique recommandée
+
+Les transitions des sections repliables respectent automatiquement la préférence de réduction des mouvements configurée dans le système d'exploitation ou l'environnement d'exécution.
+
+Lorsque cette préférence est active, les animations de hauteur, de déplacement et les autres mouvements non essentiels sont supprimés ; le changement d'état est présenté immédiatement, sans perte d'information ni de fonctionnalité. Cette préférence est détectée dynamiquement et son changement est pris en compte sans nécessiter une réinstallation ou une reconfiguration manuelle de l'application.
+
+Aucun réglage propre à cette seule zone n'est nécessaire : la règle générale de réduction des mouvements de l'application doit s'appliquer uniformément à tous les composants concernés.
+
+Références : [MDN — prefers-reduced-motion](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/%40media/prefers-reduced-motion) ; [W3C — Technique C39](https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html).
+
+## 10.526 Stabilité de la position de défilement lors des changements de sections — Question 531, décision technique recommandée
+
+Le développement ou le repli d'une section ne doit pas provoquer de saut inattendu de la position de lecture dans la zone de détail.
+
+Lorsque le changement de taille d'une section située au-dessus de la partie consultée modifie la mise en page, la position du contenu actuellement lu est préservée autant que possible. L'activation d'un en-tête ne déclenche pas un retour automatique en haut du détail. Si le repli d'une section masque l'élément qui possède le focus, le focus est replacé sur l'en-tête de cette section avant que son contenu ne soit masqué.
+
+Le défilement automatique n'est utilisé que lorsqu'il est nécessaire pour rendre visible l'en-tête activé ou le focus clavier, et jamais pour imposer une position de lecture sans raison.
+
+Cette règle s'appuie sur le principe d'ancrage du défilement, qui vise à maintenir la zone lue visible lors des changements de mise en page. Référence : [MDN — Scroll anchoring](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_anchoring/Overview).
+
+## 10.527 Chargement dynamique du contenu d'une section — Question 532, décision technique recommandée
+
+Lorsqu'une section nécessite un chargement dynamique, son en-tête reste disponible et son état développé ou replié reste cohérent. Le contenu affiche un indicateur de chargement local à la section, accompagné d'un libellé compréhensible ; le reste du détail demeure utilisable.
+
+Le chargement ne déplace pas automatiquement le focus et ne provoque pas de changement de section. À la fin d'un chargement ordinaire, le résultat ou l'état obtenu est annoncé aux technologies d'assistance au moyen d'un message de statut non intrusif, équivalent à une annonce polie. L'annonce ne répète pas inutilement l'intégralité du contenu chargé.
+
+Si l'utilisateur replie la section ou consulte une autre extension pendant le chargement, le résultat est associé à la bonne extension et à la bonne section ; il ne doit jamais apparaître dans un autre détail à la suite d'un changement de sélection.
+
+Références : [W3C — Status Messages (WCAG 4.1.3)](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22.html) ; [MDN — ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions).
+
+## 10.528 Gestion d'une erreur affectant une section — Question 533, décision technique recommandée
+
+Une erreur qui concerne le chargement ou l'affichage d'une section est traitée localement dans cette section. Elle ne doit pas rendre indisponible l'ensemble du détail de l'extension ni masquer les informations déjà chargées dans les autres sections.
+
+Le message d'erreur indique clairement la section concernée et fournit, lorsque cela est pertinent, une commande permettant de relancer son chargement. L'échec conserve l'état des autres sections, la sélection de l'extension et la position de défilement. Une nouvelle tentative ne doit pas dupliquer les données déjà affichées ni provoquer une action involontaire sur une autre extension.
+
+Les erreurs ordinaires sont signalées sans interruption excessive ; seules les situations réellement critiques pour la sécurité ou l'intégrité des données peuvent justifier une alerte prioritaire. Le détail conserve un état cohérent même si plusieurs sections rencontrent des erreurs indépendantes.
+
+## 10.529 Présentation et zone d'activation des en-têtes de section — Question 534, décision technique recommandée
+
+L'en-tête de chaque section présente un intitulé descriptif et un indicateur visuel explicite de son état développé ou replié. L'indicateur, par exemple un chevron orienté selon l'état, complète le libellé et ne constitue jamais le seul moyen de comprendre l'action.
+
+Toute la surface de l'en-tête est activable, et pas uniquement l'icône ou le texte. L'en-tête forme un seul contrôle interactif, avec une cible suffisamment grande et un espacement qui évite les activations accidentelles. Aucun bouton, lien ou autre contrôle interactif indépendant ne doit être imbriqué à l'intérieur de cette surface ; les actions propres à une section sont placées à côté, hors du bouton d'en-tête.
+
+Le changement d'état est également exposé aux technologies d'assistance et ne repose pas uniquement sur la couleur, la forme ou l'orientation de l'icône.
+
+Références : [USWDS — Accordion](https://designsystem.digital.gov/components/accordion/) ; [New York State Design System — Accessible Accordion](https://designsystem.ny.gov/components/accordion/accessibility-build/).
+
+## 10.530 Utilisation de lignes de résumé dans les en-têtes — Question 535, décision technique recommandée
+
+Une ligne de résumé peut être affichée sous le titre d'une section repliée uniquement lorsqu'elle apporte une information utile pour décider de l'ouvrir, par exemple une valeur principale, un état de compatibilité ou une synthèse courte.
+
+Le résumé reste facultatif, concis, rédigé en langage clair et complémentaire du titre. Il ne répète pas le titre, ne reproduit pas le contenu complet de la section et n'est pas affiché lorsqu'aucune information pertinente n'est disponible. Le texte du résumé fait partie du nom accessible du contrôle si nécessaire pour comprendre l'information présentée, mais sa longueur doit rester maîtrisée afin de ne pas rendre la navigation des lecteurs d'écran verbeuse.
+
+Référence : [GOV.UK Design System — Accordion, section headings and summary lines](https://design-system.service.gov.uk/components/accordion/).
+
+## 10.531 Affichage des indicateurs d'état dans les en-têtes — Question 536, décision technique recommandée
+
+Un en-tête peut afficher un indicateur compact lorsqu'un état de la section mérite d'être repéré sans ouvrir son contenu : avertissement, erreur, information manquante, compatibilité ou nombre d'éléments lorsque ce nombre aide réellement à la décision.
+
+Chaque indicateur est pertinent pour la section concernée, reste visuellement secondaire par rapport à son titre et utilise un libellé ou une information accessible en complément de son éventuelle icône. La couleur seule ne doit jamais porter la signification. Les compteurs décoratifs, redondants ou sans conséquence pratique sont évités.
+
+Les indicateurs sont mis à jour lorsque les données changent et ne doivent pas transformer l'en-tête en barre d'actions. Ils restent informatifs ; le contrôle d'ouverture conserve une fonction unique et prévisible.
+
+Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [USWDS — Accordion guidance](https://designsystem.digital.gov/components/accordion/).
+
+## 10.532 Visibilité permanente des informations essentielles — Question 537, décision technique recommandée
+
+Les informations nécessaires pour comprendre immédiatement l'identité, l'état général et la disponibilité d'une extension ne sont pas cachées exclusivement dans des sections repliables.
+
+La zone de synthèse générale présente notamment le nom de l'extension, sa version, son état d'activation et les alertes ayant un impact direct sur son utilisation. Une incompatibilité bloquante, une dépendance obligatoire absente ou une permission indispensable manquante reste donc visible sans obliger l'utilisateur à ouvrir une section secondaire.
+
+Les sections repliables accueillent les explications détaillées, les paramètres, les dépendances complètes, les informations techniques et les diagnostics complémentaires. Les informations critiques restent accessibles et ne sont pas enfouies dans une divulgation progressive.
+
+Cette règle limite le risque que des informations importantes soient ignorées parce qu'elles sont masquées. Références : [GOV.UK Design System — When not to use an accordion](https://design-system.service.gov.uk/components/accordion/) ; [U.S. Web Design System — When to use an accordion](https://designsystem.digital.gov/components/accordion/).
+
+## 10.533 Hiérarchie et imbrication des sections repliables — Question 538, décision technique recommandée
+
+Les sections repliables du détail suivent une hiérarchie simple et plate. Une section repliable ne contient pas un autre accordéon ou un second niveau de sections repliables.
+
+Lorsqu'un sujet nécessite des sous-parties, celles-ci sont organisées à l'intérieur de la section ouverte à l'aide de sous-titres sémantiques, de groupes visuels, de listes ou de séparateurs, sans ajouter de nouveau niveau d'interaction repliable. Si le contenu devient trop complexe pour cette organisation, il est réorganisé en sections principales distinctes.
+
+Cette règle évite les niveaux d'ouverture imbriqués difficiles à parcourir, réduit la charge cognitive et facilite la navigation au clavier comme avec un lecteur d'écran.
+
+Références : [GOV.UK Design System — Do not put accordions within accordions](https://design-system.service.gov.uk/components/accordion/) ; [Chrome for Developers — Accordion accessibility](https://developer.chrome.com/docs/modern-web-guidance/guides/ui-components/accordion).
+
+## 10.534 Ordre de présentation des informations dans le détail d'une extension — Question 539, décision technique recommandée
+
+Le détail d'une extension suit un ordre stable, prévisible et orienté vers les besoins de consultation. Après la synthèse générale toujours visible, les sections sont présentées dans l'ordre suivant lorsque les informations correspondantes existent :
+
+1. État, compatibilité et disponibilité ;
+2. Dépendances et prérequis ;
+3. Permissions et accès requis ;
+4. Paramètres et configuration ;
+5. Fonctionnalités et points d'entrée proposés ;
+6. Diagnostics, incidents et informations techniques ;
+7. Documentation, licence et informations de provenance.
+
+Les sections absentes ou sans contenu pertinent ne sont pas affichées artificiellement. Les informations bloquantes ou qui nécessitent une action restent signalées dans la synthèse générale conformément à la décision 10.532. Cet ordre constitue un ordre par défaut commun ; il ne doit pas empêcher l'accès direct à une section ni imposer une hiérarchie différente selon l'état de l'extension.
+
+Cette organisation place d'abord les informations nécessaires pour comprendre si l'extension peut fonctionner, puis celles qui expliquent son utilisation et enfin les informations de référence. Elle limite les changements de repères entre extensions.
+
+## 10.535 Présentation des dépendances directes et indirectes — Question 540, décision technique recommandée
+
+La section des dépendances distingue clairement les dépendances directes, déclarées par l'extension, des dépendances indirectes ou transitives, apportées par une autre dépendance. Lorsque la structure est disponible, elle présente les relations parent-enfant sous forme d'arbre ou de groupes hiérarchisés ; une simple liste aplatie ne doit pas faire perdre l'origine d'une dépendance.
+
+Pour chaque dépendance connue, l'interface indique au minimum son nom, sa version détectée ou requise, son caractère obligatoire ou facultatif et son état : satisfaite, absente, incompatible, désactivée ou indéterminée. La dépendance parente est indiquée pour les éléments transitifs. Les cycles, doublons et relations impossibles à résoudre sont signalés comme anomalies de métadonnées plutôt que masqués.
+
+L'application ne prétend pas connaître l'intégralité de l'arbre lorsque le manifeste ou le système d'extensions ne fournit qu'une partie des informations. La couverture connue, inconnue ou incomplète est explicitement distinguée. Une dépendance facultative absente ne doit pas être présentée comme une erreur bloquante.
+
+Cette présentation suit les recommandations OWASP de conserver à la fois un inventaire des composants et leurs relations, y compris les dépendances transitives. Références : [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html) ; [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
+
+## 10.536 Détail des règles de compatibilité — Question 541, décision technique recommandée
+
+La compatibilité d'une extension est évaluée séparément pour chaque dimension pertinente, et non réduite à un indicateur global ambigu. Lorsque les données sont disponibles, le détail indique la compatibilité avec la version de l'application et son API d'extension, les dépendances et leurs versions, les systèmes ou environnements pris en charge, ainsi que les capacités ou fonctionnalités requises.
+
+Chaque dimension présente la version ou la plage déclarée, la valeur détectée et le résultat : compatible, incompatible, avertissement, non vérifié ou information indisponible. Une incompatibilité bloquante est distinguée d'une compatibilité partielle ou d'une fonctionnalité facultative indisponible. L'application explique la cause connue et la conséquence pratique ; elle ne déduit pas une compatibilité de la seule présence d'une extension dans la liste.
+
+Les règles de comparaison de versions doivent respecter le schéma de version réellement déclaré par l'extension ou son écosystème. Si le format est inconnu ou non interprétable, le résultat est « non vérifié » plutôt qu'une validation arbitraire. Les informations essentielles ayant un impact direct restent visibles dans la synthèse générale, les détails étant développés dans cette section.
+
+Cette décision rend les écarts vérifiables et évite de confondre présence, installation et compatibilité effective. Références : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html) ; [Home Office — Managing the security of software dependencies](https://engineering.homeoffice.gov.uk/standards/managing-security-software-dependencies/).
+
+## 10.537 Présentation de l'origine, de l'intégrité et de la provenance — Question 542, décision technique recommandée
+
+Le détail d'une extension présente les informations de provenance disponibles afin que l'utilisateur puisse identifier d'où elle provient et apprécier la traçabilité de son installation. Les champs affichés comprennent, lorsqu'ils sont connus : auteur ou éditeur, fournisseur, dépôt ou source de distribution, identifiant de paquet, version, date de publication, licence déclarée, empreinte cryptographique du fichier installé et informations de signature ou d'attestation.
+
+Chaque donnée distingue une valeur vérifiée, une déclaration fournie par l'éditeur et une information inconnue. L'absence de signature, d'empreinte ou de métadonnée ne doit jamais être présentée comme une preuve d'intégrité ou de fiabilité. Si une vérification cryptographique a été effectuée, son résultat, l'objet vérifié et la méthode utilisée sont explicités ; l'application ne prétend pas avoir validé une chaîne de confiance qu'elle n'a pas effectivement contrôlée.
+
+Les métadonnées de provenance restent consultables même si l'extension est désactivée ou incompatible. Les informations inconnues sont indiquées comme telles plutôt que remplacées par des suppositions. La licence déclarée est affichée comme information de référence et non comme une validation juridique automatique.
+
+Cette décision reprend les principes d'inventaire, d'identification des composants et de traçabilité de la chaîne d'approvisionnement logicielle. Références : [OWASP — Software Component Verification Standard](https://scvs.owasp.org/scvs/using-scvs/) ; [OWASP — Component Analysis](https://community.owasp.org/Component_Analysis) ; [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html).
+
+## 10.538 Accès à la documentation et aux références externes — Question 543, décision technique recommandée
+
+La section de documentation regroupe les liens fournis par l'éditeur ou la source de l'extension : documentation d'utilisation, page du projet, notes de version, dépôt de code, support et informations de licence. Chaque lien possède un intitulé explicite décrivant sa destination ; les URL brutes ne constituent pas le seul moyen de comprendre leur fonction.
+
+Les liens externes sont ouverts par une action volontaire de l'utilisateur et dans le navigateur externe configuré, sans exécuter leur contenu dans l'application. L'application ne doit pas charger automatiquement une page distante dans la zone de détail ni transmettre des données locales à la destination. Les URL absentes, invalides ou inaccessibles sont signalées sans masquer les autres informations de l'extension.
+
+La source et le statut des liens sont distingués : lien déclaré par l'éditeur, lien généré par une source fiable ou lien non vérifié. Aucun lien de documentation ou de support n'est inventé par l'application. Lorsque plusieurs ressources existent, elles sont regroupées par fonction et présentées dans un ordre cohérent.
+
+Cette organisation facilite l'assistance et la vérification sans confondre documentation distante et contenu local de confiance. Référence de sécurité générale : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
+
+## 10.539 Schéma de référence des paramètres propres à chaque extension — Question 544, décision technique recommandée
+
+Chaque extension qui expose des paramètres déclare un schéma de configuration versionné, associé à son identifiant et à sa version de schéma. Ce schéma décrit les clés disponibles, leur type, leur caractère obligatoire ou facultatif, leurs valeurs par défaut documentées et les contraintes applicables. Il constitue la référence utilisée par l'interface de paramètres et par le validateur ; l'interface ne doit pas inventer de champs ni de valeurs.
+
+Le schéma est traité comme une donnée déclarative : son interprétation ne doit pas exécuter de code fourni par l'extension. L'application vérifie la cohérence du schéma avant de l'utiliser et signale les schémas absents, invalides ou non pris en charge. Une extension sans paramètres n'est pas tenue de fournir un schéma vide.
+
+Cette organisation favorise une configuration explicite, vérifiable et indépendante de la présentation. Référence : [JSON Schema — Core Specification, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
+
+## 10.540 Validation des valeurs et contraintes de configuration — Question 545, décision technique recommandée
+
+Avant toute application d'une modification, chaque valeur est validée selon le schéma déclaré et les règles de l'extension : type, format, plage numérique, longueur, nombre d'éléments, valeurs autorisées, dépendances entre champs et contraintes de cohérence. Les contrôles sont effectués dans l'application avant transmission à l'extension ; une validation côté extension peut compléter ces contrôles, mais ne les remplace pas.
+
+Les erreurs sont associées au champ concerné, expliquées en termes compréhensibles et accompagnées de la contrainte attendue lorsque celle-ci est connue. Une valeur invalide ne doit pas être silencieusement convertie, tronquée ou remplacée par une valeur par défaut. Les champs valides restent visibles et modifiables, sans qu'une erreur isolée fasse perdre les autres saisies.
+
+Références : [JSON Schema — Validation, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-validation) ; [JSON Schema — Core, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
+
+## 10.541 Traitement des propriétés inconnues ou non prises en charge — Question 546, décision technique recommandée
+
+Lorsqu'une configuration contient une propriété inconnue du schéma courant, l'application ne l'interprète pas et ne la transmet pas à l'extension comme une instruction implicite. Si le format prévoit explicitement des propriétés supplémentaires compatibles, celles-ci peuvent être conservées sans être modifiées ; sinon, elles sont signalées comme non reconnues et exclues de l'application de la configuration jusqu'à résolution.
+
+Les champs marqués comme obligatoires ou critiques par le schéma ne peuvent pas être ignorés si leur compréhension est nécessaire à la sûreté ou à la cohérence de la configuration. Une différence de schéma susceptible de modifier le sens des paramètres entraîne un avertissement explicite ou un refus d'application, selon sa gravité. Les données inconnues ne sont jamais supprimées sans information préalable.
+
+Cette règle concilie évolutivité et absence d'interprétation hasardeuse. Référence : [JSON Schema — Core, additionalProperties and unevaluatedProperties](https://json-schema.org/draft/2020-12/json-schema-core).
+
+## 10.542 Application transactionnelle des modifications de paramètres — Question 547, décision technique recommandée
+
+Les paramètres sont préparés dans un état de brouillon distinct de la configuration active. L'application valide l'ensemble des valeurs, puis transmet la configuration comme une opération cohérente. La nouvelle configuration ne devient active que si toutes les étapes obligatoires réussissent ; en cas d'échec, l'état actif précédent est conservé et l'application indique l'origine de l'échec.
+
+Une extension ne doit pas laisser une configuration partiellement appliquée sans mécanisme de retour à un état cohérent. Si une opération ne peut pas être rendue atomique en raison d'une limitation technique documentée, l'application doit le signaler avant validation, préciser les effets possibles et prévoir la meilleure stratégie de restauration disponible. La fermeture ou l'annulation avant validation abandonne le brouillon sans altérer les paramètres actifs.
+
+Cette décision complète le principe déjà retenu de préparation puis validation explicite des paramètres dédiés à chaque extension.
+
+## 10.543 Stockage protégé des secrets utilisés par les extensions — Question 548, décision technique recommandée
+
+Les mots de passe, jetons d'accès, clés API, clés privées et autres secrets nécessaires à une extension ne sont pas enregistrés en clair dans son fichier de configuration, les données de projet, les exports de diagnostic ou les journaux. Lorsqu'un stockage persistant est indispensable, l'application privilégie le coffre d'identifiants sécurisé fourni par le système d'exploitation. La configuration de l'extension ne conserve qu'une référence opaque vers le secret.
+
+L'accès à un secret est limité à l'extension et à l'usage pour lesquels il a été enregistré. Les secrets ne sont révélés à l'interface que lorsque cela est strictement nécessaire, sont masqués par défaut et ne sont pas inclus dans les messages d'erreur. Si aucun coffre sécurisé approprié n'est disponible, l'application avertit l'utilisateur et ne prétend pas fournir une protection équivalente par simple encodage ou chiffrement avec une clé stockée au même endroit.
+
+Références : [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) ; [Microsoft — Handling Passwords, Windows Credential Management](https://learn.microsoft.com/en-us/windows/win32/secbp/handling-passwords).
+
+## 10.544 Interface d'exécution contrôlée entre les extensions et l'application — Question 549, décision technique recommandée
+
+Une extension accède aux fonctions de l'application par une interface hôte documentée, versionnée et limitée aux opérations explicitement exposées. Elle ne reçoit pas par défaut un accès direct aux commandes natives, aux interfaces internes privées, au système de fichiers complet, aux processus du système ou aux données globales de l'application. Les opérations disponibles sont décrites par des contrats stables et les capacités non exposées restent inaccessibles.
+
+L'architecture doit distinguer clairement les garanties réellement fournies par le mécanisme d'exécution. Une API contrôlée et des permissions Tauri réduisent la surface d'accès, mais ne constituent pas à elles seules une isolation forte du code natif malveillant. Si une extension nécessite une isolation plus robuste, celle-ci doit reposer sur une frontière de processus ou un mécanisme système adapté, et ses limites doivent être documentées. Aucune garantie de bac à sable complet ne doit être annoncée sans preuve technique.
+
+Références : [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
+
+## 10.545 Vérification des autorisations à chaque opération — Question 550, décision technique recommandée
+
+Chaque opération demandée par une extension est contrôlée par l'application au moment de son exécution. Le contrôle vérifie l'identité de l'extension, l'autorisation accordée lors de son installation, la portée de cette autorisation, le projet ou la ressource concernés et la nature de l'action demandée. Le fait qu'une extension ait été autorisée à l'installation ne dispense jamais de vérifier ses accès à chaque appel.
+
+Les refus sont appliqués par défaut lorsqu'une règle est absente, ambiguë ou impossible à évaluer. Les contrôles sont réalisés dans la couche qui détient effectivement la ressource ou exécute l'opération ; une vérification uniquement visuelle dans l'interface ou dans le code de l'extension ne suffit pas. Cette règle respecte le choix déjà validé de permissions fixes après installation : elle contrôle les autorisations existantes sans ajouter de mécanisme de modification de celles-ci.
+
+Référence : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
+
+## 10.546 Contrôle strict des chemins et des périmètres de fichiers — Question 551, décision technique recommandée
+
+Lorsqu'une extension dispose d'un accès aux fichiers, chaque opération est limitée aux emplacements explicitement autorisés pour cette extension et pour le contexte concerné. Les chemins sont normalisés et contrôlés côté application avant toute lecture, écriture, suppression ou énumération. Les tentatives de sortir du périmètre autorisé, notamment au moyen de segments de remontée, de chemins absolus inattendus ou de liens symboliques conduisant hors du périmètre, sont refusées.
+
+Les contrôles ne reposent pas uniquement sur une comparaison textuelle des chemins. Ils tiennent compte de la résolution réelle du chemin et des particularités du système d'exploitation, afin d'éviter les contournements par alias ou changement de cible. Les permissions d'accès et les scopes de chemins restent distincts : une opération autorisée sans périmètre explicite ne donne pas un accès global.
+
+Références : [Tauri — File System Security and Scopes](https://v2.tauri.app/plugin/file-system/) ; [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
+
+## 10.547 Limitation des ressources consommées par chaque extension — Question 552, décision technique recommandée
+
+Les opérations des extensions sont soumises à des limites de ressources adaptées à leur nature : durée maximale d'exécution lorsqu'elle est mesurable, taille des données entrantes et sortantes, nombre d'éléments traités, fréquence des appels et concurrence des tâches. Les limites sont appliquées par l'hôte et ne peuvent pas être neutralisées par l'extension elle-même. Les tâches longues ou les volumes importants doivent utiliser des traitements progressifs lorsque cela est possible.
+
+Lorsqu'une limite est atteinte, l'opération concernée est interrompue proprement, l'application conserve un état cohérent et présente un diagnostic indiquant la limite rencontrée. Une limite locale à une extension ne doit pas bloquer les autres extensions ni l'interface principale. Les seuils sont définis par catégorie d'opération et selon les capacités réelles de la plateforme ; ils ne sont pas présentés comme une protection absolue contre toute consommation abusive.
+
+Référence : [OWASP API Security — API4:2023 Unrestricted Resource Consumption](https://api-security.owasp.org/editions/2023/fr/0xa4-unrestricted-resource-consumption/).
+
+## 10.548 Encadrement des communications réseau des extensions — Question 553, décision technique recommandée
+
+Une extension ne peut effectuer des communications réseau que si cette capacité a été déclarée et autorisée lors de son installation, conformément au principe des autorisations fixes après installation. Les destinations et protocoles sollicités sont décrits de manière compréhensible dans la fiche de l'extension. L'accès réseau n'est pas implicitement accordé à toutes les extensions.
+
+Les requêtes sont effectuées par un service hôte contrôlé lorsque cela est possible, qui applique les destinations autorisées, les délais d'attente et les limites de taille. Les destinations locales, privées, de bouclage ou sensibles ne sont pas accessibles par défaut ; toute nécessité fonctionnelle doit être explicitement déclarée et examinée lors de l'installation. Les redirections sont revalidées afin qu'une destination autorisée ne serve pas de relais vers une destination interdite. Les secrets et données de projet ne sont jamais ajoutés automatiquement aux requêtes.
+
+Cette règle complète les autorisations propres à chaque extension sans créer de panneau centralisé supplémentaire ni permettre leur modification après installation. Références : [OWASP — SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) ; [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/).
+
+## 10.549 Préparation des installations dans une zone temporaire — Question 554, décision technique recommandée
+
+Toute installation d'extension commence par la réception et la préparation du paquet dans une zone temporaire dédiée, séparée des fichiers de la version actuellement installée et des données des projets. L'extension n'est pas activée et aucun de ses composants exécutables n'est lancé pendant cette phase de préparation et de contrôle.
+
+La zone temporaire est créée avec des droits d'accès limités à l'application, porte un identifiant de transaction propre à l'opération et ne doit pas être accessible à d'autres extensions. Elle est nettoyée après réussite ou abandon, sous réserve de conserver les éléments strictement nécessaires à un diagnostic temporaire. La préparation ne modifie pas l'état de l'extension déjà installée.
+
+Cette étape sépare la réception, la vérification et l'activation, afin qu'un paquet incomplet ou suspect ne puisse pas remplacer prématurément une installation fonctionnelle.
+
+## 10.550 Vérification de la structure et du contenu du paquet d'extension — Question 555, décision technique recommandée
+
+Avant extraction ou installation, l'application vérifie la structure du paquet par rapport au format d'extension accepté : manifeste, identifiant, version, fichiers attendus et éléments requis. Les noms, types et tailles des fichiers sont contrôlés selon une liste de formats et d'emplacements autorisés. Les fichiers inattendus, les doublons ambigus, les chemins absolus, les segments de remontée et les noms incompatibles avec les systèmes pris en charge sont rejetés ou signalés avant toute écriture définitive.
+
+L'application impose des limites sur la taille totale décompressée, le nombre de fichiers, la taille individuelle et les ratios de compression afin de prévenir les archives démesurées ou conçues pour épuiser les ressources. Les liens symboliques et autres entrées spéciales ne sont pas suivis ou matérialisés par défaut. Les noms d'origine ne doivent jamais permettre d'écraser des fichiers situés hors du répertoire temporaire prévu.
+
+Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP Web Security Testing Guide — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
+
+## 10.551 Extraction sûre et confinée des fichiers d'extension — Question 556, décision technique recommandée
+
+L'extraction d'un paquet est réalisée uniquement dans le répertoire temporaire attribué à l'opération. Chaque chemin cible est résolu et vérifié avant écriture afin de garantir qu'il reste dans ce répertoire, y compris après normalisation et prise en compte des particularités du système de fichiers. L'application refuse les tentatives de traversal, les liens symboliques sortants, les points de montage inattendus et les collisions de noms qui pourraient conduire à écraser un fichier existant.
+
+Les fichiers sont créés avec des permissions minimales. Les attributs d'exécution fournis par l'archive ne sont pas repris automatiquement ; les fichiers ne reçoivent un statut exécutable que si le format et le modèle d'extension l'exigent explicitement et après les contrôles prévus. Toute erreur d'extraction interrompt l'opération sans laisser un paquet partiellement installé.
+
+Cette mesure est distincte de la validation générale des archives de sauvegarde : elle protège spécifiquement le parcours d'installation d'une extension et son répertoire de destination.
+
+Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
+
+## 10.552 Vérification cryptographique des fichiers reçus — Question 557, décision technique recommandée
+
+Lorsque la source fournit des métadonnées d'intégrité ou une signature, l'application vérifie les empreintes cryptographiques des fichiers reçus par rapport aux valeurs attendues et vérifie la signature au moyen d'une clé ou d'une identité de confiance connue. Les données utilisées pour vérifier un paquet doivent être obtenues et validées indépendamment du fichier lui-même ; une empreinte simplement inscrite dans le même paquet non authentifié ne prouve pas sa provenance.
+
+Une empreinte incorrecte, une signature invalide, une métadonnée expirée ou une incohérence de taille entraîne le refus de l'installation. Si aucune signature ou chaîne de confiance vérifiable n'est fournie, l'application indique explicitement que l'authenticité n'a pas pu être établie ; elle ne transforme pas une simple empreinte calculée localement en preuve de confiance. Le résultat et la méthode de contrôle sont présentés à l'utilisateur avant l'activation.
+
+Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [CISA — Securing the Software Supply Chain: Recommended Practices for Suppliers](https://www.cisa.gov/sites/default/files/2024-08/SECURING_THE_SOFTWARE_SUPPLY_CHAIN_SUPPLIERS_508.pdf).
+
+## 10.553 Absence d'exécution avant validation et activation explicite — Question 558, décision technique recommandée
+
+Aucun script d'installation, hook, binaire ou code fourni par l'extension n'est exécuté pendant la réception, l'analyse du paquet, la validation de son manifeste ou la vérification de son intégrité. Les éventuelles opérations d'initialisation sont réalisées uniquement dans le cadre du modèle d'exécution contrôlé de l'application, après la validation de l'installation et l'autorisation explicite de l'utilisateur.
+
+Le parcours présente les résultats des contrôles préalables, les autorisations demandées, les dépendances, les incompatibilités et les éventuelles limites de confiance avant de rendre l'extension active. Si une opération d'initialisation est indispensable et échoue, l'extension reste inactive et l'installation est déclarée incomplète ou en échec ; les composants préparés ne sont pas exposés aux projets.
+
+Cette décision complète le contrôle préalable prévu pour les extensions de sources variées et le principe selon lequel aucune autorisation n'est accordée silencieusement. Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [TUF — Security](https://theupdateframework.io/docs/security/).
+
+## 10.554 Authentification des métadonnées de mise à jour — Question 559, décision technique recommandée
+
+Lorsqu'une source d'extension publie des métadonnées de mise à jour signées, l'application vérifie leur signature à partir d'une racine de confiance préalablement établie et de règles de délégation explicites. Les métadonnées doivent relier sans ambiguïté l'identifiant de l'extension, la version proposée, la source, les dépendances et l'artefact téléchargeable. Une métadonnée non signée, signée par une clé inconnue ou dont la chaîne de confiance ne peut être validée n'est pas considérée comme authentique.
+
+La vérification doit porter sur les métadonnées avant que celles-ci soient utilisées pour décider quel paquet télécharger ou installer. Les informations de provenance présentées dans la fiche d'extension distinguent toujours les données déclarées par l'éditeur des données cryptographiquement vérifiées. Ce contrôle ne transforme pas une source choisie librement par l'utilisateur en source automatiquement fiable.
+
+Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [TUF — Roles and Metadata](https://theupdateframework.io/docs/metadata/).
+
+## 10.555 Protection contre les retours arrière et les métadonnées périmées — Question 560, décision technique recommandée
+
+Le mécanisme de mise à jour conserve les informations de confiance nécessaires pour refuser une métadonnée ou une version déjà dépassée, une version inférieure à la dernière version reconnue, une combinaison incohérente de métadonnées ou des métadonnées expirées. Une version plus ancienne ne peut pas être présentée comme une mise à jour ordinaire. Les exceptions de restauration restent exclusivement accessibles par le parcours de restauration manuelle déjà prévu et ne doivent pas être confondues avec le mécanisme normal de mise à jour.
+
+Les contrôles de fraîcheur et de monotonie sont effectués avant le téléchargement ou l'installation de l'artefact. En cas de détection d'un risque de rollback, de freeze ou de mélange de métadonnées, l'opération est interrompue et le motif est présenté clairement. L'échec d'une vérification ne doit pas rendre le mécanisme de mise à jour définitivement inutilisable : une nouvelle vérification ultérieure doit rester possible.
+
+Références : [TUF — Specification, client workflow](https://theupdateframework.github.io/specification/latest/) ; [TUF — Security](https://theupdateframework.io/docs/security/).
+
+## 10.556 Vérification des artefacts téléchargés avant leur installation — Question 561, décision technique recommandée
+
+Après téléchargement et avant toute extraction ou installation, l'application compare la taille et les empreintes cryptographiques de l'artefact avec les valeurs contenues dans les métadonnées authentifiées. Le fichier n'est transmis à la phase d'installation que si toutes les vérifications obligatoires réussissent. Le contrôle est effectué sur les octets effectivement reçus et non sur le seul nom du fichier ou son type déclaré.
+
+Un écart de taille, une empreinte incorrecte, un téléchargement tronqué ou un fichier différent de celui annoncé entraîne le rejet de l'artefact. L'application conserve la version installée et ne tente pas de réparer ou de compléter silencieusement un fichier non conforme. Le diagnostic indique le contrôle qui a échoué sans exposer d'informations sensibles.
+
+Référence : [TUF — Fetch Target and Verify Target Files](https://theupdateframework.github.io/specification/latest/).
+
+## 10.557 Traitement indépendant et transactionnel des mises à jour groupées — Question 562, décision technique recommandée
+
+Lorsqu'une mise à jour groupée concerne plusieurs extensions sélectionnées, chaque extension fait l'objet d'une transaction indépendante : vérification, préparation, sauvegarde de la version installée, remplacement, validation puis résultat. Une erreur sur une extension n'autorise pas à laisser cette extension dans un état partiellement remplacé et ne doit pas corrompre les autres extensions du lot.
+
+Le bilan de l'opération distingue les extensions mises à jour, celles qui ont échoué, celles qui ont été ignorées et celles qui ont été restaurées. Les échecs sont traités selon la restauration automatique de la version précédente déjà définie. L'application ne prétend pas que l'ensemble du lot a réussi si une ou plusieurs transactions individuelles ont échoué ; les résultats partiels sont explicitement présentés.
+
+Cette organisation conserve la possibilité de mise à jour groupée validée par l'utilisateur tout en limitant le périmètre d'une défaillance à l'extension concernée.
+
+## 10.558 Refus des mises à jour qui élargissent silencieusement les autorisations — Question 563, décision technique recommandée
+
+Une mise à jour ne peut pas ajouter, élargir ou modifier implicitement les autorisations fixes d'une extension déjà installée. Avant l'installation, l'application compare les autorisations requises par la nouvelle version avec celles qui ont été accordées à l'installation initiale. Si la nouvelle version exige une capacité supplémentaire ou une portée plus large, cette mise à jour est bloquée et la version actuellement installée reste active.
+
+La fiche indique les autorisations supplémentaires demandées et explique que les permissions ne sont pas modifiables après installation, conformément à la décision déjà validée. La mise à jour n'est pas forcée et aucune nouvelle permission n'est accordée en arrière-plan. Si l'utilisateur souhaite adopter cette version, il devra suivre un parcours de désinstallation puis de nouvelle installation, avec présentation et confirmation des autorisations requises, en tenant compte des choix de conservation des données déjà définis.
+
+Cette règle empêche qu'une mise à jour signée ou provenant d'une source connue profite de la confiance accordée à la version précédente pour obtenir silencieusement des accès supplémentaires. Références : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
+
+## 10.559 Interprétation normalisée des contraintes de versions des dépendances — Question 564, décision technique recommandée
+
+Les contraintes de versions déclarées par les extensions sont interprétées selon le schéma de version explicitement indiqué par leur manifeste ou leur écosystème. Lorsqu'une dépendance utilise Semantic Versioning, l'application applique les règles SemVer correspondantes, y compris l'ordre numérique des composantes majeure, mineure et corrective, le traitement des préversions et l'absence d'effet des métadonnées de construction sur la priorité.
+
+L'application ne déduit pas une compatibilité à partir d'une comparaison textuelle ou lexicographique des numéros. Si le format ou l'opérateur de contrainte n'est pas reconnu, la dépendance est considérée comme non résolue et l'incertitude est présentée à l'utilisateur ; aucune version arbitraire n'est sélectionnée. Les plages trop larges, ambiguës ou non interprétables sont signalées avant l'installation ou l'activation.
+
+Références : [Semantic Versioning 2.0.0 — Spécification française](https://semver.org/lang/fr/spec/v2.0.0.html) ; [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
+
+## 10.560 Résolution déterministe des versions de dépendances — Question 565, décision technique recommandée
+
+Lorsque plusieurs versions d'une même dépendance sont disponibles, le résolveur recherche une combinaison qui satisfait simultanément toutes les contraintes obligatoires des extensions concernées. Il privilégie la réutilisation d'une version commune lorsqu'elle respecte toutes les plages déclarées, plutôt que de multiplier inutilement les variantes d'un même composant. Il ne choisit pas une version uniquement parce qu'elle est la plus récente si celle-ci ne respecte pas les contraintes.
+
+À contraintes et sources identiques, le résultat doit être reproductible : les mêmes entrées et le même état des dépôts doivent produire le même plan de résolution. Le plan expose les versions retenues, les contraintes prises en compte, les dépendances partagées et les incompatibilités qui empêchent une solution. Si aucune combinaison valide n'existe, l'application présente le conflit et ne lance pas une installation partielle qui laisserait les extensions dans un état incohérent.
+
+Référence : [The Cargo Book — Dependency Resolution, constraints and heuristics](https://doc.rust-lang.org/cargo/reference/resolver.html).
+
+## 10.561 Ordonnancement des opérations selon le graphe de dépendances — Question 566, décision technique recommandée
+
+Les opérations d'installation et d'activation tiennent compte du graphe complet des dépendances obligatoires. Les dépendances sont préparées et rendues disponibles avant les extensions qui en dépendent ; l'activation suit un ordre topologique compatible avec les relations déclarées. Lorsque plusieurs ordres sont valides, l'application utilise un ordre stable afin de rendre le résultat prévisible.
+
+Le plan présente les étapes et leurs relations, notamment les dépendances partagées. Une dépendance déjà présente et compatible n'est pas réinstallée sans nécessité. Si une étape échoue, les extensions qui en dépendent ne sont pas activées ; les autres opérations indépendantes peuvent être traitées selon leurs transactions propres et leurs résultats sont présentés séparément.
+
+Cette organisation complète la détection et l'installation guidée des dépendances déjà prévues, en précisant l'ordre nécessaire à une exécution cohérente.
+
+Référence : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
+
+## 10.562 Détection des cycles dans le graphe de dépendances — Question 567, décision technique recommandée
+
+Avant l'installation ou l'activation, l'application recherche les cycles dans les dépendances obligatoires. Un cycle est identifié par le chemin complet des extensions qui se référencent mutuellement, et non simplement par un message générique d'erreur. Les cycles qui empêchent de déterminer un ordre valide bloquent l'activation du groupe concerné.
+
+Le diagnostic identifie les manifestes et les relations à l'origine du cycle, ainsi que les extensions qui en subissent les conséquences. L'application ne tente pas de résoudre arbitrairement le cycle en ignorant une dépendance, en supprimant une relation ou en désactivant silencieusement une extension. Les composants indépendants du groupe cyclique restent consultables et utilisables si leur fonctionnement n'en dépend pas.
+
+Cette décision s'appuie sur la nécessité de parcourir un graphe de dépendances sans boucle et de limiter les résolutions ambiguës. Référence : [The Update Framework — Specification, delegated metadata cycle handling](https://theupdateframework.github.io/specification/latest/).
+
+## 10.563 Traitement distinct des dépendances facultatives — Question 568, décision technique recommandée
+
+Les dépendances explicitement déclarées comme facultatives sont distinguées des prérequis obligatoires dans les fiches, les diagnostics et les plans d'installation. Leur absence ne bloque pas l'installation ou l'activation générale de l'extension lorsque le manifeste indique que les fonctionnalités principales restent utilisables sans elles.
+
+L'application précise quelles fonctionnalités sont indisponibles ou dégradées en raison de la dépendance facultative manquante. Elle ne tente pas de l'installer automatiquement sans validation de l'utilisateur et ne désactive pas l'extension entière pour ce seul motif. Si l'extension ne permet pas d'identifier précisément les fonctions concernées, l'application indique cette limite plutôt que de supposer que toutes les fonctions restent opérationnelles.
+
+Une dépendance facultative qui devient incompatible ou indisponible ne doit pas être traitée comme une dépendance obligatoire ; cette distinction n'altère pas la règle déjà validée de désactivation automatique lorsqu'une dépendance obligatoire devient indisponible.
+
+Références : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html) ; [Semantic Versioning 2.0.0](https://semver.org/lang/fr/spec/v2.0.0.html).
+
+
+
+## 10.564 Normalisation des coordonnées et des transformations du document graphique — Question 569, décision technique recommandée
+
+Le moteur de rendu doit interpréter les coordonnées, unités et transformations selon un modèle géométrique commun et explicite, indépendant de la taille d'affichage et de la destination finale.
+
+- Chaque document de carte possède un espace de coordonnées de référence défini par ses dimensions logiques et son origine.
+- Les transformations des éléments et groupes sont composées selon une convention unique, documentée et testée : translation, rotation, mise à l'échelle et transformations combinées.
+- Les unités physiques et relatives sont converties de manière contrôlée à partir de la taille de référence, du viewport et de la résolution de sortie ; aucune conversion ne doit dépendre implicitement du zoom courant de l'éditeur.
+- Les dimensions physiques destinées à l'impression sont conservées séparément des pixels d'aperçu et des pixels de sortie.
+- Les transformations imbriquées doivent être résolues dans l'ordre hiérarchique attendu, sans perte de précision évitable lors des conversions successives.
+- Le moteur doit conserver les coordonnées d'origine des objets dans le modèle éditable ; les valeurs transformées utilisées pour le rendu ne doivent pas remplacer silencieusement les données sources.
+- Les changements de taille du viewport ou de résolution de sortie ne doivent pas modifier la géométrie logique du document.
+- Les cas de valeurs invalides, non finies, hors limites ou de matrices singulières doivent être détectés et signalés ; ils ne doivent pas produire un rendu arbitraire.
+
+Cette décision s'appuie sur le modèle SVG de viewports, viewBox, systèmes de coordonnées imbriqués et transformations. Référence : [W3C — SVG 2, Coordinate Systems, Transformations and Units](https://www.w3.org/TR/2026/CR-SVG2-20261006/coords.html).
+
+## 10.565 Ordre de peinture déterministe et hiérarchie des groupes — Question 570, décision technique recommandée
+
+Le moteur doit appliquer un ordre de rendu déterministe à tous les objets, calques, groupes et sous-groupes.
+
+- L'ordre de peinture découle de la hiérarchie du document et de l'ordre explicite des éléments au sein de chaque parent.
+- Le déplacement d'un élément dans la pile de calques doit modifier son ordre de peinture sans modifier ses coordonnées, ses propriétés ou ses relations de parenté, sauf action explicite de regroupement ou de déplacement.
+- Les groupes doivent être rendus comme des unités hiérarchiques conformément à leur structure ; les éléments enfants ne doivent pas être réordonnés arbitrairement en dehors de leur groupe.
+- Les identifiants internes des objets servent à maintenir une identité stable et ne doivent pas être utilisés comme substitut à l'ordre visuel.
+- À structure et propriétés identiques, l'aperçu, l'export et l'impression doivent utiliser le même ordre de peinture, même si leurs profils de sortie diffèrent.
+- Les opérations parallèles ou différées du moteur ne doivent pas modifier le résultat final de composition ; le résultat doit être équivalent à l'ordre logique défini par le document.
+- Toute opération qui change l'ordre doit être enregistrée dans l'historique Annuler/Rétablir et rester réversible.
+
+Référence : [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
+
+## 10.566 Sémantique commune de composition, fusion et isolation — Question 571, décision technique recommandée
+
+Les règles de transparence, d'opacité, de fusion et d'isolation des groupes doivent reposer sur une sémantique de composition cohérente entre les différents profils de rendu.
+
+- Le moteur distingue l'opacité individuelle d'un objet de l'opacité appliquée à un groupe complet ; ces deux opérations ne doivent pas être confondues.
+- Les modes de fusion sont évalués par rapport à l'arrière-plan défini par la hiérarchie de composition et les règles d'isolation du groupe.
+- Les masques, filtres, découpes et opérations de fusion suivent un ordre de traitement documenté et stable, conforme au modèle de composition pris en charge.
+- L'isolation d'un groupe est une propriété explicite du modèle graphique lorsque le comportement attendu ne peut pas être déduit sans ambiguïté.
+- Les profils d'aperçu, d'export et d'impression doivent partager les mêmes règles de composition pour les opérations qu'ils prennent tous en charge.
+- Lorsqu'un moteur secondaire ne reproduit pas exactement une opération, l'écart doit être détecté et signalé avant la génération ; il ne doit pas substituer silencieusement un mode de fusion différent.
+- Les tests de conformité doivent inclure des groupes imbriqués, des opacités cumulées, des masques, des modes de fusion et des fonds transparents.
+
+Références : [W3C — Compositing and Blending Level 1](https://www.w3.org/TR/compositing-1/) ; [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
+
+## 10.567 Importation et traitement sécurisé des ressources SVG — Question 572, décision technique recommandée
+
+Les fichiers SVG importés ou reçus depuis des sources externes sont traités comme des ressources graphiques non fiables. Leur rendu ne doit pas leur accorder les capacités d'un document interactif ou d'un programme.
+
+- L'importation et la prévisualisation utilisent un mode statique sécurisé : scripts, gestionnaires d'événements, interactivité et animations sont désactivés.
+- Les références vers des ressources externes ne sont pas résolues implicitement. Les images, polices ou autres dépendances nécessaires doivent être importées séparément, contrôlées puis liées par des références locales autorisées.
+- Les éléments ou fonctionnalités non autorisés, notamment les contenus embarqués actifs et les références réseau ou fichier non approuvées, sont rejetés ou neutralisés avant le rendu.
+- Le traitement ne doit pas permettre à un SVG d'accéder au système de fichiers, au réseau, aux données de l'application ou au contexte d'une autre fenêtre.
+- La taille du document, la profondeur de l'arbre, le nombre d'éléments, les dimensions des filtres et la consommation mémoire doivent être bornés pour éviter les ressources pathologiques.
+- L'application conserve le fichier original importé lorsque cela est demandé, mais distingue clairement cet original de la représentation assainie utilisée pour l'aperçu et l'édition.
+- Les éléments supprimés, neutralisés ou non pris en charge sont consignés dans le rapport d'importation ; l'application ne prétend pas que la ressource a été conservée à l'identique.
+- Les ressources locales nécessaires sont vérifiées et intégrées au périmètre du projet selon les règles de gestion des ressources existantes.
+
+Références : [W3C — SVG 2, Conformance Criteria and Processing Modes](https://www.w3.org/TR/SVG/latest/conform.html) ; [W3C — SVG Integration](https://www.w3.org/TR/svg-integration/).
+
+## 10.568 Matrice de capacités et traitement des incompatibilités entre moteurs de rendu — Question 573, décision technique recommandée
+
+L'application maintient une matrice de capacités vérifiables pour chaque moteur et profil de rendu afin de distinguer les opérations prises en charge, partiellement prises en charge et indisponibles.
+
+- La matrice couvre au minimum les éléments vectoriels, textes et polices, images, masques, filtres, transparences, modes de fusion, découpes, ressources liées et fonctions spécifiques utilisées par les templates.
+- Chaque fonctionnalité est associée à un statut explicite : prise en charge complète, prise en charge avec restriction, conversion ou approximation, ou non prise en charge.
+- La matrice est déterminée à partir des capacités réellement disponibles et des tests de conformité exécutés sur les versions des moteurs utilisées ; une simple déclaration théorique ne suffit pas.
+- Avant un export ou une impression, l'application compare les fonctionnalités réellement utilisées par le document à celles du moteur et du format de sortie sélectionnés.
+- Toute perte, approximation ou substitution potentielle est signalée avec l'élément concerné, la fonctionnalité affectée et la conséquence attendue.
+- Les opérations bloquantes empêchent la génération tant qu'elles ne sont pas corrigées ou explicitement écartées par une action utilisateur prévue à cet effet.
+- Les avertissements non bloquants restent visibles dans le bilan de génération et sont associés au résultat produit.
+- Une mise à jour du moteur ou du format ne doit pas être considérée comme équivalente à la version précédente sans vérification de la matrice et des tests concernés.
+
+Cette décision complète les règles de cohérence aperçu/export et de signalement des limitations déjà définies à la section 10.11. Elle évite de promettre une compatibilité universelle entre moteurs et formats.
+
+## 10.569 Identification et conservation des profils colorimétriques des ressources — Question 574, décision technique recommandée
+
+Le moteur doit identifier et conserver les informations colorimétriques associées aux images et autres ressources qui possèdent un profil incorporé ou une déclaration d'espace colorimétrique.
+
+- À l'importation, détecter les profils ICC incorporés et les informations de couleur prises en charge par le format source.
+- Conserver la ressource originale et ses métadonnées colorimétriques ; ne pas remplacer son profil source par le profil de travail sans conversion réelle.
+- Distinguer explicitement trois situations : profil incorporé reconnu, espace colorimétrique standard identifié sans profil incorporé, et espace colorimétrique inconnu ou non interprétable.
+- Lorsqu'aucun profil n'est fourni, appliquer uniquement une règle d'interprétation documentée et configurable ; afficher le profil supposé et permettre à l'utilisateur de le modifier.
+- Ne jamais attribuer silencieusement un profil arbitraire à une ressource dont l'espace colorimétrique est inconnu.
+- Associer les informations de profil aux ressources dans la bibliothèque et les préserver dans les projets, duplications, sauvegardes et travaux d'export.
+- Signaler les profils invalides, corrompus, non pris en charge ou impossibles à convertir ; ne pas présenter la ressource comme gérée colorimétriquement lorsque ce n'est pas le cas.
+- Distinguer l'assignation d'un profil — qui interprète différemment les valeurs existantes — de la conversion vers un autre profil — qui modifie les valeurs pour préserver autant que possible l'apparence.
+
+Références : [International Color Consortium — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4, color conversion](https://www.w3.org/TR/css-color/).
+
+## 10.570 Espace colorimétrique de travail et conversions explicites — Question 575, décision technique recommandée
+
+L'application doit définir un espace colorimétrique de travail explicite pour les opérations qui combinent ou modifient les couleurs.
+
+- Définir un espace de travail par défaut au niveau de l'application, avec possibilité de le remplacer au niveau du projet lorsque cela est pertinent.
+- Enregistrer l'espace de travail réellement utilisé avec le projet et les travaux de génération afin de rendre les opérations reproductibles.
+- Convertir les ressources depuis leur espace source vers l'espace de travail par une gestion colorimétrique fondée sur les profils disponibles.
+- Ne pas confondre conversion et assignation : une conversion modifie les valeurs pour préserver l'apparence visée, tandis qu'une assignation modifie l'interprétation des valeurs existantes.
+- Toute modification d'espace de travail sur un projet existant doit présenter les conséquences attendues et ne pas réinterpréter ou convertir massivement les ressources sans validation explicite.
+- Les couleurs définies directement dans les templates, composants et objets doivent être interprétées dans l'espace explicitement associé à leur définition ou selon une règle de compatibilité documentée.
+- Les opérations de fusion, dégradé, filtrage et composition doivent employer un espace de calcul déterminé et cohérent ; le moteur ne doit pas mélanger implicitement des valeurs issues d'espaces différents.
+- Si un profil source ou destination manque, l'application signale la limite et applique uniquement une règle de repli préalablement définie, traçable et modifiable.
+
+Références : [ICC — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4](https://www.w3.org/TR/css-color/).
+
+## 10.571 Choix et traçabilité des intentions de rendu — Question 576, décision technique recommandée
+
+Lorsqu'une conversion colorimétrique implique une différence de gamut entre la source et la destination, l'application doit exposer et tracer l'intention de rendu utilisée.
+
+- Prendre en charge les intentions de rendu réellement disponibles dans le moteur de gestion colorimétrique : perceptuelle, colorimétrie relative, colorimétrie absolue et saturation lorsque les profils et la bibliothèque les prennent en charge.
+- Permettre de choisir l'intention au niveau du profil d'export ou d'impression et, si nécessaire, de la modifier pour une opération ponctuelle sans altérer le profil enregistré.
+- Fournir des valeurs par défaut adaptées aux profils et usages, sans présenter une intention comme universellement meilleure pour toutes les images et tous les documents.
+- Distinguer les traitements destinés aux images photographiques, aux aplats et graphiques, ainsi qu'à l'épreuvage, lorsque le moteur permet des réglages différenciés.
+- Enregistrer l'intention effectivement appliquée avec le travail et le résultat généré.
+- Si l'intention demandée n'est pas prise en charge, ne pas la remplacer silencieusement ; signaler l'indisponibilité et demander une décision ou appliquer uniquement une solution de repli explicitement configurée.
+- Les contrôles qualité doivent pouvoir identifier les conversions réalisées sans intention connue ou avec une option de repli.
+
+Référence : [ICC — Frequently Asked Questions, rendering intents](https://www.color.org/faqs/).
+
+## 10.572 Épreuvage écran et avertissement des couleurs hors gamut — Question 577, décision technique recommandée
+
+L'application doit proposer un épreuvage écran lorsque les profils source, destination et les capacités du moteur le permettent.
+
+- Permettre de simuler l'apparence d'un profil de sortie identifié, notamment un procédé d'impression et un support papier.
+- Distinguer l'affichage normal de l'aperçu d'épreuvage ; l'utilisateur doit pouvoir activer, désactiver et comparer les deux modes.
+- Proposer un avertissement visuel des couleurs susceptibles de se trouver hors du gamut de sortie, lorsque cette analyse est prise en charge.
+- Permettre d'identifier les zones concernées et de comprendre que leur reproduction peut différer de l'affichage écran.
+- Respecter l'intention de rendu et les paramètres de conversion du profil sélectionné.
+- Indiquer clairement le profil de sortie simulé, le profil d'affichage utilisé lorsque connu et les limites de la simulation.
+- Ne pas présenter l'épreuvage écran comme une garantie de correspondance physique : le résultat réel dépend également de l'écran, de son étalonnage, de l'imprimante, du support, des encres et des conditions d'observation.
+- L'épreuvage et l'affichage des avertissements ne doivent pas modifier les couleurs sources ni le document.
+
+Références : [ICC — Frequently Asked Questions](https://www.color.org/faqs/) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
+
+## 10.573 Vérification des profils ICC et des intentions de sortie dans les fichiers PDF — Question 578, décision technique recommandée
+
+La génération PDF destinée à l'impression doit vérifier la cohérence entre les profils colorimétriques employés et les conditions de sortie annoncées dans le document.
+
+- Pour les profils PDF/X, vérifier la présence et la validité de l'Output Intent exigé par le niveau de conformité visé.
+- Vérifier que le profil de sortie déclaré correspond au profil réellement sélectionné pour la génération et que les conversions nécessaires ont été effectuées conformément au flux retenu.
+- Distinguer la présence d'un Output Intent de la conversion effective des objets colorimétriques ; la simple déclaration d'une destination ne prouve pas que les couleurs ont été converties.
+- Vérifier les espaces colorimétriques des objets, les profils incorporés, les couleurs spéciales et les éventuelles ressources externes selon les exigences du format ciblé.
+- Signaler les incohérences, profils absents ou invalides, conversions non effectuées et limitations de compatibilité avant la génération.
+- Ne déclarer une conformité PDF/X que si l'ensemble des exigences applicables a été contrôlé et satisfait par le fichier final.
+- Si le fichier ne satisfait pas les contrôles, produire un PDF ordinaire uniquement si l'utilisateur l'a choisi et si les limites sont présentées ; ne jamais apposer une déclaration de conformité non vérifiée.
+- Conserver dans le bilan de génération le profil de sortie, l'intention de rendu, les conversions réalisées et les contrôles effectivement exécutés.
+
+Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [PDF Association — Technical side and requirements of PDF/X](https://pdfa.org/technical-side-and-requirements-of-pdfx) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
+
+## 10.574 Calcul de la résolution effective des images placées — Question 579, décision technique recommandée
+
+La qualité d'une image destinée à l'impression doit être évaluée à partir de sa résolution effective dans sa taille et sa position finales, et non uniquement à partir des métadonnées de résolution inscrites dans le fichier source.
+
+- Calculer la résolution effective à partir du nombre de pixels réellement utilisés après recadrage et des dimensions physiques de l'image dans la composition finale.
+- Tenir compte des agrandissements, réductions, rotations, recadrages et transformations non uniformes lorsqu'ils modifient la densité de pixels selon les axes.
+- Distinguer les dimensions en pixels de la résolution physique exprimée en pixels par pouce ou par centimètre.
+- Pour les images placées dans des groupes ou transformées par des composants, calculer la résolution au niveau de leur occurrence réelle dans la carte ou la feuille imprimée.
+- Afficher les valeurs horizontale et verticale lorsque les transformations conduisent à des résolutions différentes.
+- Ne pas déduire la qualité d'impression d'une simple valeur DPI déclarée dans les métadonnées si les dimensions en pixels et la taille physique montrent une autre résolution effective.
+- Conserver les informations sources et le calcul effectué dans les diagnostics de préflight afin que l'utilisateur puisse identifier les images concernées.
+
+Références : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
+
+## 10.575 Seuils de résolution adaptés à la destination et au contenu — Question 580, décision technique recommandée
+
+Les contrôles de résolution doivent utiliser des seuils adaptés au procédé de sortie, au format de carte et à la nature du contenu.
+
+- Définir des seuils configurables dans les profils d'impression et d'export, sans imposer une valeur universelle à tous les usages.
+- Distinguer les images photographiques, les illustrations détaillées, les textures, les éléments de type dessin au trait et les contenus monochromes lorsque les règles de contrôle le permettent.
+- Prendre en compte la résolution attendue du périphérique, le support, le procédé d'impression et les recommandations documentées du fournisseur lorsqu'elles sont disponibles.
+- Détecter séparément une résolution effective trop faible et une résolution très supérieure à ce qui est utile pour la destination.
+- Présenter la résolution mesurée, le seuil appliqué, la destination concernée et l'élément graphique correspondant.
+- Permettre à l'utilisateur de modifier les seuils dans un profil ou de conserver ponctuellement un élément averti, sans falsifier le résultat du contrôle.
+- Une absence de seuil fiable ou de recommandation du périphérique doit être signalée ; l'application ne doit pas présenter une estimation générique comme une norme de production.
+- Les seuils de résolution sont distincts des exigences de conformité PDF/X, qui ne fixent pas à eux seuls une résolution minimale universelle des images.
+
+Références : [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
+
+## 10.576 Rééchantillonnage contrôlé et choix des filtres — Question 581, décision technique recommandée
+
+Le moteur doit distinguer le redimensionnement géométrique d'une image du rééchantillonnage qui modifie réellement ses pixels.
+
+- Conserver par défaut les pixels sources lorsqu'un simple changement de taille physique suffit et qu'aucun rééchantillonnage n'est nécessaire.
+- Lorsqu'un rééchantillonnage est demandé ou requis pour la sortie, choisir un algorithme adapté à la réduction ou à l'agrandissement et au type de contenu.
+- Proposer des méthodes de rééchantillonnage prises en charge par le moteur, avec des préréglages qualité/performance clairement identifiés ; ne pas afficher une méthode qui n'est pas réellement utilisée.
+- Effectuer les opérations de réduction avec une méthode appropriée à l'agrégation des échantillons, en évitant les pertes répétées dues à des redimensionnements successifs.
+- Pour les images intégrées à un rendu SVG, respecter les indications de qualité de rééchantillonnage prises en charge par le moteur et privilégier les traitements de haute qualité pour les profils d'impression.
+- Effectuer le rééchantillonnage dans un espace colorimétrique adapté et cohérent avec la gestion colorimétrique du projet.
+- Préserver l'original et enregistrer les paramètres de transformation ; une version rééchantillonnée ne doit pas remplacer la ressource source sans action explicite.
+- Signaler les opérations qui peuvent réduire les détails, introduire des artefacts ou modifier la netteté.
+
+Références : [W3C — SVG 2, image-rendering](https://www.w3.org/TR/2026/CR-SVG2-20261006/painting.html) ; [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
+
+## 10.577 Agrandissement des images et distinction entre pixels originaux et interpolés — Question 582, décision technique recommandée
+
+L'agrandissement d'une image ne doit jamais être présenté comme une récupération certaine de détails absents de la source.
+
+- Autoriser l'agrandissement lorsque la composition ou la sortie l'exige, mais calculer et afficher la résolution effective résultante.
+- Signaler lorsque le résultat dépend de pixels interpolés ou générés par rééchantillonnage plutôt que de détails présents dans l'original.
+- Ne pas qualifier une image agrandie de véritable haute résolution au seul motif que ses dimensions en pixels ont augmenté.
+- Préserver la ressource originale et permettre de comparer le résultat agrandi avec la source.
+- Si une méthode d'amélioration ou de reconstruction assistée est utilisée, l'identifier comme telle et distinguer ses pixels reconstruits des données sources ; ne pas garantir que les détails générés correspondent à la réalité de l'image d'origine.
+- Proposer un avertissement lorsque la résolution effective descend sous le seuil du profil de sortie.
+- Toute substitution par une autre illustration ou une autre version de meilleure résolution nécessite une validation explicite de l'utilisateur.
+- Les avertissements doivent rester associés à l'élément et au résultat de préflight, même si l'utilisateur décide de poursuivre.
+
+Référence : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
+
+## 10.578 Rendu haute résolution, traitement par tuiles et maîtrise des ressources — Question 583, décision technique recommandée
+
+La génération de rendus haute résolution et de lots importants doit maîtriser la mémoire et les ressources sans altérer la géométrie ni introduire de défauts visibles.
+
+- Estimer avant génération la taille des surfaces intermédiaires, le nombre de pixels, les ressources graphiques et la mémoire nécessaires lorsque ces informations peuvent être calculées.
+- Adapter le traitement à la mémoire disponible et aux limites documentées de la plateforme ; ne pas lancer une allocation manifestement excessive sans stratégie de réduction ou de traitement segmenté.
+- Permettre le rendu par tuiles ou régions lorsque le moteur le nécessite, en conservant une zone de recouvrement suffisante pour les filtres, ombres, flous et effets débordant des limites d'une tuile.
+- Éviter les coutures, discontinuités, variations de couleur et décalages aux frontières des tuiles ; les résultats doivent correspondre au rendu d'une surface continue dans les limites de précision du moteur.
+- Libérer les surfaces et ressources temporaires dès qu'elles ne sont plus nécessaires et réutiliser les ressources compatibles sans conserver indéfiniment des données de rendu obsolètes.
+- Pour les traitements par lots, limiter la concurrence selon les ressources disponibles et permettre de poursuivre les éléments indépendants en cas d'échec individuel.
+- En cas de mémoire insuffisante ou de limite atteinte, interrompre proprement l'élément concerné, conserver les fichiers déjà validés et produire un diagnostic précis.
+- Les optimisations de mémoire et de parallélisme ne doivent pas changer le résultat logique ou la résolution demandée.
+
+Références : [W3C — SVG 2, Conformance Criteria](https://www.w3.org/TR/SVG/latest/conform.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
+
+## 10.579 Prise en compte de la zone réellement imprimable du périphérique — Question 584, décision technique recommandée
+
+La composition des feuilles doit distinguer le format physique du papier de la zone que l'imprimante peut effectivement marquer.
+
+- Distinguer les dimensions du support, les marges physiques du périphérique et la zone imprimable déclarée ou mesurée.
+- Utiliser les informations disponibles auprès du système d'exploitation et du pilote d'impression lorsque le travail cible une imprimante identifiée.
+- Permettre de définir un profil de périphérique ou de conserver une zone imprimable personnalisée lorsque les informations du pilote sont absentes ou incomplètes.
+- Ne pas supposer qu'une imprimante peut imprimer jusqu'au bord du support ; l'impression sans bordure ne peut être proposée que si le périphérique et le format sélectionnés la déclarent effectivement compatible.
+- Calculer la capacité de placement des cartes à partir de la zone imprimable, des marges, des espacements, des fonds perdus et des repères nécessaires.
+- Signaler lorsqu'une disposition théorique tient sur la feuille mais dépasse la zone réellement imprimable du périphérique.
+- Conserver la distinction entre le format de feuille demandé, la zone utilisée pour l'imposition et la zone effectivement disponible sur le périphérique.
+- Si le périphérique n'est pas encore choisi, présenter le résultat comme une simulation selon le profil sélectionné, et non comme une garantie de sortie physique.
+
+Référence : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html).
+
+## 10.580 Correspondance géométrique des faces en impression recto-verso — Question 585, décision technique recommandée
+
+La préparation recto-verso doit calculer la transformation géométrique appliquée à la seconde face en fonction du mode de retournement de la feuille et de l'orientation du support.
+
+- Définir explicitement le mode de retournement sur bord long ou bord court pour chaque travail recto-verso.
+- Calculer la position et l'orientation de chaque verso à partir de la transformation physique attendue de la feuille, et non d'une simple inversion visuelle arbitraire.
+- Préserver l'association entre chaque recto et son verso après rotation, retournement, réorganisation ou imposition.
+- Signaler les feuilles dont les dimensions, l'orientation ou le sens d'alimentation rendent le mode choisi ambigu ou incompatible.
+- Permettre une feuille de calibration ou un aperçu de contrôle avec repères asymétriques afin que l'utilisateur puisse vérifier le sens réel de retournement de son imprimante.
+- Ne pas prétendre connaître le comportement physique d'un périphérique lorsque le pilote ne fournit pas cette information ou qu'aucune calibration n'a été effectuée.
+- Enregistrer la transformation utilisée et le mode de retournement avec le travail et l'historique d'impression.
+- Toute modification du mode de retournement doit actualiser la prévisualisation des deux faces avant génération.
+
+Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
+
+## 10.581 Définition cohérente des zones de page PDF — Question 586, décision technique recommandée
+
+Les fichiers PDF destinés à l'impression doivent définir les zones de page pertinentes de manière cohérente avec la géométrie physique du travail.
+
+- Définir la MediaBox comme limite du support PDF et y inclure les éléments qui doivent être imprimés, notamment les repères extérieurs lorsque le profil en prévoit.
+- Définir la TrimBox comme dimension finale après coupe de la carte ou de la feuille selon le niveau de composition du fichier.
+- Définir la BleedBox comme zone de fond perdu autour de la TrimBox lorsque le travail prévoit un fond perdu ; la géométrie doit rester cohérente avec la MediaBox.
+- Distinguer la CropBox, utilisée principalement pour l'affichage ou le cadrage, des zones physiques de production ; elle ne doit pas remplacer implicitement la TrimBox.
+- N'utiliser l'ArtBox que lorsque le flux de production ou le logiciel cible lui attribue un rôle explicite.
+- Vérifier les dimensions, l'inclusion géométrique et la cohérence des zones pour chaque page, notamment dans les documents comportant des formats ou orientations mixtes.
+- Ne pas déduire une géométrie correcte de la seule présence des boîtes : vérifier également que le contenu graphique atteint effectivement la limite du fond perdu et que les informations essentielles restent dans leur zone de sécurité.
+- Si le format ou le moteur ne permet pas de produire les boîtes attendues, l'indiquer et ne pas déclarer le fichier conforme à un profil qui les exige.
+
+Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF geometry](https://onlinehelp.prinect-lounge.com/Prinect_PDF_Toolbox/Version2018/fr/Prinect/PDF_geometry/PDF_geometry-3-.htm).
+
+## 10.582 Contrôle des collisions et dégagements des repères de production — Question 587, décision technique recommandée
+
+Les repères de coupe, de positionnement et autres marques de production doivent être disposés sans empiéter sur les cartes, les fonds perdus ou les zones réservées à d'autres informations.
+
+- Définir les dégagements nécessaires autour des cartes, des fonds perdus et des repères selon le profil de production.
+- Contrôler les collisions entre repères voisins, repères de cartes adjacentes, limites de feuille, zones non imprimables et éventuelles informations de marge.
+- Tenir compte des dimensions réelles des repères, de leur épaisseur, de leur longueur, de leur position et de leur orientation.
+- Détecter les repères qui se superposent à un contenu utile ou qui deviennent ambigus après l'imposition.
+- Distinguer les conflits bloquants des avertissements qui peuvent être acceptés selon le profil ou le procédé.
+- Proposer une correction de placement ou un espacement alternatif sans déplacer silencieusement les cartes ni modifier leurs dimensions finales.
+- Préserver la correspondance entre les repères, les cartes et les lignes de coupe auxquelles ils se rapportent.
+- Présenter dans la prévisualisation les repères réellement inclus dans le fichier final, distinctement des guides d'édition temporaires.
+
+Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
+
+## 10.583 Optimisation déterministe de l'imposition des cartes sur une feuille — Question 588, décision technique recommandée
+
+L'imposition automatique doit rechercher une disposition efficace tout en respectant toutes les contraintes géométriques et de production du travail.
+
+- Évaluer les orientations autorisées, rotations, espacements, marges, fonds perdus, zones imprimables, formes personnalisées et contraintes de découpe.
+- Optimiser l'utilisation de la surface disponible sans réduire les dimensions physiques demandées ni supprimer les espacements nécessaires.
+- Préserver les quantités, l'ordre et les associations recto-verso des cartes ; toute modification de l'ordre doit rester visible et réversible.
+- Utiliser un algorithme déterministe : à paramètres, cartes et contraintes identiques, le plan d'imposition doit être reproductible.
+- Exposer les critères principaux utilisés pour choisir la disposition, notamment le nombre de cartes par feuille, la surface utilisée, les chutes et les contraintes qui limitent une meilleure occupation.
+- Si plusieurs dispositions sont équivalentes, appliquer une règle de départage stable et permettre à l'utilisateur de choisir une autre disposition valide.
+- Ne pas présenter une disposition comme optimale au sens mathématique si l'algorithme ne garantit qu'une heuristique ; indiquer alors qu'il s'agit de la meilleure solution trouvée dans les limites du calcul.
+- Vérifier le plan final avant génération et conserver les positions, rotations et paramètres d'imposition dans le travail d'impression.
+- La disposition automatique ne doit jamais remplacer une composition manuelle sans validation explicite.
+
+Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow and imposition](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
+
+## 10.584 Instantané immuable des entrées d'une génération — Question 589, décision technique recommandée
+
+Au lancement d'une génération, l'application doit constituer un instantané logique des entrées nécessaires au rendu et à l'export afin que les modifications ultérieures ne changent pas silencieusement le résultat en cours.
+
+- Capturer les données de cartes, quantités, faces, templates, variantes, composants, paramètres de rendu, profils colorimétriques, profils d'impression et options de génération effectivement utilisés.
+- Enregistrer les références exactes des versions de ressources et dépendances utilisées, plutôt que de ne conserver que leurs noms ou chemins susceptibles de changer.
+- Les modifications apportées au projet, aux ressources ou aux profils après le début de la génération ne doivent pas modifier l'instantané déjà constitué.
+- Une génération relancée à partir d'un travail enregistré doit signaler si certaines entrées ont changé ou sont devenues indisponibles depuis l'instantané précédent.
+- Permettre de choisir explicitement entre réutiliser l'instantané d'origine et créer un nouvel instantané à partir de l'état courant.
+- Ne pas verrouiller l'édition du projet pendant la génération ; l'instantané doit isoler le traitement des changements ultérieurs.
+- Si l'application ne peut pas capturer une entrée de façon fiable, elle doit identifier cette limite et ne pas prétendre que la génération est entièrement reproductible.
+- Conserver l'instantané avec le travail d'impression ou d'export selon les règles de conservation déjà définies.
+
+Références : [Reproducible Builds — Define a build environment](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
+
+## 10.585 Identification par empreinte des ressources et dépendances utilisées — Question 590, décision technique recommandée
+
+Les ressources binaires et dépendances qui influencent une génération doivent pouvoir être identifiées par une empreinte cryptographique de leur contenu.
+
+- Calculer et conserver une empreinte cryptographique robuste, telle que SHA-256, pour chaque ressource binaire utilisée lorsque cela est techniquement possible.
+- Associer l'empreinte à l'identifiant logique de la ressource, sa version, son format, sa taille et sa provenance lorsqu'ils sont disponibles.
+- Vérifier que le contenu présent correspond à l'empreinte enregistrée avant de le réutiliser pour une génération reproductible.
+- Détecter les ressources modifiées sous un même nom ou chemin, les fichiers corrompus et les substitutions non signalées.
+- Une ressource modifiée constitue une nouvelle version de contenu ; l'ancienne empreinte ne doit pas être écrasée dans l'instantané d'un travail déjà enregistré.
+- Les ressources identiques peuvent être reconnues comme identiques par leur empreinte, mais leur provenance, leurs licences et leurs références de projet restent distinctes.
+- Si une ressource n'est plus disponible ou si son empreinte ne correspond pas, signaler le problème et bloquer les contrôles qui exigent son contenu exact.
+- Une empreinte confirme l'identité des octets comparés ; elle ne prouve pas à elle seule l'auteur, la licence ou la fiabilité de la source.
+
+Références : [GitLab — Content-Addressable Storage](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/008_content_addressable_storage/) ; [Reproducible Builds — Cryptographic checksums](https://reproducible-builds.org/docs/).
+
+## 10.586 Traçabilité des moteurs, versions et paramètres de génération — Question 591, décision technique recommandée
+
+Chaque génération doit enregistrer les informations techniques nécessaires pour comprendre dans quel environnement et avec quels paramètres le résultat a été produit.
+
+- Enregistrer les versions des moteurs de rendu, bibliothèques de conversion, moteurs PDF et composants de gestion colorimétrique qui ont effectivement participé à la génération, dans la mesure où ces informations sont accessibles.
+- Enregistrer les versions de l'application, du format de document, des profils de sortie et les options significatives utilisées.
+- Identifier le système d'exploitation et l'architecture lorsque ces informations peuvent influencer le résultat ou la compatibilité.
+- Capturer les paramètres sensibles à la reproductibilité, notamment l'ordre des éléments, les intentions de rendu, les méthodes de rééchantillonnage, les unités, les dimensions et les paramètres de compression.
+- Neutraliser ou contrôler les sources de variation évitables, notamment les ordres non déterministes, les valeurs aléatoires, les paramètres régionaux et les horodatages intégrés lorsque le format le permet.
+- Distinguer la reproductibilité visuelle — résultat rendu équivalent selon une tolérance définie — de la reproductibilité binaire — fichiers strictement identiques octet par octet.
+- Ne promettre une identité binaire que lorsque l'ensemble du moteur et du format permet de la garantir ; sinon, indiquer les facteurs de variation connus.
+- Conserver ces informations dans l'historique du travail et dans le bilan de génération.
+
+Références : [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/) ; [Reproducible Builds — Documentation](https://reproducible-builds.org/docs/).
+
+## 10.587 Préparation temporaire et publication sûre des fichiers générés — Question 592, décision technique recommandée
+
+La génération des fichiers doit éviter qu'un échec, une interruption ou une fermeture inattendue laisse un fichier final incomplet ou remplace un résultat existant sans validation.
+
+- Générer chaque fichier dans un emplacement temporaire contrôlé, situé sur le même volume ou système de fichiers que sa destination finale lorsque cela est nécessaire à une opération de remplacement atomique.
+- Vérifier la fermeture complète du fichier, sa taille, son format et les contrôles d'intégrité applicables avant sa publication à l'emplacement final.
+- Lorsque la plateforme et le système de fichiers le garantissent, publier le fichier validé au moyen d'une opération de renommage ou de remplacement atomique.
+- Lorsque le remplacement atomique n'est pas garanti, appliquer une stratégie adaptée à la plateforme et signaler toute limite de durabilité ou de sécurité ; ne pas présenter l'opération comme atomique par défaut.
+- Respecter la politique de collision de noms définie par l'utilisateur : refuser, renommer ou remplacer après confirmation explicite.
+- En cas d'échec avant publication, supprimer les fichiers temporaires incomplets sans toucher aux résultats existants.
+- En cas d'interruption après la publication d'une partie d'un lot, préserver les fichiers déjà validés et identifier précisément les éléments non publiés.
+- Une fermeture ou un arrêt brutal ne doit pas transformer un fichier temporaire en résultat final valide ; au redémarrage, les fichiers temporaires orphelins doivent être détectés et traités de manière sûre.
+
+Références : [Rust — atomic-replace documentation](https://docs.rs/crate/atomic-replace/latest) ; [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/).
+
+## 10.588 Manifeste de génération, empreintes des résultats et bilan vérifiable — Question 593, décision technique recommandée
+
+L'application doit conserver un bilan structuré permettant d'identifier les fichiers produits, les entrées utilisées et les contrôles effectués pour une génération.
+
+- Enregistrer pour chaque résultat son nom, son format, sa taille, sa date de génération et son empreinte cryptographique lorsque le calcul est disponible.
+- Associer les fichiers au travail, à la sélection de cartes, à l'instantané d'entrée et aux paramètres de génération correspondants.
+- Conserver les statuts individuels : généré et vérifié, généré avec avertissement, échec, interrompu ou non traité.
+- Enregistrer les contrôles d'intégrité réellement exécutés et leur résultat ; distinguer les contrôles non effectués ou non applicables.
+- Permettre de comparer une génération ultérieure avec le manifeste précédent afin de repérer les entrées modifiées et les différences de résultats.
+- Conserver ce manifeste dans les données de travail et l'historique de l'application ; son export sous forme de fichier séparé reste une option explicite et ne doit pas être imposé à chaque génération.
+- Ne jamais inclure de secrets, jetons d'accès ou données sensibles dans le manifeste ou les diagnostics.
+- Une empreinte de résultat permet de vérifier l'identité du fichier obtenu, mais ne constitue pas une certification de conformité d'impression ni une preuve de provenance du contenu.
+- Le manifeste doit rester consultable même si certains fichiers générés ont été déplacés ou supprimés ; dans ce cas, leur indisponibilité est signalée sans effacer leur historique.
+
+Références : [Reproducible Builds — Verification](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
+
+## 10.589 Fonctionnement sans synchronisation automatique entre appareils — Question 619, décision validée par l'utilisateur
+
+L'application ne doit pas synchroniser automatiquement les projets, paramètres, ressources ou autres données de travail entre plusieurs appareils.
+
+- Le transfert d'un projet d'un appareil à un autre s'effectue manuellement au moyen des fonctions d'exportation et d'importation de projet déjà définies à la section 10.10.
+- Aucune synchronisation en arrière-plan, réplication distante, fusion automatique entre appareils ou résolution de conflits de synchronisation ne doit être mise en place.
+- L'utilisateur choisit explicitement quand exporter un projet, où enregistrer le fichier exporté et quand l'importer sur un autre appareil.
+- Les mécanismes locaux de sauvegarde, d'historique et de récupération restent applicables indépendamment de cette décision.
+
+## 10.590 Absence de collaboration multi-utilisateur sur un même projet — Question 620, décision validée par l'utilisateur
+
+L'application ne doit pas proposer de mode de collaboration multi-utilisateur sur un même projet.
+
+- Un projet est modifié dans le cadre d'une utilisation locale par une seule personne à la fois.
+- Aucun accès partagé en consultation, aucune édition simultanée, aucun système de présence, de commentaires collaboratifs ou de résolution de modifications concurrentes entre utilisateurs ne doit être développé.
+- Les mécanismes existants de gestion de plusieurs projets, de plusieurs fenêtres et de transfert manuel de fichiers restent indépendants de la collaboration multi-utilisateur.
+- Un utilisateur peut transmettre un projet à une autre personne uniquement au moyen d'un fichier exporté, conformément à la section 10.591.
+
+## 10.591 Partage des projets exclusivement par fichiers exportés — Question 621, décision validée par l'utilisateur
+
+Le partage d'un projet avec une autre personne s'effectue exclusivement par la remise manuelle d'un fichier de projet exporté.
+
+- L'application ne doit pas fournir de partage privé par invitation, lien sécurisé, espace distant ou mécanisme équivalent.
+- L'application ne doit pas proposer de publication publique de projets, de galerie publique ou de répertoire de projets partagés.
+- Le destinataire récupère le projet en important le fichier reçu au moyen du mécanisme d'importation défini à la section 10.10.
+- L'export doit conserver les contrôles d'intégrité, de compatibilité, de prévisualisation et de gestion des dépendances déjà spécifiés.
+- La transmission effective du fichier (courriel, stockage externe, support amovible ou autre moyen) relève des outils choisis par l'utilisateur et non d'un service de partage intégré à l'application.
+
+## 10.592 Absence de catalogue communautaire intégré de ressources — Question 622, décision validée par l'utilisateur
+
+L'application ne doit pas intégrer de catalogue communautaire centralisé permettant aux utilisateurs de consulter, télécharger, publier, partager ou évaluer des ressources.
+
+- La gestion des ressources repose sur les bibliothèques locales et sur les sources externes que l'utilisateur choisit explicitement, conformément aux mécanismes de ressources et de provenance déjà définis.
+- Aucun dépôt communautaire intégré, flux de publication, système d'évaluation, notation, commentaire ou classement communautaire ne doit être ajouté.
+- L'utilisateur peut continuer à importer manuellement des ressources obtenues auprès de sources externes, sous réserve des contrôles de sécurité, d'intégrité, de compatibilité, de provenance et de licence déjà prévus.
+- Cette décision n'interdit pas l'utilisation de formats ouverts ni l'importation de ressources distribuées par des services tiers ; elle exclut leur agrégation dans un catalogue communautaire fourni par l'application.
+
+## 10.593 Utilisation locale sans compte utilisateur — Question 623, décision validée par l'utilisateur
+
+L'application doit être utilisable localement sans création, connexion ou gestion de compte utilisateur.
+
+- Aucun compte propre à l'application, authentification centralisée, profil distant ou abonnement lié à un compte ne doit être requis pour installer, lancer ou utiliser les fonctionnalités locales.
+- Les projets, paramètres, bibliothèques, historiques et données de travail sont gérés localement selon les règles de stockage et de sauvegarde déjà définies.
+- L'application ne doit pas conditionner l'accès aux fonctions locales à une connexion réseau ou à une authentification auprès de son éditeur.
+- Les intégrations avec des services tiers, si elles sont utilisées, doivent rester explicites et ne doivent pas introduire un compte obligatoire pour le fonctionnement local de l'application.
+- Aucun compte applicatif ne doit être créé implicitement en arrière-plan.
+
+## 10.594 Prise en charge officielle de Windows, macOS et Linux — Question 624, décision validée par l'utilisateur
+
+MTG Card Remodeler doit prendre officiellement en charge les trois grandes familles de systèmes d'exploitation de bureau : **Windows, macOS et Linux**.
+
+- Les trois plateformes font partie du périmètre produit officiel ; Linux ne doit pas être traité comme une plateforme expérimentale ou simplement communautaire.
+- Les fonctionnalités principales, les formats de projet, les données utilisateur et les résultats de rendu doivent rester cohérents entre les trois plateformes, sous réserve des différences explicitement documentées liées au système d'exploitation ou aux capacités matérielles.
+- Les installations classiques et portables doivent être proposées selon les possibilités réelles de chaque plateforme. Lorsqu'un mode d'installation n'est pas techniquement pertinent ou pris en charge sur un système, l'alternative disponible doit être documentée sans réduire la prise en charge globale de la plateforme.
+- La conception, les dépendances natives, les accès au système de fichiers, les dialogues, les fenêtres, les raccourcis et les mécanismes de mise à jour doivent être évalués pour leur compatibilité avec Windows, macOS et Linux.
+- Les versions minimales des systèmes, architectures processeur, distributions Linux et formats de paquets officiellement pris en charge seront définis dans les spécifications techniques de livraison après vérification de la compatibilité effective de la pile Tauri 2 et de ses dépendances. Ils ne doivent pas être supposés identiques entre plateformes.
+- Les tests automatisés et les validations de publication doivent couvrir les trois plateformes. Une version ne peut être déclarée officiellement compatible avec une plateforme si les vérifications de compilation, d'installation, de démarrage et des fonctions essentielles n'ont pas été réalisées sur celle-ci.
+- Une limitation propre à une plateforme doit être identifiée, documentée et accompagnée d'une solution de repli lorsque cela est raisonnablement possible ; elle ne doit pas être masquée par une déclaration générale de compatibilité.
+
+## 10.595 Application privée réservée à l'usage personnel — Question 625, décision validée par l'utilisateur
+
+MTG Card Remodeler est destiné à rester une application privée réservée à l'usage personnel de son propriétaire. La publication éventuelle du code source à des fins de consultation ne vaut pas autorisation de distribuer l'application, ses exécutables ou ses paquets d'installation.
+
+- Aucune publication générale de versions installables, aucun canal de distribution publique et aucune mise à disposition commerciale de l'application ne sont prévus dans le périmètre actuellement validé.
+- Les versions compilées et les paquets de livraison sont destinés à l'usage personnel, aux tests et à la maintenance du projet, sauf décision ultérieure explicite modifiant ce statut.
+- Cette restriction concerne le logiciel MTG Card Remodeler et ne modifie pas les règles distinctes applicables aux proxies, qui restent destinés à un usage personnel et non commercial.
+- Le fait que le dépôt de code soit consultable publiquement, conformément à la section 10.596, ne transforme pas le logiciel en produit public ni en application librement redistribuable.
+
+## 10.596 Code source publiquement consultable avec restrictions de réutilisation et de redistribution — Question 626, décision validée par l'utilisateur
+
+Le code source du projet peut être consulté publiquement, mais cette visibilité ne confère pas de droit général de réutilisation, de modification, de republication ou de redistribution.
+
+- Le dépôt peut rester accessible en lecture afin de permettre l'inspection du code, le suivi du projet et la transparence technique.
+- Aucune autorisation générale assimilable à une licence open source permissive ou copyleft n'est accordée par cette décision.
+- Les droits de consultation, de copie, de modification, de création de versions dérivées et de redistribution devront être formulés dans un avis de licence ou de droits explicite avant toute diffusion de code ou de composant pour lequel ces droits sont pertinents.
+- Tant qu'une licence ou une autorisation spécifique n'a pas été définie, les utilisateurs du dépôt ne doivent pas être présentés comme autorisés à réutiliser, modifier ou redistribuer le code au-delà des droits impératifs prévus par la législation applicable et des autorisations expresses du titulaire des droits.
+- Les composants tiers conservent leurs propres licences et obligations ; la politique du projet ne peut ni les remplacer ni réduire les droits qu'elles accordent.
+- La décision de rendre le code consultable ne vaut ni abandon des droits d'auteur ni transfert de propriété intellectuelle.
+
+## 10.597 Absence de modèle de monétisation défini à ce stade — Question 627, décision validée par l'utilisateur
+
+Aucune monétisation de MTG Card Remodeler n'est prévue pour le moment et aucun modèle économique n'est arrêté.
+
+- Le cahier des charges ne doit pas introduire de paiement, achat unique, abonnement, fonctionnalité payante, publicité, don sollicité par l'application ou autre mécanisme de monétisation comme exigence du produit.
+- Les fonctionnalités locales ne doivent pas être conditionnées à un paiement ou à un abonnement.
+- Cette décision ne constitue pas un engagement irrévocable de gratuité pour toute évolution future : la question d'une éventuelle monétisation est reportée et nécessitera un arbitrage explicite avant toute mise en œuvre.
+- En cohérence avec les sections 10.593 et 10.595, aucun compte utilisateur ni service distant de facturation n'est requis ou prévu dans le périmètre actuellement défini.
+
+## 10.598 Fonctionnement hors ligne prioritaire — Question 628, décision validée par l'utilisateur
+
+MTG Card Remodeler doit privilégier un fonctionnement entièrement local et rester utilisable sans connexion Internet pour l'ensemble des fonctionnalités qui ne dépendent pas intrinsèquement d'un service externe.
+
+- L'absence de connexion Internet ne doit pas empêcher le démarrage de l'application, l'ouverture et la modification des projets locaux, l'accès aux bibliothèques et ressources déjà disponibles localement, l'édition, les rendus, les exports et les opérations de gestion de fichiers réalisables sur l'appareil.
+- Aucune connexion à un serveur, aucun compte distant et aucune validation périodique en ligne ne peuvent être imposés comme condition générale d'utilisation des fonctionnalités locales.
+- Les fonctions qui nécessitent réellement une source ou un service externe — par exemple la récupération de nouvelles données, de ressources distantes ou la vérification et le téléchargement de mises à jour — peuvent être indisponibles hors ligne. Elles doivent alors présenter un état explicite et compréhensible, sans bloquer les autres fonctions.
+- Lorsqu'une fonction externe est indisponible, l'application doit préserver les données locales et permettre de reprendre l'opération lorsque la connexion est rétablie, dans la mesure où cela est techniquement pertinent.
+- Les communications réseau doivent rester limitées aux opérations qui en ont besoin et respecter les décisions déjà définies concernant les autorisations des extensions et l'absence de collecte automatique de données techniques.
+- Le fonctionnement hors ligne ne doit pas être confondu avec une interdiction absolue de toute communication réseau : les opérations explicitement dépendantes d'un service externe restent possibles lorsque l'utilisateur dispose d'une connexion, mais ne doivent jamais devenir une dépendance générale de l'application.
+
+## 10.599 Vérification automatique des mises à jour désactivable dans les paramètres — Question 629, décision validée par l'utilisateur
+
+La vérification de disponibilité des mises à jour doit être automatique par défaut, mais l'utilisateur doit pouvoir la désactiver explicitement dans les paramètres de l'application.
+
+- Lorsque l'option est activée, l'application peut vérifier périodiquement la disponibilité d'une nouvelle version, uniquement lorsqu'une connexion réseau est disponible.
+- La vérification doit rester non bloquante : elle ne doit jamais retarder ou empêcher le démarrage, l'utilisation des fonctions locales, l'ouverture des projets ou les opérations hors ligne.
+- Lorsque l'appareil est hors ligne, aucune erreur de mise à jour ne doit être présentée comme une défaillance de l'application ; la vérification est simplement différée jusqu'à ce qu'une connexion soit disponible.
+- L'utilisateur doit pouvoir désactiver et réactiver cette vérification depuis les paramètres. Le choix doit être conservé localement et respecté lors des démarrages suivants.
+- La désactivation de la vérification automatique n'interdit pas une vérification manuelle déclenchée explicitement par l'utilisateur.
+- La recherche, le téléchargement, la validation cryptographique et l'installation d'une mise à jour restent des opérations distinctes. Aucune mise à jour ne doit être installée sans respecter les validations et confirmations déjà prévues dans les exigences de mise à jour.
+- L'indisponibilité du service de mise à jour, une erreur réseau ou une réponse invalide ne doit jamais compromettre la version actuellement installée ni les données locales.
+
+## 10.600 Notification uniquement pour les mises à jour de l'application — Question 630, décision validée par l'utilisateur
+
+La disponibilité d'une nouvelle version de MTG Card Remodeler doit être signalée à l'utilisateur, mais le téléchargement et l'installation doivent rester entièrement manuels.
+
+- La vérification de disponibilité suit la politique définie à la section 10.599 : activée par défaut, désactivable dans les paramètres, non bloquante et différée lorsqu'aucune connexion réseau n'est disponible.
+- Lorsqu'une nouvelle version est détectée, l'application affiche une notification claire indiquant qu'une mise à jour est disponible et fournit les informations utiles déjà prévues sur la version proposée.
+- La détection d'une mise à jour ne déclenche aucun téléchargement automatique, en arrière-plan ou différé.
+- Le fichier de mise à jour est récupéré manuellement en dehors de l'application, conformément à la section 10.601 ; aucun téléchargement intégré n'est proposé.
+- L'installation ne commence qu'après une action explicite distincte de l'utilisateur, une fois le téléchargement terminé et les contrôles requis réussis.
+- L'utilisateur conserve la possibilité d'ignorer ou de différer la mise à jour. Une notification ignorée ne doit pas provoquer de téléchargement ultérieur automatique.
+- La vérification, le téléchargement, la validation cryptographique, les contrôles de compatibilité, la sauvegarde préalable et l'installation restent des étapes distinctes. Les protections d'intégrité, de compatibilité, de préservation des données et de retour arrière définies ailleurs dans le cahier des charges demeurent obligatoires.
+- En l'absence de réseau, l'application reste pleinement utilisable pour ses fonctions locales. L'utilisateur peut reprendre manuellement le processus de mise à jour lorsqu'une connexion est disponible.
+- Cette politique concerne les mises à jour de l'application elle-même ; elle ne modifie pas les règles distinctes déjà définies pour les extensions, bibliothèques et ressources.
+
+## 10.601 Récupération externe et manuelle des mises à jour de l'application — Question 631, décision validée par l'utilisateur
+
+L'application ne doit pas télécharger elle-même les fichiers de mise à jour. Lorsqu'une nouvelle version est signalée, l'utilisateur récupère manuellement le fichier de mise à jour en dehors de MTG Card Remodeler, depuis la source qu'il choisit.
+
+- L'application peut présenter les informations de version et signaler qu'une mise à jour est disponible, mais elle ne lance aucun téléchargement intégré, automatique ou sur demande.
+- L'application ne doit pas imposer une source distante, un compte en ligne ou une authentification auprès d'un service externe pour récupérer le fichier.
+- Une fois le fichier obtenu à l'extérieur de l'application, l'utilisateur peut le sélectionner et l'importer manuellement dans le parcours de mise à jour, ou lancer son installation manuellement selon le format et le mécanisme pris en charge.
+- L'importation d'un fichier ne vaut jamais autorisation d'installation automatique. Le contrôle du fichier, la présentation du résultat, puis l'autorisation explicite d'installation restent des étapes distinctes.
+- Avant toute installation, l'application vérifie l'authenticité lorsqu'une signature et une chaîne de confiance vérifiables sont disponibles, l'intégrité cryptographique, la cohérence du paquet, la compatibilité de la version, ainsi que les protections anti-retour arrière et anti-altération déjà définies.
+- Un fichier invalide, incomplet, non conforme, incompatible ou dont les contrôles obligatoires échouent est refusé. La version installée et les données locales restent intactes.
+- Les contrôles qui ne peuvent pas établir l'authenticité d'un fichier doivent présenter explicitement cette limite ; une simple empreinte calculée localement ne doit pas être présentée comme une preuve de provenance.
+- Cette règle concerne uniquement les mises à jour de l'application. Elle ne modifie pas le mécanisme distinct de mise à jour des extensions.
+
+## 10.602 Licence personnelle non commerciale du code source — Question 632, décision validée par l'utilisateur
+
+L'utilisateur choisit une licence personnelle non commerciale pour le code source de MTG Card Remodeler. Le dépôt peut rester publiquement consultable, mais cette visibilité ne doit pas être présentée comme une autorisation générale de réutilisation.
+
+- L'autorisation recherchée est limitée à l'étude du code et à son utilisation à titre personnel et non commercial.
+- Toute utilisation commerciale, exploitation dans le cadre d'une activité commerciale, vente, prestation rémunérée, intégration dans un produit commercial ou autre valorisation commerciale du code est interdite sans autorisation écrite distincte du titulaire des droits.
+- La redistribution du code, en tout ou partie, ainsi que la publication ou la distribution de versions modifiées ou dérivées sont interdites sans autorisation écrite distincte.
+- Les modifications réalisées pour un usage strictement personnel ne peuvent être diffusées, mises à disposition de tiers ou exploitées commercialement.
+- Aucun droit de sous-licence, de transfert ou d'autorisation à des tiers n'est accordé par cette décision.
+- Les droits impératifs prévus par la législation applicable et les licences propres aux composants tiers restent réservés. La présente politique ne peut pas retirer aux tiers les droits qui leur sont accordés par les licences de leurs composants.
+- La rédaction définitive de l'instrument juridique doit prendre la forme d'une licence logicielle personnalisée, rédigée pour le code source et relue avant d'être publiée comme texte contractuel. Aucune licence standard non commerciale ou licence Creative Commons ne doit être appliquée par défaut au code.
+- GitHub précise qu'un dépôt public peut être consulté et forké par les utilisateurs de la plateforme au titre de ses conditions d'utilisation. Cette permission technique liée à GitHub doit être distinguée d'une autorisation générale d'exploitation, de redistribution hors plateforme ou d'utilisation commerciale. Si l'objectif devient d'empêcher également le fork sur GitHub, la visibilité publique du dépôt devra être réévaluée.
+- Tant que le texte définitif n'est pas publié, la décision décrit l'intention de licence retenue, mais ne doit pas être présentée comme un contrat juridique finalisé. La protection par défaut du droit d'auteur et les conditions de GitHub continuent de s'appliquer dans l'intervalle.
+
+Références documentaires :
+- GitHub Docs, « Licensing a repository » : https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
+- Creative Commons, FAQ, « Can I apply a Creative Commons license to software? » : https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software
+
+## 10.603 Désinstallation de l'application avec conservation des données par défaut — Question 634, décision validée par l'utilisateur
+
+Lors de la désinstallation de MTG Card Remodeler, l'assistant de désinstallation doit demander explicitement à l'utilisateur s'il souhaite conserver ou supprimer ses données personnelles. La conservation des données est sélectionnée par défaut.
+
+- Le programme distingue clairement les fichiers nécessaires à l'exécution de l'application des données créées ou importées par l'utilisateur : projets, cartes, bibliothèques, templates, variantes, ressources locales, configurations, bases de données et sauvegardes.
+- L'option proposée par défaut est la désinstallation du programme avec conservation des données personnelles. Aucune donnée utilisateur ne doit être supprimée par simple effet de la désinstallation standard.
+- L'utilisateur peut choisir la suppression des données personnelles depuis le parcours de désinstallation, mais cette action doit être présentée distinctement de la suppression du programme et accompagnée d'un récapitulatif compréhensible de son périmètre.
+- La suppression des données exige une confirmation explicite supplémentaire, après présentation des emplacements concernés et des conséquences. Une option de conservation doit rester clairement accessible jusqu'à la validation finale.
+- Les fichiers situés dans des emplacements personnalisés ou partagés ne doivent jamais être supprimés sur la seule base d'une déduction de propriété. L'application doit identifier précisément les éléments qu'elle peut gérer et signaler ceux qu'elle ne peut pas déterminer ou supprimer sans risque.
+- Si l'utilisateur conserve ses données, celles-ci doivent rester réutilisables lors d'une réinstallation ultérieure, dans la mesure où la version et le format des données restent compatibles. La désinstallation ne doit pas les déplacer ni les altérer.
+- Si le parcours de désinstallation ne peut pas établir avec certitude le périmètre des données à supprimer, il doit privilégier leur conservation et expliquer la limite plutôt que risquer une suppression excessive.
+- Cette règle concerne la désinstallation de l'application elle-même. Elle complète sans les remplacer les règles propres à la désinstallation des extensions et à la gestion des sauvegardes.
+
+
+
+## 10.604 Suppression des données lors de la désinstallation sans proposition de sauvegarde supplémentaire — Question 635, décision validée par l'utilisateur
+
+Lorsque l'utilisateur choisit explicitement de supprimer ses données personnelles pendant la désinstallation de MTG Card Remodeler, l'application doit appliquer le parcours de confirmation déjà défini en section 10.603. Elle n'ajoute pas de proposition systématique de dernière sauvegarde exportable avant cette suppression.
+
+- La confirmation explicite supplémentaire et le récapitulatif du périmètre de suppression prévus en section 10.603 constituent les étapes de validation requises.
+- L'application ne doit pas imposer ni insérer une étape de création d'une sauvegarde exportable dans ce parcours.
+- Les mécanismes de sauvegarde et d'export existants restent accessibles selon leurs propres parcours ; cette décision ne les désactive pas et ne modifie pas leur fonctionnement.
+- Cette règle ne réduit pas les obligations de délimitation, de transparence, de confirmation et de prudence en cas d'incertitude définies en section 10.603. Si le périmètre des données à supprimer ne peut pas être établi avec certitude, leur conservation reste prioritaire.
+
+## 10.605 Anonymisation automatique des rapports de diagnostic exportés — Question 636, décision validée par l'utilisateur
+
+Lorsqu'un utilisateur choisit explicitement de créer et d'exporter un rapport de diagnostic destiné à être transmis volontairement, l'application doit appliquer une anonymisation automatique par défaut et présenter un aperçu du rapport avant sa création définitive ou son export.
+
+- L'anonymisation doit masquer ou remplacer les informations directement identifiantes ou susceptibles de révéler l'identité, l'environnement personnel ou l'organisation de l'utilisateur, notamment les noms de comptes ou d'utilisateurs du système, les chemins personnels complets, les noms de projets et les noms de dossiers ou d'espaces de travail personnalisés lorsqu'ils sont identifiants.
+- Les remplacements doivent préserver autant que possible la valeur diagnostique du rapport : la structure des chemins, les extensions, les noms techniques génériques, les identifiants de composants, les versions, les codes d'erreur, les horodatages utiles et les relations entre événements peuvent être conservés lorsqu'ils ne révèlent pas d'information personnelle.
+- L'aperçu doit être présenté avant tout export ou toute transmission, afin que l'utilisateur puisse vérifier le contenu effectivement préparé. La transmission reste une action volontaire distincte et explicite ; aucun rapport n'est envoyé automatiquement.
+- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, indépendamment de l'anonymisation générale et de l'aperçu. L'aperçu ne constitue pas une autorisation de révéler ces éléments.
+- Si une information ne peut pas être anonymisée de manière fiable, l'application doit la masquer par prudence ou signaler clairement qu'une vérification humaine est nécessaire avant l'export.
+- L'anonymisation ne doit pas modifier les journaux et données de diagnostic conservés localement ; elle s'applique à la copie préparée pour l'export volontaire.
+- Le rapport doit indiquer que l'anonymisation automatique a été appliquée et que l'utilisateur doit vérifier l'aperçu avant de transmettre le fichier.
+
+Cette règle complète les exigences relatives aux journaux, au signalement volontaire, à l'absence de collecte automatique et à la protection des secrets déjà définies dans le cahier des charges.
+
+## 10.606 Interdiction de désactiver l'anonymisation des rapports de diagnostic — Question 637, décision validée par l'utilisateur
+
+L'anonymisation automatique définie en section 10.605 est obligatoire pour tout rapport de diagnostic préparé en vue d'un export ou d'une transmission volontaire. L'utilisateur ne dispose d'aucune option permettant de la désactiver, de contourner ses règles ou de réintroduire les informations identifiantes automatiquement masquées.
+
+- Aucun réglage permanent ou ponctuel ne doit permettre de produire un rapport de diagnostic exportable non anonymisé.
+- L'aperçu avant export reste obligatoire et présente le contenu effectivement préparé après anonymisation. Il ne propose pas de commande permettant de restaurer les valeurs identifiantes masquées.
+- Les données identifiantes qui ont été masquées ou remplacées ne doivent pas être conservées dans le fichier exporté sous forme de métadonnées, de commentaires, de données annexes ou de contenu caché récupérable.
+- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, conformément aux règles existantes.
+- Si une information ne peut pas être anonymisée de manière fiable, elle doit être omise ou masquée ; l'utilisateur ne peut pas autoriser son inclusion en clair dans le rapport exporté.
+- Cette obligation concerne la copie destinée à l'export. Elle ne modifie pas les règles de conservation locale des journaux et diagnostics, ni l'exigence d'une action explicite de l'utilisateur pour toute transmission.
+- Les besoins d'assistance doivent être satisfaits au moyen d'informations techniques non identifiantes, de codes d'erreur, de versions, de traces expurgées et d'autres éléments compatibles avec la protection obligatoire des données personnelles.
+
+Cette décision complète la section 10.605 : l'anonymisation automatique n'est pas seulement le comportement par défaut, elle constitue une protection non désactivable pour les rapports exportés.
+
+## 10.607 Conservation configurable des journaux de diagnostic locaux — Question 638, décision validée par l'utilisateur
+
+La durée de conservation des journaux de diagnostic locaux doit être configurable par l'utilisateur depuis les paramètres de l'application.
+
+- L'application doit proposer des paramètres permettant de définir la durée de conservation des journaux ainsi que les limites de stockage qui leur sont allouées.
+- Les paramètres doivent permettre à l'utilisateur d'adapter la conservation à ses besoins et à l'espace disponible, sans imposer une conservation illimitée ni une durée fixe non modifiable.
+- L'application doit présenter clairement les valeurs actuellement configurées et les conséquences d'une modification, notamment la possibilité que les journaux les plus anciens soient supprimés lorsque la durée ou les limites de stockage sont dépassées.
+- L'application doit appliquer les limites configurées de manière prévisible et contrôlée, en privilégiant la suppression des entrées les plus anciennes et en évitant de supprimer les journaux encore nécessaires à une opération en cours.
+- Une modification des paramètres ne doit pas effacer immédiatement des journaux qui restent dans les limites nouvellement définies ; les entrées excédentaires sont traitées selon une procédure sûre, cohérente et signalée à l'utilisateur lorsque cela est pertinent.
+- Les journaux restent stockés localement. Cette configuration ne crée aucune collecte, synchronisation ou transmission automatique et ne modifie pas les règles de signalement volontaire.
+- Les exigences de protection des secrets et de confidentialité restent applicables à tous les journaux locaux. La conservation locale ne doit jamais autoriser l'enregistrement en clair de mots de passe, jetons, clés API, clés privées ou autres secrets.
+- La politique de conservation des journaux locaux est indépendante de l'anonymisation obligatoire et non désactivable des rapports de diagnostic exportés définie aux sections 10.605 et 10.606.
+
+Les valeurs initiales, les unités de durée, les plafonds de stockage, les règles de rotation et les détails de l'interface seront définis dans la spécification technique par l'assistant après recherche des pratiques et contraintes pertinentes. Ces détails ne constituent pas des arbitrages supplémentaires demandés à l'utilisateur.
+
+## 10.608 Inclusion systématique des journaux de diagnostic dans les sauvegardes — Question 639, décision validée par l'utilisateur
+
+Tous les journaux de diagnostic locaux disponibles au moment d'une sauvegarde doivent être inclus systématiquement dans celle-ci.
+
+- Cette inclusion s'applique à toutes les catégories de sauvegardes déjà prévues : sauvegardes automatiques quotidiennes et hebdomadaires, sauvegardes manuelles, sauvegardes précédant une mise à jour majeure et sauvegardes précédant une migration importante.
+- L'inclusion des journaux ne doit pas dépendre d'une option à activer séparément ni d'une confirmation ponctuelle de l'utilisateur.
+- Les journaux sont sauvegardés avec les autres données dans un état cohérent correspondant au point de sauvegarde. Une opération en cours ne doit pas produire une copie partielle ou incohérente ; les mécanismes techniques doivent garantir une capture sûre.
+- La politique configurable de conservation et de rotation des journaux actifs définie en section 10.607 continue de s'appliquer aux journaux locaux. En revanche, la suppression ou la rotation ultérieure d'un journal actif ne doit pas modifier rétroactivement une sauvegarde déjà créée qui contient ce journal.
+- Les sauvegardes restent soumises aux limites de conservation et aux règles de destination déjà définies en section 2.6. L'inclusion des journaux doit être prise en compte dans l'estimation de l'espace nécessaire et dans les contrôles d'intégrité.
+- Les exigences de confidentialité et de protection des secrets restent impératives : aucun mot de passe, jeton, clé API, clé privée ou autre secret ne doit être enregistré en clair dans les journaux ni inclus dans une sauvegarde. Les règles d'anonymisation obligatoire des rapports de diagnostic destinés à l'export externe ne sont pas remplacées par cette inclusion dans les sauvegardes locales.
+- Cette décision concerne le contenu des sauvegardes locales de l'application. Elle n'autorise aucune collecte, synchronisation ou transmission automatique vers un service externe.
+
+Cette règle complète la section 2.6 : les journaux de diagnostic font partie intégrante des données sauvegardées, au même titre que les autres données locales de l'application.
+
+
+## 10.609 Absence de chiffrement applicatif spécifique des sauvegardes — Question 640, décision validée par l'utilisateur
+
+MTG Card Remodeler ne doit pas ajouter de mécanisme de chiffrement applicatif propre aux sauvegardes. La protection des fichiers de sauvegarde repose sur les mécanismes de chiffrement fournis par le système d'exploitation ou par le support de stockage utilisé.
+
+- L'application crée et restaure les sauvegardes sans leur appliquer de chiffrement applicatif supplémentaire ni gérer de clé de chiffrement dédiée.
+- Lorsque le volume ou le support de destination est protégé par un mécanisme de chiffrement du système ou du matériel, les sauvegardes bénéficient de cette protection dans les limites et selon les conditions de ce mécanisme.
+- Lorsque le support ou le volume n'est pas chiffré, la sauvegarde ne doit pas être présentée comme chiffrée ou protégée contre une lecture directe par une personne ayant accès au fichier.
+- Si l'état de chiffrement de la destination peut être déterminé de manière fiable au moyen des interfaces prises en charge par le système d'exploitation, l'application peut l'indiquer clairement avant la création de la sauvegarde. Si cet état ne peut pas être établi, elle doit le signaler comme inconnu et ne jamais supposer que le support est chiffré.
+- L'application peut recommander l'activation du chiffrement natif du système ou du support lorsque cela est pertinent, sans imposer un mécanisme propriétaire ni bloquer une sauvegarde au seul motif que le chiffrement n'est pas détecté.
+- La gestion, la conservation et la récupération des clés relèvent exclusivement du système d'exploitation ou du mécanisme de chiffrement du support. L'application ne stocke aucune clé de chiffrement de sauvegarde.
+- Cette décision ne modifie ni le contenu des sauvegardes, ni leur destination configurable, ni les règles de conservation, d'intégrité et de restauration déjà définies. Les journaux de diagnostic locaux restent inclus systématiquement conformément à la section 10.608.
+
+
+## 10.610 Restauration complète avec retour strict à l'état sauvegardé — Question 641, décision validée par l'utilisateur
+
+Lorsqu'une restauration complète est demandée, l'application rétablit strictement l'état couvert par la sauvegarde sélectionnée. Les données concernées reviennent à leur état exact au moment de la création de cette sauvegarde ; les modifications réalisées depuis ce point sont donc perdues dans l'état restauré.
+
+- La restauration complète remplace l'état courant des éléments couverts par la sauvegarde par leur état sauvegardé. Elle ne réalise aucune fusion automatique avec les modifications postérieures.
+- Le périmètre de la restauration correspond au périmètre documenté de la sauvegarde sélectionnée. Les éléments qui n'en font pas partie ne doivent pas être supprimés ou modifiés au seul motif qu'une restauration complète est effectuée.
+- Avant de commencer, l'application présente clairement la date et l'identification de la sauvegarde, le périmètre concerné et l'avertissement indiquant que les modifications postérieures couvertes par la restauration seront perdues.
+- Conformément à la règle de création d'un point de restauration avant toute opération sensible définie en section 10.340, l'état immédiatement antérieur à la restauration doit être protégé par un point de restauration préalable lorsque cela est techniquement possible. Ce point permet de revenir à l'état précédant la tentative de restauration.
+- La restauration ne commence qu'après confirmation explicite de l'utilisateur. L'application vérifie l'intégrité de la sauvegarde avant son application et contrôle la cohérence de l'état restauré après l'opération.
+- Si la sauvegarde est invalide, incomplète ou si la restauration échoue, l'application signale précisément le problème et ne prétend pas que le retour à l'état sauvegardé a réussi. Elle applique les mécanismes de récupération et de retour à l'état antérieur déjà définis pour les opérations sensibles.
+- Les règles particulières déjà établies restent applicables, notamment l'exclusion du rapport qualité courant lors de la restauration d'un projet (section 10.44) et l'inclusion systématique des journaux locaux dans les sauvegardes (section 10.608).
+- Cette décision définit le comportement d'une restauration complète et ne supprime pas la possibilité de restauration sélective déjà prévue en section 2.7.
+
+
+## 10.611 Portabilité multiplateforme des sauvegardes — Question 642, décision validée par l'utilisateur
+
+Les sauvegardes de MTG Card Remodeler doivent être portables entre les trois plateformes officiellement prises en charge : Windows, macOS et Linux. Une sauvegarde créée sur l'une de ces plateformes doit pouvoir être restaurée sur une autre, sous réserve de la compatibilité des versions et des composants concernés.
+
+- Le format de sauvegarde doit privilégier des données et métadonnées indépendantes du système d'exploitation, sans dépendance inutile à des chemins absolus, aux séparateurs de chemins ou aux conventions propres à une plateforme.
+- Lors de la restauration sur un système différent, l'application adapte les chemins, emplacements et paramètres strictement liés au système cible, en utilisant les mécanismes natifs de résolution des répertoires et des ressources.
+- Les chemins externes qui ne peuvent pas être transposés automatiquement, les ressources absentes sur le système cible et les intégrations propres à une plateforme doivent être détectés et signalés. L'application ne doit ni inventer leur nouvel emplacement ni supprimer silencieusement les références concernées.
+- Lorsque l'adaptation automatique est impossible ou ambiguë, l'application demande à l'utilisateur de localiser ou de reconfigurer l'élément concerné, tout en préservant les données originales et en expliquant l'incidence de l'élément non résolu.
+- Avant la restauration, l'application vérifie la compatibilité du format, de la version, des fonctionnalités et des composants requis. Une incompatibilité bloquante doit empêcher une restauration incohérente ; les incompatibilités non bloquantes doivent être présentées clairement.
+- La portabilité ne garantit pas qu'un logiciel, pilote, service externe, police, ressource système ou composant tiers propre à la plateforme source soit disponible sur le système cible. Ces dépendances doivent être identifiées et traitées selon les règles de compatibilité existantes.
+- Les données de projet, métadonnées, templates, variantes et ressources internes doivent conserver leur contenu et leur identité. L'adaptation multiplateforme ne doit pas modifier leur sens ni écraser des données du système cible hors du périmètre de restauration.
+- Les sauvegardes conservent les règles existantes de chiffrement du support, d'intégrité, de point de restauration préalable et de restauration complète stricte définies notamment en sections 10.609 et 10.610.
+- Les tests de livraison doivent inclure des scénarios de sauvegarde et de restauration croisés entre Windows, macOS et Linux, en couvrant les chemins, ressources absentes, différences de casse des noms de fichiers et paramètres spécifiques aux plateformes.
+
+
+## 10.612 Développement complet avant livraison finale et progression modulaire — Question 643, décision validée par l'utilisateur
+
+Le périmètre de réalisation visé avant de considérer MTG Card Remodeler comme livrable couvre l'ensemble des fonctionnalités et exigences retenues dans le présent cahier des charges. La première livraison finale ne doit donc pas être définie comme une version minimale volontairement limitée à un sous-ensemble des fonctionnalités.
+
+- Le développement peut et doit être organisé progressivement en modules fonctionnels cohérents afin de maîtriser la complexité, de faciliter les tests et de réduire les risques.
+- Chaque module peut être développé, testé, documenté et validé indépendamment lorsque ses dépendances le permettent.
+- La validation intermédiaire d'un module ne signifie pas que le produit complet est terminé ou que les exigences restantes sont abandonnées.
+- Les dépendances structurantes et le socle technique doivent être traités suffisamment tôt pour éviter que les modules ultérieurs reposent sur des fondations instables.
+- Le suivi de réalisation doit relier chaque exigence du cahier des charges à un état vérifiable : non commencé, en cours, implémenté, testé, validé ou bloqué, avec justification pour les écarts.
+- Une fonctionnalité ne peut être considérée comme couverte sur la seule base de son existence apparente : ses critères d'acceptation, cas limites, interactions et tests pertinents doivent être satisfaits.
+- Toute impossibilité technique, incompatibilité ou exigence devenue irréalisable doit être documentée et soumise à arbitrage ; elle ne peut être écartée silencieusement au nom d'un découpage en modules.
+- Cette décision définit l'objectif de complétude du produit et n'autorise pas à elle seule le démarrage du développement. La phase de développement reste soumise à la clôture explicite du cahier des charges et à l'autorisation de l'utilisateur.
+
+## 10.613 Critères d'acceptation, audit global et validation finale mixte — Question 644, décision validée par l'utilisateur
+
+La validation de la conformité du logiciel repose sur une approche mixte : des critères d'acceptation explicites et des tests vérifiables sont appliqués à chaque fonctionnalité, un audit global de conformité est réalisé, puis l'utilisateur prononce la validation finale du produit.
+
+- Chaque exigence fonctionnelle et technique doit être reliée à un ou plusieurs critères d'acceptation observables et à des preuves de vérification adaptées.
+- Les tests automatisés sont utilisés lorsqu'ils sont pertinents et fiables ; ils sont complétés par des tests manuels, exploratoires, visuels, multiplateformes ou d'usage lorsque la nature de l'exigence le nécessite.
+- Les résultats doivent distinguer clairement les tests réussis, échoués, non exécutés, non applicables et bloqués, avec justification et preuve consultable lorsque possible.
+- La couverture doit être suivie au niveau de chaque exigence, y compris les cas limites, interactions, régressions et dépendances. Une fonctionnalité seulement partiellement réalisée ne peut être déclarée conforme.
+- Avant la proposition de validation finale, un audit global confronte la version candidate à l'ensemble du cahier des charges, à l'index et à la matrice de traçabilité. Il vérifie aussi les anomalies ouvertes, les écarts acceptés, les risques résiduels et la cohérence multiplateforme.
+- Les défauts bloquants et majeurs non résolus empêchent de recommander la validation finale. Les écarts mineurs éventuels doivent être explicitement documentés, évalués et présentés à l'utilisateur ; ils ne sont jamais masqués par un taux global de réussite.
+- L'assistant prépare un rapport d'audit synthétique et détaillé, expose les preuves, les limites des vérifications et les points restant à arbitrer, puis formule une recommandation motivée.
+- La décision finale d'accepter le logiciel comme terminé appartient à l'utilisateur. La réussite des tests ou l'avis de l'assistant ne vaut pas acceptation à sa place.
+- Cette validation finale ne dispense pas du suivi ultérieur des défauts, de la maintenance ou des évolutions, qui devront être distingués de la conformité de la version acceptée.
+
+
+## 10.614 Absence de défauts résiduels, y compris mineurs, avant acceptation finale — Question 645, décision validée par l'utilisateur
+
+La validation finale du logiciel est conditionnée à l'absence de tout défaut connu non résolu, y compris les défauts mineurs. Aucun défaut mineur documenté ne peut être accepté comme exception à cette règle.
+
+- Avant de recommander l'acceptation finale, l'audit doit confirmer qu'aucun défaut bloquant, majeur ou mineur connu ne subsiste dans la version candidate.
+- Tout défaut détecté doit être corrigé, puis faire l'objet d'une vérification adaptée démontrant sa résolution. Les tests de non-régression pertinents doivent être exécutés afin de vérifier que la correction n'a pas introduit de nouveau problème.
+- Un défaut ne peut pas être requalifié artificiellement ou retiré du suivi dans le seul but de satisfaire cette condition. Toute décision de classement doit rester fondée sur des critères cohérents, documentés et traçables.
+- Les anomalies non reproductibles, les limites connues, les comportements non vérifiés et les risques résiduels doivent rester explicitement consignés ; ils ne doivent pas être assimilés silencieusement à des défauts corrigés.
+- Si un défaut demeure ouvert, même mineur, la validation finale est reportée. Le rapport d'audit présente les éléments restant à résoudre et la version ne peut pas être déclarée acceptée.
+- Cette règle ne modifie pas la responsabilité de l'utilisateur concernant la décision finale : une fois les conditions de conformité satisfaites, l'acceptation du produit reste prononcée explicitement par l'utilisateur.
+
+
+## 10.615 Traitement des défauts découverts après acceptation et cycle de maintenance corrective — Question 646, décision validée par l'utilisateur
+
+L'acceptation finale d'une version demeure valable pour cette version même si un défaut est découvert ultérieurement. Un défaut découvert après acceptation relève du cycle de maintenance et ne révoque pas rétroactivement le statut d'acceptation de la version antérieure.
+
+- Chaque défaut découvert après acceptation est enregistré dans le suivi de maintenance avec sa description, son périmètre, ses conditions de reproduction lorsqu'elles sont connues, son impact, sa gravité et les versions concernées.
+- Le défaut est analysé et priorisé selon son impact sur la sécurité, l'intégrité des données, les fonctionnalités, la compatibilité et l'expérience d'utilisation. Les mesures temporaires de réduction du risque doivent être documentées lorsqu'elles sont nécessaires.
+- La correction est préparée dans un cycle correctif adapté. Elle ne doit pas modifier silencieusement les données utilisateur ni introduire de régression ; les procédures de sauvegarde, de restauration et de validation applicables restent en vigueur.
+- Une version corrective est publiée après les vérifications adaptées, incluant les tests ciblés et les tests de non-régression pertinents. Les notes de version indiquent le défaut corrigé, les éventuels contournements et les changements associés.
+- La version précédemment acceptée conserve son historique, ses preuves d'audit et son statut d'acceptation propre. La version corrective possède son propre numéro, son propre dossier de vérification et, lorsque nécessaire, son propre audit.
+- La découverte d'un défaut ne dispense jamais de le corriger ni de l'informer clairement. Les défauts affectant la sécurité, l'intégrité ou la perte de données doivent être traités en priorité selon leur gravité.
+- Cette maintenance corrective est distincte de la définition initiale du produit : elle ne permet pas de considérer comme livrable une version qui n'aurait pas satisfait les critères de validation au moment de son acceptation.
+- La décision d'accepter une version corrective en tant que nouvelle version appartient à l'utilisateur selon les critères d'acceptation et d'audit définis aux sections 10.613 et 10.614.
+
+
+## 10.616 Audit proportionnel au risque des versions correctives — Question 647, décision validée par l'utilisateur
+
+L'étendue de la vérification préalable à l'acceptation d'une version corrective est proportionnelle au risque, à la portée et aux conséquences potentielles de la correction. Une correction localisée et à faible risque ne nécessite pas automatiquement de répéter l'intégralité de l'audit du produit ; les changements susceptibles d'affecter largement le logiciel imposent en revanche une vérification étendue.
+
+- Pour une correction mineure, localisée et dont les effets sont circonscrits, la vérification porte au minimum sur le défaut corrigé, les fonctionnalités directement concernées, les dépendances pertinentes et les tests de non-régression ciblés.
+- Pour une correction majeure, critique, touchant plusieurs modules ou susceptible d'affecter des fonctions transversales, la vérification est étendue et comprend un audit complet de conformité au cahier des charges ainsi que la reprise des tests de validation pertinents à l'échelle du produit.
+- Le niveau de vérification est déterminé et justifié à partir de la gravité du défaut initial, de l'étendue des changements, des dépendances, de la sensibilité des données et des opérations touchées, ainsi que du risque de régression.
+- Lorsque plusieurs catégories de risque se cumulent ou que l'impact ne peut pas être circonscrit de manière fiable, le niveau supérieur de vérification est retenu. Une incertitude importante ne peut pas être utilisée pour réduire l'étendue de l'audit.
+- Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
+- Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
+- Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
+
+
+## 10.617 Protection proportionnelle au risque face à un défaut critique après publication — Question 648, décision validée par l'utilisateur
+
+Lorsqu'un défaut grave est découvert dans une version déjà acceptée et utilisée, et qu'aucune correction n'est encore disponible, l'application applique des mesures de protection proportionnelles au risque réel. Elle bloque les opérations présentant un risque critique pour la sécurité ou l'intégrité des données ; pour les risques moins élevés, elle avertit clairement l'utilisateur, explique le problème et présente les solutions temporaires fiables lorsqu'elles existent.
+
+- Les opérations susceptibles d'entraîner une perte, une corruption ou une altération irréversible des données, une atteinte à leur intégrité ou un risque critique pour la sécurité sont désactivées ou bloquées jusqu'à ce qu'une correction ou une mesure de protection fiable soit disponible.
+- Le blocage est limité aux fonctionnalités et opérations réellement concernées lorsque cette isolation est techniquement fiable. Les fonctions indépendantes et sans risque associé restent accessibles ; l'application ne doit pas être rendue globalement inutilisable sans nécessité démontrée.
+- Pour les défauts dont le risque ne justifie pas un blocage, l'application affiche un avertissement visible et compréhensible précisant le défaut connu, sa gravité, les fonctionnalités touchées et les conséquences possibles.
+- Lorsqu'une solution temporaire ou un contournement a été vérifié comme fiable, l'application le présente avec ses limites et les précautions nécessaires. Elle ne doit jamais présenter une mesure non vérifiée comme une garantie de sécurité.
+- Les restrictions et avertissements restent en vigueur tant que le défaut n'est pas corrigé ou que le risque n'a pas été réduit par une mesure validée. Leur levée doit être fondée sur une vérification documentée.
+- La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
+- Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
+- Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
+
 ## 10.618 Validation des formats à l'importation — Question 649, décision technique prise par l'assistant
 
 Tout fichier importé est contrôlé à partir d'une liste de formats explicitement pris en charge pour l'opération demandée. L'extension du nom, le type MIME déclaré et le nom du fichier ne constituent jamais, isolément, une preuve de format. L'application confronte ces indications à la signature du contenu et à la structure effectivement analysée par un parseur adapté.
@@ -5889,1221 +7104,6 @@ Références : [HarfBuzz — Shaping and shape plans](https://harfbuzz.github.io
 
 ### Série 1 — Contrat réseau et résilience de l'API
 
-## 10.504 Navigation clavier entre les entrées de la liste — Question 509, validée
-
-Les flèches haut et bas permettent de parcourir directement les entrées de la liste du panneau latéral. La navigation par Tab reste régie par les règles générales de focus déjà validées.
-
-## 10.505 Activation d'une entrée sélectionnée avec la touche Entrée — Question 510, validée
-
-La touche Entrée ouvre immédiatement le détail de l'extension sélectionnée dans la liste.
-
-## 10.506 Navigation entre le panneau latéral et la zone de détail — Question 511, validée
-
-Les flèches gauche et droite permettent de passer du panneau latéral à la zone de détail et inversement, selon la zone actuellement active.
-
-## 10.507 Comportement de la touche Début (Home) dans la liste — Question 512, validée
-
-La touche Début (Home) sélectionne la première extension de la liste.
-
-## 10.508 Comportement de la touche Fin (End) dans la liste — Question 513, validée
-
-La touche Fin (End) sélectionne la dernière extension de la liste.
-
-
-## 10.509 Actualisation automatique du détail lors de la navigation clavier — Question 514, validée
-
-Lorsque les flèches haut et bas changent l'extension sélectionnée, la zone de détail affiche automatiquement les informations de cette nouvelle sélection.
-
-## 10.510 Sélection clavier des extensions désactivées ou indisponibles — Question 515, validée
-
-Les extensions désactivées ou indisponibles restent sélectionnables au clavier ; leur état doit être clairement affiché.
-
-## 10.511 Navigation clavier lorsque la liste est vide — Question 516, validée
-
-Lorsque la liste ne contient aucune extension, les commandes de navigation clavier restent sans effet et ne modifient pas le focus.
-
-## 10.512 Annonce accessible de l'extension sélectionnée — Question 517, validée
-
-La sélection d'une extension est signalée par un changement visuel et par une annonce aux lecteurs d'écran.
-
-## 10.513 Sélection après un retour depuis la zone de détail — Question 518, validée
-
-Lors du retour de la zone de détail vers le panneau latéral, la sélection précédente est effacée ; l'utilisateur doit sélectionner une entrée à nouveau.
-
-
-## 10.514 État de la zone de détail lorsqu'aucune extension n'est sélectionnée — Question 519, décision technique recommandée
-
-Lorsqu'aucune extension n'est sélectionnée, la zone de détail affiche un état vide explicatif invitant clairement l'utilisateur à sélectionner une extension dans la liste.
-
-Le message reste bref, visible et adapté au contexte, par exemple : « Sélectionnez une extension pour consulter ses informations. » Il ne présente pas de fausses données ni de commandes sans rapport avec l'action attendue. Cet état est distinct d'une liste vide, d'une recherche sans résultat, d'un chargement en cours ou d'une erreur ; chacun de ces cas doit recevoir un message correspondant à sa cause.
-
-Cette recommandation suit les pratiques de conception des états vides : expliquer ce qui devrait apparaître et guider vers l'étape suivante, sans surcharger une zone secondaire d'interface. Référence : [SAP Fiori — Empty States](https://www.sap.com/design-system/fiori-design-web/v1-96/foundations/best-practices/global-patterns/designing-for-empty-states).
-
-## 10.515 Organisation des informations dans le détail d'une extension — Question 520, décision technique recommandée
-
-Le détail d'une extension est organisé sur une seule page structurée en sections thématiques repliables et dépliables, plutôt qu'en une longue page totalement plate ou en onglets séparant les informations.
-
-Les sections doivent être clairement titrées et sémantiquement structurées. Les informations essentielles et le résumé de l'extension restent immédiatement visibles ; les sections secondaires peuvent être repliées afin de réduire la longueur initiale. L'utilisateur peut développer ou replier chaque section indépendamment. L'état ouvert ou fermé est perceptible visuellement et annoncé aux technologies d'assistance ; les commandes sont utilisables au clavier avec Entrée et Espace.
-
-Cette organisation conserve une vue d'ensemble unique et évite de masquer des catégories d'informations derrière plusieurs onglets. Elle utilise le modèle de divulgation progressive documenté par WAI-ARIA. Référence : [W3C WAI-ARIA APG — Disclosure Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
-
-## 10.516 Navigation dans un détail d'extension volumineux — Question 521, décision technique recommandée
-
-Les deux mécanismes sont disponibles : le défilement vertical continu dans le contenu et une navigation par sections permettant d'accéder directement à une partie du détail.
-
-Lorsque le contenu est suffisamment long pour le justifier, une navigation contextuelle présente les titres des sections et permet de rejoindre la section choisie par défilement jusqu'à celle-ci. La section actuellement consultée est signalée dans cette navigation. Celle-ci reste limitée à la zone de détail et ne doit pas remplacer le défilement normal, perturber le focus clavier ou masquer le contenu.
-
-La navigation par sections peut rester discrète ou être omise lorsque le détail est court. Cette approche reprend les recommandations des systèmes de conception pour les contenus longs. Référence : [U.S. Web Design System — In-page navigation](https://designsystem.digital.gov/components/in-page-navigation/).
-
-## 10.517 Présentation des informations d'une extension désactivée — Question 522, décision technique recommandée
-
-Le détail d'une extension désactivée ou indisponible présente toutes les informations normalement accessibles, tout en distinguant clairement les fonctionnalités qui ne peuvent pas être utilisées.
-
-L'interface doit conserver la description, les paramètres, les dépendances, les compatibilités et les informations de diagnostic disponibles. Chaque fonctionnalité indisponible est identifiée par un état explicite et, lorsque l'information est connue, par sa raison : extension désactivée, dépendance manquante, incompatibilité, permission absente ou autre condition pertinente. Les commandes impossibles à exécuter sont désactivées de manière cohérente et leur indisponibilité ne repose pas uniquement sur une couleur ou une icône.
-
-L'utilisateur doit pouvoir comprendre ce que l'extension ferait, ce qui est bloqué et, si possible, comment rétablir la disponibilité. L'état désactivé ne doit pas être confondu avec une erreur de chargement ni conduire à masquer les informations utiles.
-
-## 10.518 Emplacement des commandes principales du détail d'une extension — Question 523, décision technique recommandée
-
-Les commandes principales relatives à l'extension sont regroupées dans une barre d'actions persistante, indépendante du défilement du contenu de détail.
-
-La barre reste visible dans les limites de la zone de détail et s'adapte à sa largeur. Elle regroupe uniquement les actions principales pertinentes pour l'extension consultée ; les commandes secondaires peuvent rester dans leurs sections respectives ou dans un menu dédié. Les actions indisponibles sont désactivées et accompagnées d'une explication accessible lorsque nécessaire.
-
-La barre persistante ne doit jamais masquer la fin du contenu, un contrôle ayant le focus ou un indicateur de focus. Un espace de réservation doit être prévu dans la zone défilante et le comportement doit rester utilisable au clavier, avec zoom et redimensionnement de fenêtre. Cette contrainte est essentielle au regard du critère WCAG 2.4.11 relatif au focus qui ne doit pas être entièrement masqué par du contenu créé par l'auteur. Référence : [W3C — Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum).
-
-## 10.519 Ouverture indépendante et simultanée des sections du détail — Question 524, décision technique recommandée
-
-Chaque section repliable du détail d'une extension fonctionne indépendamment des autres. L'utilisateur peut développer plusieurs sections simultanément et les laisser ouvertes pendant la consultation ; l'ouverture d'une section ne provoque pas automatiquement le repli d'une autre.
-
-Ce comportement facilite la comparaison d'informations situées dans différentes sections et évite de faire perdre le contexte de lecture. Chaque en-tête indique clairement son propre état ouvert ou fermé et commande uniquement la section qui lui est associée.
-
-Cette recommandation suit le modèle d'accordéon WAI-ARIA, qui autorise explicitement plusieurs panneaux ouverts et décrit l'interaction indépendante de chaque en-tête. Référence : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
-
-## 10.520 État initial des sections lors de l'ouverture d'un détail — Question 525, décision technique recommandée
-
-Lorsqu'un détail d'extension est affiché pour la première fois dans la session, la section générale présentant l'identité, la description et le résumé de l'extension est développée par défaut. Les autres sections sont initialement repliées.
-
-Si une section générale n'existe pas pour une extension donnée, la première section contenant les informations essentielles joue ce rôle. L'interface ne doit pas afficher un panneau vide uniquement pour respecter une structure théorique. L'utilisateur conserve la possibilité de développer immédiatement toute autre section.
-
-Ce choix privilégie une entrée en matière utile et limite la longueur initiale du détail sans cacher l'existence des autres catégories.
-
-## 10.521 Conservation de l'état des sections lors du changement d'extension — Question 526, décision technique recommandée
-
-L'état ouvert ou replié de chaque section est conservé séparément pour chaque extension pendant toute la session de l'application.
-
-Lorsqu'un utilisateur consulte une autre extension puis revient à la précédente, les sections retrouvent leur état antérieur. Les états d'une extension ne doivent jamais être appliqués par erreur à une autre extension. Si une extension est retirée de la liste ou devient inaccessible pendant la session, son état associé peut être supprimé avec son contexte de consultation.
-
-Cette conservation est limitée à la session en cours : elle ne constitue pas un réglage permanent ni une donnée de projet à sauvegarder. À la prochaine session, l'état initial défini dans la décision 10.520 est réappliqué.
-
-## 10.522 Commandes globales de développement et de repli des sections — Question 527, décision technique recommandée
-
-La zone de détail propose deux commandes globales distinctes : « Tout développer » et « Tout replier ».
-
-« Tout développer » ouvre toutes les sections disponibles du détail courant. « Tout replier » ferme toutes les sections, y compris la section générale ; l'état vide qui en résulte reste clairement compréhensible et ne doit pas être confondu avec l'absence de données. La section générale pourra ensuite être rouverte individuellement.
-
-Les commandes globales s'appliquent uniquement au détail de l'extension actuellement consultée et ne modifient pas les états mémorisés des autres extensions. Elles sont accessibles au clavier et exposent un nom et une fonction explicites aux technologies d'assistance.
-
-## 10.523 Navigation clavier dans les en-têtes des sections repliables — Question 528, décision technique recommandée
-
-Chaque en-tête de section est un véritable contrôle interactif accessible au clavier. La touche Entrée ou Espace développe une section repliée ou replie une section développée. La touche Tab déplace le focus vers le prochain élément interactif et Maj+Tab vers le précédent, selon l'ordre naturel de la page.
-
-Aucun déplacement obligatoire par flèches haut ou bas, ni raccourci Home ou End, n'est ajouté au comportement standard des en-têtes. Ces touches restent disponibles pour les usages habituels de l'application et du système ; une navigation par flèches ne pourra être introduite que dans un composant distinct dont le modèle d'interaction la justifie.
-
-Chaque en-tête est structuré comme un titre contenant un bouton natif. Le bouton expose son état au moyen de l'attribut accessible correspondant (aria-expanded) et référence le panneau qu'il contrôle (aria-controls). Le contenu replié est réellement retiré de l'ordre de tabulation et de l'arbre d'accessibilité tant qu'il est masqué. Les rôles de région ne sont employés que lorsque cela apporte une structure utile, afin d'éviter de multiplier inutilement les points de repère pour les lecteurs d'écran.
-
-Cette mise en œuvre suit les interactions clavier et les propriétés WAI-ARIA documentées par le W3C. Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [W3C — Accordion Example](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/).
-
-## 10.524 Animation lors du développement et du repli des sections — Question 529, décision technique recommandée
-
-Le développement et le repli d'une section peuvent utiliser une transition visuelle courte, discrète et cohérente, destinée à rendre le changement d'état perceptible sans ralentir la consultation. La transition ne doit pas provoquer de déplacement latéral, d'effet de zoom, de rebond ou d'animation décorative.
-
-L'état fonctionnel de la section change immédiatement du point de vue des interactions et des technologies d'assistance ; l'animation ne doit jamais retarder l'accès au contenu, bloquer une commande ou empêcher une nouvelle activation. La durée reste brève et homogène pour toutes les sections.
-
-Cette recommandation privilégie une animation fonctionnelle minimale, sans mouvement superflu. Référence : [W3C — Animation from Interactions (WCAG 2.3.3)](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions).
-
-## 10.525 Respect de la préférence de réduction des mouvements — Question 530, décision technique recommandée
-
-Les transitions des sections repliables respectent automatiquement la préférence de réduction des mouvements configurée dans le système d'exploitation ou l'environnement d'exécution.
-
-Lorsque cette préférence est active, les animations de hauteur, de déplacement et les autres mouvements non essentiels sont supprimés ; le changement d'état est présenté immédiatement, sans perte d'information ni de fonctionnalité. Cette préférence est détectée dynamiquement et son changement est pris en compte sans nécessiter une réinstallation ou une reconfiguration manuelle de l'application.
-
-Aucun réglage propre à cette seule zone n'est nécessaire : la règle générale de réduction des mouvements de l'application doit s'appliquer uniformément à tous les composants concernés.
-
-Références : [MDN — prefers-reduced-motion](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/%40media/prefers-reduced-motion) ; [W3C — Technique C39](https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html).
-
-## 10.526 Stabilité de la position de défilement lors des changements de sections — Question 531, décision technique recommandée
-
-Le développement ou le repli d'une section ne doit pas provoquer de saut inattendu de la position de lecture dans la zone de détail.
-
-Lorsque le changement de taille d'une section située au-dessus de la partie consultée modifie la mise en page, la position du contenu actuellement lu est préservée autant que possible. L'activation d'un en-tête ne déclenche pas un retour automatique en haut du détail. Si le repli d'une section masque l'élément qui possède le focus, le focus est replacé sur l'en-tête de cette section avant que son contenu ne soit masqué.
-
-Le défilement automatique n'est utilisé que lorsqu'il est nécessaire pour rendre visible l'en-tête activé ou le focus clavier, et jamais pour imposer une position de lecture sans raison.
-
-Cette règle s'appuie sur le principe d'ancrage du défilement, qui vise à maintenir la zone lue visible lors des changements de mise en page. Référence : [MDN — Scroll anchoring](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_anchoring/Overview).
-
-## 10.527 Chargement dynamique du contenu d'une section — Question 532, décision technique recommandée
-
-Lorsqu'une section nécessite un chargement dynamique, son en-tête reste disponible et son état développé ou replié reste cohérent. Le contenu affiche un indicateur de chargement local à la section, accompagné d'un libellé compréhensible ; le reste du détail demeure utilisable.
-
-Le chargement ne déplace pas automatiquement le focus et ne provoque pas de changement de section. À la fin d'un chargement ordinaire, le résultat ou l'état obtenu est annoncé aux technologies d'assistance au moyen d'un message de statut non intrusif, équivalent à une annonce polie. L'annonce ne répète pas inutilement l'intégralité du contenu chargé.
-
-Si l'utilisateur replie la section ou consulte une autre extension pendant le chargement, le résultat est associé à la bonne extension et à la bonne section ; il ne doit jamais apparaître dans un autre détail à la suite d'un changement de sélection.
-
-Références : [W3C — Status Messages (WCAG 4.1.3)](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22.html) ; [MDN — ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions).
-
-## 10.528 Gestion d'une erreur affectant une section — Question 533, décision technique recommandée
-
-Une erreur qui concerne le chargement ou l'affichage d'une section est traitée localement dans cette section. Elle ne doit pas rendre indisponible l'ensemble du détail de l'extension ni masquer les informations déjà chargées dans les autres sections.
-
-Le message d'erreur indique clairement la section concernée et fournit, lorsque cela est pertinent, une commande permettant de relancer son chargement. L'échec conserve l'état des autres sections, la sélection de l'extension et la position de défilement. Une nouvelle tentative ne doit pas dupliquer les données déjà affichées ni provoquer une action involontaire sur une autre extension.
-
-Les erreurs ordinaires sont signalées sans interruption excessive ; seules les situations réellement critiques pour la sécurité ou l'intégrité des données peuvent justifier une alerte prioritaire. Le détail conserve un état cohérent même si plusieurs sections rencontrent des erreurs indépendantes.
-
-## 10.529 Présentation et zone d'activation des en-têtes de section — Question 534, décision technique recommandée
-
-L'en-tête de chaque section présente un intitulé descriptif et un indicateur visuel explicite de son état développé ou replié. L'indicateur, par exemple un chevron orienté selon l'état, complète le libellé et ne constitue jamais le seul moyen de comprendre l'action.
-
-Toute la surface de l'en-tête est activable, et pas uniquement l'icône ou le texte. L'en-tête forme un seul contrôle interactif, avec une cible suffisamment grande et un espacement qui évite les activations accidentelles. Aucun bouton, lien ou autre contrôle interactif indépendant ne doit être imbriqué à l'intérieur de cette surface ; les actions propres à une section sont placées à côté, hors du bouton d'en-tête.
-
-Le changement d'état est également exposé aux technologies d'assistance et ne repose pas uniquement sur la couleur, la forme ou l'orientation de l'icône.
-
-Références : [USWDS — Accordion](https://designsystem.digital.gov/components/accordion/) ; [New York State Design System — Accessible Accordion](https://designsystem.ny.gov/components/accordion/accessibility-build/).
-
-## 10.530 Utilisation de lignes de résumé dans les en-têtes — Question 535, décision technique recommandée
-
-Une ligne de résumé peut être affichée sous le titre d'une section repliée uniquement lorsqu'elle apporte une information utile pour décider de l'ouvrir, par exemple une valeur principale, un état de compatibilité ou une synthèse courte.
-
-Le résumé reste facultatif, concis, rédigé en langage clair et complémentaire du titre. Il ne répète pas le titre, ne reproduit pas le contenu complet de la section et n'est pas affiché lorsqu'aucune information pertinente n'est disponible. Le texte du résumé fait partie du nom accessible du contrôle si nécessaire pour comprendre l'information présentée, mais sa longueur doit rester maîtrisée afin de ne pas rendre la navigation des lecteurs d'écran verbeuse.
-
-Référence : [GOV.UK Design System — Accordion, section headings and summary lines](https://design-system.service.gov.uk/components/accordion/).
-
-## 10.531 Affichage des indicateurs d'état dans les en-têtes — Question 536, décision technique recommandée
-
-Un en-tête peut afficher un indicateur compact lorsqu'un état de la section mérite d'être repéré sans ouvrir son contenu : avertissement, erreur, information manquante, compatibilité ou nombre d'éléments lorsque ce nombre aide réellement à la décision.
-
-Chaque indicateur est pertinent pour la section concernée, reste visuellement secondaire par rapport à son titre et utilise un libellé ou une information accessible en complément de son éventuelle icône. La couleur seule ne doit jamais porter la signification. Les compteurs décoratifs, redondants ou sans conséquence pratique sont évités.
-
-Les indicateurs sont mis à jour lorsque les données changent et ne doivent pas transformer l'en-tête en barre d'actions. Ils restent informatifs ; le contrôle d'ouverture conserve une fonction unique et prévisible.
-
-Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [USWDS — Accordion guidance](https://designsystem.digital.gov/components/accordion/).
-
-## 10.532 Visibilité permanente des informations essentielles — Question 537, décision technique recommandée
-
-Les informations nécessaires pour comprendre immédiatement l'identité, l'état général et la disponibilité d'une extension ne sont pas cachées exclusivement dans des sections repliables.
-
-La zone de synthèse générale présente notamment le nom de l'extension, sa version, son état d'activation et les alertes ayant un impact direct sur son utilisation. Une incompatibilité bloquante, une dépendance obligatoire absente ou une permission indispensable manquante reste donc visible sans obliger l'utilisateur à ouvrir une section secondaire.
-
-Les sections repliables accueillent les explications détaillées, les paramètres, les dépendances complètes, les informations techniques et les diagnostics complémentaires. Les informations critiques restent accessibles et ne sont pas enfouies dans une divulgation progressive.
-
-Cette règle limite le risque que des informations importantes soient ignorées parce qu'elles sont masquées. Références : [GOV.UK Design System — When not to use an accordion](https://design-system.service.gov.uk/components/accordion/) ; [U.S. Web Design System — When to use an accordion](https://designsystem.digital.gov/components/accordion/).
-
-## 10.533 Hiérarchie et imbrication des sections repliables — Question 538, décision technique recommandée
-
-Les sections repliables du détail suivent une hiérarchie simple et plate. Une section repliable ne contient pas un autre accordéon ou un second niveau de sections repliables.
-
-Lorsqu'un sujet nécessite des sous-parties, celles-ci sont organisées à l'intérieur de la section ouverte à l'aide de sous-titres sémantiques, de groupes visuels, de listes ou de séparateurs, sans ajouter de nouveau niveau d'interaction repliable. Si le contenu devient trop complexe pour cette organisation, il est réorganisé en sections principales distinctes.
-
-Cette règle évite les niveaux d'ouverture imbriqués difficiles à parcourir, réduit la charge cognitive et facilite la navigation au clavier comme avec un lecteur d'écran.
-
-Références : [GOV.UK Design System — Do not put accordions within accordions](https://design-system.service.gov.uk/components/accordion/) ; [Chrome for Developers — Accordion accessibility](https://developer.chrome.com/docs/modern-web-guidance/guides/ui-components/accordion).
-
-## 10.534 Ordre de présentation des informations dans le détail d'une extension — Question 539, décision technique recommandée
-
-Le détail d'une extension suit un ordre stable, prévisible et orienté vers les besoins de consultation. Après la synthèse générale toujours visible, les sections sont présentées dans l'ordre suivant lorsque les informations correspondantes existent :
-
-1. État, compatibilité et disponibilité ;
-2. Dépendances et prérequis ;
-3. Permissions et accès requis ;
-4. Paramètres et configuration ;
-5. Fonctionnalités et points d'entrée proposés ;
-6. Diagnostics, incidents et informations techniques ;
-7. Documentation, licence et informations de provenance.
-
-Les sections absentes ou sans contenu pertinent ne sont pas affichées artificiellement. Les informations bloquantes ou qui nécessitent une action restent signalées dans la synthèse générale conformément à la décision 10.532. Cet ordre constitue un ordre par défaut commun ; il ne doit pas empêcher l'accès direct à une section ni imposer une hiérarchie différente selon l'état de l'extension.
-
-Cette organisation place d'abord les informations nécessaires pour comprendre si l'extension peut fonctionner, puis celles qui expliquent son utilisation et enfin les informations de référence. Elle limite les changements de repères entre extensions.
-
-## 10.535 Présentation des dépendances directes et indirectes — Question 540, décision technique recommandée
-
-La section des dépendances distingue clairement les dépendances directes, déclarées par l'extension, des dépendances indirectes ou transitives, apportées par une autre dépendance. Lorsque la structure est disponible, elle présente les relations parent-enfant sous forme d'arbre ou de groupes hiérarchisés ; une simple liste aplatie ne doit pas faire perdre l'origine d'une dépendance.
-
-Pour chaque dépendance connue, l'interface indique au minimum son nom, sa version détectée ou requise, son caractère obligatoire ou facultatif et son état : satisfaite, absente, incompatible, désactivée ou indéterminée. La dépendance parente est indiquée pour les éléments transitifs. Les cycles, doublons et relations impossibles à résoudre sont signalés comme anomalies de métadonnées plutôt que masqués.
-
-L'application ne prétend pas connaître l'intégralité de l'arbre lorsque le manifeste ou le système d'extensions ne fournit qu'une partie des informations. La couverture connue, inconnue ou incomplète est explicitement distinguée. Une dépendance facultative absente ne doit pas être présentée comme une erreur bloquante.
-
-Cette présentation suit les recommandations OWASP de conserver à la fois un inventaire des composants et leurs relations, y compris les dépendances transitives. Références : [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html) ; [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
-
-## 10.536 Détail des règles de compatibilité — Question 541, décision technique recommandée
-
-La compatibilité d'une extension est évaluée séparément pour chaque dimension pertinente, et non réduite à un indicateur global ambigu. Lorsque les données sont disponibles, le détail indique la compatibilité avec la version de l'application et son API d'extension, les dépendances et leurs versions, les systèmes ou environnements pris en charge, ainsi que les capacités ou fonctionnalités requises.
-
-Chaque dimension présente la version ou la plage déclarée, la valeur détectée et le résultat : compatible, incompatible, avertissement, non vérifié ou information indisponible. Une incompatibilité bloquante est distinguée d'une compatibilité partielle ou d'une fonctionnalité facultative indisponible. L'application explique la cause connue et la conséquence pratique ; elle ne déduit pas une compatibilité de la seule présence d'une extension dans la liste.
-
-Les règles de comparaison de versions doivent respecter le schéma de version réellement déclaré par l'extension ou son écosystème. Si le format est inconnu ou non interprétable, le résultat est « non vérifié » plutôt qu'une validation arbitraire. Les informations essentielles ayant un impact direct restent visibles dans la synthèse générale, les détails étant développés dans cette section.
-
-Cette décision rend les écarts vérifiables et évite de confondre présence, installation et compatibilité effective. Références : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html) ; [Home Office — Managing the security of software dependencies](https://engineering.homeoffice.gov.uk/standards/managing-security-software-dependencies/).
-
-## 10.537 Présentation de l'origine, de l'intégrité et de la provenance — Question 542, décision technique recommandée
-
-Le détail d'une extension présente les informations de provenance disponibles afin que l'utilisateur puisse identifier d'où elle provient et apprécier la traçabilité de son installation. Les champs affichés comprennent, lorsqu'ils sont connus : auteur ou éditeur, fournisseur, dépôt ou source de distribution, identifiant de paquet, version, date de publication, licence déclarée, empreinte cryptographique du fichier installé et informations de signature ou d'attestation.
-
-Chaque donnée distingue une valeur vérifiée, une déclaration fournie par l'éditeur et une information inconnue. L'absence de signature, d'empreinte ou de métadonnée ne doit jamais être présentée comme une preuve d'intégrité ou de fiabilité. Si une vérification cryptographique a été effectuée, son résultat, l'objet vérifié et la méthode utilisée sont explicités ; l'application ne prétend pas avoir validé une chaîne de confiance qu'elle n'a pas effectivement contrôlée.
-
-Les métadonnées de provenance restent consultables même si l'extension est désactivée ou incompatible. Les informations inconnues sont indiquées comme telles plutôt que remplacées par des suppositions. La licence déclarée est affichée comme information de référence et non comme une validation juridique automatique.
-
-Cette décision reprend les principes d'inventaire, d'identification des composants et de traçabilité de la chaîne d'approvisionnement logicielle. Références : [OWASP — Software Component Verification Standard](https://scvs.owasp.org/scvs/using-scvs/) ; [OWASP — Component Analysis](https://community.owasp.org/Component_Analysis) ; [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html).
-
-## 10.538 Accès à la documentation et aux références externes — Question 543, décision technique recommandée
-
-La section de documentation regroupe les liens fournis par l'éditeur ou la source de l'extension : documentation d'utilisation, page du projet, notes de version, dépôt de code, support et informations de licence. Chaque lien possède un intitulé explicite décrivant sa destination ; les URL brutes ne constituent pas le seul moyen de comprendre leur fonction.
-
-Les liens externes sont ouverts par une action volontaire de l'utilisateur et dans le navigateur externe configuré, sans exécuter leur contenu dans l'application. L'application ne doit pas charger automatiquement une page distante dans la zone de détail ni transmettre des données locales à la destination. Les URL absentes, invalides ou inaccessibles sont signalées sans masquer les autres informations de l'extension.
-
-La source et le statut des liens sont distingués : lien déclaré par l'éditeur, lien généré par une source fiable ou lien non vérifié. Aucun lien de documentation ou de support n'est inventé par l'application. Lorsque plusieurs ressources existent, elles sont regroupées par fonction et présentées dans un ordre cohérent.
-
-Cette organisation facilite l'assistance et la vérification sans confondre documentation distante et contenu local de confiance. Référence de sécurité générale : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
-
-## 10.539 Schéma de référence des paramètres propres à chaque extension — Question 544, décision technique recommandée
-
-Chaque extension qui expose des paramètres déclare un schéma de configuration versionné, associé à son identifiant et à sa version de schéma. Ce schéma décrit les clés disponibles, leur type, leur caractère obligatoire ou facultatif, leurs valeurs par défaut documentées et les contraintes applicables. Il constitue la référence utilisée par l'interface de paramètres et par le validateur ; l'interface ne doit pas inventer de champs ni de valeurs.
-
-Le schéma est traité comme une donnée déclarative : son interprétation ne doit pas exécuter de code fourni par l'extension. L'application vérifie la cohérence du schéma avant de l'utiliser et signale les schémas absents, invalides ou non pris en charge. Une extension sans paramètres n'est pas tenue de fournir un schéma vide.
-
-Cette organisation favorise une configuration explicite, vérifiable et indépendante de la présentation. Référence : [JSON Schema — Core Specification, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.540 Validation des valeurs et contraintes de configuration — Question 545, décision technique recommandée
-
-Avant toute application d'une modification, chaque valeur est validée selon le schéma déclaré et les règles de l'extension : type, format, plage numérique, longueur, nombre d'éléments, valeurs autorisées, dépendances entre champs et contraintes de cohérence. Les contrôles sont effectués dans l'application avant transmission à l'extension ; une validation côté extension peut compléter ces contrôles, mais ne les remplace pas.
-
-Les erreurs sont associées au champ concerné, expliquées en termes compréhensibles et accompagnées de la contrainte attendue lorsque celle-ci est connue. Une valeur invalide ne doit pas être silencieusement convertie, tronquée ou remplacée par une valeur par défaut. Les champs valides restent visibles et modifiables, sans qu'une erreur isolée fasse perdre les autres saisies.
-
-Références : [JSON Schema — Validation, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-validation) ; [JSON Schema — Core, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.541 Traitement des propriétés inconnues ou non prises en charge — Question 546, décision technique recommandée
-
-Lorsqu'une configuration contient une propriété inconnue du schéma courant, l'application ne l'interprète pas et ne la transmet pas à l'extension comme une instruction implicite. Si le format prévoit explicitement des propriétés supplémentaires compatibles, celles-ci peuvent être conservées sans être modifiées ; sinon, elles sont signalées comme non reconnues et exclues de l'application de la configuration jusqu'à résolution.
-
-Les champs marqués comme obligatoires ou critiques par le schéma ne peuvent pas être ignorés si leur compréhension est nécessaire à la sûreté ou à la cohérence de la configuration. Une différence de schéma susceptible de modifier le sens des paramètres entraîne un avertissement explicite ou un refus d'application, selon sa gravité. Les données inconnues ne sont jamais supprimées sans information préalable.
-
-Cette règle concilie évolutivité et absence d'interprétation hasardeuse. Référence : [JSON Schema — Core, additionalProperties and unevaluatedProperties](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.542 Application transactionnelle des modifications de paramètres — Question 547, décision technique recommandée
-
-Les paramètres sont préparés dans un état de brouillon distinct de la configuration active. L'application valide l'ensemble des valeurs, puis transmet la configuration comme une opération cohérente. La nouvelle configuration ne devient active que si toutes les étapes obligatoires réussissent ; en cas d'échec, l'état actif précédent est conservé et l'application indique l'origine de l'échec.
-
-Une extension ne doit pas laisser une configuration partiellement appliquée sans mécanisme de retour à un état cohérent. Si une opération ne peut pas être rendue atomique en raison d'une limitation technique documentée, l'application doit le signaler avant validation, préciser les effets possibles et prévoir la meilleure stratégie de restauration disponible. La fermeture ou l'annulation avant validation abandonne le brouillon sans altérer les paramètres actifs.
-
-Cette décision complète le principe déjà retenu de préparation puis validation explicite des paramètres dédiés à chaque extension.
-
-## 10.543 Stockage protégé des secrets utilisés par les extensions — Question 548, décision technique recommandée
-
-Les mots de passe, jetons d'accès, clés API, clés privées et autres secrets nécessaires à une extension ne sont pas enregistrés en clair dans son fichier de configuration, les données de projet, les exports de diagnostic ou les journaux. Lorsqu'un stockage persistant est indispensable, l'application privilégie le coffre d'identifiants sécurisé fourni par le système d'exploitation. La configuration de l'extension ne conserve qu'une référence opaque vers le secret.
-
-L'accès à un secret est limité à l'extension et à l'usage pour lesquels il a été enregistré. Les secrets ne sont révélés à l'interface que lorsque cela est strictement nécessaire, sont masqués par défaut et ne sont pas inclus dans les messages d'erreur. Si aucun coffre sécurisé approprié n'est disponible, l'application avertit l'utilisateur et ne prétend pas fournir une protection équivalente par simple encodage ou chiffrement avec une clé stockée au même endroit.
-
-Références : [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) ; [Microsoft — Handling Passwords, Windows Credential Management](https://learn.microsoft.com/en-us/windows/win32/secbp/handling-passwords).
-
-## 10.544 Interface d'exécution contrôlée entre les extensions et l'application — Question 549, décision technique recommandée
-
-Une extension accède aux fonctions de l'application par une interface hôte documentée, versionnée et limitée aux opérations explicitement exposées. Elle ne reçoit pas par défaut un accès direct aux commandes natives, aux interfaces internes privées, au système de fichiers complet, aux processus du système ou aux données globales de l'application. Les opérations disponibles sont décrites par des contrats stables et les capacités non exposées restent inaccessibles.
-
-L'architecture doit distinguer clairement les garanties réellement fournies par le mécanisme d'exécution. Une API contrôlée et des permissions Tauri réduisent la surface d'accès, mais ne constituent pas à elles seules une isolation forte du code natif malveillant. Si une extension nécessite une isolation plus robuste, celle-ci doit reposer sur une frontière de processus ou un mécanisme système adapté, et ses limites doivent être documentées. Aucune garantie de bac à sable complet ne doit être annoncée sans preuve technique.
-
-Références : [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
-
-## 10.545 Vérification des autorisations à chaque opération — Question 550, décision technique recommandée
-
-Chaque opération demandée par une extension est contrôlée par l'application au moment de son exécution. Le contrôle vérifie l'identité de l'extension, l'autorisation accordée lors de son installation, la portée de cette autorisation, le projet ou la ressource concernés et la nature de l'action demandée. Le fait qu'une extension ait été autorisée à l'installation ne dispense jamais de vérifier ses accès à chaque appel.
-
-Les refus sont appliqués par défaut lorsqu'une règle est absente, ambiguë ou impossible à évaluer. Les contrôles sont réalisés dans la couche qui détient effectivement la ressource ou exécute l'opération ; une vérification uniquement visuelle dans l'interface ou dans le code de l'extension ne suffit pas. Cette règle respecte le choix déjà validé de permissions fixes après installation : elle contrôle les autorisations existantes sans ajouter de mécanisme de modification de celles-ci.
-
-Référence : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
-
-## 10.546 Contrôle strict des chemins et des périmètres de fichiers — Question 551, décision technique recommandée
-
-Lorsqu'une extension dispose d'un accès aux fichiers, chaque opération est limitée aux emplacements explicitement autorisés pour cette extension et pour le contexte concerné. Les chemins sont normalisés et contrôlés côté application avant toute lecture, écriture, suppression ou énumération. Les tentatives de sortir du périmètre autorisé, notamment au moyen de segments de remontée, de chemins absolus inattendus ou de liens symboliques conduisant hors du périmètre, sont refusées.
-
-Les contrôles ne reposent pas uniquement sur une comparaison textuelle des chemins. Ils tiennent compte de la résolution réelle du chemin et des particularités du système d'exploitation, afin d'éviter les contournements par alias ou changement de cible. Les permissions d'accès et les scopes de chemins restent distincts : une opération autorisée sans périmètre explicite ne donne pas un accès global.
-
-Références : [Tauri — File System Security and Scopes](https://v2.tauri.app/plugin/file-system/) ; [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
-
-## 10.547 Limitation des ressources consommées par chaque extension — Question 552, décision technique recommandée
-
-Les opérations des extensions sont soumises à des limites de ressources adaptées à leur nature : durée maximale d'exécution lorsqu'elle est mesurable, taille des données entrantes et sortantes, nombre d'éléments traités, fréquence des appels et concurrence des tâches. Les limites sont appliquées par l'hôte et ne peuvent pas être neutralisées par l'extension elle-même. Les tâches longues ou les volumes importants doivent utiliser des traitements progressifs lorsque cela est possible.
-
-Lorsqu'une limite est atteinte, l'opération concernée est interrompue proprement, l'application conserve un état cohérent et présente un diagnostic indiquant la limite rencontrée. Une limite locale à une extension ne doit pas bloquer les autres extensions ni l'interface principale. Les seuils sont définis par catégorie d'opération et selon les capacités réelles de la plateforme ; ils ne sont pas présentés comme une protection absolue contre toute consommation abusive.
-
-Référence : [OWASP API Security — API4:2023 Unrestricted Resource Consumption](https://api-security.owasp.org/editions/2023/fr/0xa4-unrestricted-resource-consumption/).
-
-## 10.548 Encadrement des communications réseau des extensions — Question 553, décision technique recommandée
-
-Une extension ne peut effectuer des communications réseau que si cette capacité a été déclarée et autorisée lors de son installation, conformément au principe des autorisations fixes après installation. Les destinations et protocoles sollicités sont décrits de manière compréhensible dans la fiche de l'extension. L'accès réseau n'est pas implicitement accordé à toutes les extensions.
-
-Les requêtes sont effectuées par un service hôte contrôlé lorsque cela est possible, qui applique les destinations autorisées, les délais d'attente et les limites de taille. Les destinations locales, privées, de bouclage ou sensibles ne sont pas accessibles par défaut ; toute nécessité fonctionnelle doit être explicitement déclarée et examinée lors de l'installation. Les redirections sont revalidées afin qu'une destination autorisée ne serve pas de relais vers une destination interdite. Les secrets et données de projet ne sont jamais ajoutés automatiquement aux requêtes.
-
-Cette règle complète les autorisations propres à chaque extension sans créer de panneau centralisé supplémentaire ni permettre leur modification après installation. Références : [OWASP — SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) ; [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/).
-
-## 10.549 Préparation des installations dans une zone temporaire — Question 554, décision technique recommandée
-
-Toute installation d'extension commence par la réception et la préparation du paquet dans une zone temporaire dédiée, séparée des fichiers de la version actuellement installée et des données des projets. L'extension n'est pas activée et aucun de ses composants exécutables n'est lancé pendant cette phase de préparation et de contrôle.
-
-La zone temporaire est créée avec des droits d'accès limités à l'application, porte un identifiant de transaction propre à l'opération et ne doit pas être accessible à d'autres extensions. Elle est nettoyée après réussite ou abandon, sous réserve de conserver les éléments strictement nécessaires à un diagnostic temporaire. La préparation ne modifie pas l'état de l'extension déjà installée.
-
-Cette étape sépare la réception, la vérification et l'activation, afin qu'un paquet incomplet ou suspect ne puisse pas remplacer prématurément une installation fonctionnelle.
-
-## 10.550 Vérification de la structure et du contenu du paquet d'extension — Question 555, décision technique recommandée
-
-Avant extraction ou installation, l'application vérifie la structure du paquet par rapport au format d'extension accepté : manifeste, identifiant, version, fichiers attendus et éléments requis. Les noms, types et tailles des fichiers sont contrôlés selon une liste de formats et d'emplacements autorisés. Les fichiers inattendus, les doublons ambigus, les chemins absolus, les segments de remontée et les noms incompatibles avec les systèmes pris en charge sont rejetés ou signalés avant toute écriture définitive.
-
-L'application impose des limites sur la taille totale décompressée, le nombre de fichiers, la taille individuelle et les ratios de compression afin de prévenir les archives démesurées ou conçues pour épuiser les ressources. Les liens symboliques et autres entrées spéciales ne sont pas suivis ou matérialisés par défaut. Les noms d'origine ne doivent jamais permettre d'écraser des fichiers situés hors du répertoire temporaire prévu.
-
-Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP Web Security Testing Guide — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
-
-## 10.551 Extraction sûre et confinée des fichiers d'extension — Question 556, décision technique recommandée
-
-L'extraction d'un paquet est réalisée uniquement dans le répertoire temporaire attribué à l'opération. Chaque chemin cible est résolu et vérifié avant écriture afin de garantir qu'il reste dans ce répertoire, y compris après normalisation et prise en compte des particularités du système de fichiers. L'application refuse les tentatives de traversal, les liens symboliques sortants, les points de montage inattendus et les collisions de noms qui pourraient conduire à écraser un fichier existant.
-
-Les fichiers sont créés avec des permissions minimales. Les attributs d'exécution fournis par l'archive ne sont pas repris automatiquement ; les fichiers ne reçoivent un statut exécutable que si le format et le modèle d'extension l'exigent explicitement et après les contrôles prévus. Toute erreur d'extraction interrompt l'opération sans laisser un paquet partiellement installé.
-
-Cette mesure est distincte de la validation générale des archives de sauvegarde : elle protège spécifiquement le parcours d'installation d'une extension et son répertoire de destination.
-
-Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
-
-## 10.552 Vérification cryptographique des fichiers reçus — Question 557, décision technique recommandée
-
-Lorsque la source fournit des métadonnées d'intégrité ou une signature, l'application vérifie les empreintes cryptographiques des fichiers reçus par rapport aux valeurs attendues et vérifie la signature au moyen d'une clé ou d'une identité de confiance connue. Les données utilisées pour vérifier un paquet doivent être obtenues et validées indépendamment du fichier lui-même ; une empreinte simplement inscrite dans le même paquet non authentifié ne prouve pas sa provenance.
-
-Une empreinte incorrecte, une signature invalide, une métadonnée expirée ou une incohérence de taille entraîne le refus de l'installation. Si aucune signature ou chaîne de confiance vérifiable n'est fournie, l'application indique explicitement que l'authenticité n'a pas pu être établie ; elle ne transforme pas une simple empreinte calculée localement en preuve de confiance. Le résultat et la méthode de contrôle sont présentés à l'utilisateur avant l'activation.
-
-Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [CISA — Securing the Software Supply Chain: Recommended Practices for Suppliers](https://www.cisa.gov/sites/default/files/2024-08/SECURING_THE_SOFTWARE_SUPPLY_CHAIN_SUPPLIERS_508.pdf).
-
-## 10.553 Absence d'exécution avant validation et activation explicite — Question 558, décision technique recommandée
-
-Aucun script d'installation, hook, binaire ou code fourni par l'extension n'est exécuté pendant la réception, l'analyse du paquet, la validation de son manifeste ou la vérification de son intégrité. Les éventuelles opérations d'initialisation sont réalisées uniquement dans le cadre du modèle d'exécution contrôlé de l'application, après la validation de l'installation et l'autorisation explicite de l'utilisateur.
-
-Le parcours présente les résultats des contrôles préalables, les autorisations demandées, les dépendances, les incompatibilités et les éventuelles limites de confiance avant de rendre l'extension active. Si une opération d'initialisation est indispensable et échoue, l'extension reste inactive et l'installation est déclarée incomplète ou en échec ; les composants préparés ne sont pas exposés aux projets.
-
-Cette décision complète le contrôle préalable prévu pour les extensions de sources variées et le principe selon lequel aucune autorisation n'est accordée silencieusement. Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [TUF — Security](https://theupdateframework.io/docs/security/).
-
-## 10.554 Authentification des métadonnées de mise à jour — Question 559, décision technique recommandée
-
-Lorsqu'une source d'extension publie des métadonnées de mise à jour signées, l'application vérifie leur signature à partir d'une racine de confiance préalablement établie et de règles de délégation explicites. Les métadonnées doivent relier sans ambiguïté l'identifiant de l'extension, la version proposée, la source, les dépendances et l'artefact téléchargeable. Une métadonnée non signée, signée par une clé inconnue ou dont la chaîne de confiance ne peut être validée n'est pas considérée comme authentique.
-
-La vérification doit porter sur les métadonnées avant que celles-ci soient utilisées pour décider quel paquet télécharger ou installer. Les informations de provenance présentées dans la fiche d'extension distinguent toujours les données déclarées par l'éditeur des données cryptographiquement vérifiées. Ce contrôle ne transforme pas une source choisie librement par l'utilisateur en source automatiquement fiable.
-
-Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [TUF — Roles and Metadata](https://theupdateframework.io/docs/metadata/).
-
-## 10.555 Protection contre les retours arrière et les métadonnées périmées — Question 560, décision technique recommandée
-
-Le mécanisme de mise à jour conserve les informations de confiance nécessaires pour refuser une métadonnée ou une version déjà dépassée, une version inférieure à la dernière version reconnue, une combinaison incohérente de métadonnées ou des métadonnées expirées. Une version plus ancienne ne peut pas être présentée comme une mise à jour ordinaire. Les exceptions de restauration restent exclusivement accessibles par le parcours de restauration manuelle déjà prévu et ne doivent pas être confondues avec le mécanisme normal de mise à jour.
-
-Les contrôles de fraîcheur et de monotonie sont effectués avant le téléchargement ou l'installation de l'artefact. En cas de détection d'un risque de rollback, de freeze ou de mélange de métadonnées, l'opération est interrompue et le motif est présenté clairement. L'échec d'une vérification ne doit pas rendre le mécanisme de mise à jour définitivement inutilisable : une nouvelle vérification ultérieure doit rester possible.
-
-Références : [TUF — Specification, client workflow](https://theupdateframework.github.io/specification/latest/) ; [TUF — Security](https://theupdateframework.io/docs/security/).
-
-## 10.556 Vérification des artefacts téléchargés avant leur installation — Question 561, décision technique recommandée
-
-Après téléchargement et avant toute extraction ou installation, l'application compare la taille et les empreintes cryptographiques de l'artefact avec les valeurs contenues dans les métadonnées authentifiées. Le fichier n'est transmis à la phase d'installation que si toutes les vérifications obligatoires réussissent. Le contrôle est effectué sur les octets effectivement reçus et non sur le seul nom du fichier ou son type déclaré.
-
-Un écart de taille, une empreinte incorrecte, un téléchargement tronqué ou un fichier différent de celui annoncé entraîne le rejet de l'artefact. L'application conserve la version installée et ne tente pas de réparer ou de compléter silencieusement un fichier non conforme. Le diagnostic indique le contrôle qui a échoué sans exposer d'informations sensibles.
-
-Référence : [TUF — Fetch Target and Verify Target Files](https://theupdateframework.github.io/specification/latest/).
-
-## 10.557 Traitement indépendant et transactionnel des mises à jour groupées — Question 562, décision technique recommandée
-
-Lorsqu'une mise à jour groupée concerne plusieurs extensions sélectionnées, chaque extension fait l'objet d'une transaction indépendante : vérification, préparation, sauvegarde de la version installée, remplacement, validation puis résultat. Une erreur sur une extension n'autorise pas à laisser cette extension dans un état partiellement remplacé et ne doit pas corrompre les autres extensions du lot.
-
-Le bilan de l'opération distingue les extensions mises à jour, celles qui ont échoué, celles qui ont été ignorées et celles qui ont été restaurées. Les échecs sont traités selon la restauration automatique de la version précédente déjà définie. L'application ne prétend pas que l'ensemble du lot a réussi si une ou plusieurs transactions individuelles ont échoué ; les résultats partiels sont explicitement présentés.
-
-Cette organisation conserve la possibilité de mise à jour groupée validée par l'utilisateur tout en limitant le périmètre d'une défaillance à l'extension concernée.
-
-## 10.558 Refus des mises à jour qui élargissent silencieusement les autorisations — Question 563, décision technique recommandée
-
-Une mise à jour ne peut pas ajouter, élargir ou modifier implicitement les autorisations fixes d'une extension déjà installée. Avant l'installation, l'application compare les autorisations requises par la nouvelle version avec celles qui ont été accordées à l'installation initiale. Si la nouvelle version exige une capacité supplémentaire ou une portée plus large, cette mise à jour est bloquée et la version actuellement installée reste active.
-
-La fiche indique les autorisations supplémentaires demandées et explique que les permissions ne sont pas modifiables après installation, conformément à la décision déjà validée. La mise à jour n'est pas forcée et aucune nouvelle permission n'est accordée en arrière-plan. Si l'utilisateur souhaite adopter cette version, il devra suivre un parcours de désinstallation puis de nouvelle installation, avec présentation et confirmation des autorisations requises, en tenant compte des choix de conservation des données déjà définis.
-
-Cette règle empêche qu'une mise à jour signée ou provenant d'une source connue profite de la confiance accordée à la version précédente pour obtenir silencieusement des accès supplémentaires. Références : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
-
-## 10.559 Interprétation normalisée des contraintes de versions des dépendances — Question 564, décision technique recommandée
-
-Les contraintes de versions déclarées par les extensions sont interprétées selon le schéma de version explicitement indiqué par leur manifeste ou leur écosystème. Lorsqu'une dépendance utilise Semantic Versioning, l'application applique les règles SemVer correspondantes, y compris l'ordre numérique des composantes majeure, mineure et corrective, le traitement des préversions et l'absence d'effet des métadonnées de construction sur la priorité.
-
-L'application ne déduit pas une compatibilité à partir d'une comparaison textuelle ou lexicographique des numéros. Si le format ou l'opérateur de contrainte n'est pas reconnu, la dépendance est considérée comme non résolue et l'incertitude est présentée à l'utilisateur ; aucune version arbitraire n'est sélectionnée. Les plages trop larges, ambiguës ou non interprétables sont signalées avant l'installation ou l'activation.
-
-Références : [Semantic Versioning 2.0.0 — Spécification française](https://semver.org/lang/fr/spec/v2.0.0.html) ; [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.560 Résolution déterministe des versions de dépendances — Question 565, décision technique recommandée
-
-Lorsque plusieurs versions d'une même dépendance sont disponibles, le résolveur recherche une combinaison qui satisfait simultanément toutes les contraintes obligatoires des extensions concernées. Il privilégie la réutilisation d'une version commune lorsqu'elle respecte toutes les plages déclarées, plutôt que de multiplier inutilement les variantes d'un même composant. Il ne choisit pas une version uniquement parce qu'elle est la plus récente si celle-ci ne respecte pas les contraintes.
-
-À contraintes et sources identiques, le résultat doit être reproductible : les mêmes entrées et le même état des dépôts doivent produire le même plan de résolution. Le plan expose les versions retenues, les contraintes prises en compte, les dépendances partagées et les incompatibilités qui empêchent une solution. Si aucune combinaison valide n'existe, l'application présente le conflit et ne lance pas une installation partielle qui laisserait les extensions dans un état incohérent.
-
-Référence : [The Cargo Book — Dependency Resolution, constraints and heuristics](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.561 Ordonnancement des opérations selon le graphe de dépendances — Question 566, décision technique recommandée
-
-Les opérations d'installation et d'activation tiennent compte du graphe complet des dépendances obligatoires. Les dépendances sont préparées et rendues disponibles avant les extensions qui en dépendent ; l'activation suit un ordre topologique compatible avec les relations déclarées. Lorsque plusieurs ordres sont valides, l'application utilise un ordre stable afin de rendre le résultat prévisible.
-
-Le plan présente les étapes et leurs relations, notamment les dépendances partagées. Une dépendance déjà présente et compatible n'est pas réinstallée sans nécessité. Si une étape échoue, les extensions qui en dépendent ne sont pas activées ; les autres opérations indépendantes peuvent être traitées selon leurs transactions propres et leurs résultats sont présentés séparément.
-
-Cette organisation complète la détection et l'installation guidée des dépendances déjà prévues, en précisant l'ordre nécessaire à une exécution cohérente.
-
-Référence : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.562 Détection des cycles dans le graphe de dépendances — Question 567, décision technique recommandée
-
-Avant l'installation ou l'activation, l'application recherche les cycles dans les dépendances obligatoires. Un cycle est identifié par le chemin complet des extensions qui se référencent mutuellement, et non simplement par un message générique d'erreur. Les cycles qui empêchent de déterminer un ordre valide bloquent l'activation du groupe concerné.
-
-Le diagnostic identifie les manifestes et les relations à l'origine du cycle, ainsi que les extensions qui en subissent les conséquences. L'application ne tente pas de résoudre arbitrairement le cycle en ignorant une dépendance, en supprimant une relation ou en désactivant silencieusement une extension. Les composants indépendants du groupe cyclique restent consultables et utilisables si leur fonctionnement n'en dépend pas.
-
-Cette décision s'appuie sur la nécessité de parcourir un graphe de dépendances sans boucle et de limiter les résolutions ambiguës. Référence : [The Update Framework — Specification, delegated metadata cycle handling](https://theupdateframework.github.io/specification/latest/).
-
-## 10.563 Traitement distinct des dépendances facultatives — Question 568, décision technique recommandée
-
-Les dépendances explicitement déclarées comme facultatives sont distinguées des prérequis obligatoires dans les fiches, les diagnostics et les plans d'installation. Leur absence ne bloque pas l'installation ou l'activation générale de l'extension lorsque le manifeste indique que les fonctionnalités principales restent utilisables sans elles.
-
-L'application précise quelles fonctionnalités sont indisponibles ou dégradées en raison de la dépendance facultative manquante. Elle ne tente pas de l'installer automatiquement sans validation de l'utilisateur et ne désactive pas l'extension entière pour ce seul motif. Si l'extension ne permet pas d'identifier précisément les fonctions concernées, l'application indique cette limite plutôt que de supposer que toutes les fonctions restent opérationnelles.
-
-Une dépendance facultative qui devient incompatible ou indisponible ne doit pas être traitée comme une dépendance obligatoire ; cette distinction n'altère pas la règle déjà validée de désactivation automatique lorsqu'une dépendance obligatoire devient indisponible.
-
-Références : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html) ; [Semantic Versioning 2.0.0](https://semver.org/lang/fr/spec/v2.0.0.html).
-
-
-
-## 10.564 Normalisation des coordonnées et des transformations du document graphique — Question 569, décision technique recommandée
-
-Le moteur de rendu doit interpréter les coordonnées, unités et transformations selon un modèle géométrique commun et explicite, indépendant de la taille d'affichage et de la destination finale.
-
-- Chaque document de carte possède un espace de coordonnées de référence défini par ses dimensions logiques et son origine.
-- Les transformations des éléments et groupes sont composées selon une convention unique, documentée et testée : translation, rotation, mise à l'échelle et transformations combinées.
-- Les unités physiques et relatives sont converties de manière contrôlée à partir de la taille de référence, du viewport et de la résolution de sortie ; aucune conversion ne doit dépendre implicitement du zoom courant de l'éditeur.
-- Les dimensions physiques destinées à l'impression sont conservées séparément des pixels d'aperçu et des pixels de sortie.
-- Les transformations imbriquées doivent être résolues dans l'ordre hiérarchique attendu, sans perte de précision évitable lors des conversions successives.
-- Le moteur doit conserver les coordonnées d'origine des objets dans le modèle éditable ; les valeurs transformées utilisées pour le rendu ne doivent pas remplacer silencieusement les données sources.
-- Les changements de taille du viewport ou de résolution de sortie ne doivent pas modifier la géométrie logique du document.
-- Les cas de valeurs invalides, non finies, hors limites ou de matrices singulières doivent être détectés et signalés ; ils ne doivent pas produire un rendu arbitraire.
-
-Cette décision s'appuie sur le modèle SVG de viewports, viewBox, systèmes de coordonnées imbriqués et transformations. Référence : [W3C — SVG 2, Coordinate Systems, Transformations and Units](https://www.w3.org/TR/2026/CR-SVG2-20261006/coords.html).
-
-## 10.565 Ordre de peinture déterministe et hiérarchie des groupes — Question 570, décision technique recommandée
-
-Le moteur doit appliquer un ordre de rendu déterministe à tous les objets, calques, groupes et sous-groupes.
-
-- L'ordre de peinture découle de la hiérarchie du document et de l'ordre explicite des éléments au sein de chaque parent.
-- Le déplacement d'un élément dans la pile de calques doit modifier son ordre de peinture sans modifier ses coordonnées, ses propriétés ou ses relations de parenté, sauf action explicite de regroupement ou de déplacement.
-- Les groupes doivent être rendus comme des unités hiérarchiques conformément à leur structure ; les éléments enfants ne doivent pas être réordonnés arbitrairement en dehors de leur groupe.
-- Les identifiants internes des objets servent à maintenir une identité stable et ne doivent pas être utilisés comme substitut à l'ordre visuel.
-- À structure et propriétés identiques, l'aperçu, l'export et l'impression doivent utiliser le même ordre de peinture, même si leurs profils de sortie diffèrent.
-- Les opérations parallèles ou différées du moteur ne doivent pas modifier le résultat final de composition ; le résultat doit être équivalent à l'ordre logique défini par le document.
-- Toute opération qui change l'ordre doit être enregistrée dans l'historique Annuler/Rétablir et rester réversible.
-
-Référence : [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
-
-## 10.566 Sémantique commune de composition, fusion et isolation — Question 571, décision technique recommandée
-
-Les règles de transparence, d'opacité, de fusion et d'isolation des groupes doivent reposer sur une sémantique de composition cohérente entre les différents profils de rendu.
-
-- Le moteur distingue l'opacité individuelle d'un objet de l'opacité appliquée à un groupe complet ; ces deux opérations ne doivent pas être confondues.
-- Les modes de fusion sont évalués par rapport à l'arrière-plan défini par la hiérarchie de composition et les règles d'isolation du groupe.
-- Les masques, filtres, découpes et opérations de fusion suivent un ordre de traitement documenté et stable, conforme au modèle de composition pris en charge.
-- L'isolation d'un groupe est une propriété explicite du modèle graphique lorsque le comportement attendu ne peut pas être déduit sans ambiguïté.
-- Les profils d'aperçu, d'export et d'impression doivent partager les mêmes règles de composition pour les opérations qu'ils prennent tous en charge.
-- Lorsqu'un moteur secondaire ne reproduit pas exactement une opération, l'écart doit être détecté et signalé avant la génération ; il ne doit pas substituer silencieusement un mode de fusion différent.
-- Les tests de conformité doivent inclure des groupes imbriqués, des opacités cumulées, des masques, des modes de fusion et des fonds transparents.
-
-Références : [W3C — Compositing and Blending Level 1](https://www.w3.org/TR/compositing-1/) ; [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
-
-## 10.567 Importation et traitement sécurisé des ressources SVG — Question 572, décision technique recommandée
-
-Les fichiers SVG importés ou reçus depuis des sources externes sont traités comme des ressources graphiques non fiables. Leur rendu ne doit pas leur accorder les capacités d'un document interactif ou d'un programme.
-
-- L'importation et la prévisualisation utilisent un mode statique sécurisé : scripts, gestionnaires d'événements, interactivité et animations sont désactivés.
-- Les références vers des ressources externes ne sont pas résolues implicitement. Les images, polices ou autres dépendances nécessaires doivent être importées séparément, contrôlées puis liées par des références locales autorisées.
-- Les éléments ou fonctionnalités non autorisés, notamment les contenus embarqués actifs et les références réseau ou fichier non approuvées, sont rejetés ou neutralisés avant le rendu.
-- Le traitement ne doit pas permettre à un SVG d'accéder au système de fichiers, au réseau, aux données de l'application ou au contexte d'une autre fenêtre.
-- La taille du document, la profondeur de l'arbre, le nombre d'éléments, les dimensions des filtres et la consommation mémoire doivent être bornés pour éviter les ressources pathologiques.
-- L'application conserve le fichier original importé lorsque cela est demandé, mais distingue clairement cet original de la représentation assainie utilisée pour l'aperçu et l'édition.
-- Les éléments supprimés, neutralisés ou non pris en charge sont consignés dans le rapport d'importation ; l'application ne prétend pas que la ressource a été conservée à l'identique.
-- Les ressources locales nécessaires sont vérifiées et intégrées au périmètre du projet selon les règles de gestion des ressources existantes.
-
-Références : [W3C — SVG 2, Conformance Criteria and Processing Modes](https://www.w3.org/TR/SVG/latest/conform.html) ; [W3C — SVG Integration](https://www.w3.org/TR/svg-integration/).
-
-## 10.568 Matrice de capacités et traitement des incompatibilités entre moteurs de rendu — Question 573, décision technique recommandée
-
-L'application maintient une matrice de capacités vérifiables pour chaque moteur et profil de rendu afin de distinguer les opérations prises en charge, partiellement prises en charge et indisponibles.
-
-- La matrice couvre au minimum les éléments vectoriels, textes et polices, images, masques, filtres, transparences, modes de fusion, découpes, ressources liées et fonctions spécifiques utilisées par les templates.
-- Chaque fonctionnalité est associée à un statut explicite : prise en charge complète, prise en charge avec restriction, conversion ou approximation, ou non prise en charge.
-- La matrice est déterminée à partir des capacités réellement disponibles et des tests de conformité exécutés sur les versions des moteurs utilisées ; une simple déclaration théorique ne suffit pas.
-- Avant un export ou une impression, l'application compare les fonctionnalités réellement utilisées par le document à celles du moteur et du format de sortie sélectionnés.
-- Toute perte, approximation ou substitution potentielle est signalée avec l'élément concerné, la fonctionnalité affectée et la conséquence attendue.
-- Les opérations bloquantes empêchent la génération tant qu'elles ne sont pas corrigées ou explicitement écartées par une action utilisateur prévue à cet effet.
-- Les avertissements non bloquants restent visibles dans le bilan de génération et sont associés au résultat produit.
-- Une mise à jour du moteur ou du format ne doit pas être considérée comme équivalente à la version précédente sans vérification de la matrice et des tests concernés.
-
-Cette décision complète les règles de cohérence aperçu/export et de signalement des limitations déjà définies à la section 10.11. Elle évite de promettre une compatibilité universelle entre moteurs et formats.
-
-## 10.569 Identification et conservation des profils colorimétriques des ressources — Question 574, décision technique recommandée
-
-Le moteur doit identifier et conserver les informations colorimétriques associées aux images et autres ressources qui possèdent un profil incorporé ou une déclaration d'espace colorimétrique.
-
-- À l'importation, détecter les profils ICC incorporés et les informations de couleur prises en charge par le format source.
-- Conserver la ressource originale et ses métadonnées colorimétriques ; ne pas remplacer son profil source par le profil de travail sans conversion réelle.
-- Distinguer explicitement trois situations : profil incorporé reconnu, espace colorimétrique standard identifié sans profil incorporé, et espace colorimétrique inconnu ou non interprétable.
-- Lorsqu'aucun profil n'est fourni, appliquer uniquement une règle d'interprétation documentée et configurable ; afficher le profil supposé et permettre à l'utilisateur de le modifier.
-- Ne jamais attribuer silencieusement un profil arbitraire à une ressource dont l'espace colorimétrique est inconnu.
-- Associer les informations de profil aux ressources dans la bibliothèque et les préserver dans les projets, duplications, sauvegardes et travaux d'export.
-- Signaler les profils invalides, corrompus, non pris en charge ou impossibles à convertir ; ne pas présenter la ressource comme gérée colorimétriquement lorsque ce n'est pas le cas.
-- Distinguer l'assignation d'un profil — qui interprète différemment les valeurs existantes — de la conversion vers un autre profil — qui modifie les valeurs pour préserver autant que possible l'apparence.
-
-Références : [International Color Consortium — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4, color conversion](https://www.w3.org/TR/css-color/).
-
-## 10.570 Espace colorimétrique de travail et conversions explicites — Question 575, décision technique recommandée
-
-L'application doit définir un espace colorimétrique de travail explicite pour les opérations qui combinent ou modifient les couleurs.
-
-- Définir un espace de travail par défaut au niveau de l'application, avec possibilité de le remplacer au niveau du projet lorsque cela est pertinent.
-- Enregistrer l'espace de travail réellement utilisé avec le projet et les travaux de génération afin de rendre les opérations reproductibles.
-- Convertir les ressources depuis leur espace source vers l'espace de travail par une gestion colorimétrique fondée sur les profils disponibles.
-- Ne pas confondre conversion et assignation : une conversion modifie les valeurs pour préserver l'apparence visée, tandis qu'une assignation modifie l'interprétation des valeurs existantes.
-- Toute modification d'espace de travail sur un projet existant doit présenter les conséquences attendues et ne pas réinterpréter ou convertir massivement les ressources sans validation explicite.
-- Les couleurs définies directement dans les templates, composants et objets doivent être interprétées dans l'espace explicitement associé à leur définition ou selon une règle de compatibilité documentée.
-- Les opérations de fusion, dégradé, filtrage et composition doivent employer un espace de calcul déterminé et cohérent ; le moteur ne doit pas mélanger implicitement des valeurs issues d'espaces différents.
-- Si un profil source ou destination manque, l'application signale la limite et applique uniquement une règle de repli préalablement définie, traçable et modifiable.
-
-Références : [ICC — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4](https://www.w3.org/TR/css-color/).
-
-## 10.571 Choix et traçabilité des intentions de rendu — Question 576, décision technique recommandée
-
-Lorsqu'une conversion colorimétrique implique une différence de gamut entre la source et la destination, l'application doit exposer et tracer l'intention de rendu utilisée.
-
-- Prendre en charge les intentions de rendu réellement disponibles dans le moteur de gestion colorimétrique : perceptuelle, colorimétrie relative, colorimétrie absolue et saturation lorsque les profils et la bibliothèque les prennent en charge.
-- Permettre de choisir l'intention au niveau du profil d'export ou d'impression et, si nécessaire, de la modifier pour une opération ponctuelle sans altérer le profil enregistré.
-- Fournir des valeurs par défaut adaptées aux profils et usages, sans présenter une intention comme universellement meilleure pour toutes les images et tous les documents.
-- Distinguer les traitements destinés aux images photographiques, aux aplats et graphiques, ainsi qu'à l'épreuvage, lorsque le moteur permet des réglages différenciés.
-- Enregistrer l'intention effectivement appliquée avec le travail et le résultat généré.
-- Si l'intention demandée n'est pas prise en charge, ne pas la remplacer silencieusement ; signaler l'indisponibilité et demander une décision ou appliquer uniquement une solution de repli explicitement configurée.
-- Les contrôles qualité doivent pouvoir identifier les conversions réalisées sans intention connue ou avec une option de repli.
-
-Référence : [ICC — Frequently Asked Questions, rendering intents](https://www.color.org/faqs/).
-
-## 10.572 Épreuvage écran et avertissement des couleurs hors gamut — Question 577, décision technique recommandée
-
-L'application doit proposer un épreuvage écran lorsque les profils source, destination et les capacités du moteur le permettent.
-
-- Permettre de simuler l'apparence d'un profil de sortie identifié, notamment un procédé d'impression et un support papier.
-- Distinguer l'affichage normal de l'aperçu d'épreuvage ; l'utilisateur doit pouvoir activer, désactiver et comparer les deux modes.
-- Proposer un avertissement visuel des couleurs susceptibles de se trouver hors du gamut de sortie, lorsque cette analyse est prise en charge.
-- Permettre d'identifier les zones concernées et de comprendre que leur reproduction peut différer de l'affichage écran.
-- Respecter l'intention de rendu et les paramètres de conversion du profil sélectionné.
-- Indiquer clairement le profil de sortie simulé, le profil d'affichage utilisé lorsque connu et les limites de la simulation.
-- Ne pas présenter l'épreuvage écran comme une garantie de correspondance physique : le résultat réel dépend également de l'écran, de son étalonnage, de l'imprimante, du support, des encres et des conditions d'observation.
-- L'épreuvage et l'affichage des avertissements ne doivent pas modifier les couleurs sources ni le document.
-
-Références : [ICC — Frequently Asked Questions](https://www.color.org/faqs/) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
-
-## 10.573 Vérification des profils ICC et des intentions de sortie dans les fichiers PDF — Question 578, décision technique recommandée
-
-La génération PDF destinée à l'impression doit vérifier la cohérence entre les profils colorimétriques employés et les conditions de sortie annoncées dans le document.
-
-- Pour les profils PDF/X, vérifier la présence et la validité de l'Output Intent exigé par le niveau de conformité visé.
-- Vérifier que le profil de sortie déclaré correspond au profil réellement sélectionné pour la génération et que les conversions nécessaires ont été effectuées conformément au flux retenu.
-- Distinguer la présence d'un Output Intent de la conversion effective des objets colorimétriques ; la simple déclaration d'une destination ne prouve pas que les couleurs ont été converties.
-- Vérifier les espaces colorimétriques des objets, les profils incorporés, les couleurs spéciales et les éventuelles ressources externes selon les exigences du format ciblé.
-- Signaler les incohérences, profils absents ou invalides, conversions non effectuées et limitations de compatibilité avant la génération.
-- Ne déclarer une conformité PDF/X que si l'ensemble des exigences applicables a été contrôlé et satisfait par le fichier final.
-- Si le fichier ne satisfait pas les contrôles, produire un PDF ordinaire uniquement si l'utilisateur l'a choisi et si les limites sont présentées ; ne jamais apposer une déclaration de conformité non vérifiée.
-- Conserver dans le bilan de génération le profil de sortie, l'intention de rendu, les conversions réalisées et les contrôles effectivement exécutés.
-
-Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [PDF Association — Technical side and requirements of PDF/X](https://pdfa.org/technical-side-and-requirements-of-pdfx) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
-
-## 10.574 Calcul de la résolution effective des images placées — Question 579, décision technique recommandée
-
-La qualité d'une image destinée à l'impression doit être évaluée à partir de sa résolution effective dans sa taille et sa position finales, et non uniquement à partir des métadonnées de résolution inscrites dans le fichier source.
-
-- Calculer la résolution effective à partir du nombre de pixels réellement utilisés après recadrage et des dimensions physiques de l'image dans la composition finale.
-- Tenir compte des agrandissements, réductions, rotations, recadrages et transformations non uniformes lorsqu'ils modifient la densité de pixels selon les axes.
-- Distinguer les dimensions en pixels de la résolution physique exprimée en pixels par pouce ou par centimètre.
-- Pour les images placées dans des groupes ou transformées par des composants, calculer la résolution au niveau de leur occurrence réelle dans la carte ou la feuille imprimée.
-- Afficher les valeurs horizontale et verticale lorsque les transformations conduisent à des résolutions différentes.
-- Ne pas déduire la qualité d'impression d'une simple valeur DPI déclarée dans les métadonnées si les dimensions en pixels et la taille physique montrent une autre résolution effective.
-- Conserver les informations sources et le calcul effectué dans les diagnostics de préflight afin que l'utilisateur puisse identifier les images concernées.
-
-Références : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
-
-## 10.575 Seuils de résolution adaptés à la destination et au contenu — Question 580, décision technique recommandée
-
-Les contrôles de résolution doivent utiliser des seuils adaptés au procédé de sortie, au format de carte et à la nature du contenu.
-
-- Définir des seuils configurables dans les profils d'impression et d'export, sans imposer une valeur universelle à tous les usages.
-- Distinguer les images photographiques, les illustrations détaillées, les textures, les éléments de type dessin au trait et les contenus monochromes lorsque les règles de contrôle le permettent.
-- Prendre en compte la résolution attendue du périphérique, le support, le procédé d'impression et les recommandations documentées du fournisseur lorsqu'elles sont disponibles.
-- Détecter séparément une résolution effective trop faible et une résolution très supérieure à ce qui est utile pour la destination.
-- Présenter la résolution mesurée, le seuil appliqué, la destination concernée et l'élément graphique correspondant.
-- Permettre à l'utilisateur de modifier les seuils dans un profil ou de conserver ponctuellement un élément averti, sans falsifier le résultat du contrôle.
-- Une absence de seuil fiable ou de recommandation du périphérique doit être signalée ; l'application ne doit pas présenter une estimation générique comme une norme de production.
-- Les seuils de résolution sont distincts des exigences de conformité PDF/X, qui ne fixent pas à eux seuls une résolution minimale universelle des images.
-
-Références : [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
-
-## 10.576 Rééchantillonnage contrôlé et choix des filtres — Question 581, décision technique recommandée
-
-Le moteur doit distinguer le redimensionnement géométrique d'une image du rééchantillonnage qui modifie réellement ses pixels.
-
-- Conserver par défaut les pixels sources lorsqu'un simple changement de taille physique suffit et qu'aucun rééchantillonnage n'est nécessaire.
-- Lorsqu'un rééchantillonnage est demandé ou requis pour la sortie, choisir un algorithme adapté à la réduction ou à l'agrandissement et au type de contenu.
-- Proposer des méthodes de rééchantillonnage prises en charge par le moteur, avec des préréglages qualité/performance clairement identifiés ; ne pas afficher une méthode qui n'est pas réellement utilisée.
-- Effectuer les opérations de réduction avec une méthode appropriée à l'agrégation des échantillons, en évitant les pertes répétées dues à des redimensionnements successifs.
-- Pour les images intégrées à un rendu SVG, respecter les indications de qualité de rééchantillonnage prises en charge par le moteur et privilégier les traitements de haute qualité pour les profils d'impression.
-- Effectuer le rééchantillonnage dans un espace colorimétrique adapté et cohérent avec la gestion colorimétrique du projet.
-- Préserver l'original et enregistrer les paramètres de transformation ; une version rééchantillonnée ne doit pas remplacer la ressource source sans action explicite.
-- Signaler les opérations qui peuvent réduire les détails, introduire des artefacts ou modifier la netteté.
-
-Références : [W3C — SVG 2, image-rendering](https://www.w3.org/TR/2026/CR-SVG2-20261006/painting.html) ; [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
-
-## 10.577 Agrandissement des images et distinction entre pixels originaux et interpolés — Question 582, décision technique recommandée
-
-L'agrandissement d'une image ne doit jamais être présenté comme une récupération certaine de détails absents de la source.
-
-- Autoriser l'agrandissement lorsque la composition ou la sortie l'exige, mais calculer et afficher la résolution effective résultante.
-- Signaler lorsque le résultat dépend de pixels interpolés ou générés par rééchantillonnage plutôt que de détails présents dans l'original.
-- Ne pas qualifier une image agrandie de véritable haute résolution au seul motif que ses dimensions en pixels ont augmenté.
-- Préserver la ressource originale et permettre de comparer le résultat agrandi avec la source.
-- Si une méthode d'amélioration ou de reconstruction assistée est utilisée, l'identifier comme telle et distinguer ses pixels reconstruits des données sources ; ne pas garantir que les détails générés correspondent à la réalité de l'image d'origine.
-- Proposer un avertissement lorsque la résolution effective descend sous le seuil du profil de sortie.
-- Toute substitution par une autre illustration ou une autre version de meilleure résolution nécessite une validation explicite de l'utilisateur.
-- Les avertissements doivent rester associés à l'élément et au résultat de préflight, même si l'utilisateur décide de poursuivre.
-
-Référence : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
-
-## 10.578 Rendu haute résolution, traitement par tuiles et maîtrise des ressources — Question 583, décision technique recommandée
-
-La génération de rendus haute résolution et de lots importants doit maîtriser la mémoire et les ressources sans altérer la géométrie ni introduire de défauts visibles.
-
-- Estimer avant génération la taille des surfaces intermédiaires, le nombre de pixels, les ressources graphiques et la mémoire nécessaires lorsque ces informations peuvent être calculées.
-- Adapter le traitement à la mémoire disponible et aux limites documentées de la plateforme ; ne pas lancer une allocation manifestement excessive sans stratégie de réduction ou de traitement segmenté.
-- Permettre le rendu par tuiles ou régions lorsque le moteur le nécessite, en conservant une zone de recouvrement suffisante pour les filtres, ombres, flous et effets débordant des limites d'une tuile.
-- Éviter les coutures, discontinuités, variations de couleur et décalages aux frontières des tuiles ; les résultats doivent correspondre au rendu d'une surface continue dans les limites de précision du moteur.
-- Libérer les surfaces et ressources temporaires dès qu'elles ne sont plus nécessaires et réutiliser les ressources compatibles sans conserver indéfiniment des données de rendu obsolètes.
-- Pour les traitements par lots, limiter la concurrence selon les ressources disponibles et permettre de poursuivre les éléments indépendants en cas d'échec individuel.
-- En cas de mémoire insuffisante ou de limite atteinte, interrompre proprement l'élément concerné, conserver les fichiers déjà validés et produire un diagnostic précis.
-- Les optimisations de mémoire et de parallélisme ne doivent pas changer le résultat logique ou la résolution demandée.
-
-Références : [W3C — SVG 2, Conformance Criteria](https://www.w3.org/TR/SVG/latest/conform.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
-
-## 10.579 Prise en compte de la zone réellement imprimable du périphérique — Question 584, décision technique recommandée
-
-La composition des feuilles doit distinguer le format physique du papier de la zone que l'imprimante peut effectivement marquer.
-
-- Distinguer les dimensions du support, les marges physiques du périphérique et la zone imprimable déclarée ou mesurée.
-- Utiliser les informations disponibles auprès du système d'exploitation et du pilote d'impression lorsque le travail cible une imprimante identifiée.
-- Permettre de définir un profil de périphérique ou de conserver une zone imprimable personnalisée lorsque les informations du pilote sont absentes ou incomplètes.
-- Ne pas supposer qu'une imprimante peut imprimer jusqu'au bord du support ; l'impression sans bordure ne peut être proposée que si le périphérique et le format sélectionnés la déclarent effectivement compatible.
-- Calculer la capacité de placement des cartes à partir de la zone imprimable, des marges, des espacements, des fonds perdus et des repères nécessaires.
-- Signaler lorsqu'une disposition théorique tient sur la feuille mais dépasse la zone réellement imprimable du périphérique.
-- Conserver la distinction entre le format de feuille demandé, la zone utilisée pour l'imposition et la zone effectivement disponible sur le périphérique.
-- Si le périphérique n'est pas encore choisi, présenter le résultat comme une simulation selon le profil sélectionné, et non comme une garantie de sortie physique.
-
-Référence : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html).
-
-## 10.580 Correspondance géométrique des faces en impression recto-verso — Question 585, décision technique recommandée
-
-La préparation recto-verso doit calculer la transformation géométrique appliquée à la seconde face en fonction du mode de retournement de la feuille et de l'orientation du support.
-
-- Définir explicitement le mode de retournement sur bord long ou bord court pour chaque travail recto-verso.
-- Calculer la position et l'orientation de chaque verso à partir de la transformation physique attendue de la feuille, et non d'une simple inversion visuelle arbitraire.
-- Préserver l'association entre chaque recto et son verso après rotation, retournement, réorganisation ou imposition.
-- Signaler les feuilles dont les dimensions, l'orientation ou le sens d'alimentation rendent le mode choisi ambigu ou incompatible.
-- Permettre une feuille de calibration ou un aperçu de contrôle avec repères asymétriques afin que l'utilisateur puisse vérifier le sens réel de retournement de son imprimante.
-- Ne pas prétendre connaître le comportement physique d'un périphérique lorsque le pilote ne fournit pas cette information ou qu'aucune calibration n'a été effectuée.
-- Enregistrer la transformation utilisée et le mode de retournement avec le travail et l'historique d'impression.
-- Toute modification du mode de retournement doit actualiser la prévisualisation des deux faces avant génération.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
-
-## 10.581 Définition cohérente des zones de page PDF — Question 586, décision technique recommandée
-
-Les fichiers PDF destinés à l'impression doivent définir les zones de page pertinentes de manière cohérente avec la géométrie physique du travail.
-
-- Définir la MediaBox comme limite du support PDF et y inclure les éléments qui doivent être imprimés, notamment les repères extérieurs lorsque le profil en prévoit.
-- Définir la TrimBox comme dimension finale après coupe de la carte ou de la feuille selon le niveau de composition du fichier.
-- Définir la BleedBox comme zone de fond perdu autour de la TrimBox lorsque le travail prévoit un fond perdu ; la géométrie doit rester cohérente avec la MediaBox.
-- Distinguer la CropBox, utilisée principalement pour l'affichage ou le cadrage, des zones physiques de production ; elle ne doit pas remplacer implicitement la TrimBox.
-- N'utiliser l'ArtBox que lorsque le flux de production ou le logiciel cible lui attribue un rôle explicite.
-- Vérifier les dimensions, l'inclusion géométrique et la cohérence des zones pour chaque page, notamment dans les documents comportant des formats ou orientations mixtes.
-- Ne pas déduire une géométrie correcte de la seule présence des boîtes : vérifier également que le contenu graphique atteint effectivement la limite du fond perdu et que les informations essentielles restent dans leur zone de sécurité.
-- Si le format ou le moteur ne permet pas de produire les boîtes attendues, l'indiquer et ne pas déclarer le fichier conforme à un profil qui les exige.
-
-Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF geometry](https://onlinehelp.prinect-lounge.com/Prinect_PDF_Toolbox/Version2018/fr/Prinect/PDF_geometry/PDF_geometry-3-.htm).
-
-## 10.582 Contrôle des collisions et dégagements des repères de production — Question 587, décision technique recommandée
-
-Les repères de coupe, de positionnement et autres marques de production doivent être disposés sans empiéter sur les cartes, les fonds perdus ou les zones réservées à d'autres informations.
-
-- Définir les dégagements nécessaires autour des cartes, des fonds perdus et des repères selon le profil de production.
-- Contrôler les collisions entre repères voisins, repères de cartes adjacentes, limites de feuille, zones non imprimables et éventuelles informations de marge.
-- Tenir compte des dimensions réelles des repères, de leur épaisseur, de leur longueur, de leur position et de leur orientation.
-- Détecter les repères qui se superposent à un contenu utile ou qui deviennent ambigus après l'imposition.
-- Distinguer les conflits bloquants des avertissements qui peuvent être acceptés selon le profil ou le procédé.
-- Proposer une correction de placement ou un espacement alternatif sans déplacer silencieusement les cartes ni modifier leurs dimensions finales.
-- Préserver la correspondance entre les repères, les cartes et les lignes de coupe auxquelles ils se rapportent.
-- Présenter dans la prévisualisation les repères réellement inclus dans le fichier final, distinctement des guides d'édition temporaires.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
-
-## 10.583 Optimisation déterministe de l'imposition des cartes sur une feuille — Question 588, décision technique recommandée
-
-L'imposition automatique doit rechercher une disposition efficace tout en respectant toutes les contraintes géométriques et de production du travail.
-
-- Évaluer les orientations autorisées, rotations, espacements, marges, fonds perdus, zones imprimables, formes personnalisées et contraintes de découpe.
-- Optimiser l'utilisation de la surface disponible sans réduire les dimensions physiques demandées ni supprimer les espacements nécessaires.
-- Préserver les quantités, l'ordre et les associations recto-verso des cartes ; toute modification de l'ordre doit rester visible et réversible.
-- Utiliser un algorithme déterministe : à paramètres, cartes et contraintes identiques, le plan d'imposition doit être reproductible.
-- Exposer les critères principaux utilisés pour choisir la disposition, notamment le nombre de cartes par feuille, la surface utilisée, les chutes et les contraintes qui limitent une meilleure occupation.
-- Si plusieurs dispositions sont équivalentes, appliquer une règle de départage stable et permettre à l'utilisateur de choisir une autre disposition valide.
-- Ne pas présenter une disposition comme optimale au sens mathématique si l'algorithme ne garantit qu'une heuristique ; indiquer alors qu'il s'agit de la meilleure solution trouvée dans les limites du calcul.
-- Vérifier le plan final avant génération et conserver les positions, rotations et paramètres d'imposition dans le travail d'impression.
-- La disposition automatique ne doit jamais remplacer une composition manuelle sans validation explicite.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow and imposition](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
-
-## 10.584 Instantané immuable des entrées d'une génération — Question 589, décision technique recommandée
-
-Au lancement d'une génération, l'application doit constituer un instantané logique des entrées nécessaires au rendu et à l'export afin que les modifications ultérieures ne changent pas silencieusement le résultat en cours.
-
-- Capturer les données de cartes, quantités, faces, templates, variantes, composants, paramètres de rendu, profils colorimétriques, profils d'impression et options de génération effectivement utilisés.
-- Enregistrer les références exactes des versions de ressources et dépendances utilisées, plutôt que de ne conserver que leurs noms ou chemins susceptibles de changer.
-- Les modifications apportées au projet, aux ressources ou aux profils après le début de la génération ne doivent pas modifier l'instantané déjà constitué.
-- Une génération relancée à partir d'un travail enregistré doit signaler si certaines entrées ont changé ou sont devenues indisponibles depuis l'instantané précédent.
-- Permettre de choisir explicitement entre réutiliser l'instantané d'origine et créer un nouvel instantané à partir de l'état courant.
-- Ne pas verrouiller l'édition du projet pendant la génération ; l'instantané doit isoler le traitement des changements ultérieurs.
-- Si l'application ne peut pas capturer une entrée de façon fiable, elle doit identifier cette limite et ne pas prétendre que la génération est entièrement reproductible.
-- Conserver l'instantané avec le travail d'impression ou d'export selon les règles de conservation déjà définies.
-
-Références : [Reproducible Builds — Define a build environment](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
-
-## 10.585 Identification par empreinte des ressources et dépendances utilisées — Question 590, décision technique recommandée
-
-Les ressources binaires et dépendances qui influencent une génération doivent pouvoir être identifiées par une empreinte cryptographique de leur contenu.
-
-- Calculer et conserver une empreinte cryptographique robuste, telle que SHA-256, pour chaque ressource binaire utilisée lorsque cela est techniquement possible.
-- Associer l'empreinte à l'identifiant logique de la ressource, sa version, son format, sa taille et sa provenance lorsqu'ils sont disponibles.
-- Vérifier que le contenu présent correspond à l'empreinte enregistrée avant de le réutiliser pour une génération reproductible.
-- Détecter les ressources modifiées sous un même nom ou chemin, les fichiers corrompus et les substitutions non signalées.
-- Une ressource modifiée constitue une nouvelle version de contenu ; l'ancienne empreinte ne doit pas être écrasée dans l'instantané d'un travail déjà enregistré.
-- Les ressources identiques peuvent être reconnues comme identiques par leur empreinte, mais leur provenance, leurs licences et leurs références de projet restent distinctes.
-- Si une ressource n'est plus disponible ou si son empreinte ne correspond pas, signaler le problème et bloquer les contrôles qui exigent son contenu exact.
-- Une empreinte confirme l'identité des octets comparés ; elle ne prouve pas à elle seule l'auteur, la licence ou la fiabilité de la source.
-
-Références : [GitLab — Content-Addressable Storage](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/008_content_addressable_storage/) ; [Reproducible Builds — Cryptographic checksums](https://reproducible-builds.org/docs/).
-
-## 10.586 Traçabilité des moteurs, versions et paramètres de génération — Question 591, décision technique recommandée
-
-Chaque génération doit enregistrer les informations techniques nécessaires pour comprendre dans quel environnement et avec quels paramètres le résultat a été produit.
-
-- Enregistrer les versions des moteurs de rendu, bibliothèques de conversion, moteurs PDF et composants de gestion colorimétrique qui ont effectivement participé à la génération, dans la mesure où ces informations sont accessibles.
-- Enregistrer les versions de l'application, du format de document, des profils de sortie et les options significatives utilisées.
-- Identifier le système d'exploitation et l'architecture lorsque ces informations peuvent influencer le résultat ou la compatibilité.
-- Capturer les paramètres sensibles à la reproductibilité, notamment l'ordre des éléments, les intentions de rendu, les méthodes de rééchantillonnage, les unités, les dimensions et les paramètres de compression.
-- Neutraliser ou contrôler les sources de variation évitables, notamment les ordres non déterministes, les valeurs aléatoires, les paramètres régionaux et les horodatages intégrés lorsque le format le permet.
-- Distinguer la reproductibilité visuelle — résultat rendu équivalent selon une tolérance définie — de la reproductibilité binaire — fichiers strictement identiques octet par octet.
-- Ne promettre une identité binaire que lorsque l'ensemble du moteur et du format permet de la garantir ; sinon, indiquer les facteurs de variation connus.
-- Conserver ces informations dans l'historique du travail et dans le bilan de génération.
-
-Références : [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/) ; [Reproducible Builds — Documentation](https://reproducible-builds.org/docs/).
-
-## 10.587 Préparation temporaire et publication sûre des fichiers générés — Question 592, décision technique recommandée
-
-La génération des fichiers doit éviter qu'un échec, une interruption ou une fermeture inattendue laisse un fichier final incomplet ou remplace un résultat existant sans validation.
-
-- Générer chaque fichier dans un emplacement temporaire contrôlé, situé sur le même volume ou système de fichiers que sa destination finale lorsque cela est nécessaire à une opération de remplacement atomique.
-- Vérifier la fermeture complète du fichier, sa taille, son format et les contrôles d'intégrité applicables avant sa publication à l'emplacement final.
-- Lorsque la plateforme et le système de fichiers le garantissent, publier le fichier validé au moyen d'une opération de renommage ou de remplacement atomique.
-- Lorsque le remplacement atomique n'est pas garanti, appliquer une stratégie adaptée à la plateforme et signaler toute limite de durabilité ou de sécurité ; ne pas présenter l'opération comme atomique par défaut.
-- Respecter la politique de collision de noms définie par l'utilisateur : refuser, renommer ou remplacer après confirmation explicite.
-- En cas d'échec avant publication, supprimer les fichiers temporaires incomplets sans toucher aux résultats existants.
-- En cas d'interruption après la publication d'une partie d'un lot, préserver les fichiers déjà validés et identifier précisément les éléments non publiés.
-- Une fermeture ou un arrêt brutal ne doit pas transformer un fichier temporaire en résultat final valide ; au redémarrage, les fichiers temporaires orphelins doivent être détectés et traités de manière sûre.
-
-Références : [Rust — atomic-replace documentation](https://docs.rs/crate/atomic-replace/latest) ; [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/).
-
-## 10.588 Manifeste de génération, empreintes des résultats et bilan vérifiable — Question 593, décision technique recommandée
-
-L'application doit conserver un bilan structuré permettant d'identifier les fichiers produits, les entrées utilisées et les contrôles effectués pour une génération.
-
-- Enregistrer pour chaque résultat son nom, son format, sa taille, sa date de génération et son empreinte cryptographique lorsque le calcul est disponible.
-- Associer les fichiers au travail, à la sélection de cartes, à l'instantané d'entrée et aux paramètres de génération correspondants.
-- Conserver les statuts individuels : généré et vérifié, généré avec avertissement, échec, interrompu ou non traité.
-- Enregistrer les contrôles d'intégrité réellement exécutés et leur résultat ; distinguer les contrôles non effectués ou non applicables.
-- Permettre de comparer une génération ultérieure avec le manifeste précédent afin de repérer les entrées modifiées et les différences de résultats.
-- Conserver ce manifeste dans les données de travail et l'historique de l'application ; son export sous forme de fichier séparé reste une option explicite et ne doit pas être imposé à chaque génération.
-- Ne jamais inclure de secrets, jetons d'accès ou données sensibles dans le manifeste ou les diagnostics.
-- Une empreinte de résultat permet de vérifier l'identité du fichier obtenu, mais ne constitue pas une certification de conformité d'impression ni une preuve de provenance du contenu.
-- Le manifeste doit rester consultable même si certains fichiers générés ont été déplacés ou supprimés ; dans ce cas, leur indisponibilité est signalée sans effacer leur historique.
-
-Références : [Reproducible Builds — Verification](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
-
-## 10.589 Fonctionnement sans synchronisation automatique entre appareils — Question 619, décision validée par l'utilisateur
-
-L'application ne doit pas synchroniser automatiquement les projets, paramètres, ressources ou autres données de travail entre plusieurs appareils.
-
-- Le transfert d'un projet d'un appareil à un autre s'effectue manuellement au moyen des fonctions d'exportation et d'importation de projet déjà définies à la section 10.10.
-- Aucune synchronisation en arrière-plan, réplication distante, fusion automatique entre appareils ou résolution de conflits de synchronisation ne doit être mise en place.
-- L'utilisateur choisit explicitement quand exporter un projet, où enregistrer le fichier exporté et quand l'importer sur un autre appareil.
-- Les mécanismes locaux de sauvegarde, d'historique et de récupération restent applicables indépendamment de cette décision.
-
-## 10.590 Absence de collaboration multi-utilisateur sur un même projet — Question 620, décision validée par l'utilisateur
-
-L'application ne doit pas proposer de mode de collaboration multi-utilisateur sur un même projet.
-
-- Un projet est modifié dans le cadre d'une utilisation locale par une seule personne à la fois.
-- Aucun accès partagé en consultation, aucune édition simultanée, aucun système de présence, de commentaires collaboratifs ou de résolution de modifications concurrentes entre utilisateurs ne doit être développé.
-- Les mécanismes existants de gestion de plusieurs projets, de plusieurs fenêtres et de transfert manuel de fichiers restent indépendants de la collaboration multi-utilisateur.
-- Un utilisateur peut transmettre un projet à une autre personne uniquement au moyen d'un fichier exporté, conformément à la section 10.591.
-
-## 10.591 Partage des projets exclusivement par fichiers exportés — Question 621, décision validée par l'utilisateur
-
-Le partage d'un projet avec une autre personne s'effectue exclusivement par la remise manuelle d'un fichier de projet exporté.
-
-- L'application ne doit pas fournir de partage privé par invitation, lien sécurisé, espace distant ou mécanisme équivalent.
-- L'application ne doit pas proposer de publication publique de projets, de galerie publique ou de répertoire de projets partagés.
-- Le destinataire récupère le projet en important le fichier reçu au moyen du mécanisme d'importation défini à la section 10.10.
-- L'export doit conserver les contrôles d'intégrité, de compatibilité, de prévisualisation et de gestion des dépendances déjà spécifiés.
-- La transmission effective du fichier (courriel, stockage externe, support amovible ou autre moyen) relève des outils choisis par l'utilisateur et non d'un service de partage intégré à l'application.
-
-## 10.592 Absence de catalogue communautaire intégré de ressources — Question 622, décision validée par l'utilisateur
-
-L'application ne doit pas intégrer de catalogue communautaire centralisé permettant aux utilisateurs de consulter, télécharger, publier, partager ou évaluer des ressources.
-
-- La gestion des ressources repose sur les bibliothèques locales et sur les sources externes que l'utilisateur choisit explicitement, conformément aux mécanismes de ressources et de provenance déjà définis.
-- Aucun dépôt communautaire intégré, flux de publication, système d'évaluation, notation, commentaire ou classement communautaire ne doit être ajouté.
-- L'utilisateur peut continuer à importer manuellement des ressources obtenues auprès de sources externes, sous réserve des contrôles de sécurité, d'intégrité, de compatibilité, de provenance et de licence déjà prévus.
-- Cette décision n'interdit pas l'utilisation de formats ouverts ni l'importation de ressources distribuées par des services tiers ; elle exclut leur agrégation dans un catalogue communautaire fourni par l'application.
-
-## 10.593 Utilisation locale sans compte utilisateur — Question 623, décision validée par l'utilisateur
-
-L'application doit être utilisable localement sans création, connexion ou gestion de compte utilisateur.
-
-- Aucun compte propre à l'application, authentification centralisée, profil distant ou abonnement lié à un compte ne doit être requis pour installer, lancer ou utiliser les fonctionnalités locales.
-- Les projets, paramètres, bibliothèques, historiques et données de travail sont gérés localement selon les règles de stockage et de sauvegarde déjà définies.
-- L'application ne doit pas conditionner l'accès aux fonctions locales à une connexion réseau ou à une authentification auprès de son éditeur.
-- Les intégrations avec des services tiers, si elles sont utilisées, doivent rester explicites et ne doivent pas introduire un compte obligatoire pour le fonctionnement local de l'application.
-- Aucun compte applicatif ne doit être créé implicitement en arrière-plan.
-
-## 10.594 Prise en charge officielle de Windows, macOS et Linux — Question 624, décision validée par l'utilisateur
-
-MTG Card Remodeler doit prendre officiellement en charge les trois grandes familles de systèmes d'exploitation de bureau : **Windows, macOS et Linux**.
-
-- Les trois plateformes font partie du périmètre produit officiel ; Linux ne doit pas être traité comme une plateforme expérimentale ou simplement communautaire.
-- Les fonctionnalités principales, les formats de projet, les données utilisateur et les résultats de rendu doivent rester cohérents entre les trois plateformes, sous réserve des différences explicitement documentées liées au système d'exploitation ou aux capacités matérielles.
-- Les installations classiques et portables doivent être proposées selon les possibilités réelles de chaque plateforme. Lorsqu'un mode d'installation n'est pas techniquement pertinent ou pris en charge sur un système, l'alternative disponible doit être documentée sans réduire la prise en charge globale de la plateforme.
-- La conception, les dépendances natives, les accès au système de fichiers, les dialogues, les fenêtres, les raccourcis et les mécanismes de mise à jour doivent être évalués pour leur compatibilité avec Windows, macOS et Linux.
-- Les versions minimales des systèmes, architectures processeur, distributions Linux et formats de paquets officiellement pris en charge seront définis dans les spécifications techniques de livraison après vérification de la compatibilité effective de la pile Tauri 2 et de ses dépendances. Ils ne doivent pas être supposés identiques entre plateformes.
-- Les tests automatisés et les validations de publication doivent couvrir les trois plateformes. Une version ne peut être déclarée officiellement compatible avec une plateforme si les vérifications de compilation, d'installation, de démarrage et des fonctions essentielles n'ont pas été réalisées sur celle-ci.
-- Une limitation propre à une plateforme doit être identifiée, documentée et accompagnée d'une solution de repli lorsque cela est raisonnablement possible ; elle ne doit pas être masquée par une déclaration générale de compatibilité.
-
-## 10.595 Application privée réservée à l'usage personnel — Question 625, décision validée par l'utilisateur
-
-MTG Card Remodeler est destiné à rester une application privée réservée à l'usage personnel de son propriétaire. La publication éventuelle du code source à des fins de consultation ne vaut pas autorisation de distribuer l'application, ses exécutables ou ses paquets d'installation.
-
-- Aucune publication générale de versions installables, aucun canal de distribution publique et aucune mise à disposition commerciale de l'application ne sont prévus dans le périmètre actuellement validé.
-- Les versions compilées et les paquets de livraison sont destinés à l'usage personnel, aux tests et à la maintenance du projet, sauf décision ultérieure explicite modifiant ce statut.
-- Cette restriction concerne le logiciel MTG Card Remodeler et ne modifie pas les règles distinctes applicables aux proxies, qui restent destinés à un usage personnel et non commercial.
-- Le fait que le dépôt de code soit consultable publiquement, conformément à la section 10.596, ne transforme pas le logiciel en produit public ni en application librement redistribuable.
-
-## 10.596 Code source publiquement consultable avec restrictions de réutilisation et de redistribution — Question 626, décision validée par l'utilisateur
-
-Le code source du projet peut être consulté publiquement, mais cette visibilité ne confère pas de droit général de réutilisation, de modification, de republication ou de redistribution.
-
-- Le dépôt peut rester accessible en lecture afin de permettre l'inspection du code, le suivi du projet et la transparence technique.
-- Aucune autorisation générale assimilable à une licence open source permissive ou copyleft n'est accordée par cette décision.
-- Les droits de consultation, de copie, de modification, de création de versions dérivées et de redistribution devront être formulés dans un avis de licence ou de droits explicite avant toute diffusion de code ou de composant pour lequel ces droits sont pertinents.
-- Tant qu'une licence ou une autorisation spécifique n'a pas été définie, les utilisateurs du dépôt ne doivent pas être présentés comme autorisés à réutiliser, modifier ou redistribuer le code au-delà des droits impératifs prévus par la législation applicable et des autorisations expresses du titulaire des droits.
-- Les composants tiers conservent leurs propres licences et obligations ; la politique du projet ne peut ni les remplacer ni réduire les droits qu'elles accordent.
-- La décision de rendre le code consultable ne vaut ni abandon des droits d'auteur ni transfert de propriété intellectuelle.
-
-## 10.597 Absence de modèle de monétisation défini à ce stade — Question 627, décision validée par l'utilisateur
-
-Aucune monétisation de MTG Card Remodeler n'est prévue pour le moment et aucun modèle économique n'est arrêté.
-
-- Le cahier des charges ne doit pas introduire de paiement, achat unique, abonnement, fonctionnalité payante, publicité, don sollicité par l'application ou autre mécanisme de monétisation comme exigence du produit.
-- Les fonctionnalités locales ne doivent pas être conditionnées à un paiement ou à un abonnement.
-- Cette décision ne constitue pas un engagement irrévocable de gratuité pour toute évolution future : la question d'une éventuelle monétisation est reportée et nécessitera un arbitrage explicite avant toute mise en œuvre.
-- En cohérence avec les sections 10.593 et 10.595, aucun compte utilisateur ni service distant de facturation n'est requis ou prévu dans le périmètre actuellement défini.
-
-## 10.598 Fonctionnement hors ligne prioritaire — Question 628, décision validée par l'utilisateur
-
-MTG Card Remodeler doit privilégier un fonctionnement entièrement local et rester utilisable sans connexion Internet pour l'ensemble des fonctionnalités qui ne dépendent pas intrinsèquement d'un service externe.
-
-- L'absence de connexion Internet ne doit pas empêcher le démarrage de l'application, l'ouverture et la modification des projets locaux, l'accès aux bibliothèques et ressources déjà disponibles localement, l'édition, les rendus, les exports et les opérations de gestion de fichiers réalisables sur l'appareil.
-- Aucune connexion à un serveur, aucun compte distant et aucune validation périodique en ligne ne peuvent être imposés comme condition générale d'utilisation des fonctionnalités locales.
-- Les fonctions qui nécessitent réellement une source ou un service externe — par exemple la récupération de nouvelles données, de ressources distantes ou la vérification et le téléchargement de mises à jour — peuvent être indisponibles hors ligne. Elles doivent alors présenter un état explicite et compréhensible, sans bloquer les autres fonctions.
-- Lorsqu'une fonction externe est indisponible, l'application doit préserver les données locales et permettre de reprendre l'opération lorsque la connexion est rétablie, dans la mesure où cela est techniquement pertinent.
-- Les communications réseau doivent rester limitées aux opérations qui en ont besoin et respecter les décisions déjà définies concernant les autorisations des extensions et l'absence de collecte automatique de données techniques.
-- Le fonctionnement hors ligne ne doit pas être confondu avec une interdiction absolue de toute communication réseau : les opérations explicitement dépendantes d'un service externe restent possibles lorsque l'utilisateur dispose d'une connexion, mais ne doivent jamais devenir une dépendance générale de l'application.
-
-## 10.599 Vérification automatique des mises à jour désactivable dans les paramètres — Question 629, décision validée par l'utilisateur
-
-La vérification de disponibilité des mises à jour doit être automatique par défaut, mais l'utilisateur doit pouvoir la désactiver explicitement dans les paramètres de l'application.
-
-- Lorsque l'option est activée, l'application peut vérifier périodiquement la disponibilité d'une nouvelle version, uniquement lorsqu'une connexion réseau est disponible.
-- La vérification doit rester non bloquante : elle ne doit jamais retarder ou empêcher le démarrage, l'utilisation des fonctions locales, l'ouverture des projets ou les opérations hors ligne.
-- Lorsque l'appareil est hors ligne, aucune erreur de mise à jour ne doit être présentée comme une défaillance de l'application ; la vérification est simplement différée jusqu'à ce qu'une connexion soit disponible.
-- L'utilisateur doit pouvoir désactiver et réactiver cette vérification depuis les paramètres. Le choix doit être conservé localement et respecté lors des démarrages suivants.
-- La désactivation de la vérification automatique n'interdit pas une vérification manuelle déclenchée explicitement par l'utilisateur.
-- La recherche, le téléchargement, la validation cryptographique et l'installation d'une mise à jour restent des opérations distinctes. Aucune mise à jour ne doit être installée sans respecter les validations et confirmations déjà prévues dans les exigences de mise à jour.
-- L'indisponibilité du service de mise à jour, une erreur réseau ou une réponse invalide ne doit jamais compromettre la version actuellement installée ni les données locales.
-
-## 10.600 Notification uniquement pour les mises à jour de l'application — Question 630, décision validée par l'utilisateur
-
-La disponibilité d'une nouvelle version de MTG Card Remodeler doit être signalée à l'utilisateur, mais le téléchargement et l'installation doivent rester entièrement manuels.
-
-- La vérification de disponibilité suit la politique définie à la section 10.599 : activée par défaut, désactivable dans les paramètres, non bloquante et différée lorsqu'aucune connexion réseau n'est disponible.
-- Lorsqu'une nouvelle version est détectée, l'application affiche une notification claire indiquant qu'une mise à jour est disponible et fournit les informations utiles déjà prévues sur la version proposée.
-- La détection d'une mise à jour ne déclenche aucun téléchargement automatique, en arrière-plan ou différé.
-- Le fichier de mise à jour est récupéré manuellement en dehors de l'application, conformément à la section 10.601 ; aucun téléchargement intégré n'est proposé.
-- L'installation ne commence qu'après une action explicite distincte de l'utilisateur, une fois le téléchargement terminé et les contrôles requis réussis.
-- L'utilisateur conserve la possibilité d'ignorer ou de différer la mise à jour. Une notification ignorée ne doit pas provoquer de téléchargement ultérieur automatique.
-- La vérification, le téléchargement, la validation cryptographique, les contrôles de compatibilité, la sauvegarde préalable et l'installation restent des étapes distinctes. Les protections d'intégrité, de compatibilité, de préservation des données et de retour arrière définies ailleurs dans le cahier des charges demeurent obligatoires.
-- En l'absence de réseau, l'application reste pleinement utilisable pour ses fonctions locales. L'utilisateur peut reprendre manuellement le processus de mise à jour lorsqu'une connexion est disponible.
-- Cette politique concerne les mises à jour de l'application elle-même ; elle ne modifie pas les règles distinctes déjà définies pour les extensions, bibliothèques et ressources.
-
-## 10.601 Récupération externe et manuelle des mises à jour de l'application — Question 631, décision validée par l'utilisateur
-
-L'application ne doit pas télécharger elle-même les fichiers de mise à jour. Lorsqu'une nouvelle version est signalée, l'utilisateur récupère manuellement le fichier de mise à jour en dehors de MTG Card Remodeler, depuis la source qu'il choisit.
-
-- L'application peut présenter les informations de version et signaler qu'une mise à jour est disponible, mais elle ne lance aucun téléchargement intégré, automatique ou sur demande.
-- L'application ne doit pas imposer une source distante, un compte en ligne ou une authentification auprès d'un service externe pour récupérer le fichier.
-- Une fois le fichier obtenu à l'extérieur de l'application, l'utilisateur peut le sélectionner et l'importer manuellement dans le parcours de mise à jour, ou lancer son installation manuellement selon le format et le mécanisme pris en charge.
-- L'importation d'un fichier ne vaut jamais autorisation d'installation automatique. Le contrôle du fichier, la présentation du résultat, puis l'autorisation explicite d'installation restent des étapes distinctes.
-- Avant toute installation, l'application vérifie l'authenticité lorsqu'une signature et une chaîne de confiance vérifiables sont disponibles, l'intégrité cryptographique, la cohérence du paquet, la compatibilité de la version, ainsi que les protections anti-retour arrière et anti-altération déjà définies.
-- Un fichier invalide, incomplet, non conforme, incompatible ou dont les contrôles obligatoires échouent est refusé. La version installée et les données locales restent intactes.
-- Les contrôles qui ne peuvent pas établir l'authenticité d'un fichier doivent présenter explicitement cette limite ; une simple empreinte calculée localement ne doit pas être présentée comme une preuve de provenance.
-- Cette règle concerne uniquement les mises à jour de l'application. Elle ne modifie pas le mécanisme distinct de mise à jour des extensions.
-
-## 10.602 Licence personnelle non commerciale du code source — Question 632, décision validée par l'utilisateur
-
-L'utilisateur choisit une licence personnelle non commerciale pour le code source de MTG Card Remodeler. Le dépôt peut rester publiquement consultable, mais cette visibilité ne doit pas être présentée comme une autorisation générale de réutilisation.
-
-- L'autorisation recherchée est limitée à l'étude du code et à son utilisation à titre personnel et non commercial.
-- Toute utilisation commerciale, exploitation dans le cadre d'une activité commerciale, vente, prestation rémunérée, intégration dans un produit commercial ou autre valorisation commerciale du code est interdite sans autorisation écrite distincte du titulaire des droits.
-- La redistribution du code, en tout ou partie, ainsi que la publication ou la distribution de versions modifiées ou dérivées sont interdites sans autorisation écrite distincte.
-- Les modifications réalisées pour un usage strictement personnel ne peuvent être diffusées, mises à disposition de tiers ou exploitées commercialement.
-- Aucun droit de sous-licence, de transfert ou d'autorisation à des tiers n'est accordé par cette décision.
-- Les droits impératifs prévus par la législation applicable et les licences propres aux composants tiers restent réservés. La présente politique ne peut pas retirer aux tiers les droits qui leur sont accordés par les licences de leurs composants.
-- La rédaction définitive de l'instrument juridique doit prendre la forme d'une licence logicielle personnalisée, rédigée pour le code source et relue avant d'être publiée comme texte contractuel. Aucune licence standard non commerciale ou licence Creative Commons ne doit être appliquée par défaut au code.
-- GitHub précise qu'un dépôt public peut être consulté et forké par les utilisateurs de la plateforme au titre de ses conditions d'utilisation. Cette permission technique liée à GitHub doit être distinguée d'une autorisation générale d'exploitation, de redistribution hors plateforme ou d'utilisation commerciale. Si l'objectif devient d'empêcher également le fork sur GitHub, la visibilité publique du dépôt devra être réévaluée.
-- Tant que le texte définitif n'est pas publié, la décision décrit l'intention de licence retenue, mais ne doit pas être présentée comme un contrat juridique finalisé. La protection par défaut du droit d'auteur et les conditions de GitHub continuent de s'appliquer dans l'intervalle.
-
-Références documentaires :
-- GitHub Docs, « Licensing a repository » : https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
-- Creative Commons, FAQ, « Can I apply a Creative Commons license to software? » : https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software
-
-## 10.603 Désinstallation de l'application avec conservation des données par défaut — Question 634, décision validée par l'utilisateur
-
-Lors de la désinstallation de MTG Card Remodeler, l'assistant de désinstallation doit demander explicitement à l'utilisateur s'il souhaite conserver ou supprimer ses données personnelles. La conservation des données est sélectionnée par défaut.
-
-- Le programme distingue clairement les fichiers nécessaires à l'exécution de l'application des données créées ou importées par l'utilisateur : projets, cartes, bibliothèques, templates, variantes, ressources locales, configurations, bases de données et sauvegardes.
-- L'option proposée par défaut est la désinstallation du programme avec conservation des données personnelles. Aucune donnée utilisateur ne doit être supprimée par simple effet de la désinstallation standard.
-- L'utilisateur peut choisir la suppression des données personnelles depuis le parcours de désinstallation, mais cette action doit être présentée distinctement de la suppression du programme et accompagnée d'un récapitulatif compréhensible de son périmètre.
-- La suppression des données exige une confirmation explicite supplémentaire, après présentation des emplacements concernés et des conséquences. Une option de conservation doit rester clairement accessible jusqu'à la validation finale.
-- Les fichiers situés dans des emplacements personnalisés ou partagés ne doivent jamais être supprimés sur la seule base d'une déduction de propriété. L'application doit identifier précisément les éléments qu'elle peut gérer et signaler ceux qu'elle ne peut pas déterminer ou supprimer sans risque.
-- Si l'utilisateur conserve ses données, celles-ci doivent rester réutilisables lors d'une réinstallation ultérieure, dans la mesure où la version et le format des données restent compatibles. La désinstallation ne doit pas les déplacer ni les altérer.
-- Si le parcours de désinstallation ne peut pas établir avec certitude le périmètre des données à supprimer, il doit privilégier leur conservation et expliquer la limite plutôt que risquer une suppression excessive.
-- Cette règle concerne la désinstallation de l'application elle-même. Elle complète sans les remplacer les règles propres à la désinstallation des extensions et à la gestion des sauvegardes.
-
-
-
-## 10.604 Suppression des données lors de la désinstallation sans proposition de sauvegarde supplémentaire — Question 635, décision validée par l'utilisateur
-
-Lorsque l'utilisateur choisit explicitement de supprimer ses données personnelles pendant la désinstallation de MTG Card Remodeler, l'application doit appliquer le parcours de confirmation déjà défini en section 10.603. Elle n'ajoute pas de proposition systématique de dernière sauvegarde exportable avant cette suppression.
-
-- La confirmation explicite supplémentaire et le récapitulatif du périmètre de suppression prévus en section 10.603 constituent les étapes de validation requises.
-- L'application ne doit pas imposer ni insérer une étape de création d'une sauvegarde exportable dans ce parcours.
-- Les mécanismes de sauvegarde et d'export existants restent accessibles selon leurs propres parcours ; cette décision ne les désactive pas et ne modifie pas leur fonctionnement.
-- Cette règle ne réduit pas les obligations de délimitation, de transparence, de confirmation et de prudence en cas d'incertitude définies en section 10.603. Si le périmètre des données à supprimer ne peut pas être établi avec certitude, leur conservation reste prioritaire.
-
-## 10.605 Anonymisation automatique des rapports de diagnostic exportés — Question 636, décision validée par l'utilisateur
-
-Lorsqu'un utilisateur choisit explicitement de créer et d'exporter un rapport de diagnostic destiné à être transmis volontairement, l'application doit appliquer une anonymisation automatique par défaut et présenter un aperçu du rapport avant sa création définitive ou son export.
-
-- L'anonymisation doit masquer ou remplacer les informations directement identifiantes ou susceptibles de révéler l'identité, l'environnement personnel ou l'organisation de l'utilisateur, notamment les noms de comptes ou d'utilisateurs du système, les chemins personnels complets, les noms de projets et les noms de dossiers ou d'espaces de travail personnalisés lorsqu'ils sont identifiants.
-- Les remplacements doivent préserver autant que possible la valeur diagnostique du rapport : la structure des chemins, les extensions, les noms techniques génériques, les identifiants de composants, les versions, les codes d'erreur, les horodatages utiles et les relations entre événements peuvent être conservés lorsqu'ils ne révèlent pas d'information personnelle.
-- L'aperçu doit être présenté avant tout export ou toute transmission, afin que l'utilisateur puisse vérifier le contenu effectivement préparé. La transmission reste une action volontaire distincte et explicite ; aucun rapport n'est envoyé automatiquement.
-- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, indépendamment de l'anonymisation générale et de l'aperçu. L'aperçu ne constitue pas une autorisation de révéler ces éléments.
-- Si une information ne peut pas être anonymisée de manière fiable, l'application doit la masquer par prudence ou signaler clairement qu'une vérification humaine est nécessaire avant l'export.
-- L'anonymisation ne doit pas modifier les journaux et données de diagnostic conservés localement ; elle s'applique à la copie préparée pour l'export volontaire.
-- Le rapport doit indiquer que l'anonymisation automatique a été appliquée et que l'utilisateur doit vérifier l'aperçu avant de transmettre le fichier.
-
-Cette règle complète les exigences relatives aux journaux, au signalement volontaire, à l'absence de collecte automatique et à la protection des secrets déjà définies dans le cahier des charges.
-
-## 10.606 Interdiction de désactiver l'anonymisation des rapports de diagnostic — Question 637, décision validée par l'utilisateur
-
-L'anonymisation automatique définie en section 10.605 est obligatoire pour tout rapport de diagnostic préparé en vue d'un export ou d'une transmission volontaire. L'utilisateur ne dispose d'aucune option permettant de la désactiver, de contourner ses règles ou de réintroduire les informations identifiantes automatiquement masquées.
-
-- Aucun réglage permanent ou ponctuel ne doit permettre de produire un rapport de diagnostic exportable non anonymisé.
-- L'aperçu avant export reste obligatoire et présente le contenu effectivement préparé après anonymisation. Il ne propose pas de commande permettant de restaurer les valeurs identifiantes masquées.
-- Les données identifiantes qui ont été masquées ou remplacées ne doivent pas être conservées dans le fichier exporté sous forme de métadonnées, de commentaires, de données annexes ou de contenu caché récupérable.
-- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, conformément aux règles existantes.
-- Si une information ne peut pas être anonymisée de manière fiable, elle doit être omise ou masquée ; l'utilisateur ne peut pas autoriser son inclusion en clair dans le rapport exporté.
-- Cette obligation concerne la copie destinée à l'export. Elle ne modifie pas les règles de conservation locale des journaux et diagnostics, ni l'exigence d'une action explicite de l'utilisateur pour toute transmission.
-- Les besoins d'assistance doivent être satisfaits au moyen d'informations techniques non identifiantes, de codes d'erreur, de versions, de traces expurgées et d'autres éléments compatibles avec la protection obligatoire des données personnelles.
-
-Cette décision complète la section 10.605 : l'anonymisation automatique n'est pas seulement le comportement par défaut, elle constitue une protection non désactivable pour les rapports exportés.
-
-## 10.607 Conservation configurable des journaux de diagnostic locaux — Question 638, décision validée par l'utilisateur
-
-La durée de conservation des journaux de diagnostic locaux doit être configurable par l'utilisateur depuis les paramètres de l'application.
-
-- L'application doit proposer des paramètres permettant de définir la durée de conservation des journaux ainsi que les limites de stockage qui leur sont allouées.
-- Les paramètres doivent permettre à l'utilisateur d'adapter la conservation à ses besoins et à l'espace disponible, sans imposer une conservation illimitée ni une durée fixe non modifiable.
-- L'application doit présenter clairement les valeurs actuellement configurées et les conséquences d'une modification, notamment la possibilité que les journaux les plus anciens soient supprimés lorsque la durée ou les limites de stockage sont dépassées.
-- L'application doit appliquer les limites configurées de manière prévisible et contrôlée, en privilégiant la suppression des entrées les plus anciennes et en évitant de supprimer les journaux encore nécessaires à une opération en cours.
-- Une modification des paramètres ne doit pas effacer immédiatement des journaux qui restent dans les limites nouvellement définies ; les entrées excédentaires sont traitées selon une procédure sûre, cohérente et signalée à l'utilisateur lorsque cela est pertinent.
-- Les journaux restent stockés localement. Cette configuration ne crée aucune collecte, synchronisation ou transmission automatique et ne modifie pas les règles de signalement volontaire.
-- Les exigences de protection des secrets et de confidentialité restent applicables à tous les journaux locaux. La conservation locale ne doit jamais autoriser l'enregistrement en clair de mots de passe, jetons, clés API, clés privées ou autres secrets.
-- La politique de conservation des journaux locaux est indépendante de l'anonymisation obligatoire et non désactivable des rapports de diagnostic exportés définie aux sections 10.605 et 10.606.
-
-Les valeurs initiales, les unités de durée, les plafonds de stockage, les règles de rotation et les détails de l'interface seront définis dans la spécification technique par l'assistant après recherche des pratiques et contraintes pertinentes. Ces détails ne constituent pas des arbitrages supplémentaires demandés à l'utilisateur.
-
-## 10.608 Inclusion systématique des journaux de diagnostic dans les sauvegardes — Question 639, décision validée par l'utilisateur
-
-Tous les journaux de diagnostic locaux disponibles au moment d'une sauvegarde doivent être inclus systématiquement dans celle-ci.
-
-- Cette inclusion s'applique à toutes les catégories de sauvegardes déjà prévues : sauvegardes automatiques quotidiennes et hebdomadaires, sauvegardes manuelles, sauvegardes précédant une mise à jour majeure et sauvegardes précédant une migration importante.
-- L'inclusion des journaux ne doit pas dépendre d'une option à activer séparément ni d'une confirmation ponctuelle de l'utilisateur.
-- Les journaux sont sauvegardés avec les autres données dans un état cohérent correspondant au point de sauvegarde. Une opération en cours ne doit pas produire une copie partielle ou incohérente ; les mécanismes techniques doivent garantir une capture sûre.
-- La politique configurable de conservation et de rotation des journaux actifs définie en section 10.607 continue de s'appliquer aux journaux locaux. En revanche, la suppression ou la rotation ultérieure d'un journal actif ne doit pas modifier rétroactivement une sauvegarde déjà créée qui contient ce journal.
-- Les sauvegardes restent soumises aux limites de conservation et aux règles de destination déjà définies en section 2.6. L'inclusion des journaux doit être prise en compte dans l'estimation de l'espace nécessaire et dans les contrôles d'intégrité.
-- Les exigences de confidentialité et de protection des secrets restent impératives : aucun mot de passe, jeton, clé API, clé privée ou autre secret ne doit être enregistré en clair dans les journaux ni inclus dans une sauvegarde. Les règles d'anonymisation obligatoire des rapports de diagnostic destinés à l'export externe ne sont pas remplacées par cette inclusion dans les sauvegardes locales.
-- Cette décision concerne le contenu des sauvegardes locales de l'application. Elle n'autorise aucune collecte, synchronisation ou transmission automatique vers un service externe.
-
-Cette règle complète la section 2.6 : les journaux de diagnostic font partie intégrante des données sauvegardées, au même titre que les autres données locales de l'application.
-
-
-## 10.609 Absence de chiffrement applicatif spécifique des sauvegardes — Question 640, décision validée par l'utilisateur
-
-MTG Card Remodeler ne doit pas ajouter de mécanisme de chiffrement applicatif propre aux sauvegardes. La protection des fichiers de sauvegarde repose sur les mécanismes de chiffrement fournis par le système d'exploitation ou par le support de stockage utilisé.
-
-- L'application crée et restaure les sauvegardes sans leur appliquer de chiffrement applicatif supplémentaire ni gérer de clé de chiffrement dédiée.
-- Lorsque le volume ou le support de destination est protégé par un mécanisme de chiffrement du système ou du matériel, les sauvegardes bénéficient de cette protection dans les limites et selon les conditions de ce mécanisme.
-- Lorsque le support ou le volume n'est pas chiffré, la sauvegarde ne doit pas être présentée comme chiffrée ou protégée contre une lecture directe par une personne ayant accès au fichier.
-- Si l'état de chiffrement de la destination peut être déterminé de manière fiable au moyen des interfaces prises en charge par le système d'exploitation, l'application peut l'indiquer clairement avant la création de la sauvegarde. Si cet état ne peut pas être établi, elle doit le signaler comme inconnu et ne jamais supposer que le support est chiffré.
-- L'application peut recommander l'activation du chiffrement natif du système ou du support lorsque cela est pertinent, sans imposer un mécanisme propriétaire ni bloquer une sauvegarde au seul motif que le chiffrement n'est pas détecté.
-- La gestion, la conservation et la récupération des clés relèvent exclusivement du système d'exploitation ou du mécanisme de chiffrement du support. L'application ne stocke aucune clé de chiffrement de sauvegarde.
-- Cette décision ne modifie ni le contenu des sauvegardes, ni leur destination configurable, ni les règles de conservation, d'intégrité et de restauration déjà définies. Les journaux de diagnostic locaux restent inclus systématiquement conformément à la section 10.608.
-
-
-## 10.610 Restauration complète avec retour strict à l'état sauvegardé — Question 641, décision validée par l'utilisateur
-
-Lorsqu'une restauration complète est demandée, l'application rétablit strictement l'état couvert par la sauvegarde sélectionnée. Les données concernées reviennent à leur état exact au moment de la création de cette sauvegarde ; les modifications réalisées depuis ce point sont donc perdues dans l'état restauré.
-
-- La restauration complète remplace l'état courant des éléments couverts par la sauvegarde par leur état sauvegardé. Elle ne réalise aucune fusion automatique avec les modifications postérieures.
-- Le périmètre de la restauration correspond au périmètre documenté de la sauvegarde sélectionnée. Les éléments qui n'en font pas partie ne doivent pas être supprimés ou modifiés au seul motif qu'une restauration complète est effectuée.
-- Avant de commencer, l'application présente clairement la date et l'identification de la sauvegarde, le périmètre concerné et l'avertissement indiquant que les modifications postérieures couvertes par la restauration seront perdues.
-- Conformément à la règle de création d'un point de restauration avant toute opération sensible définie en section 10.340, l'état immédiatement antérieur à la restauration doit être protégé par un point de restauration préalable lorsque cela est techniquement possible. Ce point permet de revenir à l'état précédant la tentative de restauration.
-- La restauration ne commence qu'après confirmation explicite de l'utilisateur. L'application vérifie l'intégrité de la sauvegarde avant son application et contrôle la cohérence de l'état restauré après l'opération.
-- Si la sauvegarde est invalide, incomplète ou si la restauration échoue, l'application signale précisément le problème et ne prétend pas que le retour à l'état sauvegardé a réussi. Elle applique les mécanismes de récupération et de retour à l'état antérieur déjà définis pour les opérations sensibles.
-- Les règles particulières déjà établies restent applicables, notamment l'exclusion du rapport qualité courant lors de la restauration d'un projet (section 10.44) et l'inclusion systématique des journaux locaux dans les sauvegardes (section 10.608).
-- Cette décision définit le comportement d'une restauration complète et ne supprime pas la possibilité de restauration sélective déjà prévue en section 2.7.
-
-
-## 10.611 Portabilité multiplateforme des sauvegardes — Question 642, décision validée par l'utilisateur
-
-Les sauvegardes de MTG Card Remodeler doivent être portables entre les trois plateformes officiellement prises en charge : Windows, macOS et Linux. Une sauvegarde créée sur l'une de ces plateformes doit pouvoir être restaurée sur une autre, sous réserve de la compatibilité des versions et des composants concernés.
-
-- Le format de sauvegarde doit privilégier des données et métadonnées indépendantes du système d'exploitation, sans dépendance inutile à des chemins absolus, aux séparateurs de chemins ou aux conventions propres à une plateforme.
-- Lors de la restauration sur un système différent, l'application adapte les chemins, emplacements et paramètres strictement liés au système cible, en utilisant les mécanismes natifs de résolution des répertoires et des ressources.
-- Les chemins externes qui ne peuvent pas être transposés automatiquement, les ressources absentes sur le système cible et les intégrations propres à une plateforme doivent être détectés et signalés. L'application ne doit ni inventer leur nouvel emplacement ni supprimer silencieusement les références concernées.
-- Lorsque l'adaptation automatique est impossible ou ambiguë, l'application demande à l'utilisateur de localiser ou de reconfigurer l'élément concerné, tout en préservant les données originales et en expliquant l'incidence de l'élément non résolu.
-- Avant la restauration, l'application vérifie la compatibilité du format, de la version, des fonctionnalités et des composants requis. Une incompatibilité bloquante doit empêcher une restauration incohérente ; les incompatibilités non bloquantes doivent être présentées clairement.
-- La portabilité ne garantit pas qu'un logiciel, pilote, service externe, police, ressource système ou composant tiers propre à la plateforme source soit disponible sur le système cible. Ces dépendances doivent être identifiées et traitées selon les règles de compatibilité existantes.
-- Les données de projet, métadonnées, templates, variantes et ressources internes doivent conserver leur contenu et leur identité. L'adaptation multiplateforme ne doit pas modifier leur sens ni écraser des données du système cible hors du périmètre de restauration.
-- Les sauvegardes conservent les règles existantes de chiffrement du support, d'intégrité, de point de restauration préalable et de restauration complète stricte définies notamment en sections 10.609 et 10.610.
-- Les tests de livraison doivent inclure des scénarios de sauvegarde et de restauration croisés entre Windows, macOS et Linux, en couvrant les chemins, ressources absentes, différences de casse des noms de fichiers et paramètres spécifiques aux plateformes.
-
-
-## 10.612 Développement complet avant livraison finale et progression modulaire — Question 643, décision validée par l'utilisateur
-
-Le périmètre de réalisation visé avant de considérer MTG Card Remodeler comme livrable couvre l'ensemble des fonctionnalités et exigences retenues dans le présent cahier des charges. La première livraison finale ne doit donc pas être définie comme une version minimale volontairement limitée à un sous-ensemble des fonctionnalités.
-
-- Le développement peut et doit être organisé progressivement en modules fonctionnels cohérents afin de maîtriser la complexité, de faciliter les tests et de réduire les risques.
-- Chaque module peut être développé, testé, documenté et validé indépendamment lorsque ses dépendances le permettent.
-- La validation intermédiaire d'un module ne signifie pas que le produit complet est terminé ou que les exigences restantes sont abandonnées.
-- Les dépendances structurantes et le socle technique doivent être traités suffisamment tôt pour éviter que les modules ultérieurs reposent sur des fondations instables.
-- Le suivi de réalisation doit relier chaque exigence du cahier des charges à un état vérifiable : non commencé, en cours, implémenté, testé, validé ou bloqué, avec justification pour les écarts.
-- Une fonctionnalité ne peut être considérée comme couverte sur la seule base de son existence apparente : ses critères d'acceptation, cas limites, interactions et tests pertinents doivent être satisfaits.
-- Toute impossibilité technique, incompatibilité ou exigence devenue irréalisable doit être documentée et soumise à arbitrage ; elle ne peut être écartée silencieusement au nom d'un découpage en modules.
-- Cette décision définit l'objectif de complétude du produit et n'autorise pas à elle seule le démarrage du développement. La phase de développement reste soumise à la clôture explicite du cahier des charges et à l'autorisation de l'utilisateur.
-
-## 10.613 Critères d'acceptation, audit global et validation finale mixte — Question 644, décision validée par l'utilisateur
-
-La validation de la conformité du logiciel repose sur une approche mixte : des critères d'acceptation explicites et des tests vérifiables sont appliqués à chaque fonctionnalité, un audit global de conformité est réalisé, puis l'utilisateur prononce la validation finale du produit.
-
-- Chaque exigence fonctionnelle et technique doit être reliée à un ou plusieurs critères d'acceptation observables et à des preuves de vérification adaptées.
-- Les tests automatisés sont utilisés lorsqu'ils sont pertinents et fiables ; ils sont complétés par des tests manuels, exploratoires, visuels, multiplateformes ou d'usage lorsque la nature de l'exigence le nécessite.
-- Les résultats doivent distinguer clairement les tests réussis, échoués, non exécutés, non applicables et bloqués, avec justification et preuve consultable lorsque possible.
-- La couverture doit être suivie au niveau de chaque exigence, y compris les cas limites, interactions, régressions et dépendances. Une fonctionnalité seulement partiellement réalisée ne peut être déclarée conforme.
-- Avant la proposition de validation finale, un audit global confronte la version candidate à l'ensemble du cahier des charges, à l'index et à la matrice de traçabilité. Il vérifie aussi les anomalies ouvertes, les écarts acceptés, les risques résiduels et la cohérence multiplateforme.
-- Les défauts bloquants et majeurs non résolus empêchent de recommander la validation finale. Les écarts mineurs éventuels doivent être explicitement documentés, évalués et présentés à l'utilisateur ; ils ne sont jamais masqués par un taux global de réussite.
-- L'assistant prépare un rapport d'audit synthétique et détaillé, expose les preuves, les limites des vérifications et les points restant à arbitrer, puis formule une recommandation motivée.
-- La décision finale d'accepter le logiciel comme terminé appartient à l'utilisateur. La réussite des tests ou l'avis de l'assistant ne vaut pas acceptation à sa place.
-- Cette validation finale ne dispense pas du suivi ultérieur des défauts, de la maintenance ou des évolutions, qui devront être distingués de la conformité de la version acceptée.
-
-
-## 10.614 Absence de défauts résiduels, y compris mineurs, avant acceptation finale — Question 645, décision validée par l'utilisateur
-
-La validation finale du logiciel est conditionnée à l'absence de tout défaut connu non résolu, y compris les défauts mineurs. Aucun défaut mineur documenté ne peut être accepté comme exception à cette règle.
-
-- Avant de recommander l'acceptation finale, l'audit doit confirmer qu'aucun défaut bloquant, majeur ou mineur connu ne subsiste dans la version candidate.
-- Tout défaut détecté doit être corrigé, puis faire l'objet d'une vérification adaptée démontrant sa résolution. Les tests de non-régression pertinents doivent être exécutés afin de vérifier que la correction n'a pas introduit de nouveau problème.
-- Un défaut ne peut pas être requalifié artificiellement ou retiré du suivi dans le seul but de satisfaire cette condition. Toute décision de classement doit rester fondée sur des critères cohérents, documentés et traçables.
-- Les anomalies non reproductibles, les limites connues, les comportements non vérifiés et les risques résiduels doivent rester explicitement consignés ; ils ne doivent pas être assimilés silencieusement à des défauts corrigés.
-- Si un défaut demeure ouvert, même mineur, la validation finale est reportée. Le rapport d'audit présente les éléments restant à résoudre et la version ne peut pas être déclarée acceptée.
-- Cette règle ne modifie pas la responsabilité de l'utilisateur concernant la décision finale : une fois les conditions de conformité satisfaites, l'acceptation du produit reste prononcée explicitement par l'utilisateur.
-
-
-## 10.615 Traitement des défauts découverts après acceptation et cycle de maintenance corrective — Question 646, décision validée par l'utilisateur
-
-L'acceptation finale d'une version demeure valable pour cette version même si un défaut est découvert ultérieurement. Un défaut découvert après acceptation relève du cycle de maintenance et ne révoque pas rétroactivement le statut d'acceptation de la version antérieure.
-
-- Chaque défaut découvert après acceptation est enregistré dans le suivi de maintenance avec sa description, son périmètre, ses conditions de reproduction lorsqu'elles sont connues, son impact, sa gravité et les versions concernées.
-- Le défaut est analysé et priorisé selon son impact sur la sécurité, l'intégrité des données, les fonctionnalités, la compatibilité et l'expérience d'utilisation. Les mesures temporaires de réduction du risque doivent être documentées lorsqu'elles sont nécessaires.
-- La correction est préparée dans un cycle correctif adapté. Elle ne doit pas modifier silencieusement les données utilisateur ni introduire de régression ; les procédures de sauvegarde, de restauration et de validation applicables restent en vigueur.
-- Une version corrective est publiée après les vérifications adaptées, incluant les tests ciblés et les tests de non-régression pertinents. Les notes de version indiquent le défaut corrigé, les éventuels contournements et les changements associés.
-- La version précédemment acceptée conserve son historique, ses preuves d'audit et son statut d'acceptation propre. La version corrective possède son propre numéro, son propre dossier de vérification et, lorsque nécessaire, son propre audit.
-- La découverte d'un défaut ne dispense jamais de le corriger ni de l'informer clairement. Les défauts affectant la sécurité, l'intégrité ou la perte de données doivent être traités en priorité selon leur gravité.
-- Cette maintenance corrective est distincte de la définition initiale du produit : elle ne permet pas de considérer comme livrable une version qui n'aurait pas satisfait les critères de validation au moment de son acceptation.
-- La décision d'accepter une version corrective en tant que nouvelle version appartient à l'utilisateur selon les critères d'acceptation et d'audit définis aux sections 10.613 et 10.614.
-
-
-## 10.616 Audit proportionnel au risque des versions correctives — Question 647, décision validée par l'utilisateur
-
-L'étendue de la vérification préalable à l'acceptation d'une version corrective est proportionnelle au risque, à la portée et aux conséquences potentielles de la correction. Une correction localisée et à faible risque ne nécessite pas automatiquement de répéter l'intégralité de l'audit du produit ; les changements susceptibles d'affecter largement le logiciel imposent en revanche une vérification étendue.
-
-- Pour une correction mineure, localisée et dont les effets sont circonscrits, la vérification porte au minimum sur le défaut corrigé, les fonctionnalités directement concernées, les dépendances pertinentes et les tests de non-régression ciblés.
-- Pour une correction majeure, critique, touchant plusieurs modules ou susceptible d'affecter des fonctions transversales, la vérification est étendue et comprend un audit complet de conformité au cahier des charges ainsi que la reprise des tests de validation pertinents à l'échelle du produit.
-- Le niveau de vérification est déterminé et justifié à partir de la gravité du défaut initial, de l'étendue des changements, des dépendances, de la sensibilité des données et des opérations touchées, ainsi que du risque de régression.
-- Lorsque plusieurs catégories de risque se cumulent ou que l'impact ne peut pas être circonscrit de manière fiable, le niveau supérieur de vérification est retenu. Une incertitude importante ne peut pas être utilisée pour réduire l'étendue de l'audit.
-- Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
-- Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
-- Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
-
-
-## 10.617 Protection proportionnelle au risque face à un défaut critique après publication — Question 648, décision validée par l'utilisateur
-
-Lorsqu'un défaut grave est découvert dans une version déjà acceptée et utilisée, et qu'aucune correction n'est encore disponible, l'application applique des mesures de protection proportionnelles au risque réel. Elle bloque les opérations présentant un risque critique pour la sécurité ou l'intégrité des données ; pour les risques moins élevés, elle avertit clairement l'utilisateur, explique le problème et présente les solutions temporaires fiables lorsqu'elles existent.
-
-- Les opérations susceptibles d'entraîner une perte, une corruption ou une altération irréversible des données, une atteinte à leur intégrité ou un risque critique pour la sécurité sont désactivées ou bloquées jusqu'à ce qu'une correction ou une mesure de protection fiable soit disponible.
-- Le blocage est limité aux fonctionnalités et opérations réellement concernées lorsque cette isolation est techniquement fiable. Les fonctions indépendantes et sans risque associé restent accessibles ; l'application ne doit pas être rendue globalement inutilisable sans nécessité démontrée.
-- Pour les défauts dont le risque ne justifie pas un blocage, l'application affiche un avertissement visible et compréhensible précisant le défaut connu, sa gravité, les fonctionnalités touchées et les conséquences possibles.
-- Lorsqu'une solution temporaire ou un contournement a été vérifié comme fiable, l'application le présente avec ses limites et les précautions nécessaires. Elle ne doit jamais présenter une mesure non vérifiée comme une garantie de sécurité.
-- Les restrictions et avertissements restent en vigueur tant que le défaut n'est pas corrigé ou que le risque n'a pas été réduit par une mesure validée. Leur levée doit être fondée sur une vérification documentée.
-- La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
-- Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
-- Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
-
 ## 10.718 Contrat HTTP explicite du client Scryfall — Question 749, décision technique prise par l'assistant
 
 Toutes les requêtes adressées à l'API Scryfall doivent respecter les exigences de communication documentées par la source.
@@ -7431,1221 +7431,6 @@ Les téléchargements d'images sont traités par un service distinct des requêt
 - Préserver l'URL source et distinguer les fichiers originaux des versions réduites ou transformées utilisées par l'interface.
 
 Références : [Scryfall — API access and image-host limits](https://scryfall.com/docs/faqs/i-m-having-trouble-accessing-the-scryfall-api-or-i-m-blocked-17) ; [Scryfall — Card Imagery](https://scryfall.com/docs/api/images) ; [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-
-## 10.504 Navigation clavier entre les entrées de la liste — Question 509, validée
-
-Les flèches haut et bas permettent de parcourir directement les entrées de la liste du panneau latéral. La navigation par Tab reste régie par les règles générales de focus déjà validées.
-
-## 10.505 Activation d'une entrée sélectionnée avec la touche Entrée — Question 510, validée
-
-La touche Entrée ouvre immédiatement le détail de l'extension sélectionnée dans la liste.
-
-## 10.506 Navigation entre le panneau latéral et la zone de détail — Question 511, validée
-
-Les flèches gauche et droite permettent de passer du panneau latéral à la zone de détail et inversement, selon la zone actuellement active.
-
-## 10.507 Comportement de la touche Début (Home) dans la liste — Question 512, validée
-
-La touche Début (Home) sélectionne la première extension de la liste.
-
-## 10.508 Comportement de la touche Fin (End) dans la liste — Question 513, validée
-
-La touche Fin (End) sélectionne la dernière extension de la liste.
-
-
-## 10.509 Actualisation automatique du détail lors de la navigation clavier — Question 514, validée
-
-Lorsque les flèches haut et bas changent l'extension sélectionnée, la zone de détail affiche automatiquement les informations de cette nouvelle sélection.
-
-## 10.510 Sélection clavier des extensions désactivées ou indisponibles — Question 515, validée
-
-Les extensions désactivées ou indisponibles restent sélectionnables au clavier ; leur état doit être clairement affiché.
-
-## 10.511 Navigation clavier lorsque la liste est vide — Question 516, validée
-
-Lorsque la liste ne contient aucune extension, les commandes de navigation clavier restent sans effet et ne modifient pas le focus.
-
-## 10.512 Annonce accessible de l'extension sélectionnée — Question 517, validée
-
-La sélection d'une extension est signalée par un changement visuel et par une annonce aux lecteurs d'écran.
-
-## 10.513 Sélection après un retour depuis la zone de détail — Question 518, validée
-
-Lors du retour de la zone de détail vers le panneau latéral, la sélection précédente est effacée ; l'utilisateur doit sélectionner une entrée à nouveau.
-
-
-## 10.514 État de la zone de détail lorsqu'aucune extension n'est sélectionnée — Question 519, décision technique recommandée
-
-Lorsqu'aucune extension n'est sélectionnée, la zone de détail affiche un état vide explicatif invitant clairement l'utilisateur à sélectionner une extension dans la liste.
-
-Le message reste bref, visible et adapté au contexte, par exemple : « Sélectionnez une extension pour consulter ses informations. » Il ne présente pas de fausses données ni de commandes sans rapport avec l'action attendue. Cet état est distinct d'une liste vide, d'une recherche sans résultat, d'un chargement en cours ou d'une erreur ; chacun de ces cas doit recevoir un message correspondant à sa cause.
-
-Cette recommandation suit les pratiques de conception des états vides : expliquer ce qui devrait apparaître et guider vers l'étape suivante, sans surcharger une zone secondaire d'interface. Référence : [SAP Fiori — Empty States](https://www.sap.com/design-system/fiori-design-web/v1-96/foundations/best-practices/global-patterns/designing-for-empty-states).
-
-## 10.515 Organisation des informations dans le détail d'une extension — Question 520, décision technique recommandée
-
-Le détail d'une extension est organisé sur une seule page structurée en sections thématiques repliables et dépliables, plutôt qu'en une longue page totalement plate ou en onglets séparant les informations.
-
-Les sections doivent être clairement titrées et sémantiquement structurées. Les informations essentielles et le résumé de l'extension restent immédiatement visibles ; les sections secondaires peuvent être repliées afin de réduire la longueur initiale. L'utilisateur peut développer ou replier chaque section indépendamment. L'état ouvert ou fermé est perceptible visuellement et annoncé aux technologies d'assistance ; les commandes sont utilisables au clavier avec Entrée et Espace.
-
-Cette organisation conserve une vue d'ensemble unique et évite de masquer des catégories d'informations derrière plusieurs onglets. Elle utilise le modèle de divulgation progressive documenté par WAI-ARIA. Référence : [W3C WAI-ARIA APG — Disclosure Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
-
-## 10.516 Navigation dans un détail d'extension volumineux — Question 521, décision technique recommandée
-
-Les deux mécanismes sont disponibles : le défilement vertical continu dans le contenu et une navigation par sections permettant d'accéder directement à une partie du détail.
-
-Lorsque le contenu est suffisamment long pour le justifier, une navigation contextuelle présente les titres des sections et permet de rejoindre la section choisie par défilement jusqu'à celle-ci. La section actuellement consultée est signalée dans cette navigation. Celle-ci reste limitée à la zone de détail et ne doit pas remplacer le défilement normal, perturber le focus clavier ou masquer le contenu.
-
-La navigation par sections peut rester discrète ou être omise lorsque le détail est court. Cette approche reprend les recommandations des systèmes de conception pour les contenus longs. Référence : [U.S. Web Design System — In-page navigation](https://designsystem.digital.gov/components/in-page-navigation/).
-
-## 10.517 Présentation des informations d'une extension désactivée — Question 522, décision technique recommandée
-
-Le détail d'une extension désactivée ou indisponible présente toutes les informations normalement accessibles, tout en distinguant clairement les fonctionnalités qui ne peuvent pas être utilisées.
-
-L'interface doit conserver la description, les paramètres, les dépendances, les compatibilités et les informations de diagnostic disponibles. Chaque fonctionnalité indisponible est identifiée par un état explicite et, lorsque l'information est connue, par sa raison : extension désactivée, dépendance manquante, incompatibilité, permission absente ou autre condition pertinente. Les commandes impossibles à exécuter sont désactivées de manière cohérente et leur indisponibilité ne repose pas uniquement sur une couleur ou une icône.
-
-L'utilisateur doit pouvoir comprendre ce que l'extension ferait, ce qui est bloqué et, si possible, comment rétablir la disponibilité. L'état désactivé ne doit pas être confondu avec une erreur de chargement ni conduire à masquer les informations utiles.
-
-## 10.518 Emplacement des commandes principales du détail d'une extension — Question 523, décision technique recommandée
-
-Les commandes principales relatives à l'extension sont regroupées dans une barre d'actions persistante, indépendante du défilement du contenu de détail.
-
-La barre reste visible dans les limites de la zone de détail et s'adapte à sa largeur. Elle regroupe uniquement les actions principales pertinentes pour l'extension consultée ; les commandes secondaires peuvent rester dans leurs sections respectives ou dans un menu dédié. Les actions indisponibles sont désactivées et accompagnées d'une explication accessible lorsque nécessaire.
-
-La barre persistante ne doit jamais masquer la fin du contenu, un contrôle ayant le focus ou un indicateur de focus. Un espace de réservation doit être prévu dans la zone défilante et le comportement doit rester utilisable au clavier, avec zoom et redimensionnement de fenêtre. Cette contrainte est essentielle au regard du critère WCAG 2.4.11 relatif au focus qui ne doit pas être entièrement masqué par du contenu créé par l'auteur. Référence : [W3C — Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum).
-
-## 10.519 Ouverture indépendante et simultanée des sections du détail — Question 524, décision technique recommandée
-
-Chaque section repliable du détail d'une extension fonctionne indépendamment des autres. L'utilisateur peut développer plusieurs sections simultanément et les laisser ouvertes pendant la consultation ; l'ouverture d'une section ne provoque pas automatiquement le repli d'une autre.
-
-Ce comportement facilite la comparaison d'informations situées dans différentes sections et évite de faire perdre le contexte de lecture. Chaque en-tête indique clairement son propre état ouvert ou fermé et commande uniquement la section qui lui est associée.
-
-Cette recommandation suit le modèle d'accordéon WAI-ARIA, qui autorise explicitement plusieurs panneaux ouverts et décrit l'interaction indépendante de chaque en-tête. Référence : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
-
-## 10.520 État initial des sections lors de l'ouverture d'un détail — Question 525, décision technique recommandée
-
-Lorsqu'un détail d'extension est affiché pour la première fois dans la session, la section générale présentant l'identité, la description et le résumé de l'extension est développée par défaut. Les autres sections sont initialement repliées.
-
-Si une section générale n'existe pas pour une extension donnée, la première section contenant les informations essentielles joue ce rôle. L'interface ne doit pas afficher un panneau vide uniquement pour respecter une structure théorique. L'utilisateur conserve la possibilité de développer immédiatement toute autre section.
-
-Ce choix privilégie une entrée en matière utile et limite la longueur initiale du détail sans cacher l'existence des autres catégories.
-
-## 10.521 Conservation de l'état des sections lors du changement d'extension — Question 526, décision technique recommandée
-
-L'état ouvert ou replié de chaque section est conservé séparément pour chaque extension pendant toute la session de l'application.
-
-Lorsqu'un utilisateur consulte une autre extension puis revient à la précédente, les sections retrouvent leur état antérieur. Les états d'une extension ne doivent jamais être appliqués par erreur à une autre extension. Si une extension est retirée de la liste ou devient inaccessible pendant la session, son état associé peut être supprimé avec son contexte de consultation.
-
-Cette conservation est limitée à la session en cours : elle ne constitue pas un réglage permanent ni une donnée de projet à sauvegarder. À la prochaine session, l'état initial défini dans la décision 10.520 est réappliqué.
-
-## 10.522 Commandes globales de développement et de repli des sections — Question 527, décision technique recommandée
-
-La zone de détail propose deux commandes globales distinctes : « Tout développer » et « Tout replier ».
-
-« Tout développer » ouvre toutes les sections disponibles du détail courant. « Tout replier » ferme toutes les sections, y compris la section générale ; l'état vide qui en résulte reste clairement compréhensible et ne doit pas être confondu avec l'absence de données. La section générale pourra ensuite être rouverte individuellement.
-
-Les commandes globales s'appliquent uniquement au détail de l'extension actuellement consultée et ne modifient pas les états mémorisés des autres extensions. Elles sont accessibles au clavier et exposent un nom et une fonction explicites aux technologies d'assistance.
-
-## 10.523 Navigation clavier dans les en-têtes des sections repliables — Question 528, décision technique recommandée
-
-Chaque en-tête de section est un véritable contrôle interactif accessible au clavier. La touche Entrée ou Espace développe une section repliée ou replie une section développée. La touche Tab déplace le focus vers le prochain élément interactif et Maj+Tab vers le précédent, selon l'ordre naturel de la page.
-
-Aucun déplacement obligatoire par flèches haut ou bas, ni raccourci Home ou End, n'est ajouté au comportement standard des en-têtes. Ces touches restent disponibles pour les usages habituels de l'application et du système ; une navigation par flèches ne pourra être introduite que dans un composant distinct dont le modèle d'interaction la justifie.
-
-Chaque en-tête est structuré comme un titre contenant un bouton natif. Le bouton expose son état au moyen de l'attribut accessible correspondant (aria-expanded) et référence le panneau qu'il contrôle (aria-controls). Le contenu replié est réellement retiré de l'ordre de tabulation et de l'arbre d'accessibilité tant qu'il est masqué. Les rôles de région ne sont employés que lorsque cela apporte une structure utile, afin d'éviter de multiplier inutilement les points de repère pour les lecteurs d'écran.
-
-Cette mise en œuvre suit les interactions clavier et les propriétés WAI-ARIA documentées par le W3C. Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [W3C — Accordion Example](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/).
-
-## 10.524 Animation lors du développement et du repli des sections — Question 529, décision technique recommandée
-
-Le développement et le repli d'une section peuvent utiliser une transition visuelle courte, discrète et cohérente, destinée à rendre le changement d'état perceptible sans ralentir la consultation. La transition ne doit pas provoquer de déplacement latéral, d'effet de zoom, de rebond ou d'animation décorative.
-
-L'état fonctionnel de la section change immédiatement du point de vue des interactions et des technologies d'assistance ; l'animation ne doit jamais retarder l'accès au contenu, bloquer une commande ou empêcher une nouvelle activation. La durée reste brève et homogène pour toutes les sections.
-
-Cette recommandation privilégie une animation fonctionnelle minimale, sans mouvement superflu. Référence : [W3C — Animation from Interactions (WCAG 2.3.3)](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions).
-
-## 10.525 Respect de la préférence de réduction des mouvements — Question 530, décision technique recommandée
-
-Les transitions des sections repliables respectent automatiquement la préférence de réduction des mouvements configurée dans le système d'exploitation ou l'environnement d'exécution.
-
-Lorsque cette préférence est active, les animations de hauteur, de déplacement et les autres mouvements non essentiels sont supprimés ; le changement d'état est présenté immédiatement, sans perte d'information ni de fonctionnalité. Cette préférence est détectée dynamiquement et son changement est pris en compte sans nécessiter une réinstallation ou une reconfiguration manuelle de l'application.
-
-Aucun réglage propre à cette seule zone n'est nécessaire : la règle générale de réduction des mouvements de l'application doit s'appliquer uniformément à tous les composants concernés.
-
-Références : [MDN — prefers-reduced-motion](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/%40media/prefers-reduced-motion) ; [W3C — Technique C39](https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html).
-
-## 10.526 Stabilité de la position de défilement lors des changements de sections — Question 531, décision technique recommandée
-
-Le développement ou le repli d'une section ne doit pas provoquer de saut inattendu de la position de lecture dans la zone de détail.
-
-Lorsque le changement de taille d'une section située au-dessus de la partie consultée modifie la mise en page, la position du contenu actuellement lu est préservée autant que possible. L'activation d'un en-tête ne déclenche pas un retour automatique en haut du détail. Si le repli d'une section masque l'élément qui possède le focus, le focus est replacé sur l'en-tête de cette section avant que son contenu ne soit masqué.
-
-Le défilement automatique n'est utilisé que lorsqu'il est nécessaire pour rendre visible l'en-tête activé ou le focus clavier, et jamais pour imposer une position de lecture sans raison.
-
-Cette règle s'appuie sur le principe d'ancrage du défilement, qui vise à maintenir la zone lue visible lors des changements de mise en page. Référence : [MDN — Scroll anchoring](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_anchoring/Overview).
-
-## 10.527 Chargement dynamique du contenu d'une section — Question 532, décision technique recommandée
-
-Lorsqu'une section nécessite un chargement dynamique, son en-tête reste disponible et son état développé ou replié reste cohérent. Le contenu affiche un indicateur de chargement local à la section, accompagné d'un libellé compréhensible ; le reste du détail demeure utilisable.
-
-Le chargement ne déplace pas automatiquement le focus et ne provoque pas de changement de section. À la fin d'un chargement ordinaire, le résultat ou l'état obtenu est annoncé aux technologies d'assistance au moyen d'un message de statut non intrusif, équivalent à une annonce polie. L'annonce ne répète pas inutilement l'intégralité du contenu chargé.
-
-Si l'utilisateur replie la section ou consulte une autre extension pendant le chargement, le résultat est associé à la bonne extension et à la bonne section ; il ne doit jamais apparaître dans un autre détail à la suite d'un changement de sélection.
-
-Références : [W3C — Status Messages (WCAG 4.1.3)](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA22.html) ; [MDN — ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions).
-
-## 10.528 Gestion d'une erreur affectant une section — Question 533, décision technique recommandée
-
-Une erreur qui concerne le chargement ou l'affichage d'une section est traitée localement dans cette section. Elle ne doit pas rendre indisponible l'ensemble du détail de l'extension ni masquer les informations déjà chargées dans les autres sections.
-
-Le message d'erreur indique clairement la section concernée et fournit, lorsque cela est pertinent, une commande permettant de relancer son chargement. L'échec conserve l'état des autres sections, la sélection de l'extension et la position de défilement. Une nouvelle tentative ne doit pas dupliquer les données déjà affichées ni provoquer une action involontaire sur une autre extension.
-
-Les erreurs ordinaires sont signalées sans interruption excessive ; seules les situations réellement critiques pour la sécurité ou l'intégrité des données peuvent justifier une alerte prioritaire. Le détail conserve un état cohérent même si plusieurs sections rencontrent des erreurs indépendantes.
-
-## 10.529 Présentation et zone d'activation des en-têtes de section — Question 534, décision technique recommandée
-
-L'en-tête de chaque section présente un intitulé descriptif et un indicateur visuel explicite de son état développé ou replié. L'indicateur, par exemple un chevron orienté selon l'état, complète le libellé et ne constitue jamais le seul moyen de comprendre l'action.
-
-Toute la surface de l'en-tête est activable, et pas uniquement l'icône ou le texte. L'en-tête forme un seul contrôle interactif, avec une cible suffisamment grande et un espacement qui évite les activations accidentelles. Aucun bouton, lien ou autre contrôle interactif indépendant ne doit être imbriqué à l'intérieur de cette surface ; les actions propres à une section sont placées à côté, hors du bouton d'en-tête.
-
-Le changement d'état est également exposé aux technologies d'assistance et ne repose pas uniquement sur la couleur, la forme ou l'orientation de l'icône.
-
-Références : [USWDS — Accordion](https://designsystem.digital.gov/components/accordion/) ; [New York State Design System — Accessible Accordion](https://designsystem.ny.gov/components/accordion/accessibility-build/).
-
-## 10.530 Utilisation de lignes de résumé dans les en-têtes — Question 535, décision technique recommandée
-
-Une ligne de résumé peut être affichée sous le titre d'une section repliée uniquement lorsqu'elle apporte une information utile pour décider de l'ouvrir, par exemple une valeur principale, un état de compatibilité ou une synthèse courte.
-
-Le résumé reste facultatif, concis, rédigé en langage clair et complémentaire du titre. Il ne répète pas le titre, ne reproduit pas le contenu complet de la section et n'est pas affiché lorsqu'aucune information pertinente n'est disponible. Le texte du résumé fait partie du nom accessible du contrôle si nécessaire pour comprendre l'information présentée, mais sa longueur doit rester maîtrisée afin de ne pas rendre la navigation des lecteurs d'écran verbeuse.
-
-Référence : [GOV.UK Design System — Accordion, section headings and summary lines](https://design-system.service.gov.uk/components/accordion/).
-
-## 10.531 Affichage des indicateurs d'état dans les en-têtes — Question 536, décision technique recommandée
-
-Un en-tête peut afficher un indicateur compact lorsqu'un état de la section mérite d'être repéré sans ouvrir son contenu : avertissement, erreur, information manquante, compatibilité ou nombre d'éléments lorsque ce nombre aide réellement à la décision.
-
-Chaque indicateur est pertinent pour la section concernée, reste visuellement secondaire par rapport à son titre et utilise un libellé ou une information accessible en complément de son éventuelle icône. La couleur seule ne doit jamais porter la signification. Les compteurs décoratifs, redondants ou sans conséquence pratique sont évités.
-
-Les indicateurs sont mis à jour lorsque les données changent et ne doivent pas transformer l'en-tête en barre d'actions. Ils restent informatifs ; le contrôle d'ouverture conserve une fonction unique et prévisible.
-
-Références : [W3C WAI-ARIA APG — Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) ; [USWDS — Accordion guidance](https://designsystem.digital.gov/components/accordion/).
-
-## 10.532 Visibilité permanente des informations essentielles — Question 537, décision technique recommandée
-
-Les informations nécessaires pour comprendre immédiatement l'identité, l'état général et la disponibilité d'une extension ne sont pas cachées exclusivement dans des sections repliables.
-
-La zone de synthèse générale présente notamment le nom de l'extension, sa version, son état d'activation et les alertes ayant un impact direct sur son utilisation. Une incompatibilité bloquante, une dépendance obligatoire absente ou une permission indispensable manquante reste donc visible sans obliger l'utilisateur à ouvrir une section secondaire.
-
-Les sections repliables accueillent les explications détaillées, les paramètres, les dépendances complètes, les informations techniques et les diagnostics complémentaires. Les informations critiques restent accessibles et ne sont pas enfouies dans une divulgation progressive.
-
-Cette règle limite le risque que des informations importantes soient ignorées parce qu'elles sont masquées. Références : [GOV.UK Design System — When not to use an accordion](https://design-system.service.gov.uk/components/accordion/) ; [U.S. Web Design System — When to use an accordion](https://designsystem.digital.gov/components/accordion/).
-
-## 10.533 Hiérarchie et imbrication des sections repliables — Question 538, décision technique recommandée
-
-Les sections repliables du détail suivent une hiérarchie simple et plate. Une section repliable ne contient pas un autre accordéon ou un second niveau de sections repliables.
-
-Lorsqu'un sujet nécessite des sous-parties, celles-ci sont organisées à l'intérieur de la section ouverte à l'aide de sous-titres sémantiques, de groupes visuels, de listes ou de séparateurs, sans ajouter de nouveau niveau d'interaction repliable. Si le contenu devient trop complexe pour cette organisation, il est réorganisé en sections principales distinctes.
-
-Cette règle évite les niveaux d'ouverture imbriqués difficiles à parcourir, réduit la charge cognitive et facilite la navigation au clavier comme avec un lecteur d'écran.
-
-Références : [GOV.UK Design System — Do not put accordions within accordions](https://design-system.service.gov.uk/components/accordion/) ; [Chrome for Developers — Accordion accessibility](https://developer.chrome.com/docs/modern-web-guidance/guides/ui-components/accordion).
-
-## 10.534 Ordre de présentation des informations dans le détail d'une extension — Question 539, décision technique recommandée
-
-Le détail d'une extension suit un ordre stable, prévisible et orienté vers les besoins de consultation. Après la synthèse générale toujours visible, les sections sont présentées dans l'ordre suivant lorsque les informations correspondantes existent :
-
-1. État, compatibilité et disponibilité ;
-2. Dépendances et prérequis ;
-3. Permissions et accès requis ;
-4. Paramètres et configuration ;
-5. Fonctionnalités et points d'entrée proposés ;
-6. Diagnostics, incidents et informations techniques ;
-7. Documentation, licence et informations de provenance.
-
-Les sections absentes ou sans contenu pertinent ne sont pas affichées artificiellement. Les informations bloquantes ou qui nécessitent une action restent signalées dans la synthèse générale conformément à la décision 10.532. Cet ordre constitue un ordre par défaut commun ; il ne doit pas empêcher l'accès direct à une section ni imposer une hiérarchie différente selon l'état de l'extension.
-
-Cette organisation place d'abord les informations nécessaires pour comprendre si l'extension peut fonctionner, puis celles qui expliquent son utilisation et enfin les informations de référence. Elle limite les changements de repères entre extensions.
-
-## 10.535 Présentation des dépendances directes et indirectes — Question 540, décision technique recommandée
-
-La section des dépendances distingue clairement les dépendances directes, déclarées par l'extension, des dépendances indirectes ou transitives, apportées par une autre dépendance. Lorsque la structure est disponible, elle présente les relations parent-enfant sous forme d'arbre ou de groupes hiérarchisés ; une simple liste aplatie ne doit pas faire perdre l'origine d'une dépendance.
-
-Pour chaque dépendance connue, l'interface indique au minimum son nom, sa version détectée ou requise, son caractère obligatoire ou facultatif et son état : satisfaite, absente, incompatible, désactivée ou indéterminée. La dépendance parente est indiquée pour les éléments transitifs. Les cycles, doublons et relations impossibles à résoudre sont signalés comme anomalies de métadonnées plutôt que masqués.
-
-L'application ne prétend pas connaître l'intégralité de l'arbre lorsque le manifeste ou le système d'extensions ne fournit qu'une partie des informations. La couverture connue, inconnue ou incomplète est explicitement distinguée. Une dépendance facultative absente ne doit pas être présentée comme une erreur bloquante.
-
-Cette présentation suit les recommandations OWASP de conserver à la fois un inventaire des composants et leurs relations, y compris les dépendances transitives. Références : [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html) ; [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
-
-## 10.536 Détail des règles de compatibilité — Question 541, décision technique recommandée
-
-La compatibilité d'une extension est évaluée séparément pour chaque dimension pertinente, et non réduite à un indicateur global ambigu. Lorsque les données sont disponibles, le détail indique la compatibilité avec la version de l'application et son API d'extension, les dépendances et leurs versions, les systèmes ou environnements pris en charge, ainsi que les capacités ou fonctionnalités requises.
-
-Chaque dimension présente la version ou la plage déclarée, la valeur détectée et le résultat : compatible, incompatible, avertissement, non vérifié ou information indisponible. Une incompatibilité bloquante est distinguée d'une compatibilité partielle ou d'une fonctionnalité facultative indisponible. L'application explique la cause connue et la conséquence pratique ; elle ne déduit pas une compatibilité de la seule présence d'une extension dans la liste.
-
-Les règles de comparaison de versions doivent respecter le schéma de version réellement déclaré par l'extension ou son écosystème. Si le format est inconnu ou non interprétable, le résultat est « non vérifié » plutôt qu'une validation arbitraire. Les informations essentielles ayant un impact direct restent visibles dans la synthèse générale, les détails étant développés dans cette section.
-
-Cette décision rend les écarts vérifiables et évite de confondre présence, installation et compatibilité effective. Références : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html) ; [Home Office — Managing the security of software dependencies](https://engineering.homeoffice.gov.uk/standards/managing-security-software-dependencies/).
-
-## 10.537 Présentation de l'origine, de l'intégrité et de la provenance — Question 542, décision technique recommandée
-
-Le détail d'une extension présente les informations de provenance disponibles afin que l'utilisateur puisse identifier d'où elle provient et apprécier la traçabilité de son installation. Les champs affichés comprennent, lorsqu'ils sont connus : auteur ou éditeur, fournisseur, dépôt ou source de distribution, identifiant de paquet, version, date de publication, licence déclarée, empreinte cryptographique du fichier installé et informations de signature ou d'attestation.
-
-Chaque donnée distingue une valeur vérifiée, une déclaration fournie par l'éditeur et une information inconnue. L'absence de signature, d'empreinte ou de métadonnée ne doit jamais être présentée comme une preuve d'intégrité ou de fiabilité. Si une vérification cryptographique a été effectuée, son résultat, l'objet vérifié et la méthode utilisée sont explicités ; l'application ne prétend pas avoir validé une chaîne de confiance qu'elle n'a pas effectivement contrôlée.
-
-Les métadonnées de provenance restent consultables même si l'extension est désactivée ou incompatible. Les informations inconnues sont indiquées comme telles plutôt que remplacées par des suppositions. La licence déclarée est affichée comme information de référence et non comme une validation juridique automatique.
-
-Cette décision reprend les principes d'inventaire, d'identification des composants et de traçabilité de la chaîne d'approvisionnement logicielle. Références : [OWASP — Software Component Verification Standard](https://scvs.owasp.org/scvs/using-scvs/) ; [OWASP — Component Analysis](https://community.owasp.org/Component_Analysis) ; [OWASP — Dependency Graph & SBOM Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html).
-
-## 10.538 Accès à la documentation et aux références externes — Question 543, décision technique recommandée
-
-La section de documentation regroupe les liens fournis par l'éditeur ou la source de l'extension : documentation d'utilisation, page du projet, notes de version, dépôt de code, support et informations de licence. Chaque lien possède un intitulé explicite décrivant sa destination ; les URL brutes ne constituent pas le seul moyen de comprendre leur fonction.
-
-Les liens externes sont ouverts par une action volontaire de l'utilisateur et dans le navigateur externe configuré, sans exécuter leur contenu dans l'application. L'application ne doit pas charger automatiquement une page distante dans la zone de détail ni transmettre des données locales à la destination. Les URL absentes, invalides ou inaccessibles sont signalées sans masquer les autres informations de l'extension.
-
-La source et le statut des liens sont distingués : lien déclaré par l'éditeur, lien généré par une source fiable ou lien non vérifié. Aucun lien de documentation ou de support n'est inventé par l'application. Lorsque plusieurs ressources existent, elles sont regroupées par fonction et présentées dans un ordre cohérent.
-
-Cette organisation facilite l'assistance et la vérification sans confondre documentation distante et contenu local de confiance. Référence de sécurité générale : [OWASP — Software Supply Chain Security](https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html).
-
-## 10.539 Schéma de référence des paramètres propres à chaque extension — Question 544, décision technique recommandée
-
-Chaque extension qui expose des paramètres déclare un schéma de configuration versionné, associé à son identifiant et à sa version de schéma. Ce schéma décrit les clés disponibles, leur type, leur caractère obligatoire ou facultatif, leurs valeurs par défaut documentées et les contraintes applicables. Il constitue la référence utilisée par l'interface de paramètres et par le validateur ; l'interface ne doit pas inventer de champs ni de valeurs.
-
-Le schéma est traité comme une donnée déclarative : son interprétation ne doit pas exécuter de code fourni par l'extension. L'application vérifie la cohérence du schéma avant de l'utiliser et signale les schémas absents, invalides ou non pris en charge. Une extension sans paramètres n'est pas tenue de fournir un schéma vide.
-
-Cette organisation favorise une configuration explicite, vérifiable et indépendante de la présentation. Référence : [JSON Schema — Core Specification, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.540 Validation des valeurs et contraintes de configuration — Question 545, décision technique recommandée
-
-Avant toute application d'une modification, chaque valeur est validée selon le schéma déclaré et les règles de l'extension : type, format, plage numérique, longueur, nombre d'éléments, valeurs autorisées, dépendances entre champs et contraintes de cohérence. Les contrôles sont effectués dans l'application avant transmission à l'extension ; une validation côté extension peut compléter ces contrôles, mais ne les remplace pas.
-
-Les erreurs sont associées au champ concerné, expliquées en termes compréhensibles et accompagnées de la contrainte attendue lorsque celle-ci est connue. Une valeur invalide ne doit pas être silencieusement convertie, tronquée ou remplacée par une valeur par défaut. Les champs valides restent visibles et modifiables, sans qu'une erreur isolée fasse perdre les autres saisies.
-
-Références : [JSON Schema — Validation, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-validation) ; [JSON Schema — Core, Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.541 Traitement des propriétés inconnues ou non prises en charge — Question 546, décision technique recommandée
-
-Lorsqu'une configuration contient une propriété inconnue du schéma courant, l'application ne l'interprète pas et ne la transmet pas à l'extension comme une instruction implicite. Si le format prévoit explicitement des propriétés supplémentaires compatibles, celles-ci peuvent être conservées sans être modifiées ; sinon, elles sont signalées comme non reconnues et exclues de l'application de la configuration jusqu'à résolution.
-
-Les champs marqués comme obligatoires ou critiques par le schéma ne peuvent pas être ignorés si leur compréhension est nécessaire à la sûreté ou à la cohérence de la configuration. Une différence de schéma susceptible de modifier le sens des paramètres entraîne un avertissement explicite ou un refus d'application, selon sa gravité. Les données inconnues ne sont jamais supprimées sans information préalable.
-
-Cette règle concilie évolutivité et absence d'interprétation hasardeuse. Référence : [JSON Schema — Core, additionalProperties and unevaluatedProperties](https://json-schema.org/draft/2020-12/json-schema-core).
-
-## 10.542 Application transactionnelle des modifications de paramètres — Question 547, décision technique recommandée
-
-Les paramètres sont préparés dans un état de brouillon distinct de la configuration active. L'application valide l'ensemble des valeurs, puis transmet la configuration comme une opération cohérente. La nouvelle configuration ne devient active que si toutes les étapes obligatoires réussissent ; en cas d'échec, l'état actif précédent est conservé et l'application indique l'origine de l'échec.
-
-Une extension ne doit pas laisser une configuration partiellement appliquée sans mécanisme de retour à un état cohérent. Si une opération ne peut pas être rendue atomique en raison d'une limitation technique documentée, l'application doit le signaler avant validation, préciser les effets possibles et prévoir la meilleure stratégie de restauration disponible. La fermeture ou l'annulation avant validation abandonne le brouillon sans altérer les paramètres actifs.
-
-Cette décision complète le principe déjà retenu de préparation puis validation explicite des paramètres dédiés à chaque extension.
-
-## 10.543 Stockage protégé des secrets utilisés par les extensions — Question 548, décision technique recommandée
-
-Les mots de passe, jetons d'accès, clés API, clés privées et autres secrets nécessaires à une extension ne sont pas enregistrés en clair dans son fichier de configuration, les données de projet, les exports de diagnostic ou les journaux. Lorsqu'un stockage persistant est indispensable, l'application privilégie le coffre d'identifiants sécurisé fourni par le système d'exploitation. La configuration de l'extension ne conserve qu'une référence opaque vers le secret.
-
-L'accès à un secret est limité à l'extension et à l'usage pour lesquels il a été enregistré. Les secrets ne sont révélés à l'interface que lorsque cela est strictement nécessaire, sont masqués par défaut et ne sont pas inclus dans les messages d'erreur. Si aucun coffre sécurisé approprié n'est disponible, l'application avertit l'utilisateur et ne prétend pas fournir une protection équivalente par simple encodage ou chiffrement avec une clé stockée au même endroit.
-
-Références : [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) ; [Microsoft — Handling Passwords, Windows Credential Management](https://learn.microsoft.com/en-us/windows/win32/secbp/handling-passwords).
-
-## 10.544 Interface d'exécution contrôlée entre les extensions et l'application — Question 549, décision technique recommandée
-
-Une extension accède aux fonctions de l'application par une interface hôte documentée, versionnée et limitée aux opérations explicitement exposées. Elle ne reçoit pas par défaut un accès direct aux commandes natives, aux interfaces internes privées, au système de fichiers complet, aux processus du système ou aux données globales de l'application. Les opérations disponibles sont décrites par des contrats stables et les capacités non exposées restent inaccessibles.
-
-L'architecture doit distinguer clairement les garanties réellement fournies par le mécanisme d'exécution. Une API contrôlée et des permissions Tauri réduisent la surface d'accès, mais ne constituent pas à elles seules une isolation forte du code natif malveillant. Si une extension nécessite une isolation plus robuste, celle-ci doit reposer sur une frontière de processus ou un mécanisme système adapté, et ses limites doivent être documentées. Aucune garantie de bac à sable complet ne doit être annoncée sans preuve technique.
-
-Références : [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
-
-## 10.545 Vérification des autorisations à chaque opération — Question 550, décision technique recommandée
-
-Chaque opération demandée par une extension est contrôlée par l'application au moment de son exécution. Le contrôle vérifie l'identité de l'extension, l'autorisation accordée lors de son installation, la portée de cette autorisation, le projet ou la ressource concernés et la nature de l'action demandée. Le fait qu'une extension ait été autorisée à l'installation ne dispense jamais de vérifier ses accès à chaque appel.
-
-Les refus sont appliqués par défaut lorsqu'une règle est absente, ambiguë ou impossible à évaluer. Les contrôles sont réalisés dans la couche qui détient effectivement la ressource ou exécute l'opération ; une vérification uniquement visuelle dans l'interface ou dans le code de l'extension ne suffit pas. Cette règle respecte le choix déjà validé de permissions fixes après installation : elle contrôle les autorisations existantes sans ajouter de mécanisme de modification de celles-ci.
-
-Référence : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
-
-## 10.546 Contrôle strict des chemins et des périmètres de fichiers — Question 551, décision technique recommandée
-
-Lorsqu'une extension dispose d'un accès aux fichiers, chaque opération est limitée aux emplacements explicitement autorisés pour cette extension et pour le contexte concerné. Les chemins sont normalisés et contrôlés côté application avant toute lecture, écriture, suppression ou énumération. Les tentatives de sortir du périmètre autorisé, notamment au moyen de segments de remontée, de chemins absolus inattendus ou de liens symboliques conduisant hors du périmètre, sont refusées.
-
-Les contrôles ne reposent pas uniquement sur une comparaison textuelle des chemins. Ils tiennent compte de la résolution réelle du chemin et des particularités du système d'exploitation, afin d'éviter les contournements par alias ou changement de cible. Les permissions d'accès et les scopes de chemins restent distincts : une opération autorisée sans périmètre explicite ne donne pas un accès global.
-
-Références : [Tauri — File System Security and Scopes](https://v2.tauri.app/plugin/file-system/) ; [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
-
-## 10.547 Limitation des ressources consommées par chaque extension — Question 552, décision technique recommandée
-
-Les opérations des extensions sont soumises à des limites de ressources adaptées à leur nature : durée maximale d'exécution lorsqu'elle est mesurable, taille des données entrantes et sortantes, nombre d'éléments traités, fréquence des appels et concurrence des tâches. Les limites sont appliquées par l'hôte et ne peuvent pas être neutralisées par l'extension elle-même. Les tâches longues ou les volumes importants doivent utiliser des traitements progressifs lorsque cela est possible.
-
-Lorsqu'une limite est atteinte, l'opération concernée est interrompue proprement, l'application conserve un état cohérent et présente un diagnostic indiquant la limite rencontrée. Une limite locale à une extension ne doit pas bloquer les autres extensions ni l'interface principale. Les seuils sont définis par catégorie d'opération et selon les capacités réelles de la plateforme ; ils ne sont pas présentés comme une protection absolue contre toute consommation abusive.
-
-Référence : [OWASP API Security — API4:2023 Unrestricted Resource Consumption](https://api-security.owasp.org/editions/2023/fr/0xa4-unrestricted-resource-consumption/).
-
-## 10.548 Encadrement des communications réseau des extensions — Question 553, décision technique recommandée
-
-Une extension ne peut effectuer des communications réseau que si cette capacité a été déclarée et autorisée lors de son installation, conformément au principe des autorisations fixes après installation. Les destinations et protocoles sollicités sont décrits de manière compréhensible dans la fiche de l'extension. L'accès réseau n'est pas implicitement accordé à toutes les extensions.
-
-Les requêtes sont effectuées par un service hôte contrôlé lorsque cela est possible, qui applique les destinations autorisées, les délais d'attente et les limites de taille. Les destinations locales, privées, de bouclage ou sensibles ne sont pas accessibles par défaut ; toute nécessité fonctionnelle doit être explicitement déclarée et examinée lors de l'installation. Les redirections sont revalidées afin qu'une destination autorisée ne serve pas de relais vers une destination interdite. Les secrets et données de projet ne sont jamais ajoutés automatiquement aux requêtes.
-
-Cette règle complète les autorisations propres à chaque extension sans créer de panneau centralisé supplémentaire ni permettre leur modification après installation. Références : [OWASP — SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) ; [Tauri — Capabilities](https://v2.tauri.app/security/capabilities/).
-
-## 10.549 Préparation des installations dans une zone temporaire — Question 554, décision technique recommandée
-
-Toute installation d'extension commence par la réception et la préparation du paquet dans une zone temporaire dédiée, séparée des fichiers de la version actuellement installée et des données des projets. L'extension n'est pas activée et aucun de ses composants exécutables n'est lancé pendant cette phase de préparation et de contrôle.
-
-La zone temporaire est créée avec des droits d'accès limités à l'application, porte un identifiant de transaction propre à l'opération et ne doit pas être accessible à d'autres extensions. Elle est nettoyée après réussite ou abandon, sous réserve de conserver les éléments strictement nécessaires à un diagnostic temporaire. La préparation ne modifie pas l'état de l'extension déjà installée.
-
-Cette étape sépare la réception, la vérification et l'activation, afin qu'un paquet incomplet ou suspect ne puisse pas remplacer prématurément une installation fonctionnelle.
-
-## 10.550 Vérification de la structure et du contenu du paquet d'extension — Question 555, décision technique recommandée
-
-Avant extraction ou installation, l'application vérifie la structure du paquet par rapport au format d'extension accepté : manifeste, identifiant, version, fichiers attendus et éléments requis. Les noms, types et tailles des fichiers sont contrôlés selon une liste de formats et d'emplacements autorisés. Les fichiers inattendus, les doublons ambigus, les chemins absolus, les segments de remontée et les noms incompatibles avec les systèmes pris en charge sont rejetés ou signalés avant toute écriture définitive.
-
-L'application impose des limites sur la taille totale décompressée, le nombre de fichiers, la taille individuelle et les ratios de compression afin de prévenir les archives démesurées ou conçues pour épuiser les ressources. Les liens symboliques et autres entrées spéciales ne sont pas suivis ou matérialisés par défaut. Les noms d'origine ne doivent jamais permettre d'écraser des fichiers situés hors du répertoire temporaire prévu.
-
-Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP Web Security Testing Guide — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
-
-## 10.551 Extraction sûre et confinée des fichiers d'extension — Question 556, décision technique recommandée
-
-L'extraction d'un paquet est réalisée uniquement dans le répertoire temporaire attribué à l'opération. Chaque chemin cible est résolu et vérifié avant écriture afin de garantir qu'il reste dans ce répertoire, y compris après normalisation et prise en compte des particularités du système de fichiers. L'application refuse les tentatives de traversal, les liens symboliques sortants, les points de montage inattendus et les collisions de noms qui pourraient conduire à écraser un fichier existant.
-
-Les fichiers sont créés avec des permissions minimales. Les attributs d'exécution fournis par l'archive ne sont pas repris automatiquement ; les fichiers ne reçoivent un statut exécutable que si le format et le modèle d'extension l'exigent explicitement et après les contrôles prévus. Toute erreur d'extraction interrompt l'opération sans laisser un paquet partiellement installé.
-
-Cette mesure est distincte de la validation générale des archives de sauvegarde : elle protège spécifiquement le parcours d'installation d'une extension et son répertoire de destination.
-
-Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [OWASP — Archive Symlink Attacks](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic/09-Upload_of_Malicious_Files).
-
-## 10.552 Vérification cryptographique des fichiers reçus — Question 557, décision technique recommandée
-
-Lorsque la source fournit des métadonnées d'intégrité ou une signature, l'application vérifie les empreintes cryptographiques des fichiers reçus par rapport aux valeurs attendues et vérifie la signature au moyen d'une clé ou d'une identité de confiance connue. Les données utilisées pour vérifier un paquet doivent être obtenues et validées indépendamment du fichier lui-même ; une empreinte simplement inscrite dans le même paquet non authentifié ne prouve pas sa provenance.
-
-Une empreinte incorrecte, une signature invalide, une métadonnée expirée ou une incohérence de taille entraîne le refus de l'installation. Si aucune signature ou chaîne de confiance vérifiable n'est fournie, l'application indique explicitement que l'authenticité n'a pas pu être établie ; elle ne transforme pas une simple empreinte calculée localement en preuve de confiance. Le résultat et la méthode de contrôle sont présentés à l'utilisateur avant l'activation.
-
-Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [CISA — Securing the Software Supply Chain: Recommended Practices for Suppliers](https://www.cisa.gov/sites/default/files/2024-08/SECURING_THE_SOFTWARE_SUPPLY_CHAIN_SUPPLIERS_508.pdf).
-
-## 10.553 Absence d'exécution avant validation et activation explicite — Question 558, décision technique recommandée
-
-Aucun script d'installation, hook, binaire ou code fourni par l'extension n'est exécuté pendant la réception, l'analyse du paquet, la validation de son manifeste ou la vérification de son intégrité. Les éventuelles opérations d'initialisation sont réalisées uniquement dans le cadre du modèle d'exécution contrôlé de l'application, après la validation de l'installation et l'autorisation explicite de l'utilisateur.
-
-Le parcours présente les résultats des contrôles préalables, les autorisations demandées, les dépendances, les incompatibilités et les éventuelles limites de confiance avant de rendre l'extension active. Si une opération d'initialisation est indispensable et échoue, l'extension reste inactive et l'installation est déclarée incomplète ou en échec ; les composants préparés ne sont pas exposés aux projets.
-
-Cette décision complète le contrôle préalable prévu pour les extensions de sources variées et le principe selon lequel aucune autorisation n'est accordée silencieusement. Références : [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) ; [TUF — Security](https://theupdateframework.io/docs/security/).
-
-## 10.554 Authentification des métadonnées de mise à jour — Question 559, décision technique recommandée
-
-Lorsqu'une source d'extension publie des métadonnées de mise à jour signées, l'application vérifie leur signature à partir d'une racine de confiance préalablement établie et de règles de délégation explicites. Les métadonnées doivent relier sans ambiguïté l'identifiant de l'extension, la version proposée, la source, les dépendances et l'artefact téléchargeable. Une métadonnée non signée, signée par une clé inconnue ou dont la chaîne de confiance ne peut être validée n'est pas considérée comme authentique.
-
-La vérification doit porter sur les métadonnées avant que celles-ci soient utilisées pour décider quel paquet télécharger ou installer. Les informations de provenance présentées dans la fiche d'extension distinguent toujours les données déclarées par l'éditeur des données cryptographiquement vérifiées. Ce contrôle ne transforme pas une source choisie librement par l'utilisateur en source automatiquement fiable.
-
-Références : [The Update Framework — Specification](https://theupdateframework.github.io/specification/latest/) ; [TUF — Roles and Metadata](https://theupdateframework.io/docs/metadata/).
-
-## 10.555 Protection contre les retours arrière et les métadonnées périmées — Question 560, décision technique recommandée
-
-Le mécanisme de mise à jour conserve les informations de confiance nécessaires pour refuser une métadonnée ou une version déjà dépassée, une version inférieure à la dernière version reconnue, une combinaison incohérente de métadonnées ou des métadonnées expirées. Une version plus ancienne ne peut pas être présentée comme une mise à jour ordinaire. Les exceptions de restauration restent exclusivement accessibles par le parcours de restauration manuelle déjà prévu et ne doivent pas être confondues avec le mécanisme normal de mise à jour.
-
-Les contrôles de fraîcheur et de monotonie sont effectués avant le téléchargement ou l'installation de l'artefact. En cas de détection d'un risque de rollback, de freeze ou de mélange de métadonnées, l'opération est interrompue et le motif est présenté clairement. L'échec d'une vérification ne doit pas rendre le mécanisme de mise à jour définitivement inutilisable : une nouvelle vérification ultérieure doit rester possible.
-
-Références : [TUF — Specification, client workflow](https://theupdateframework.github.io/specification/latest/) ; [TUF — Security](https://theupdateframework.io/docs/security/).
-
-## 10.556 Vérification des artefacts téléchargés avant leur installation — Question 561, décision technique recommandée
-
-Après téléchargement et avant toute extraction ou installation, l'application compare la taille et les empreintes cryptographiques de l'artefact avec les valeurs contenues dans les métadonnées authentifiées. Le fichier n'est transmis à la phase d'installation que si toutes les vérifications obligatoires réussissent. Le contrôle est effectué sur les octets effectivement reçus et non sur le seul nom du fichier ou son type déclaré.
-
-Un écart de taille, une empreinte incorrecte, un téléchargement tronqué ou un fichier différent de celui annoncé entraîne le rejet de l'artefact. L'application conserve la version installée et ne tente pas de réparer ou de compléter silencieusement un fichier non conforme. Le diagnostic indique le contrôle qui a échoué sans exposer d'informations sensibles.
-
-Référence : [TUF — Fetch Target and Verify Target Files](https://theupdateframework.github.io/specification/latest/).
-
-## 10.557 Traitement indépendant et transactionnel des mises à jour groupées — Question 562, décision technique recommandée
-
-Lorsqu'une mise à jour groupée concerne plusieurs extensions sélectionnées, chaque extension fait l'objet d'une transaction indépendante : vérification, préparation, sauvegarde de la version installée, remplacement, validation puis résultat. Une erreur sur une extension n'autorise pas à laisser cette extension dans un état partiellement remplacé et ne doit pas corrompre les autres extensions du lot.
-
-Le bilan de l'opération distingue les extensions mises à jour, celles qui ont échoué, celles qui ont été ignorées et celles qui ont été restaurées. Les échecs sont traités selon la restauration automatique de la version précédente déjà définie. L'application ne prétend pas que l'ensemble du lot a réussi si une ou plusieurs transactions individuelles ont échoué ; les résultats partiels sont explicitement présentés.
-
-Cette organisation conserve la possibilité de mise à jour groupée validée par l'utilisateur tout en limitant le périmètre d'une défaillance à l'extension concernée.
-
-## 10.558 Refus des mises à jour qui élargissent silencieusement les autorisations — Question 563, décision technique recommandée
-
-Une mise à jour ne peut pas ajouter, élargir ou modifier implicitement les autorisations fixes d'une extension déjà installée. Avant l'installation, l'application compare les autorisations requises par la nouvelle version avec celles qui ont été accordées à l'installation initiale. Si la nouvelle version exige une capacité supplémentaire ou une portée plus large, cette mise à jour est bloquée et la version actuellement installée reste active.
-
-La fiche indique les autorisations supplémentaires demandées et explique que les permissions ne sont pas modifiables après installation, conformément à la décision déjà validée. La mise à jour n'est pas forcée et aucune nouvelle permission n'est accordée en arrière-plan. Si l'utilisateur souhaite adopter cette version, il devra suivre un parcours de désinstallation puis de nouvelle installation, avec présentation et confirmation des autorisations requises, en tenant compte des choix de conservation des données déjà définis.
-
-Cette règle empêche qu'une mise à jour signée ou provenant d'une source connue profite de la confiance accordée à la version précédente pour obtenir silencieusement des accès supplémentaires. Références : [OWASP — Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) ; [Tauri — Permissions](https://v2.tauri.app/security/permissions/).
-
-## 10.559 Interprétation normalisée des contraintes de versions des dépendances — Question 564, décision technique recommandée
-
-Les contraintes de versions déclarées par les extensions sont interprétées selon le schéma de version explicitement indiqué par leur manifeste ou leur écosystème. Lorsqu'une dépendance utilise Semantic Versioning, l'application applique les règles SemVer correspondantes, y compris l'ordre numérique des composantes majeure, mineure et corrective, le traitement des préversions et l'absence d'effet des métadonnées de construction sur la priorité.
-
-L'application ne déduit pas une compatibilité à partir d'une comparaison textuelle ou lexicographique des numéros. Si le format ou l'opérateur de contrainte n'est pas reconnu, la dépendance est considérée comme non résolue et l'incertitude est présentée à l'utilisateur ; aucune version arbitraire n'est sélectionnée. Les plages trop larges, ambiguës ou non interprétables sont signalées avant l'installation ou l'activation.
-
-Références : [Semantic Versioning 2.0.0 — Spécification française](https://semver.org/lang/fr/spec/v2.0.0.html) ; [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.560 Résolution déterministe des versions de dépendances — Question 565, décision technique recommandée
-
-Lorsque plusieurs versions d'une même dépendance sont disponibles, le résolveur recherche une combinaison qui satisfait simultanément toutes les contraintes obligatoires des extensions concernées. Il privilégie la réutilisation d'une version commune lorsqu'elle respecte toutes les plages déclarées, plutôt que de multiplier inutilement les variantes d'un même composant. Il ne choisit pas une version uniquement parce qu'elle est la plus récente si celle-ci ne respecte pas les contraintes.
-
-À contraintes et sources identiques, le résultat doit être reproductible : les mêmes entrées et le même état des dépôts doivent produire le même plan de résolution. Le plan expose les versions retenues, les contraintes prises en compte, les dépendances partagées et les incompatibilités qui empêchent une solution. Si aucune combinaison valide n'existe, l'application présente le conflit et ne lance pas une installation partielle qui laisserait les extensions dans un état incohérent.
-
-Référence : [The Cargo Book — Dependency Resolution, constraints and heuristics](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.561 Ordonnancement des opérations selon le graphe de dépendances — Question 566, décision technique recommandée
-
-Les opérations d'installation et d'activation tiennent compte du graphe complet des dépendances obligatoires. Les dépendances sont préparées et rendues disponibles avant les extensions qui en dépendent ; l'activation suit un ordre topologique compatible avec les relations déclarées. Lorsque plusieurs ordres sont valides, l'application utilise un ordre stable afin de rendre le résultat prévisible.
-
-Le plan présente les étapes et leurs relations, notamment les dépendances partagées. Une dépendance déjà présente et compatible n'est pas réinstallée sans nécessité. Si une étape échoue, les extensions qui en dépendent ne sont pas activées ; les autres opérations indépendantes peuvent être traitées selon leurs transactions propres et leurs résultats sont présentés séparément.
-
-Cette organisation complète la détection et l'installation guidée des dépendances déjà prévues, en précisant l'ordre nécessaire à une exécution cohérente.
-
-Référence : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html).
-
-## 10.562 Détection des cycles dans le graphe de dépendances — Question 567, décision technique recommandée
-
-Avant l'installation ou l'activation, l'application recherche les cycles dans les dépendances obligatoires. Un cycle est identifié par le chemin complet des extensions qui se référencent mutuellement, et non simplement par un message générique d'erreur. Les cycles qui empêchent de déterminer un ordre valide bloquent l'activation du groupe concerné.
-
-Le diagnostic identifie les manifestes et les relations à l'origine du cycle, ainsi que les extensions qui en subissent les conséquences. L'application ne tente pas de résoudre arbitrairement le cycle en ignorant une dépendance, en supprimant une relation ou en désactivant silencieusement une extension. Les composants indépendants du groupe cyclique restent consultables et utilisables si leur fonctionnement n'en dépend pas.
-
-Cette décision s'appuie sur la nécessité de parcourir un graphe de dépendances sans boucle et de limiter les résolutions ambiguës. Référence : [The Update Framework — Specification, delegated metadata cycle handling](https://theupdateframework.github.io/specification/latest/).
-
-## 10.563 Traitement distinct des dépendances facultatives — Question 568, décision technique recommandée
-
-Les dépendances explicitement déclarées comme facultatives sont distinguées des prérequis obligatoires dans les fiches, les diagnostics et les plans d'installation. Leur absence ne bloque pas l'installation ou l'activation générale de l'extension lorsque le manifeste indique que les fonctionnalités principales restent utilisables sans elles.
-
-L'application précise quelles fonctionnalités sont indisponibles ou dégradées en raison de la dépendance facultative manquante. Elle ne tente pas de l'installer automatiquement sans validation de l'utilisateur et ne désactive pas l'extension entière pour ce seul motif. Si l'extension ne permet pas d'identifier précisément les fonctions concernées, l'application indique cette limite plutôt que de supposer que toutes les fonctions restent opérationnelles.
-
-Une dépendance facultative qui devient incompatible ou indisponible ne doit pas être traitée comme une dépendance obligatoire ; cette distinction n'altère pas la règle déjà validée de désactivation automatique lorsqu'une dépendance obligatoire devient indisponible.
-
-Références : [The Cargo Book — Dependency Resolution](https://doc.rust-lang.org/cargo/reference/resolver.html) ; [Semantic Versioning 2.0.0](https://semver.org/lang/fr/spec/v2.0.0.html).
-
-
-
-## 10.564 Normalisation des coordonnées et des transformations du document graphique — Question 569, décision technique recommandée
-
-Le moteur de rendu doit interpréter les coordonnées, unités et transformations selon un modèle géométrique commun et explicite, indépendant de la taille d'affichage et de la destination finale.
-
-- Chaque document de carte possède un espace de coordonnées de référence défini par ses dimensions logiques et son origine.
-- Les transformations des éléments et groupes sont composées selon une convention unique, documentée et testée : translation, rotation, mise à l'échelle et transformations combinées.
-- Les unités physiques et relatives sont converties de manière contrôlée à partir de la taille de référence, du viewport et de la résolution de sortie ; aucune conversion ne doit dépendre implicitement du zoom courant de l'éditeur.
-- Les dimensions physiques destinées à l'impression sont conservées séparément des pixels d'aperçu et des pixels de sortie.
-- Les transformations imbriquées doivent être résolues dans l'ordre hiérarchique attendu, sans perte de précision évitable lors des conversions successives.
-- Le moteur doit conserver les coordonnées d'origine des objets dans le modèle éditable ; les valeurs transformées utilisées pour le rendu ne doivent pas remplacer silencieusement les données sources.
-- Les changements de taille du viewport ou de résolution de sortie ne doivent pas modifier la géométrie logique du document.
-- Les cas de valeurs invalides, non finies, hors limites ou de matrices singulières doivent être détectés et signalés ; ils ne doivent pas produire un rendu arbitraire.
-
-Cette décision s'appuie sur le modèle SVG de viewports, viewBox, systèmes de coordonnées imbriqués et transformations. Référence : [W3C — SVG 2, Coordinate Systems, Transformations and Units](https://www.w3.org/TR/2026/CR-SVG2-20261006/coords.html).
-
-## 10.565 Ordre de peinture déterministe et hiérarchie des groupes — Question 570, décision technique recommandée
-
-Le moteur doit appliquer un ordre de rendu déterministe à tous les objets, calques, groupes et sous-groupes.
-
-- L'ordre de peinture découle de la hiérarchie du document et de l'ordre explicite des éléments au sein de chaque parent.
-- Le déplacement d'un élément dans la pile de calques doit modifier son ordre de peinture sans modifier ses coordonnées, ses propriétés ou ses relations de parenté, sauf action explicite de regroupement ou de déplacement.
-- Les groupes doivent être rendus comme des unités hiérarchiques conformément à leur structure ; les éléments enfants ne doivent pas être réordonnés arbitrairement en dehors de leur groupe.
-- Les identifiants internes des objets servent à maintenir une identité stable et ne doivent pas être utilisés comme substitut à l'ordre visuel.
-- À structure et propriétés identiques, l'aperçu, l'export et l'impression doivent utiliser le même ordre de peinture, même si leurs profils de sortie diffèrent.
-- Les opérations parallèles ou différées du moteur ne doivent pas modifier le résultat final de composition ; le résultat doit être équivalent à l'ordre logique défini par le document.
-- Toute opération qui change l'ordre doit être enregistrée dans l'historique Annuler/Rétablir et rester réversible.
-
-Référence : [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
-
-## 10.566 Sémantique commune de composition, fusion et isolation — Question 571, décision technique recommandée
-
-Les règles de transparence, d'opacité, de fusion et d'isolation des groupes doivent reposer sur une sémantique de composition cohérente entre les différents profils de rendu.
-
-- Le moteur distingue l'opacité individuelle d'un objet de l'opacité appliquée à un groupe complet ; ces deux opérations ne doivent pas être confondues.
-- Les modes de fusion sont évalués par rapport à l'arrière-plan défini par la hiérarchie de composition et les règles d'isolation du groupe.
-- Les masques, filtres, découpes et opérations de fusion suivent un ordre de traitement documenté et stable, conforme au modèle de composition pris en charge.
-- L'isolation d'un groupe est une propriété explicite du modèle graphique lorsque le comportement attendu ne peut pas être déduit sans ambiguïté.
-- Les profils d'aperçu, d'export et d'impression doivent partager les mêmes règles de composition pour les opérations qu'ils prennent tous en charge.
-- Lorsqu'un moteur secondaire ne reproduit pas exactement une opération, l'écart doit être détecté et signalé avant la génération ; il ne doit pas substituer silencieusement un mode de fusion différent.
-- Les tests de conformité doivent inclure des groupes imbriqués, des opacités cumulées, des masques, des modes de fusion et des fonds transparents.
-
-Références : [W3C — Compositing and Blending Level 1](https://www.w3.org/TR/compositing-1/) ; [W3C — SVG 2, Rendering Model](https://www.w3.org/TR/SVG/render.html).
-
-## 10.567 Importation et traitement sécurisé des ressources SVG — Question 572, décision technique recommandée
-
-Les fichiers SVG importés ou reçus depuis des sources externes sont traités comme des ressources graphiques non fiables. Leur rendu ne doit pas leur accorder les capacités d'un document interactif ou d'un programme.
-
-- L'importation et la prévisualisation utilisent un mode statique sécurisé : scripts, gestionnaires d'événements, interactivité et animations sont désactivés.
-- Les références vers des ressources externes ne sont pas résolues implicitement. Les images, polices ou autres dépendances nécessaires doivent être importées séparément, contrôlées puis liées par des références locales autorisées.
-- Les éléments ou fonctionnalités non autorisés, notamment les contenus embarqués actifs et les références réseau ou fichier non approuvées, sont rejetés ou neutralisés avant le rendu.
-- Le traitement ne doit pas permettre à un SVG d'accéder au système de fichiers, au réseau, aux données de l'application ou au contexte d'une autre fenêtre.
-- La taille du document, la profondeur de l'arbre, le nombre d'éléments, les dimensions des filtres et la consommation mémoire doivent être bornés pour éviter les ressources pathologiques.
-- L'application conserve le fichier original importé lorsque cela est demandé, mais distingue clairement cet original de la représentation assainie utilisée pour l'aperçu et l'édition.
-- Les éléments supprimés, neutralisés ou non pris en charge sont consignés dans le rapport d'importation ; l'application ne prétend pas que la ressource a été conservée à l'identique.
-- Les ressources locales nécessaires sont vérifiées et intégrées au périmètre du projet selon les règles de gestion des ressources existantes.
-
-Références : [W3C — SVG 2, Conformance Criteria and Processing Modes](https://www.w3.org/TR/SVG/latest/conform.html) ; [W3C — SVG Integration](https://www.w3.org/TR/svg-integration/).
-
-## 10.568 Matrice de capacités et traitement des incompatibilités entre moteurs de rendu — Question 573, décision technique recommandée
-
-L'application maintient une matrice de capacités vérifiables pour chaque moteur et profil de rendu afin de distinguer les opérations prises en charge, partiellement prises en charge et indisponibles.
-
-- La matrice couvre au minimum les éléments vectoriels, textes et polices, images, masques, filtres, transparences, modes de fusion, découpes, ressources liées et fonctions spécifiques utilisées par les templates.
-- Chaque fonctionnalité est associée à un statut explicite : prise en charge complète, prise en charge avec restriction, conversion ou approximation, ou non prise en charge.
-- La matrice est déterminée à partir des capacités réellement disponibles et des tests de conformité exécutés sur les versions des moteurs utilisées ; une simple déclaration théorique ne suffit pas.
-- Avant un export ou une impression, l'application compare les fonctionnalités réellement utilisées par le document à celles du moteur et du format de sortie sélectionnés.
-- Toute perte, approximation ou substitution potentielle est signalée avec l'élément concerné, la fonctionnalité affectée et la conséquence attendue.
-- Les opérations bloquantes empêchent la génération tant qu'elles ne sont pas corrigées ou explicitement écartées par une action utilisateur prévue à cet effet.
-- Les avertissements non bloquants restent visibles dans le bilan de génération et sont associés au résultat produit.
-- Une mise à jour du moteur ou du format ne doit pas être considérée comme équivalente à la version précédente sans vérification de la matrice et des tests concernés.
-
-Cette décision complète les règles de cohérence aperçu/export et de signalement des limitations déjà définies à la section 10.11. Elle évite de promettre une compatibilité universelle entre moteurs et formats.
-
-## 10.569 Identification et conservation des profils colorimétriques des ressources — Question 574, décision technique recommandée
-
-Le moteur doit identifier et conserver les informations colorimétriques associées aux images et autres ressources qui possèdent un profil incorporé ou une déclaration d'espace colorimétrique.
-
-- À l'importation, détecter les profils ICC incorporés et les informations de couleur prises en charge par le format source.
-- Conserver la ressource originale et ses métadonnées colorimétriques ; ne pas remplacer son profil source par le profil de travail sans conversion réelle.
-- Distinguer explicitement trois situations : profil incorporé reconnu, espace colorimétrique standard identifié sans profil incorporé, et espace colorimétrique inconnu ou non interprétable.
-- Lorsqu'aucun profil n'est fourni, appliquer uniquement une règle d'interprétation documentée et configurable ; afficher le profil supposé et permettre à l'utilisateur de le modifier.
-- Ne jamais attribuer silencieusement un profil arbitraire à une ressource dont l'espace colorimétrique est inconnu.
-- Associer les informations de profil aux ressources dans la bibliothèque et les préserver dans les projets, duplications, sauvegardes et travaux d'export.
-- Signaler les profils invalides, corrompus, non pris en charge ou impossibles à convertir ; ne pas présenter la ressource comme gérée colorimétriquement lorsque ce n'est pas le cas.
-- Distinguer l'assignation d'un profil — qui interprète différemment les valeurs existantes — de la conversion vers un autre profil — qui modifie les valeurs pour préserver autant que possible l'apparence.
-
-Références : [International Color Consortium — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4, color conversion](https://www.w3.org/TR/css-color/).
-
-## 10.570 Espace colorimétrique de travail et conversions explicites — Question 575, décision technique recommandée
-
-L'application doit définir un espace colorimétrique de travail explicite pour les opérations qui combinent ou modifient les couleurs.
-
-- Définir un espace de travail par défaut au niveau de l'application, avec possibilité de le remplacer au niveau du projet lorsque cela est pertinent.
-- Enregistrer l'espace de travail réellement utilisé avec le projet et les travaux de génération afin de rendre les opérations reproductibles.
-- Convertir les ressources depuis leur espace source vers l'espace de travail par une gestion colorimétrique fondée sur les profils disponibles.
-- Ne pas confondre conversion et assignation : une conversion modifie les valeurs pour préserver l'apparence visée, tandis qu'une assignation modifie l'interprétation des valeurs existantes.
-- Toute modification d'espace de travail sur un projet existant doit présenter les conséquences attendues et ne pas réinterpréter ou convertir massivement les ressources sans validation explicite.
-- Les couleurs définies directement dans les templates, composants et objets doivent être interprétées dans l'espace explicitement associé à leur définition ou selon une règle de compatibilité documentée.
-- Les opérations de fusion, dégradé, filtrage et composition doivent employer un espace de calcul déterminé et cohérent ; le moteur ne doit pas mélanger implicitement des valeurs issues d'espaces différents.
-- Si un profil source ou destination manque, l'application signale la limite et applique uniquement une règle de repli préalablement définie, traçable et modifiable.
-
-Références : [ICC — ICC Specifications](https://www.color.org/icc_specs2/) ; [W3C — CSS Color 4](https://www.w3.org/TR/css-color/).
-
-## 10.571 Choix et traçabilité des intentions de rendu — Question 576, décision technique recommandée
-
-Lorsqu'une conversion colorimétrique implique une différence de gamut entre la source et la destination, l'application doit exposer et tracer l'intention de rendu utilisée.
-
-- Prendre en charge les intentions de rendu réellement disponibles dans le moteur de gestion colorimétrique : perceptuelle, colorimétrie relative, colorimétrie absolue et saturation lorsque les profils et la bibliothèque les prennent en charge.
-- Permettre de choisir l'intention au niveau du profil d'export ou d'impression et, si nécessaire, de la modifier pour une opération ponctuelle sans altérer le profil enregistré.
-- Fournir des valeurs par défaut adaptées aux profils et usages, sans présenter une intention comme universellement meilleure pour toutes les images et tous les documents.
-- Distinguer les traitements destinés aux images photographiques, aux aplats et graphiques, ainsi qu'à l'épreuvage, lorsque le moteur permet des réglages différenciés.
-- Enregistrer l'intention effectivement appliquée avec le travail et le résultat généré.
-- Si l'intention demandée n'est pas prise en charge, ne pas la remplacer silencieusement ; signaler l'indisponibilité et demander une décision ou appliquer uniquement une solution de repli explicitement configurée.
-- Les contrôles qualité doivent pouvoir identifier les conversions réalisées sans intention connue ou avec une option de repli.
-
-Référence : [ICC — Frequently Asked Questions, rendering intents](https://www.color.org/faqs/).
-
-## 10.572 Épreuvage écran et avertissement des couleurs hors gamut — Question 577, décision technique recommandée
-
-L'application doit proposer un épreuvage écran lorsque les profils source, destination et les capacités du moteur le permettent.
-
-- Permettre de simuler l'apparence d'un profil de sortie identifié, notamment un procédé d'impression et un support papier.
-- Distinguer l'affichage normal de l'aperçu d'épreuvage ; l'utilisateur doit pouvoir activer, désactiver et comparer les deux modes.
-- Proposer un avertissement visuel des couleurs susceptibles de se trouver hors du gamut de sortie, lorsque cette analyse est prise en charge.
-- Permettre d'identifier les zones concernées et de comprendre que leur reproduction peut différer de l'affichage écran.
-- Respecter l'intention de rendu et les paramètres de conversion du profil sélectionné.
-- Indiquer clairement le profil de sortie simulé, le profil d'affichage utilisé lorsque connu et les limites de la simulation.
-- Ne pas présenter l'épreuvage écran comme une garantie de correspondance physique : le résultat réel dépend également de l'écran, de son étalonnage, de l'imprimante, du support, des encres et des conditions d'observation.
-- L'épreuvage et l'affichage des avertissements ne doivent pas modifier les couleurs sources ni le document.
-
-Références : [ICC — Frequently Asked Questions](https://www.color.org/faqs/) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
-
-## 10.573 Vérification des profils ICC et des intentions de sortie dans les fichiers PDF — Question 578, décision technique recommandée
-
-La génération PDF destinée à l'impression doit vérifier la cohérence entre les profils colorimétriques employés et les conditions de sortie annoncées dans le document.
-
-- Pour les profils PDF/X, vérifier la présence et la validité de l'Output Intent exigé par le niveau de conformité visé.
-- Vérifier que le profil de sortie déclaré correspond au profil réellement sélectionné pour la génération et que les conversions nécessaires ont été effectuées conformément au flux retenu.
-- Distinguer la présence d'un Output Intent de la conversion effective des objets colorimétriques ; la simple déclaration d'une destination ne prouve pas que les couleurs ont été converties.
-- Vérifier les espaces colorimétriques des objets, les profils incorporés, les couleurs spéciales et les éventuelles ressources externes selon les exigences du format ciblé.
-- Signaler les incohérences, profils absents ou invalides, conversions non effectuées et limitations de compatibilité avant la génération.
-- Ne déclarer une conformité PDF/X que si l'ensemble des exigences applicables a été contrôlé et satisfait par le fichier final.
-- Si le fichier ne satisfait pas les contrôles, produire un PDF ordinaire uniquement si l'utilisateur l'a choisi et si les limites sont présentées ; ne jamais apposer une déclaration de conformité non vérifiée.
-- Conserver dans le bilan de génération le profil de sortie, l'intention de rendu, les conversions réalisées et les contrôles effectivement exécutés.
-
-Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [PDF Association — Technical side and requirements of PDF/X](https://pdfa.org/technical-side-and-requirements-of-pdfx) ; [Adobe — Output intents in PDFs](https://helpx.adobe.com/acrobat/using/output-intents-pdfs-acrobat-pro.html).
-
-## 10.574 Calcul de la résolution effective des images placées — Question 579, décision technique recommandée
-
-La qualité d'une image destinée à l'impression doit être évaluée à partir de sa résolution effective dans sa taille et sa position finales, et non uniquement à partir des métadonnées de résolution inscrites dans le fichier source.
-
-- Calculer la résolution effective à partir du nombre de pixels réellement utilisés après recadrage et des dimensions physiques de l'image dans la composition finale.
-- Tenir compte des agrandissements, réductions, rotations, recadrages et transformations non uniformes lorsqu'ils modifient la densité de pixels selon les axes.
-- Distinguer les dimensions en pixels de la résolution physique exprimée en pixels par pouce ou par centimètre.
-- Pour les images placées dans des groupes ou transformées par des composants, calculer la résolution au niveau de leur occurrence réelle dans la carte ou la feuille imprimée.
-- Afficher les valeurs horizontale et verticale lorsque les transformations conduisent à des résolutions différentes.
-- Ne pas déduire la qualité d'impression d'une simple valeur DPI déclarée dans les métadonnées si les dimensions en pixels et la taille physique montrent une autre résolution effective.
-- Conserver les informations sources et le calcul effectué dans les diagnostics de préflight afin que l'utilisateur puisse identifier les images concernées.
-
-Références : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
-
-## 10.575 Seuils de résolution adaptés à la destination et au contenu — Question 580, décision technique recommandée
-
-Les contrôles de résolution doivent utiliser des seuils adaptés au procédé de sortie, au format de carte et à la nature du contenu.
-
-- Définir des seuils configurables dans les profils d'impression et d'export, sans imposer une valeur universelle à tous les usages.
-- Distinguer les images photographiques, les illustrations détaillées, les textures, les éléments de type dessin au trait et les contenus monochromes lorsque les règles de contrôle le permettent.
-- Prendre en compte la résolution attendue du périphérique, le support, le procédé d'impression et les recommandations documentées du fournisseur lorsqu'elles sont disponibles.
-- Détecter séparément une résolution effective trop faible et une résolution très supérieure à ce qui est utile pour la destination.
-- Présenter la résolution mesurée, le seuil appliqué, la destination concernée et l'élément graphique correspondant.
-- Permettre à l'utilisateur de modifier les seuils dans un profil ou de conserver ponctuellement un élément averti, sans falsifier le résultat du contrôle.
-- Une absence de seuil fiable ou de recommandation du périphérique doit être signalée ; l'application ne doit pas présenter une estimation générique comme une norme de production.
-- Les seuils de résolution sont distincts des exigences de conformité PDF/X, qui ne fixent pas à eux seuls une résolution minimale universelle des images.
-
-Références : [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
-
-## 10.576 Rééchantillonnage contrôlé et choix des filtres — Question 581, décision technique recommandée
-
-Le moteur doit distinguer le redimensionnement géométrique d'une image du rééchantillonnage qui modifie réellement ses pixels.
-
-- Conserver par défaut les pixels sources lorsqu'un simple changement de taille physique suffit et qu'aucun rééchantillonnage n'est nécessaire.
-- Lorsqu'un rééchantillonnage est demandé ou requis pour la sortie, choisir un algorithme adapté à la réduction ou à l'agrandissement et au type de contenu.
-- Proposer des méthodes de rééchantillonnage prises en charge par le moteur, avec des préréglages qualité/performance clairement identifiés ; ne pas afficher une méthode qui n'est pas réellement utilisée.
-- Effectuer les opérations de réduction avec une méthode appropriée à l'agrégation des échantillons, en évitant les pertes répétées dues à des redimensionnements successifs.
-- Pour les images intégrées à un rendu SVG, respecter les indications de qualité de rééchantillonnage prises en charge par le moteur et privilégier les traitements de haute qualité pour les profils d'impression.
-- Effectuer le rééchantillonnage dans un espace colorimétrique adapté et cohérent avec la gestion colorimétrique du projet.
-- Préserver l'original et enregistrer les paramètres de transformation ; une version rééchantillonnée ne doit pas remplacer la ressource source sans action explicite.
-- Signaler les opérations qui peuvent réduire les détails, introduire des artefacts ou modifier la netteté.
-
-Références : [W3C — SVG 2, image-rendering](https://www.w3.org/TR/2026/CR-SVG2-20261006/painting.html) ; [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
-
-## 10.577 Agrandissement des images et distinction entre pixels originaux et interpolés — Question 582, décision technique recommandée
-
-L'agrandissement d'une image ne doit jamais être présenté comme une récupération certaine de détails absents de la source.
-
-- Autoriser l'agrandissement lorsque la composition ou la sortie l'exige, mais calculer et afficher la résolution effective résultante.
-- Signaler lorsque le résultat dépend de pixels interpolés ou générés par rééchantillonnage plutôt que de détails présents dans l'original.
-- Ne pas qualifier une image agrandie de véritable haute résolution au seul motif que ses dimensions en pixels ont augmenté.
-- Préserver la ressource originale et permettre de comparer le résultat agrandi avec la source.
-- Si une méthode d'amélioration ou de reconstruction assistée est utilisée, l'identifier comme telle et distinguer ses pixels reconstruits des données sources ; ne pas garantir que les détails générés correspondent à la réalité de l'image d'origine.
-- Proposer un avertissement lorsque la résolution effective descend sous le seuil du profil de sortie.
-- Toute substitution par une autre illustration ou une autre version de meilleure résolution nécessite une validation explicite de l'utilisateur.
-- Les avertissements doivent rester associés à l'élément et au résultat de préflight, même si l'utilisateur décide de poursuivre.
-
-Référence : [Adobe — Image size, resolution, and resampling](https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html).
-
-## 10.578 Rendu haute résolution, traitement par tuiles et maîtrise des ressources — Question 583, décision technique recommandée
-
-La génération de rendus haute résolution et de lots importants doit maîtriser la mémoire et les ressources sans altérer la géométrie ni introduire de défauts visibles.
-
-- Estimer avant génération la taille des surfaces intermédiaires, le nombre de pixels, les ressources graphiques et la mémoire nécessaires lorsque ces informations peuvent être calculées.
-- Adapter le traitement à la mémoire disponible et aux limites documentées de la plateforme ; ne pas lancer une allocation manifestement excessive sans stratégie de réduction ou de traitement segmenté.
-- Permettre le rendu par tuiles ou régions lorsque le moteur le nécessite, en conservant une zone de recouvrement suffisante pour les filtres, ombres, flous et effets débordant des limites d'une tuile.
-- Éviter les coutures, discontinuités, variations de couleur et décalages aux frontières des tuiles ; les résultats doivent correspondre au rendu d'une surface continue dans les limites de précision du moteur.
-- Libérer les surfaces et ressources temporaires dès qu'elles ne sont plus nécessaires et réutiliser les ressources compatibles sans conserver indéfiniment des données de rendu obsolètes.
-- Pour les traitements par lots, limiter la concurrence selon les ressources disponibles et permettre de poursuivre les éléments indépendants en cas d'échec individuel.
-- En cas de mémoire insuffisante ou de limite atteinte, interrompre proprement l'élément concerné, conserver les fichiers déjà validés et produire un diagnostic précis.
-- Les optimisations de mémoire et de parallélisme ne doivent pas changer le résultat logique ou la résolution demandée.
-
-Références : [W3C — SVG 2, Conformance Criteria](https://www.w3.org/TR/SVG/latest/conform.html) ; [PDF Association — PDF/VT Application Notes](https://pdfa.org/wp-content/uploads/2016/01/PDFVT-Application-notes-FINAL-v1-151104a.pdf).
-
-## 10.579 Prise en compte de la zone réellement imprimable du périphérique — Question 584, décision technique recommandée
-
-La composition des feuilles doit distinguer le format physique du papier de la zone que l'imprimante peut effectivement marquer.
-
-- Distinguer les dimensions du support, les marges physiques du périphérique et la zone imprimable déclarée ou mesurée.
-- Utiliser les informations disponibles auprès du système d'exploitation et du pilote d'impression lorsque le travail cible une imprimante identifiée.
-- Permettre de définir un profil de périphérique ou de conserver une zone imprimable personnalisée lorsque les informations du pilote sont absentes ou incomplètes.
-- Ne pas supposer qu'une imprimante peut imprimer jusqu'au bord du support ; l'impression sans bordure ne peut être proposée que si le périphérique et le format sélectionnés la déclarent effectivement compatible.
-- Calculer la capacité de placement des cartes à partir de la zone imprimable, des marges, des espacements, des fonds perdus et des repères nécessaires.
-- Signaler lorsqu'une disposition théorique tient sur la feuille mais dépasse la zone réellement imprimable du périphérique.
-- Conserver la distinction entre le format de feuille demandé, la zone utilisée pour l'imposition et la zone effectivement disponible sur le périphérique.
-- Si le périphérique n'est pas encore choisi, présenter le résultat comme une simulation selon le profil sélectionné, et non comme une garantie de sortie physique.
-
-Référence : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html).
-
-## 10.580 Correspondance géométrique des faces en impression recto-verso — Question 585, décision technique recommandée
-
-La préparation recto-verso doit calculer la transformation géométrique appliquée à la seconde face en fonction du mode de retournement de la feuille et de l'orientation du support.
-
-- Définir explicitement le mode de retournement sur bord long ou bord court pour chaque travail recto-verso.
-- Calculer la position et l'orientation de chaque verso à partir de la transformation physique attendue de la feuille, et non d'une simple inversion visuelle arbitraire.
-- Préserver l'association entre chaque recto et son verso après rotation, retournement, réorganisation ou imposition.
-- Signaler les feuilles dont les dimensions, l'orientation ou le sens d'alimentation rendent le mode choisi ambigu ou incompatible.
-- Permettre une feuille de calibration ou un aperçu de contrôle avec repères asymétriques afin que l'utilisateur puisse vérifier le sens réel de retournement de son imprimante.
-- Ne pas prétendre connaître le comportement physique d'un périphérique lorsque le pilote ne fournit pas cette information ou qu'aucune calibration n'a été effectuée.
-- Enregistrer la transformation utilisée et le mode de retournement avec le travail et l'historique d'impression.
-- Toute modification du mode de retournement doit actualiser la prévisualisation des deux faces avant génération.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
-
-## 10.581 Définition cohérente des zones de page PDF — Question 586, décision technique recommandée
-
-Les fichiers PDF destinés à l'impression doivent définir les zones de page pertinentes de manière cohérente avec la géométrie physique du travail.
-
-- Définir la MediaBox comme limite du support PDF et y inclure les éléments qui doivent être imprimés, notamment les repères extérieurs lorsque le profil en prévoit.
-- Définir la TrimBox comme dimension finale après coupe de la carte ou de la feuille selon le niveau de composition du fichier.
-- Définir la BleedBox comme zone de fond perdu autour de la TrimBox lorsque le travail prévoit un fond perdu ; la géométrie doit rester cohérente avec la MediaBox.
-- Distinguer la CropBox, utilisée principalement pour l'affichage ou le cadrage, des zones physiques de production ; elle ne doit pas remplacer implicitement la TrimBox.
-- N'utiliser l'ArtBox que lorsque le flux de production ou le logiciel cible lui attribue un rôle explicite.
-- Vérifier les dimensions, l'inclusion géométrique et la cohérence des zones pour chaque page, notamment dans les documents comportant des formats ou orientations mixtes.
-- Ne pas déduire une géométrie correcte de la seule présence des boîtes : vérifier également que le contenu graphique atteint effectivement la limite du fond perdu et que les informations essentielles restent dans leur zone de sécurité.
-- Si le format ou le moteur ne permet pas de produire les boîtes attendues, l'indiquer et ne pas déclarer le fichier conforme à un profil qui les exige.
-
-Références : [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/) ; [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF geometry](https://onlinehelp.prinect-lounge.com/Prinect_PDF_Toolbox/Version2018/fr/Prinect/PDF_geometry/PDF_geometry-3-.htm).
-
-## 10.582 Contrôle des collisions et dégagements des repères de production — Question 587, décision technique recommandée
-
-Les repères de coupe, de positionnement et autres marques de production doivent être disposés sans empiéter sur les cartes, les fonds perdus ou les zones réservées à d'autres informations.
-
-- Définir les dégagements nécessaires autour des cartes, des fonds perdus et des repères selon le profil de production.
-- Contrôler les collisions entre repères voisins, repères de cartes adjacentes, limites de feuille, zones non imprimables et éventuelles informations de marge.
-- Tenir compte des dimensions réelles des repères, de leur épaisseur, de leur longueur, de leur position et de leur orientation.
-- Détecter les repères qui se superposent à un contenu utile ou qui deviennent ambigus après l'imposition.
-- Distinguer les conflits bloquants des avertissements qui peuvent être acceptés selon le profil ou le procédé.
-- Proposer une correction de placement ou un espacement alternatif sans déplacer silencieusement les cartes ni modifier leurs dimensions finales.
-- Préserver la correspondance entre les repères, les cartes et les lignes de coupe auxquelles ils se rapportent.
-- Présenter dans la prévisualisation les repères réellement inclus dans le fichier final, distinctement des guides d'édition temporaires.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [PDF Association — PDF/X: The key facts](https://pdfa.org/pdfx-the-key-facts/).
-
-## 10.583 Optimisation déterministe de l'imposition des cartes sur une feuille — Question 588, décision technique recommandée
-
-L'imposition automatique doit rechercher une disposition efficace tout en respectant toutes les contraintes géométriques et de production du travail.
-
-- Évaluer les orientations autorisées, rotations, espacements, marges, fonds perdus, zones imprimables, formes personnalisées et contraintes de découpe.
-- Optimiser l'utilisation de la surface disponible sans réduire les dimensions physiques demandées ni supprimer les espacements nécessaires.
-- Préserver les quantités, l'ordre et les associations recto-verso des cartes ; toute modification de l'ordre doit rester visible et réversible.
-- Utiliser un algorithme déterministe : à paramètres, cartes et contraintes identiques, le plan d'imposition doit être reproductible.
-- Exposer les critères principaux utilisés pour choisir la disposition, notamment le nombre de cartes par feuille, la surface utilisée, les chutes et les contraintes qui limitent une meilleure occupation.
-- Si plusieurs dispositions sont équivalentes, appliquer une règle de départage stable et permettre à l'utilisateur de choisir une autre disposition valide.
-- Ne pas présenter une disposition comme optimale au sens mathématique si l'algorithme ne garantit qu'une heuristique ; indiquer alors qu'il s'agit de la meilleure solution trouvée dans les limites du calcul.
-- Vérifier le plan final avant génération et conserver les positions, rotations et paramètres d'imposition dans le travail d'impression.
-- La disposition automatique ne doit jamais remplacer une composition manuelle sans validation explicite.
-
-Références : [Adobe — Print Production Tools overview](https://helpx.adobe.com/acrobat/using/print-production-tools-overview-acrobat.html) ; [Prinect — PDF workflow and imposition](https://onlinehelp.prinect-lounge.com/App/App_pdfs/fr/index.htm).
-
-## 10.584 Instantané immuable des entrées d'une génération — Question 589, décision technique recommandée
-
-Au lancement d'une génération, l'application doit constituer un instantané logique des entrées nécessaires au rendu et à l'export afin que les modifications ultérieures ne changent pas silencieusement le résultat en cours.
-
-- Capturer les données de cartes, quantités, faces, templates, variantes, composants, paramètres de rendu, profils colorimétriques, profils d'impression et options de génération effectivement utilisés.
-- Enregistrer les références exactes des versions de ressources et dépendances utilisées, plutôt que de ne conserver que leurs noms ou chemins susceptibles de changer.
-- Les modifications apportées au projet, aux ressources ou aux profils après le début de la génération ne doivent pas modifier l'instantané déjà constitué.
-- Une génération relancée à partir d'un travail enregistré doit signaler si certaines entrées ont changé ou sont devenues indisponibles depuis l'instantané précédent.
-- Permettre de choisir explicitement entre réutiliser l'instantané d'origine et créer un nouvel instantané à partir de l'état courant.
-- Ne pas verrouiller l'édition du projet pendant la génération ; l'instantané doit isoler le traitement des changements ultérieurs.
-- Si l'application ne peut pas capturer une entrée de façon fiable, elle doit identifier cette limite et ne pas prétendre que la génération est entièrement reproductible.
-- Conserver l'instantané avec le travail d'impression ou d'export selon les règles de conservation déjà définies.
-
-Références : [Reproducible Builds — Define a build environment](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
-
-## 10.585 Identification par empreinte des ressources et dépendances utilisées — Question 590, décision technique recommandée
-
-Les ressources binaires et dépendances qui influencent une génération doivent pouvoir être identifiées par une empreinte cryptographique de leur contenu.
-
-- Calculer et conserver une empreinte cryptographique robuste, telle que SHA-256, pour chaque ressource binaire utilisée lorsque cela est techniquement possible.
-- Associer l'empreinte à l'identifiant logique de la ressource, sa version, son format, sa taille et sa provenance lorsqu'ils sont disponibles.
-- Vérifier que le contenu présent correspond à l'empreinte enregistrée avant de le réutiliser pour une génération reproductible.
-- Détecter les ressources modifiées sous un même nom ou chemin, les fichiers corrompus et les substitutions non signalées.
-- Une ressource modifiée constitue une nouvelle version de contenu ; l'ancienne empreinte ne doit pas être écrasée dans l'instantané d'un travail déjà enregistré.
-- Les ressources identiques peuvent être reconnues comme identiques par leur empreinte, mais leur provenance, leurs licences et leurs références de projet restent distinctes.
-- Si une ressource n'est plus disponible ou si son empreinte ne correspond pas, signaler le problème et bloquer les contrôles qui exigent son contenu exact.
-- Une empreinte confirme l'identité des octets comparés ; elle ne prouve pas à elle seule l'auteur, la licence ou la fiabilité de la source.
-
-Références : [GitLab — Content-Addressable Storage](https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/008_content_addressable_storage/) ; [Reproducible Builds — Cryptographic checksums](https://reproducible-builds.org/docs/).
-
-## 10.586 Traçabilité des moteurs, versions et paramètres de génération — Question 591, décision technique recommandée
-
-Chaque génération doit enregistrer les informations techniques nécessaires pour comprendre dans quel environnement et avec quels paramètres le résultat a été produit.
-
-- Enregistrer les versions des moteurs de rendu, bibliothèques de conversion, moteurs PDF et composants de gestion colorimétrique qui ont effectivement participé à la génération, dans la mesure où ces informations sont accessibles.
-- Enregistrer les versions de l'application, du format de document, des profils de sortie et les options significatives utilisées.
-- Identifier le système d'exploitation et l'architecture lorsque ces informations peuvent influencer le résultat ou la compatibilité.
-- Capturer les paramètres sensibles à la reproductibilité, notamment l'ordre des éléments, les intentions de rendu, les méthodes de rééchantillonnage, les unités, les dimensions et les paramètres de compression.
-- Neutraliser ou contrôler les sources de variation évitables, notamment les ordres non déterministes, les valeurs aléatoires, les paramètres régionaux et les horodatages intégrés lorsque le format le permet.
-- Distinguer la reproductibilité visuelle — résultat rendu équivalent selon une tolérance définie — de la reproductibilité binaire — fichiers strictement identiques octet par octet.
-- Ne promettre une identité binaire que lorsque l'ensemble du moteur et du format permet de la garantir ; sinon, indiquer les facteurs de variation connus.
-- Conserver ces informations dans l'historique du travail et dans le bilan de génération.
-
-Références : [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/) ; [Reproducible Builds — Documentation](https://reproducible-builds.org/docs/).
-
-## 10.587 Préparation temporaire et publication sûre des fichiers générés — Question 592, décision technique recommandée
-
-La génération des fichiers doit éviter qu'un échec, une interruption ou une fermeture inattendue laisse un fichier final incomplet ou remplace un résultat existant sans validation.
-
-- Générer chaque fichier dans un emplacement temporaire contrôlé, situé sur le même volume ou système de fichiers que sa destination finale lorsque cela est nécessaire à une opération de remplacement atomique.
-- Vérifier la fermeture complète du fichier, sa taille, son format et les contrôles d'intégrité applicables avant sa publication à l'emplacement final.
-- Lorsque la plateforme et le système de fichiers le garantissent, publier le fichier validé au moyen d'une opération de renommage ou de remplacement atomique.
-- Lorsque le remplacement atomique n'est pas garanti, appliquer une stratégie adaptée à la plateforme et signaler toute limite de durabilité ou de sécurité ; ne pas présenter l'opération comme atomique par défaut.
-- Respecter la politique de collision de noms définie par l'utilisateur : refuser, renommer ou remplacer après confirmation explicite.
-- En cas d'échec avant publication, supprimer les fichiers temporaires incomplets sans toucher aux résultats existants.
-- En cas d'interruption après la publication d'une partie d'un lot, préserver les fichiers déjà validés et identifier précisément les éléments non publiés.
-- Une fermeture ou un arrêt brutal ne doit pas transformer un fichier temporaire en résultat final valide ; au redémarrage, les fichiers temporaires orphelins doivent être détectés et traités de manière sûre.
-
-Références : [Rust — atomic-replace documentation](https://docs.rs/crate/atomic-replace/latest) ; [Reproducible Builds — Deterministic build systems](https://reproducible-builds.org/docs/deterministic-build-systems/).
-
-## 10.588 Manifeste de génération, empreintes des résultats et bilan vérifiable — Question 593, décision technique recommandée
-
-L'application doit conserver un bilan structuré permettant d'identifier les fichiers produits, les entrées utilisées et les contrôles effectués pour une génération.
-
-- Enregistrer pour chaque résultat son nom, son format, sa taille, sa date de génération et son empreinte cryptographique lorsque le calcul est disponible.
-- Associer les fichiers au travail, à la sélection de cartes, à l'instantané d'entrée et aux paramètres de génération correspondants.
-- Conserver les statuts individuels : généré et vérifié, généré avec avertissement, échec, interrompu ou non traité.
-- Enregistrer les contrôles d'intégrité réellement exécutés et leur résultat ; distinguer les contrôles non effectués ou non applicables.
-- Permettre de comparer une génération ultérieure avec le manifeste précédent afin de repérer les entrées modifiées et les différences de résultats.
-- Conserver ce manifeste dans les données de travail et l'historique de l'application ; son export sous forme de fichier séparé reste une option explicite et ne doit pas être imposé à chaque génération.
-- Ne jamais inclure de secrets, jetons d'accès ou données sensibles dans le manifeste ou les diagnostics.
-- Une empreinte de résultat permet de vérifier l'identité du fichier obtenu, mais ne constitue pas une certification de conformité d'impression ni une preuve de provenance du contenu.
-- Le manifeste doit rester consultable même si certains fichiers générés ont été déplacés ou supprimés ; dans ce cas, leur indisponibilité est signalée sans effacer leur historique.
-
-Références : [Reproducible Builds — Verification](https://reproducible-builds.org/docs/) ; [GitLab — Reproducible Builds](https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-builds/).
-
-## 10.589 Fonctionnement sans synchronisation automatique entre appareils — Question 619, décision validée par l'utilisateur
-
-L'application ne doit pas synchroniser automatiquement les projets, paramètres, ressources ou autres données de travail entre plusieurs appareils.
-
-- Le transfert d'un projet d'un appareil à un autre s'effectue manuellement au moyen des fonctions d'exportation et d'importation de projet déjà définies à la section 10.10.
-- Aucune synchronisation en arrière-plan, réplication distante, fusion automatique entre appareils ou résolution de conflits de synchronisation ne doit être mise en place.
-- L'utilisateur choisit explicitement quand exporter un projet, où enregistrer le fichier exporté et quand l'importer sur un autre appareil.
-- Les mécanismes locaux de sauvegarde, d'historique et de récupération restent applicables indépendamment de cette décision.
-
-## 10.590 Absence de collaboration multi-utilisateur sur un même projet — Question 620, décision validée par l'utilisateur
-
-L'application ne doit pas proposer de mode de collaboration multi-utilisateur sur un même projet.
-
-- Un projet est modifié dans le cadre d'une utilisation locale par une seule personne à la fois.
-- Aucun accès partagé en consultation, aucune édition simultanée, aucun système de présence, de commentaires collaboratifs ou de résolution de modifications concurrentes entre utilisateurs ne doit être développé.
-- Les mécanismes existants de gestion de plusieurs projets, de plusieurs fenêtres et de transfert manuel de fichiers restent indépendants de la collaboration multi-utilisateur.
-- Un utilisateur peut transmettre un projet à une autre personne uniquement au moyen d'un fichier exporté, conformément à la section 10.591.
-
-## 10.591 Partage des projets exclusivement par fichiers exportés — Question 621, décision validée par l'utilisateur
-
-Le partage d'un projet avec une autre personne s'effectue exclusivement par la remise manuelle d'un fichier de projet exporté.
-
-- L'application ne doit pas fournir de partage privé par invitation, lien sécurisé, espace distant ou mécanisme équivalent.
-- L'application ne doit pas proposer de publication publique de projets, de galerie publique ou de répertoire de projets partagés.
-- Le destinataire récupère le projet en important le fichier reçu au moyen du mécanisme d'importation défini à la section 10.10.
-- L'export doit conserver les contrôles d'intégrité, de compatibilité, de prévisualisation et de gestion des dépendances déjà spécifiés.
-- La transmission effective du fichier (courriel, stockage externe, support amovible ou autre moyen) relève des outils choisis par l'utilisateur et non d'un service de partage intégré à l'application.
-
-## 10.592 Absence de catalogue communautaire intégré de ressources — Question 622, décision validée par l'utilisateur
-
-L'application ne doit pas intégrer de catalogue communautaire centralisé permettant aux utilisateurs de consulter, télécharger, publier, partager ou évaluer des ressources.
-
-- La gestion des ressources repose sur les bibliothèques locales et sur les sources externes que l'utilisateur choisit explicitement, conformément aux mécanismes de ressources et de provenance déjà définis.
-- Aucun dépôt communautaire intégré, flux de publication, système d'évaluation, notation, commentaire ou classement communautaire ne doit être ajouté.
-- L'utilisateur peut continuer à importer manuellement des ressources obtenues auprès de sources externes, sous réserve des contrôles de sécurité, d'intégrité, de compatibilité, de provenance et de licence déjà prévus.
-- Cette décision n'interdit pas l'utilisation de formats ouverts ni l'importation de ressources distribuées par des services tiers ; elle exclut leur agrégation dans un catalogue communautaire fourni par l'application.
-
-## 10.593 Utilisation locale sans compte utilisateur — Question 623, décision validée par l'utilisateur
-
-L'application doit être utilisable localement sans création, connexion ou gestion de compte utilisateur.
-
-- Aucun compte propre à l'application, authentification centralisée, profil distant ou abonnement lié à un compte ne doit être requis pour installer, lancer ou utiliser les fonctionnalités locales.
-- Les projets, paramètres, bibliothèques, historiques et données de travail sont gérés localement selon les règles de stockage et de sauvegarde déjà définies.
-- L'application ne doit pas conditionner l'accès aux fonctions locales à une connexion réseau ou à une authentification auprès de son éditeur.
-- Les intégrations avec des services tiers, si elles sont utilisées, doivent rester explicites et ne doivent pas introduire un compte obligatoire pour le fonctionnement local de l'application.
-- Aucun compte applicatif ne doit être créé implicitement en arrière-plan.
-
-## 10.594 Prise en charge officielle de Windows, macOS et Linux — Question 624, décision validée par l'utilisateur
-
-MTG Card Remodeler doit prendre officiellement en charge les trois grandes familles de systèmes d'exploitation de bureau : **Windows, macOS et Linux**.
-
-- Les trois plateformes font partie du périmètre produit officiel ; Linux ne doit pas être traité comme une plateforme expérimentale ou simplement communautaire.
-- Les fonctionnalités principales, les formats de projet, les données utilisateur et les résultats de rendu doivent rester cohérents entre les trois plateformes, sous réserve des différences explicitement documentées liées au système d'exploitation ou aux capacités matérielles.
-- Les installations classiques et portables doivent être proposées selon les possibilités réelles de chaque plateforme. Lorsqu'un mode d'installation n'est pas techniquement pertinent ou pris en charge sur un système, l'alternative disponible doit être documentée sans réduire la prise en charge globale de la plateforme.
-- La conception, les dépendances natives, les accès au système de fichiers, les dialogues, les fenêtres, les raccourcis et les mécanismes de mise à jour doivent être évalués pour leur compatibilité avec Windows, macOS et Linux.
-- Les versions minimales des systèmes, architectures processeur, distributions Linux et formats de paquets officiellement pris en charge seront définis dans les spécifications techniques de livraison après vérification de la compatibilité effective de la pile Tauri 2 et de ses dépendances. Ils ne doivent pas être supposés identiques entre plateformes.
-- Les tests automatisés et les validations de publication doivent couvrir les trois plateformes. Une version ne peut être déclarée officiellement compatible avec une plateforme si les vérifications de compilation, d'installation, de démarrage et des fonctions essentielles n'ont pas été réalisées sur celle-ci.
-- Une limitation propre à une plateforme doit être identifiée, documentée et accompagnée d'une solution de repli lorsque cela est raisonnablement possible ; elle ne doit pas être masquée par une déclaration générale de compatibilité.
-
-## 10.595 Application privée réservée à l'usage personnel — Question 625, décision validée par l'utilisateur
-
-MTG Card Remodeler est destiné à rester une application privée réservée à l'usage personnel de son propriétaire. La publication éventuelle du code source à des fins de consultation ne vaut pas autorisation de distribuer l'application, ses exécutables ou ses paquets d'installation.
-
-- Aucune publication générale de versions installables, aucun canal de distribution publique et aucune mise à disposition commerciale de l'application ne sont prévus dans le périmètre actuellement validé.
-- Les versions compilées et les paquets de livraison sont destinés à l'usage personnel, aux tests et à la maintenance du projet, sauf décision ultérieure explicite modifiant ce statut.
-- Cette restriction concerne le logiciel MTG Card Remodeler et ne modifie pas les règles distinctes applicables aux proxies, qui restent destinés à un usage personnel et non commercial.
-- Le fait que le dépôt de code soit consultable publiquement, conformément à la section 10.596, ne transforme pas le logiciel en produit public ni en application librement redistribuable.
-
-## 10.596 Code source publiquement consultable avec restrictions de réutilisation et de redistribution — Question 626, décision validée par l'utilisateur
-
-Le code source du projet peut être consulté publiquement, mais cette visibilité ne confère pas de droit général de réutilisation, de modification, de republication ou de redistribution.
-
-- Le dépôt peut rester accessible en lecture afin de permettre l'inspection du code, le suivi du projet et la transparence technique.
-- Aucune autorisation générale assimilable à une licence open source permissive ou copyleft n'est accordée par cette décision.
-- Les droits de consultation, de copie, de modification, de création de versions dérivées et de redistribution devront être formulés dans un avis de licence ou de droits explicite avant toute diffusion de code ou de composant pour lequel ces droits sont pertinents.
-- Tant qu'une licence ou une autorisation spécifique n'a pas été définie, les utilisateurs du dépôt ne doivent pas être présentés comme autorisés à réutiliser, modifier ou redistribuer le code au-delà des droits impératifs prévus par la législation applicable et des autorisations expresses du titulaire des droits.
-- Les composants tiers conservent leurs propres licences et obligations ; la politique du projet ne peut ni les remplacer ni réduire les droits qu'elles accordent.
-- La décision de rendre le code consultable ne vaut ni abandon des droits d'auteur ni transfert de propriété intellectuelle.
-
-## 10.597 Absence de modèle de monétisation défini à ce stade — Question 627, décision validée par l'utilisateur
-
-Aucune monétisation de MTG Card Remodeler n'est prévue pour le moment et aucun modèle économique n'est arrêté.
-
-- Le cahier des charges ne doit pas introduire de paiement, achat unique, abonnement, fonctionnalité payante, publicité, don sollicité par l'application ou autre mécanisme de monétisation comme exigence du produit.
-- Les fonctionnalités locales ne doivent pas être conditionnées à un paiement ou à un abonnement.
-- Cette décision ne constitue pas un engagement irrévocable de gratuité pour toute évolution future : la question d'une éventuelle monétisation est reportée et nécessitera un arbitrage explicite avant toute mise en œuvre.
-- En cohérence avec les sections 10.593 et 10.595, aucun compte utilisateur ni service distant de facturation n'est requis ou prévu dans le périmètre actuellement défini.
-
-## 10.598 Fonctionnement hors ligne prioritaire — Question 628, décision validée par l'utilisateur
-
-MTG Card Remodeler doit privilégier un fonctionnement entièrement local et rester utilisable sans connexion Internet pour l'ensemble des fonctionnalités qui ne dépendent pas intrinsèquement d'un service externe.
-
-- L'absence de connexion Internet ne doit pas empêcher le démarrage de l'application, l'ouverture et la modification des projets locaux, l'accès aux bibliothèques et ressources déjà disponibles localement, l'édition, les rendus, les exports et les opérations de gestion de fichiers réalisables sur l'appareil.
-- Aucune connexion à un serveur, aucun compte distant et aucune validation périodique en ligne ne peuvent être imposés comme condition générale d'utilisation des fonctionnalités locales.
-- Les fonctions qui nécessitent réellement une source ou un service externe — par exemple la récupération de nouvelles données, de ressources distantes ou la vérification et le téléchargement de mises à jour — peuvent être indisponibles hors ligne. Elles doivent alors présenter un état explicite et compréhensible, sans bloquer les autres fonctions.
-- Lorsqu'une fonction externe est indisponible, l'application doit préserver les données locales et permettre de reprendre l'opération lorsque la connexion est rétablie, dans la mesure où cela est techniquement pertinent.
-- Les communications réseau doivent rester limitées aux opérations qui en ont besoin et respecter les décisions déjà définies concernant les autorisations des extensions et l'absence de collecte automatique de données techniques.
-- Le fonctionnement hors ligne ne doit pas être confondu avec une interdiction absolue de toute communication réseau : les opérations explicitement dépendantes d'un service externe restent possibles lorsque l'utilisateur dispose d'une connexion, mais ne doivent jamais devenir une dépendance générale de l'application.
-
-## 10.599 Vérification automatique des mises à jour désactivable dans les paramètres — Question 629, décision validée par l'utilisateur
-
-La vérification de disponibilité des mises à jour doit être automatique par défaut, mais l'utilisateur doit pouvoir la désactiver explicitement dans les paramètres de l'application.
-
-- Lorsque l'option est activée, l'application peut vérifier périodiquement la disponibilité d'une nouvelle version, uniquement lorsqu'une connexion réseau est disponible.
-- La vérification doit rester non bloquante : elle ne doit jamais retarder ou empêcher le démarrage, l'utilisation des fonctions locales, l'ouverture des projets ou les opérations hors ligne.
-- Lorsque l'appareil est hors ligne, aucune erreur de mise à jour ne doit être présentée comme une défaillance de l'application ; la vérification est simplement différée jusqu'à ce qu'une connexion soit disponible.
-- L'utilisateur doit pouvoir désactiver et réactiver cette vérification depuis les paramètres. Le choix doit être conservé localement et respecté lors des démarrages suivants.
-- La désactivation de la vérification automatique n'interdit pas une vérification manuelle déclenchée explicitement par l'utilisateur.
-- La recherche, le téléchargement, la validation cryptographique et l'installation d'une mise à jour restent des opérations distinctes. Aucune mise à jour ne doit être installée sans respecter les validations et confirmations déjà prévues dans les exigences de mise à jour.
-- L'indisponibilité du service de mise à jour, une erreur réseau ou une réponse invalide ne doit jamais compromettre la version actuellement installée ni les données locales.
-
-## 10.600 Notification uniquement pour les mises à jour de l'application — Question 630, décision validée par l'utilisateur
-
-La disponibilité d'une nouvelle version de MTG Card Remodeler doit être signalée à l'utilisateur, mais le téléchargement et l'installation doivent rester entièrement manuels.
-
-- La vérification de disponibilité suit la politique définie à la section 10.599 : activée par défaut, désactivable dans les paramètres, non bloquante et différée lorsqu'aucune connexion réseau n'est disponible.
-- Lorsqu'une nouvelle version est détectée, l'application affiche une notification claire indiquant qu'une mise à jour est disponible et fournit les informations utiles déjà prévues sur la version proposée.
-- La détection d'une mise à jour ne déclenche aucun téléchargement automatique, en arrière-plan ou différé.
-- Le fichier de mise à jour est récupéré manuellement en dehors de l'application, conformément à la section 10.601 ; aucun téléchargement intégré n'est proposé.
-- L'installation ne commence qu'après une action explicite distincte de l'utilisateur, une fois le téléchargement terminé et les contrôles requis réussis.
-- L'utilisateur conserve la possibilité d'ignorer ou de différer la mise à jour. Une notification ignorée ne doit pas provoquer de téléchargement ultérieur automatique.
-- La vérification, le téléchargement, la validation cryptographique, les contrôles de compatibilité, la sauvegarde préalable et l'installation restent des étapes distinctes. Les protections d'intégrité, de compatibilité, de préservation des données et de retour arrière définies ailleurs dans le cahier des charges demeurent obligatoires.
-- En l'absence de réseau, l'application reste pleinement utilisable pour ses fonctions locales. L'utilisateur peut reprendre manuellement le processus de mise à jour lorsqu'une connexion est disponible.
-- Cette politique concerne les mises à jour de l'application elle-même ; elle ne modifie pas les règles distinctes déjà définies pour les extensions, bibliothèques et ressources.
-
-## 10.601 Récupération externe et manuelle des mises à jour de l'application — Question 631, décision validée par l'utilisateur
-
-L'application ne doit pas télécharger elle-même les fichiers de mise à jour. Lorsqu'une nouvelle version est signalée, l'utilisateur récupère manuellement le fichier de mise à jour en dehors de MTG Card Remodeler, depuis la source qu'il choisit.
-
-- L'application peut présenter les informations de version et signaler qu'une mise à jour est disponible, mais elle ne lance aucun téléchargement intégré, automatique ou sur demande.
-- L'application ne doit pas imposer une source distante, un compte en ligne ou une authentification auprès d'un service externe pour récupérer le fichier.
-- Une fois le fichier obtenu à l'extérieur de l'application, l'utilisateur peut le sélectionner et l'importer manuellement dans le parcours de mise à jour, ou lancer son installation manuellement selon le format et le mécanisme pris en charge.
-- L'importation d'un fichier ne vaut jamais autorisation d'installation automatique. Le contrôle du fichier, la présentation du résultat, puis l'autorisation explicite d'installation restent des étapes distinctes.
-- Avant toute installation, l'application vérifie l'authenticité lorsqu'une signature et une chaîne de confiance vérifiables sont disponibles, l'intégrité cryptographique, la cohérence du paquet, la compatibilité de la version, ainsi que les protections anti-retour arrière et anti-altération déjà définies.
-- Un fichier invalide, incomplet, non conforme, incompatible ou dont les contrôles obligatoires échouent est refusé. La version installée et les données locales restent intactes.
-- Les contrôles qui ne peuvent pas établir l'authenticité d'un fichier doivent présenter explicitement cette limite ; une simple empreinte calculée localement ne doit pas être présentée comme une preuve de provenance.
-- Cette règle concerne uniquement les mises à jour de l'application. Elle ne modifie pas le mécanisme distinct de mise à jour des extensions.
-
-## 10.602 Licence personnelle non commerciale du code source — Question 632, décision validée par l'utilisateur
-
-L'utilisateur choisit une licence personnelle non commerciale pour le code source de MTG Card Remodeler. Le dépôt peut rester publiquement consultable, mais cette visibilité ne doit pas être présentée comme une autorisation générale de réutilisation.
-
-- L'autorisation recherchée est limitée à l'étude du code et à son utilisation à titre personnel et non commercial.
-- Toute utilisation commerciale, exploitation dans le cadre d'une activité commerciale, vente, prestation rémunérée, intégration dans un produit commercial ou autre valorisation commerciale du code est interdite sans autorisation écrite distincte du titulaire des droits.
-- La redistribution du code, en tout ou partie, ainsi que la publication ou la distribution de versions modifiées ou dérivées sont interdites sans autorisation écrite distincte.
-- Les modifications réalisées pour un usage strictement personnel ne peuvent être diffusées, mises à disposition de tiers ou exploitées commercialement.
-- Aucun droit de sous-licence, de transfert ou d'autorisation à des tiers n'est accordé par cette décision.
-- Les droits impératifs prévus par la législation applicable et les licences propres aux composants tiers restent réservés. La présente politique ne peut pas retirer aux tiers les droits qui leur sont accordés par les licences de leurs composants.
-- La rédaction définitive de l'instrument juridique doit prendre la forme d'une licence logicielle personnalisée, rédigée pour le code source et relue avant d'être publiée comme texte contractuel. Aucune licence standard non commerciale ou licence Creative Commons ne doit être appliquée par défaut au code.
-- GitHub précise qu'un dépôt public peut être consulté et forké par les utilisateurs de la plateforme au titre de ses conditions d'utilisation. Cette permission technique liée à GitHub doit être distinguée d'une autorisation générale d'exploitation, de redistribution hors plateforme ou d'utilisation commerciale. Si l'objectif devient d'empêcher également le fork sur GitHub, la visibilité publique du dépôt devra être réévaluée.
-- Tant que le texte définitif n'est pas publié, la décision décrit l'intention de licence retenue, mais ne doit pas être présentée comme un contrat juridique finalisé. La protection par défaut du droit d'auteur et les conditions de GitHub continuent de s'appliquer dans l'intervalle.
-
-Références documentaires :
-- GitHub Docs, « Licensing a repository » : https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
-- Creative Commons, FAQ, « Can I apply a Creative Commons license to software? » : https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software
-
-## 10.603 Désinstallation de l'application avec conservation des données par défaut — Question 634, décision validée par l'utilisateur
-
-Lors de la désinstallation de MTG Card Remodeler, l'assistant de désinstallation doit demander explicitement à l'utilisateur s'il souhaite conserver ou supprimer ses données personnelles. La conservation des données est sélectionnée par défaut.
-
-- Le programme distingue clairement les fichiers nécessaires à l'exécution de l'application des données créées ou importées par l'utilisateur : projets, cartes, bibliothèques, templates, variantes, ressources locales, configurations, bases de données et sauvegardes.
-- L'option proposée par défaut est la désinstallation du programme avec conservation des données personnelles. Aucune donnée utilisateur ne doit être supprimée par simple effet de la désinstallation standard.
-- L'utilisateur peut choisir la suppression des données personnelles depuis le parcours de désinstallation, mais cette action doit être présentée distinctement de la suppression du programme et accompagnée d'un récapitulatif compréhensible de son périmètre.
-- La suppression des données exige une confirmation explicite supplémentaire, après présentation des emplacements concernés et des conséquences. Une option de conservation doit rester clairement accessible jusqu'à la validation finale.
-- Les fichiers situés dans des emplacements personnalisés ou partagés ne doivent jamais être supprimés sur la seule base d'une déduction de propriété. L'application doit identifier précisément les éléments qu'elle peut gérer et signaler ceux qu'elle ne peut pas déterminer ou supprimer sans risque.
-- Si l'utilisateur conserve ses données, celles-ci doivent rester réutilisables lors d'une réinstallation ultérieure, dans la mesure où la version et le format des données restent compatibles. La désinstallation ne doit pas les déplacer ni les altérer.
-- Si le parcours de désinstallation ne peut pas établir avec certitude le périmètre des données à supprimer, il doit privilégier leur conservation et expliquer la limite plutôt que risquer une suppression excessive.
-- Cette règle concerne la désinstallation de l'application elle-même. Elle complète sans les remplacer les règles propres à la désinstallation des extensions et à la gestion des sauvegardes.
-
-
-
-## 10.604 Suppression des données lors de la désinstallation sans proposition de sauvegarde supplémentaire — Question 635, décision validée par l'utilisateur
-
-Lorsque l'utilisateur choisit explicitement de supprimer ses données personnelles pendant la désinstallation de MTG Card Remodeler, l'application doit appliquer le parcours de confirmation déjà défini en section 10.603. Elle n'ajoute pas de proposition systématique de dernière sauvegarde exportable avant cette suppression.
-
-- La confirmation explicite supplémentaire et le récapitulatif du périmètre de suppression prévus en section 10.603 constituent les étapes de validation requises.
-- L'application ne doit pas imposer ni insérer une étape de création d'une sauvegarde exportable dans ce parcours.
-- Les mécanismes de sauvegarde et d'export existants restent accessibles selon leurs propres parcours ; cette décision ne les désactive pas et ne modifie pas leur fonctionnement.
-- Cette règle ne réduit pas les obligations de délimitation, de transparence, de confirmation et de prudence en cas d'incertitude définies en section 10.603. Si le périmètre des données à supprimer ne peut pas être établi avec certitude, leur conservation reste prioritaire.
-
-## 10.605 Anonymisation automatique des rapports de diagnostic exportés — Question 636, décision validée par l'utilisateur
-
-Lorsqu'un utilisateur choisit explicitement de créer et d'exporter un rapport de diagnostic destiné à être transmis volontairement, l'application doit appliquer une anonymisation automatique par défaut et présenter un aperçu du rapport avant sa création définitive ou son export.
-
-- L'anonymisation doit masquer ou remplacer les informations directement identifiantes ou susceptibles de révéler l'identité, l'environnement personnel ou l'organisation de l'utilisateur, notamment les noms de comptes ou d'utilisateurs du système, les chemins personnels complets, les noms de projets et les noms de dossiers ou d'espaces de travail personnalisés lorsqu'ils sont identifiants.
-- Les remplacements doivent préserver autant que possible la valeur diagnostique du rapport : la structure des chemins, les extensions, les noms techniques génériques, les identifiants de composants, les versions, les codes d'erreur, les horodatages utiles et les relations entre événements peuvent être conservés lorsqu'ils ne révèlent pas d'information personnelle.
-- L'aperçu doit être présenté avant tout export ou toute transmission, afin que l'utilisateur puisse vérifier le contenu effectivement préparé. La transmission reste une action volontaire distincte et explicite ; aucun rapport n'est envoyé automatiquement.
-- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, indépendamment de l'anonymisation générale et de l'aperçu. L'aperçu ne constitue pas une autorisation de révéler ces éléments.
-- Si une information ne peut pas être anonymisée de manière fiable, l'application doit la masquer par prudence ou signaler clairement qu'une vérification humaine est nécessaire avant l'export.
-- L'anonymisation ne doit pas modifier les journaux et données de diagnostic conservés localement ; elle s'applique à la copie préparée pour l'export volontaire.
-- Le rapport doit indiquer que l'anonymisation automatique a été appliquée et que l'utilisateur doit vérifier l'aperçu avant de transmettre le fichier.
-
-Cette règle complète les exigences relatives aux journaux, au signalement volontaire, à l'absence de collecte automatique et à la protection des secrets déjà définies dans le cahier des charges.
-
-## 10.606 Interdiction de désactiver l'anonymisation des rapports de diagnostic — Question 637, décision validée par l'utilisateur
-
-L'anonymisation automatique définie en section 10.605 est obligatoire pour tout rapport de diagnostic préparé en vue d'un export ou d'une transmission volontaire. L'utilisateur ne dispose d'aucune option permettant de la désactiver, de contourner ses règles ou de réintroduire les informations identifiantes automatiquement masquées.
-
-- Aucun réglage permanent ou ponctuel ne doit permettre de produire un rapport de diagnostic exportable non anonymisé.
-- L'aperçu avant export reste obligatoire et présente le contenu effectivement préparé après anonymisation. Il ne propose pas de commande permettant de restaurer les valeurs identifiantes masquées.
-- Les données identifiantes qui ont été masquées ou remplacées ne doivent pas être conservées dans le fichier exporté sous forme de métadonnées, de commentaires, de données annexes ou de contenu caché récupérable.
-- Les secrets, mots de passe, jetons, clés API, clés privées et autres éléments d'authentification restent exclus ou masqués en toutes circonstances, conformément aux règles existantes.
-- Si une information ne peut pas être anonymisée de manière fiable, elle doit être omise ou masquée ; l'utilisateur ne peut pas autoriser son inclusion en clair dans le rapport exporté.
-- Cette obligation concerne la copie destinée à l'export. Elle ne modifie pas les règles de conservation locale des journaux et diagnostics, ni l'exigence d'une action explicite de l'utilisateur pour toute transmission.
-- Les besoins d'assistance doivent être satisfaits au moyen d'informations techniques non identifiantes, de codes d'erreur, de versions, de traces expurgées et d'autres éléments compatibles avec la protection obligatoire des données personnelles.
-
-Cette décision complète la section 10.605 : l'anonymisation automatique n'est pas seulement le comportement par défaut, elle constitue une protection non désactivable pour les rapports exportés.
-
-## 10.607 Conservation configurable des journaux de diagnostic locaux — Question 638, décision validée par l'utilisateur
-
-La durée de conservation des journaux de diagnostic locaux doit être configurable par l'utilisateur depuis les paramètres de l'application.
-
-- L'application doit proposer des paramètres permettant de définir la durée de conservation des journaux ainsi que les limites de stockage qui leur sont allouées.
-- Les paramètres doivent permettre à l'utilisateur d'adapter la conservation à ses besoins et à l'espace disponible, sans imposer une conservation illimitée ni une durée fixe non modifiable.
-- L'application doit présenter clairement les valeurs actuellement configurées et les conséquences d'une modification, notamment la possibilité que les journaux les plus anciens soient supprimés lorsque la durée ou les limites de stockage sont dépassées.
-- L'application doit appliquer les limites configurées de manière prévisible et contrôlée, en privilégiant la suppression des entrées les plus anciennes et en évitant de supprimer les journaux encore nécessaires à une opération en cours.
-- Une modification des paramètres ne doit pas effacer immédiatement des journaux qui restent dans les limites nouvellement définies ; les entrées excédentaires sont traitées selon une procédure sûre, cohérente et signalée à l'utilisateur lorsque cela est pertinent.
-- Les journaux restent stockés localement. Cette configuration ne crée aucune collecte, synchronisation ou transmission automatique et ne modifie pas les règles de signalement volontaire.
-- Les exigences de protection des secrets et de confidentialité restent applicables à tous les journaux locaux. La conservation locale ne doit jamais autoriser l'enregistrement en clair de mots de passe, jetons, clés API, clés privées ou autres secrets.
-- La politique de conservation des journaux locaux est indépendante de l'anonymisation obligatoire et non désactivable des rapports de diagnostic exportés définie aux sections 10.605 et 10.606.
-
-Les valeurs initiales, les unités de durée, les plafonds de stockage, les règles de rotation et les détails de l'interface seront définis dans la spécification technique par l'assistant après recherche des pratiques et contraintes pertinentes. Ces détails ne constituent pas des arbitrages supplémentaires demandés à l'utilisateur.
-
-## 10.608 Inclusion systématique des journaux de diagnostic dans les sauvegardes — Question 639, décision validée par l'utilisateur
-
-Tous les journaux de diagnostic locaux disponibles au moment d'une sauvegarde doivent être inclus systématiquement dans celle-ci.
-
-- Cette inclusion s'applique à toutes les catégories de sauvegardes déjà prévues : sauvegardes automatiques quotidiennes et hebdomadaires, sauvegardes manuelles, sauvegardes précédant une mise à jour majeure et sauvegardes précédant une migration importante.
-- L'inclusion des journaux ne doit pas dépendre d'une option à activer séparément ni d'une confirmation ponctuelle de l'utilisateur.
-- Les journaux sont sauvegardés avec les autres données dans un état cohérent correspondant au point de sauvegarde. Une opération en cours ne doit pas produire une copie partielle ou incohérente ; les mécanismes techniques doivent garantir une capture sûre.
-- La politique configurable de conservation et de rotation des journaux actifs définie en section 10.607 continue de s'appliquer aux journaux locaux. En revanche, la suppression ou la rotation ultérieure d'un journal actif ne doit pas modifier rétroactivement une sauvegarde déjà créée qui contient ce journal.
-- Les sauvegardes restent soumises aux limites de conservation et aux règles de destination déjà définies en section 2.6. L'inclusion des journaux doit être prise en compte dans l'estimation de l'espace nécessaire et dans les contrôles d'intégrité.
-- Les exigences de confidentialité et de protection des secrets restent impératives : aucun mot de passe, jeton, clé API, clé privée ou autre secret ne doit être enregistré en clair dans les journaux ni inclus dans une sauvegarde. Les règles d'anonymisation obligatoire des rapports de diagnostic destinés à l'export externe ne sont pas remplacées par cette inclusion dans les sauvegardes locales.
-- Cette décision concerne le contenu des sauvegardes locales de l'application. Elle n'autorise aucune collecte, synchronisation ou transmission automatique vers un service externe.
-
-Cette règle complète la section 2.6 : les journaux de diagnostic font partie intégrante des données sauvegardées, au même titre que les autres données locales de l'application.
-
-
-## 10.609 Absence de chiffrement applicatif spécifique des sauvegardes — Question 640, décision validée par l'utilisateur
-
-MTG Card Remodeler ne doit pas ajouter de mécanisme de chiffrement applicatif propre aux sauvegardes. La protection des fichiers de sauvegarde repose sur les mécanismes de chiffrement fournis par le système d'exploitation ou par le support de stockage utilisé.
-
-- L'application crée et restaure les sauvegardes sans leur appliquer de chiffrement applicatif supplémentaire ni gérer de clé de chiffrement dédiée.
-- Lorsque le volume ou le support de destination est protégé par un mécanisme de chiffrement du système ou du matériel, les sauvegardes bénéficient de cette protection dans les limites et selon les conditions de ce mécanisme.
-- Lorsque le support ou le volume n'est pas chiffré, la sauvegarde ne doit pas être présentée comme chiffrée ou protégée contre une lecture directe par une personne ayant accès au fichier.
-- Si l'état de chiffrement de la destination peut être déterminé de manière fiable au moyen des interfaces prises en charge par le système d'exploitation, l'application peut l'indiquer clairement avant la création de la sauvegarde. Si cet état ne peut pas être établi, elle doit le signaler comme inconnu et ne jamais supposer que le support est chiffré.
-- L'application peut recommander l'activation du chiffrement natif du système ou du support lorsque cela est pertinent, sans imposer un mécanisme propriétaire ni bloquer une sauvegarde au seul motif que le chiffrement n'est pas détecté.
-- La gestion, la conservation et la récupération des clés relèvent exclusivement du système d'exploitation ou du mécanisme de chiffrement du support. L'application ne stocke aucune clé de chiffrement de sauvegarde.
-- Cette décision ne modifie ni le contenu des sauvegardes, ni leur destination configurable, ni les règles de conservation, d'intégrité et de restauration déjà définies. Les journaux de diagnostic locaux restent inclus systématiquement conformément à la section 10.608.
-
-
-## 10.610 Restauration complète avec retour strict à l'état sauvegardé — Question 641, décision validée par l'utilisateur
-
-Lorsqu'une restauration complète est demandée, l'application rétablit strictement l'état couvert par la sauvegarde sélectionnée. Les données concernées reviennent à leur état exact au moment de la création de cette sauvegarde ; les modifications réalisées depuis ce point sont donc perdues dans l'état restauré.
-
-- La restauration complète remplace l'état courant des éléments couverts par la sauvegarde par leur état sauvegardé. Elle ne réalise aucune fusion automatique avec les modifications postérieures.
-- Le périmètre de la restauration correspond au périmètre documenté de la sauvegarde sélectionnée. Les éléments qui n'en font pas partie ne doivent pas être supprimés ou modifiés au seul motif qu'une restauration complète est effectuée.
-- Avant de commencer, l'application présente clairement la date et l'identification de la sauvegarde, le périmètre concerné et l'avertissement indiquant que les modifications postérieures couvertes par la restauration seront perdues.
-- Conformément à la règle de création d'un point de restauration avant toute opération sensible définie en section 10.340, l'état immédiatement antérieur à la restauration doit être protégé par un point de restauration préalable lorsque cela est techniquement possible. Ce point permet de revenir à l'état précédant la tentative de restauration.
-- La restauration ne commence qu'après confirmation explicite de l'utilisateur. L'application vérifie l'intégrité de la sauvegarde avant son application et contrôle la cohérence de l'état restauré après l'opération.
-- Si la sauvegarde est invalide, incomplète ou si la restauration échoue, l'application signale précisément le problème et ne prétend pas que le retour à l'état sauvegardé a réussi. Elle applique les mécanismes de récupération et de retour à l'état antérieur déjà définis pour les opérations sensibles.
-- Les règles particulières déjà établies restent applicables, notamment l'exclusion du rapport qualité courant lors de la restauration d'un projet (section 10.44) et l'inclusion systématique des journaux locaux dans les sauvegardes (section 10.608).
-- Cette décision définit le comportement d'une restauration complète et ne supprime pas la possibilité de restauration sélective déjà prévue en section 2.7.
-
-
-## 10.611 Portabilité multiplateforme des sauvegardes — Question 642, décision validée par l'utilisateur
-
-Les sauvegardes de MTG Card Remodeler doivent être portables entre les trois plateformes officiellement prises en charge : Windows, macOS et Linux. Une sauvegarde créée sur l'une de ces plateformes doit pouvoir être restaurée sur une autre, sous réserve de la compatibilité des versions et des composants concernés.
-
-- Le format de sauvegarde doit privilégier des données et métadonnées indépendantes du système d'exploitation, sans dépendance inutile à des chemins absolus, aux séparateurs de chemins ou aux conventions propres à une plateforme.
-- Lors de la restauration sur un système différent, l'application adapte les chemins, emplacements et paramètres strictement liés au système cible, en utilisant les mécanismes natifs de résolution des répertoires et des ressources.
-- Les chemins externes qui ne peuvent pas être transposés automatiquement, les ressources absentes sur le système cible et les intégrations propres à une plateforme doivent être détectés et signalés. L'application ne doit ni inventer leur nouvel emplacement ni supprimer silencieusement les références concernées.
-- Lorsque l'adaptation automatique est impossible ou ambiguë, l'application demande à l'utilisateur de localiser ou de reconfigurer l'élément concerné, tout en préservant les données originales et en expliquant l'incidence de l'élément non résolu.
-- Avant la restauration, l'application vérifie la compatibilité du format, de la version, des fonctionnalités et des composants requis. Une incompatibilité bloquante doit empêcher une restauration incohérente ; les incompatibilités non bloquantes doivent être présentées clairement.
-- La portabilité ne garantit pas qu'un logiciel, pilote, service externe, police, ressource système ou composant tiers propre à la plateforme source soit disponible sur le système cible. Ces dépendances doivent être identifiées et traitées selon les règles de compatibilité existantes.
-- Les données de projet, métadonnées, templates, variantes et ressources internes doivent conserver leur contenu et leur identité. L'adaptation multiplateforme ne doit pas modifier leur sens ni écraser des données du système cible hors du périmètre de restauration.
-- Les sauvegardes conservent les règles existantes de chiffrement du support, d'intégrité, de point de restauration préalable et de restauration complète stricte définies notamment en sections 10.609 et 10.610.
-- Les tests de livraison doivent inclure des scénarios de sauvegarde et de restauration croisés entre Windows, macOS et Linux, en couvrant les chemins, ressources absentes, différences de casse des noms de fichiers et paramètres spécifiques aux plateformes.
-
-
-## 10.612 Développement complet avant livraison finale et progression modulaire — Question 643, décision validée par l'utilisateur
-
-Le périmètre de réalisation visé avant de considérer MTG Card Remodeler comme livrable couvre l'ensemble des fonctionnalités et exigences retenues dans le présent cahier des charges. La première livraison finale ne doit donc pas être définie comme une version minimale volontairement limitée à un sous-ensemble des fonctionnalités.
-
-- Le développement peut et doit être organisé progressivement en modules fonctionnels cohérents afin de maîtriser la complexité, de faciliter les tests et de réduire les risques.
-- Chaque module peut être développé, testé, documenté et validé indépendamment lorsque ses dépendances le permettent.
-- La validation intermédiaire d'un module ne signifie pas que le produit complet est terminé ou que les exigences restantes sont abandonnées.
-- Les dépendances structurantes et le socle technique doivent être traités suffisamment tôt pour éviter que les modules ultérieurs reposent sur des fondations instables.
-- Le suivi de réalisation doit relier chaque exigence du cahier des charges à un état vérifiable : non commencé, en cours, implémenté, testé, validé ou bloqué, avec justification pour les écarts.
-- Une fonctionnalité ne peut être considérée comme couverte sur la seule base de son existence apparente : ses critères d'acceptation, cas limites, interactions et tests pertinents doivent être satisfaits.
-- Toute impossibilité technique, incompatibilité ou exigence devenue irréalisable doit être documentée et soumise à arbitrage ; elle ne peut être écartée silencieusement au nom d'un découpage en modules.
-- Cette décision définit l'objectif de complétude du produit et n'autorise pas à elle seule le démarrage du développement. La phase de développement reste soumise à la clôture explicite du cahier des charges et à l'autorisation de l'utilisateur.
-
-## 10.613 Critères d'acceptation, audit global et validation finale mixte — Question 644, décision validée par l'utilisateur
-
-La validation de la conformité du logiciel repose sur une approche mixte : des critères d'acceptation explicites et des tests vérifiables sont appliqués à chaque fonctionnalité, un audit global de conformité est réalisé, puis l'utilisateur prononce la validation finale du produit.
-
-- Chaque exigence fonctionnelle et technique doit être reliée à un ou plusieurs critères d'acceptation observables et à des preuves de vérification adaptées.
-- Les tests automatisés sont utilisés lorsqu'ils sont pertinents et fiables ; ils sont complétés par des tests manuels, exploratoires, visuels, multiplateformes ou d'usage lorsque la nature de l'exigence le nécessite.
-- Les résultats doivent distinguer clairement les tests réussis, échoués, non exécutés, non applicables et bloqués, avec justification et preuve consultable lorsque possible.
-- La couverture doit être suivie au niveau de chaque exigence, y compris les cas limites, interactions, régressions et dépendances. Une fonctionnalité seulement partiellement réalisée ne peut être déclarée conforme.
-- Avant la proposition de validation finale, un audit global confronte la version candidate à l'ensemble du cahier des charges, à l'index et à la matrice de traçabilité. Il vérifie aussi les anomalies ouvertes, les écarts acceptés, les risques résiduels et la cohérence multiplateforme.
-- Les défauts bloquants et majeurs non résolus empêchent de recommander la validation finale. Les écarts mineurs éventuels doivent être explicitement documentés, évalués et présentés à l'utilisateur ; ils ne sont jamais masqués par un taux global de réussite.
-- L'assistant prépare un rapport d'audit synthétique et détaillé, expose les preuves, les limites des vérifications et les points restant à arbitrer, puis formule une recommandation motivée.
-- La décision finale d'accepter le logiciel comme terminé appartient à l'utilisateur. La réussite des tests ou l'avis de l'assistant ne vaut pas acceptation à sa place.
-- Cette validation finale ne dispense pas du suivi ultérieur des défauts, de la maintenance ou des évolutions, qui devront être distingués de la conformité de la version acceptée.
-
-
-## 10.614 Absence de défauts résiduels, y compris mineurs, avant acceptation finale — Question 645, décision validée par l'utilisateur
-
-La validation finale du logiciel est conditionnée à l'absence de tout défaut connu non résolu, y compris les défauts mineurs. Aucun défaut mineur documenté ne peut être accepté comme exception à cette règle.
-
-- Avant de recommander l'acceptation finale, l'audit doit confirmer qu'aucun défaut bloquant, majeur ou mineur connu ne subsiste dans la version candidate.
-- Tout défaut détecté doit être corrigé, puis faire l'objet d'une vérification adaptée démontrant sa résolution. Les tests de non-régression pertinents doivent être exécutés afin de vérifier que la correction n'a pas introduit de nouveau problème.
-- Un défaut ne peut pas être requalifié artificiellement ou retiré du suivi dans le seul but de satisfaire cette condition. Toute décision de classement doit rester fondée sur des critères cohérents, documentés et traçables.
-- Les anomalies non reproductibles, les limites connues, les comportements non vérifiés et les risques résiduels doivent rester explicitement consignés ; ils ne doivent pas être assimilés silencieusement à des défauts corrigés.
-- Si un défaut demeure ouvert, même mineur, la validation finale est reportée. Le rapport d'audit présente les éléments restant à résoudre et la version ne peut pas être déclarée acceptée.
-- Cette règle ne modifie pas la responsabilité de l'utilisateur concernant la décision finale : une fois les conditions de conformité satisfaites, l'acceptation du produit reste prononcée explicitement par l'utilisateur.
-
-
-## 10.615 Traitement des défauts découverts après acceptation et cycle de maintenance corrective — Question 646, décision validée par l'utilisateur
-
-L'acceptation finale d'une version demeure valable pour cette version même si un défaut est découvert ultérieurement. Un défaut découvert après acceptation relève du cycle de maintenance et ne révoque pas rétroactivement le statut d'acceptation de la version antérieure.
-
-- Chaque défaut découvert après acceptation est enregistré dans le suivi de maintenance avec sa description, son périmètre, ses conditions de reproduction lorsqu'elles sont connues, son impact, sa gravité et les versions concernées.
-- Le défaut est analysé et priorisé selon son impact sur la sécurité, l'intégrité des données, les fonctionnalités, la compatibilité et l'expérience d'utilisation. Les mesures temporaires de réduction du risque doivent être documentées lorsqu'elles sont nécessaires.
-- La correction est préparée dans un cycle correctif adapté. Elle ne doit pas modifier silencieusement les données utilisateur ni introduire de régression ; les procédures de sauvegarde, de restauration et de validation applicables restent en vigueur.
-- Une version corrective est publiée après les vérifications adaptées, incluant les tests ciblés et les tests de non-régression pertinents. Les notes de version indiquent le défaut corrigé, les éventuels contournements et les changements associés.
-- La version précédemment acceptée conserve son historique, ses preuves d'audit et son statut d'acceptation propre. La version corrective possède son propre numéro, son propre dossier de vérification et, lorsque nécessaire, son propre audit.
-- La découverte d'un défaut ne dispense jamais de le corriger ni de l'informer clairement. Les défauts affectant la sécurité, l'intégrité ou la perte de données doivent être traités en priorité selon leur gravité.
-- Cette maintenance corrective est distincte de la définition initiale du produit : elle ne permet pas de considérer comme livrable une version qui n'aurait pas satisfait les critères de validation au moment de son acceptation.
-- La décision d'accepter une version corrective en tant que nouvelle version appartient à l'utilisateur selon les critères d'acceptation et d'audit définis aux sections 10.613 et 10.614.
-
-
-## 10.616 Audit proportionnel au risque des versions correctives — Question 647, décision validée par l'utilisateur
-
-L'étendue de la vérification préalable à l'acceptation d'une version corrective est proportionnelle au risque, à la portée et aux conséquences potentielles de la correction. Une correction localisée et à faible risque ne nécessite pas automatiquement de répéter l'intégralité de l'audit du produit ; les changements susceptibles d'affecter largement le logiciel imposent en revanche une vérification étendue.
-
-- Pour une correction mineure, localisée et dont les effets sont circonscrits, la vérification porte au minimum sur le défaut corrigé, les fonctionnalités directement concernées, les dépendances pertinentes et les tests de non-régression ciblés.
-- Pour une correction majeure, critique, touchant plusieurs modules ou susceptible d'affecter des fonctions transversales, la vérification est étendue et comprend un audit complet de conformité au cahier des charges ainsi que la reprise des tests de validation pertinents à l'échelle du produit.
-- Le niveau de vérification est déterminé et justifié à partir de la gravité du défaut initial, de l'étendue des changements, des dépendances, de la sensibilité des données et des opérations touchées, ainsi que du risque de régression.
-- Lorsque plusieurs catégories de risque se cumulent ou que l'impact ne peut pas être circonscrit de manière fiable, le niveau supérieur de vérification est retenu. Une incertitude importante ne peut pas être utilisée pour réduire l'étendue de l'audit.
-- Le dossier de la version corrective consigne le périmètre modifié, l'analyse de risque, les tests exécutés et leurs résultats, les exigences concernées, les éventuels tests complets réalisés ou écartés avec justification, ainsi que les limites et risques résiduels.
-- Quel que soit le niveau retenu, aucun défaut connu non résolu, même mineur, ne peut subsister au moment de l'acceptation de la version corrective, conformément à la section 10.614. La décision finale d'acceptation appartient à l'utilisateur.
-- Cette règle complète les sections 10.613 à 10.615 : elle adapte l'étendue de l'audit sans diminuer les critères d'acceptation, l'exigence de correction de tous les défauts connus ni la traçabilité propre à chaque version.
-
-
-## 10.617 Protection proportionnelle au risque face à un défaut critique après publication — Question 648, décision validée par l'utilisateur
-
-Lorsqu'un défaut grave est découvert dans une version déjà acceptée et utilisée, et qu'aucune correction n'est encore disponible, l'application applique des mesures de protection proportionnelles au risque réel. Elle bloque les opérations présentant un risque critique pour la sécurité ou l'intégrité des données ; pour les risques moins élevés, elle avertit clairement l'utilisateur, explique le problème et présente les solutions temporaires fiables lorsqu'elles existent.
-
-- Les opérations susceptibles d'entraîner une perte, une corruption ou une altération irréversible des données, une atteinte à leur intégrité ou un risque critique pour la sécurité sont désactivées ou bloquées jusqu'à ce qu'une correction ou une mesure de protection fiable soit disponible.
-- Le blocage est limité aux fonctionnalités et opérations réellement concernées lorsque cette isolation est techniquement fiable. Les fonctions indépendantes et sans risque associé restent accessibles ; l'application ne doit pas être rendue globalement inutilisable sans nécessité démontrée.
-- Pour les défauts dont le risque ne justifie pas un blocage, l'application affiche un avertissement visible et compréhensible précisant le défaut connu, sa gravité, les fonctionnalités touchées et les conséquences possibles.
-- Lorsqu'une solution temporaire ou un contournement a été vérifié comme fiable, l'application le présente avec ses limites et les précautions nécessaires. Elle ne doit jamais présenter une mesure non vérifiée comme une garantie de sécurité.
-- Les restrictions et avertissements restent en vigueur tant que le défaut n'est pas corrigé ou que le risque n'a pas été réduit par une mesure validée. Leur levée doit être fondée sur une vérification documentée.
-- La décision de blocage ou d'avertissement est justifiée par une analyse du risque, de la gravité, de la probabilité, de l'impact sur les données et la sécurité, ainsi que de la possibilité d'isoler la fonctionnalité concernée.
-- Le défaut, les versions touchées, les opérations bloquées ou averties, les mesures temporaires, leurs limites et les critères de levée des restrictions sont consignés dans le suivi de maintenance et la page des problèmes connus, conformément aux sections 10.350 et 10.615.
-- Cette règle complète les sections 10.345, 10.350, 10.615 et 10.616 : elle protège immédiatement l'utilisateur sans imposer un blocage général disproportionné et sans réduire les exigences de correction, de vérification et de traçabilité.
 
 # 11. Principes généraux de conception
 
