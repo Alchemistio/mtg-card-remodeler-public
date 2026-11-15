@@ -1,5 +1,43 @@
 # Feuille de route
 
+## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
+
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.122, dernière décision Q773 / section 10.742.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+
+### 0.1 Audit documentaire et fonctionnel
+- [ ] Consulter à chaque reprise le rappel de workflow, le présent document, l'index, puis les sections pertinentes de la dernière version du cahier des charges.
+- [ ] Vérifier chaque thème de la feuille de route contre l'index et le texte intégral ; éliminer les doublons et distinguer les décisions utilisateur des décisions techniques de l'assistant.
+- [ ] Auditer les interactions entre fonctionnalités, cas limites, erreurs, sécurité, accessibilité, données, import/export, hors ligne, sauvegardes, migrations et récupération.
+- [ ] Vérifier que chaque exigence est précise, non contradictoire, traçable et associée à un critère d'acceptation vérifiable.
+- [ ] Réaliser une revue finale de cohérence globale et clôturer explicitement les lacunes fonctionnelles.
+
+### 0.2 Contrats techniques restant à confirmer
+- [ ] Définir le contrat d'intégration FeSens : version et provenance exactes, API utilisée, compatibilité des layouts, stratégie de mise à jour, comportement de repli, tests de non-régression et limites des exports.
+- [ ] Réconcilier l'architecture de persistance spécifiée avec l'existant constaté : SQLite dans Tauri, IndexedDB dans le navigateur et éventuel repli localStorage ; préciser les responsabilités, migrations, transactions, sauvegardes et règles de cohérence.
+- [ ] Définir le format de projet et les contrats de fichiers : versionnement de schéma, manifeste, dépendances, ressources embarquées/liées, intégrité, import/export et compatibilité ascendante.
+- [ ] Confirmer les versions minimales et architectures prises en charge pour Windows, macOS et Linux, sur la base de la matrice Tauri/WebView et des environnements de build réellement supportés.
+- [ ] Fixer des objectifs mesurables de performance, de mémoire, de taille de catalogue et de temps de réponse, avec matériel de référence et protocole de mesure.
+- [ ] Définir les garanties de cohérence entre aperçu, SVG, PNG et PDF, y compris les cas FeSens rasterisés, la typographie, les polices, les couleurs et la reproductibilité.
+- [ ] Vérifier la couverture des tests unitaires, intégration, visuels, bout en bout, migration, restauration, sécurité et multiplateforme.
+
+### 0.3 Dépendances, ressources et conformité
+- [ ] Achever l'audit des licences et provenances de FeSens, Figma MTG Card Designer, polices, symboles, cadres et collections d'assets ; exclure par défaut les ressources dont les droits ne sont pas établis.
+- [ ] Définir les notices, attributions et conditions de distribution nécessaires ; faire relire le texte de licence du projet avant toute distribution.
+- [ ] Vérifier séparément les droits sur les données, noms, symboles et illustrations MTG ; une provenance documentée ne vaut pas autorisation de redistribution.
+- [ ] Vérifier les dépendances, leurs versions, licences, vulnérabilités connues et modalités de mise à jour.
+
+### 0.4 Préparation de la réalisation
+- [ ] Comparer l'état réel de la branche principale, la CI et les documents d'état avec les exigences consolidées ; marquer chaque fonctionnalité comme absente, partielle, présente ou vérifiée.
+- [ ] Décomposer le périmètre complet en lots de développement ordonnés, sans réduire les exigences finales, avec dépendances, risques, tests et critères de sortie.
+- [ ] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
+- [ ] Vérifier qu'aucun arbitrage fonctionnel crucial ne reste sans réponse ; soumettre à l'utilisateur un unique bloc compact si nécessaire.
+- [ ] Publier une version finale du cahier des charges, recalculer et vérifier intégralement son index, et ne conserver que les trois dernières versions dans la branche principale.
+- [ ] Produire un rapport de préparation au développement avec écarts résiduels, risques acceptés, prérequis et plan de lots.
+- [ ] Obtenir la clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur avant toute modification du code produit.
+
+**Règle de sortie :** la phase 0 ne peut être déclarée terminée que lorsque tous les contrôles bloquants sont satisfaits, les exigences sont testables, les droits et dépendances critiques sont clarifiés, la CI et l'état réel sont audités, et l'utilisateur a explicitement clôturé le cahier des charges puis autorisé le développement. Une case cochée doit être étayée par une preuve ou un lien de vérification.
+
+---
 ## Phase 1 — Fondations et premier éditeur (en cours)
 - [x] Initialiser React, TypeScript et Vite.
 - [x] Définir un modèle de carte interne validé.
