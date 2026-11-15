@@ -297,3 +297,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.126 :** ajout de Q806 / section 10.775 pour l'import de decks publics par URL : accès réseau natif Tauri, fournisseurs et hôtes autorisés, protections SSRF, limites de requêtes, repli fichier/texte sans proxy en mode navigateur et confirmation avant import. Index à vérifier après recalcul. Point de reprise Q806 ; prochaine question Q807. Rétention cible V3.124, V3.125, V3.126 ; V3.123 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.126 :** 753 sections/questions et 753 entrées uniques dans l'index ; toutes les références de titres et de lignes sont valides (zéro erreur). V3.123 supprimée de main après vérification ; seules V3.124, V3.125 et V3.126 sont conservées. Point de reprise Q806 / 10.775 ; prochaine question Q807. Aucun code produit modifié.
