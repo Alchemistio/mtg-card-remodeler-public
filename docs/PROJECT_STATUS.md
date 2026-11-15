@@ -293,3 +293,32 @@ L'audit final a vérifié les 759 identifiants du cahier des charges et de l'ind
 Le logiciel est prêt à entrer dans le développement au niveau du périmètre et de l'organisation. Les écarts existants (stockage, lockfile, FeSens, tests visuels, manifeste d'assets et CI multiplateforme) sont identifiés et affectés aux lots correspondants. Aucun code produit n'a été modifié pendant l'audit.
 
 La clôture formelle du cahier des charges et l'autorisation de démarrer le Lot A restent à obtenir de l'utilisateur. Les vérifications de licence et de droits des ressources demeurent un jalon préalable à toute distribution, distinct de l'entrée en développement.
+
+
+## 11. Audit final de préparation — V3.133 (15 novembre 2026)
+
+### Contrôle documentaire indépendant
+
+- Cahier des charges V3.133 : 759 sections de question, toutes non vides et strictement ordonnées.
+- Index : 759 identifiants uniques, dont 757 exigences actives et 2 identifiants fusionnés.
+- Vérification de chaque entrée d'index contre le titre et la ligne du cahier des charges : zéro erreur.
+- Branche principale : exactement trois versions conservées, V3.131, V3.132 et V3.133.
+- La dernière vérification du commit documentaire ne retourne aucun statut combiné ni workflow associé ; ce résultat vide ne prouve pas une réussite CI.
+- Aucun code produit n'a été modifié durant cette phase.
+
+### Écarts confirmés et lots d'affectation
+
+- Lot A : absence de lockfile, usage de npm install dans les workflows, version FeSens déclarée par plage, repli localStorage des cartes/projets à remplacer.
+- Lot B : layouts Scryfall restants, modèle des faces et corpus visuel de référence.
+- Lot C : 37 371 assets sources inventoriés mais non approuvés ; planches de contact, droits par ressource, manifeste runtime et contrôle de packaging restent à traiter.
+- Lots D/E : éditeur avancé, format projet, imports et fonctionnement hors ligne à compléter et tester.
+- Lot F : profils ICC/CMJN, contrôle des exports et validations sur sorties réelles.
+- Lot G : validations CI et artefacts Windows/macOS/Linux, tests sur machines propres, signature/notarisation, documentation et conformité.
+
+### Décision de préparation
+
+Le cahier des charges est complet au niveau des décisions et critères d'acceptation. Le logiciel est prêt à entrer dans le Lot A, mais cela ne signifie pas que le logiciel est terminé ou prêt à être distribué. Les tests d'exécution et les écarts d'implémentation sont des travaux de développement prévus dans les lots.
+
+Les droits non établis et la licence personnalisée constituent un jalon bloquant pour la publication/distribution. Ils ne bloquent pas le développement privé avec des ressources autorisées ou synthétiques, sans embarquer les assets en attente.
+
+**Seule action encore requise avant de commencer le code :** clôture formelle du cahier des charges par l'utilisateur et autorisation distincte de démarrer le Lot A.
