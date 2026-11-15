@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.130 | Consolidation des doublons Q437/Q440 et Q489/Q485, identifiants historiques préservés |\n| V3.129 | Réaffectation de deux exigences d'animation mal placées (Q478/Q483) et audit des sections vides |
+| V3.130 | Consolidation des doublons Q437/Q440 et Q489/Q485, identifiants historiques préservés |
+| V3.129 | Réaffectation de deux exigences d'animation mal placées (Q478/Q483) et audit des sections vides |
 | V3.128 | Nettoyage structurel : retrait du bloc 10.348 obsolète et rétablissement de l'ordre strict des sections |
 | V3.127 | Adoption des 75 décisions techniques recommandées Q519–Q593 après audit de cohérence et de sécurité |
 | V3.126 | Import sécurisé de decks publics par URL via accès natif et repli navigateur (Q806) |
