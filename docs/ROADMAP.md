@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : prêt pour clôture utilisateur — cahier des charges V3.133 candidate finale, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.133 est la version courante ; V3.131, V3.132 et V3.133 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : prêt à entrer en développement sous réserve de clôture formelle par l'utilisateur — cahier des charges V3.133, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.133 est la version courante ; V3.131, V3.132 et V3.133 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -16,6 +16,15 @@
 - [ ] La rédaction et la revue du texte de licence du projet restent à effectuer avant toute distribution.
 - [x] Rapport de préparation V3.133 et plan des lots A–G publiés.
 - [ ] Clôture formelle du cahier des charges et autorisation distincte de démarrer le Lot A.
+
+### Vérification indépendante V3.133
+
+- [x] Cahier des charges : 759 sections de question non vides, ordonnées strictement.
+- [x] Index : 759 identifiants uniques (757 exigences actives et deux identifiants fusionnés).
+- [x] Références de titres et de lignes comparées aux sections : zéro erreur.
+- [x] Branche main : exactement V3.131, V3.132 et V3.133 conservées.
+- [x] Le dernier commit documentaire vérifié ne possède pas de statut CI ni de workflow associé ; aucune réussite CI n'est revendiquée sur cette base.
+- [x] Aucun code produit modifié pendant la phase de spécification.
 
 ### Contrôle documentaire V3.123
 
