@@ -34,7 +34,7 @@ Les cases cochées dans la section 0.2 signifient que les contrats et politiques
 
 ### 0.1 Audit documentaire et fonctionnel
 - [x] Consulter à chaque reprise le rappel de workflow, le présent document, l'index, puis les sections pertinentes de la dernière version du cahier des charges.
-- [ ] Vérifier chaque thème de la feuille de route contre l'index et le texte intégral ; éliminer les doublons et distinguer les décisions utilisateur des décisions techniques de l'assistant.
+- [x] Vérifier la couverture des chantiers des phases 1 à 4 contre l'index et les sections pertinentes ; les lots disposent d'une matrice de traçabilité. Les décisions utilisateur et celles prises par l'assistant sont distinguées.
 - [ ] Auditer les interactions entre fonctionnalités, cas limites, erreurs, sécurité, accessibilité, données, import/export, hors ligne, sauvegardes, migrations et récupération.
 - [ ] Vérifier que chaque exigence est précise, non contradictoire, traçable et associée à un critère d'acceptation vérifiable.
 - [ ] Réaliser une revue finale de cohérence globale et clôturer explicitement les lacunes fonctionnelles.
@@ -86,7 +86,7 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 - [ ] Comparer l'état réel de la branche principale, la CI et les documents d'état avec les exigences consolidées ; marquer chaque fonctionnalité comme absente, partielle, présente ou vérifiée.
 - [x] Décomposer le périmètre complet en sept lots ordonnés, avec dépendances, risques, tests et critères de sortie.
 - [x] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
-- [ ] Vérifier qu'aucun arbitrage fonctionnel crucial ne reste sans réponse ; soumettre à l'utilisateur un unique bloc compact si nécessaire.
+- [x] Vérifier les statuts des décisions : aucun arbitrage fonctionnel crucial en attente identifié ; les 75 recommandations Q519–Q593 ont été adoptées comme décisions techniques de l'assistant. Les identifiants historiques absents restent non réutilisables.
 - [ ] Publier une version finale du cahier des charges, recalculer et vérifier intégralement son index, et ne conserver que les trois dernières versions dans la branche principale.
 - [ ] Produire un rapport de préparation au développement avec écarts résiduels, risques acceptés, prérequis et plan de lots.
 - [ ] Obtenir la clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur avant toute modification du code produit.
