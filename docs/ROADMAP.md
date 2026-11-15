@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.132, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.132 est la version courante ; V3.130, V3.131 et V3.132 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.133 candidate finale, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.133 est la version courante ; V3.131, V3.132 et V3.133 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -179,6 +179,19 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 - [x] Vérifier 759 identifiants indexés, 757 exigences actives et 2 entrées fusionnées.
 - [x] Vérifier zéro erreur de référence et aucune section vide.
 - [x] Conserver V3.130, V3.131 et V3.132 ; V3.129 retirée de main, historique Git préservé.
+
+## Évaluation finale de préparation au développement — V3.133
+
+<badge color="success">Prêt pour clôture utilisateur</badge>
+
+- Le périmètre fonctionnel et technique est défini ; aucune décision cruciale utilisateur ne reste en attente.
+- Les 75 décisions techniques Q519–Q593 ont été adoptées ; les décisions techniques ultérieures sont documentées.
+- Les 759 identifiants de l'index comprennent 757 exigences actives et deux entrées fusionnées ; ordre strict, aucune section vide, zéro erreur de référence.
+- Les lots A–G sont ordonnés, leurs dépendances et critères de sortie sont définis.
+- Les écarts connus de l'implémentation sont consignés et affectés à un lot ; aucun code produit n'a été modifié durant cette phase.
+- Les questions de droits/licences non résolues sont isolées comme jalon de distribution ; les assets non vérifiés sont exclus des artefacts distribués.
+- **Entrée en développement :** possible dès validation formelle du cahier des charges et autorisation explicite de l'utilisateur. Le premier lot sera le Lot A.
+- **Distribution :** reste interdite tant que les licences et droits des ressources concernées ne sont pas validés.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
