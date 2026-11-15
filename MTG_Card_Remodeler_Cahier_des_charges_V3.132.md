@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.132 | Finalisation des paramètres de rétention/rotation des journaux et suppression des reports obsolètes Q624/Q638 (Q812) |\n| V3.131 | Valeurs par défaut testables pour notifications, animations, panneau, couleur RGB et résolution d'impression (Q807–Q811) |
+| V3.132 | Finalisation des paramètres de rétention/rotation des journaux et suppression des reports obsolètes Q624/Q638 (Q812) |
+| V3.131 | Valeurs par défaut testables pour notifications, animations, panneau, couleur RGB et résolution d'impression (Q807–Q811) |
 | V3.130 | Consolidation des doublons Q437/Q440 et Q489/Q485, identifiants historiques préservés |
 | V3.129 | Réaffectation de deux exigences d'animation mal placées (Q478/Q483) et audit des sections vides |
 | V3.128 | Nettoyage structurel : retrait du bloc 10.348 obsolète et rétablissement de l'ordre strict des sections |
