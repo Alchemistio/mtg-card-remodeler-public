@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.133 candidate finale, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.133 est la version courante ; V3.131, V3.132 et V3.133 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : prêt pour clôture utilisateur — cahier des charges V3.133 candidate finale, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.133 est la version courante ; V3.131, V3.132 et V3.133 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
