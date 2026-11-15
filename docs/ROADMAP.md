@@ -84,8 +84,8 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 **Écarts vérifiés :** aucun fichier de verrouillage npm/pnpm/yarn, aucun fichier LICENSE racine, aucune configuration Playwright dédiée ; le code écrit actuellement cartes et projets dans localStorage lorsque IndexedDB est indisponible ; package.json déclare mtg-card avec la plage ^0.1.1 ; la CI générale vérifiée est Linux et le workflow Windows produit des artefacts temporaires. Aucun code produit n'a été modifié pendant cet audit.
 
 - [ ] Comparer l'état réel de la branche principale, la CI et les documents d'état avec les exigences consolidées ; marquer chaque fonctionnalité comme absente, partielle, présente ou vérifiée.
-- [ ] Décomposer le périmètre complet en lots de développement ordonnés, sans réduire les exigences finales, avec dépendances, risques, tests et critères de sortie.
-- [ ] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
+- [x] Décomposer le périmètre complet en sept lots ordonnés, avec dépendances, risques, tests et critères de sortie.
+- [x] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
 - [ ] Vérifier qu'aucun arbitrage fonctionnel crucial ne reste sans réponse ; soumettre à l'utilisateur un unique bloc compact si nécessaire.
 - [ ] Publier une version finale du cahier des charges, recalculer et vérifier intégralement son index, et ne conserver que les trois dernières versions dans la branche principale.
 - [ ] Produire un rapport de préparation au développement avec écarts résiduels, risques acceptés, prérequis et plan de lots.
@@ -94,6 +94,100 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 **Règle de sortie — prêt à entrer en développement :** la phase 0 est prête lorsque le cahier des charges est complet, cohérent et testable ; les contrats techniques, plateformes, performances, formats et critères d'acceptation sont établis ; l'état réel du dépôt et de la CI est comparé à la spécification ; les dépendances sont identifiées ; les risques de droits non résolus sont soit levés, soit explicitement exclus de tout artefact distribué ; et le plan de lots ainsi que les critères d'entrée sont prêts. Les ressources FeSens/Figma et autres assets non vérifiés peuvent rester en usage interne de développement uniquement si cet usage est autorisé, mais aucun artefact les contenant ne peut être distribué avant clarification des droits. La rédaction/relecture de la licence personnalisée du code et la validation des droits de chaque asset constituent un **jalon distinct de distribution**, pas une raison pour modifier le code avant la clôture du cahier des charges. La clôture explicite du cahier des charges et l'autorisation distincte de l'utilisateur restent obligatoires avant toute modification du code produit. Une case cochée doit être étayée par une preuve ou un lien de vérification.
 
 ---
+## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
+
+Ce plan organise la réalisation sans réduire le périmètre final validé. Il s'agit d'un plan de préparation : aucun lot ne peut commencer avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
+
+### Lot A — Reproductibilité, persistance et fondations
+**Dépendances :** aucune ; premier lot obligatoire.
+
+- Ajouter et versionner le lockfile npm ; remplacer npm install par npm ci dans la CI.
+- Épingler mtg-card à la version exacte approuvée et documenter les mises à jour contrôlées.
+- Aligner les adaptateurs SQLite Tauri et IndexedDB navigateur sur les contrats Q774–Q778.
+- Remplacer le repli localStorage des cartes/projets par une migration contrôlée des anciennes données et un état dégradé sûr.
+- Ajouter les tests de contrat des deux adaptateurs, des migrations, de la récupération et des quotas.
+- Réconcilier les documents d'architecture avec la différence entre l'existant et la cible.
+
+**Sortie du lot :** installation reproductible, build/test reproductibles, données préservées, migration vérifiée, aucun stockage principal non conforme.
+
+### Lot B — Rendu, layouts et typographie
+**Dépendances :** Lot A ; s'appuie sur les contrats FeSens Q784–Q788.
+
+- Compléter les layouts split, bataille, classe, prototype et modal DFC.
+- Compléter les coûts alternatifs, rappels, marqueurs et capacités structurées.
+- Unifier les données et l'adaptateur FeSens sans fuite de types tiers dans le modèle interne.
+- Préserver le moteur SVG local pour les cas non couverts et documenter la nature raster/vectorielle des sorties.
+- Stabiliser les polices, métriques, retours à la ligne et diagnostics de débordement.
+- Construire le corpus visuel d'au moins 100 fixtures, cinq par layout, avec droits vérifiés ou données synthétiques.
+
+**Sortie du lot :** chaque layout déclaré pris en charge passe ses tests de rendu et de régression visuelle ; aucun texte ou symbole n'est tronqué silencieusement.
+
+### Lot C — Gouvernance et bibliothèque d'assets
+**Dépendances :** peut avancer en parallèle du lot B, mais aucun asset non vérifié n'est intégré au runtime distribué.
+
+- Réconcilier le manifeste TypeScript avec les fichiers réellement présents ; supprimer ou corriger les chemins invalides.
+- Exécuter le générateur de catalogue sur un clone complet et examiner les planches de contact.
+- Terminer la revue de provenance et de droits par ressource ; ne sélectionner que des assets visuellement et juridiquement validés.
+- Construire la bibliothèque normalisée et son manifeste, avec dimensions, empreintes, provenance, licence et compatibilité.
+- Implémenter le contrôle de build Q802 : toute ressource non autorisée bloque le packaging distribué.
+- Conserver les sources historiques immuables et isoler les assets en attente.
+
+**Sortie du lot :** aucune référence runtime cassée ; inventaire traçable ; build distribuable impossible si un asset sans droit vérifié est embarqué.
+
+### Lot D — Éditeur et gestion des projets
+**Dépendances :** Lots A et B ; Lot C pour les assets personnalisés.
+
+- Compléter l'éditeur de cadres, de zones de texte et les outils de personnalisation définis dans les chapitres fonctionnels.
+- Finaliser la séparation des données Scryfall et des surcharges utilisateur.
+- Compléter la gestion avancée des projets, favoris, collections, variantes et composants réutilisables.
+- Implémenter le format portable ZIP Q779–Q783 : manifeste, chemins relatifs, intégrité, versionnement et refus sûr des formats futurs.
+- Tester sauvegardes, restauration, import/export, récupération après interruption et compatibilité des projets existants.
+
+**Sortie du lot :** les projets sont éditables, portables et récupérables sans perte silencieuse ; les personnalisations ne modifient jamais les données source.
+
+### Lot E — Import, catalogue et fonctionnement hors ligne
+**Dépendances :** Lots A et D.
+
+- Finaliser l'import des decklists et la résolution groupée Scryfall.
+- Stabiliser les imports Moxfield/Archidekt en respectant leurs interfaces publiques disponibles et leurs limites ; conserver le collage/export texte comme repli.
+- Compléter le cache des images et des données, les synchronisations, les mises à jour de catalogue et le nettoyage.
+- Garantir l'ouverture, la modification et l'export des projets locaux sans réseau.
+- Vérifier les annulations, reprises réseau, limites de débit et erreurs externes déjà spécifiées.
+
+**Sortie du lot :** aucun service externe n'est requis pour les fonctions locales ; les imports incomplets ou refusés ne corrompent pas les projets.
+
+### Lot F — Impression et exports
+**Dépendances :** Lots B, C et D.
+
+- Compléter les profils d'impression, marges de sécurité et paramètres de découpe.
+- Étudier et intégrer les profils colorimétriques CMJN/ICC dans les limites des formats et moteurs réellement utilisés.
+- Garantir la cohérence géométrique entre aperçu, SVG, PNG et PDF, en signalant les contenus rasterisés.
+- Finaliser les exports individuels et par lots, planches, résolutions et contrôles qualité.
+- Vérifier les sorties sur lecteurs PDF et imprimantes de référence.
+
+**Sortie du lot :** les dimensions physiques, fonds perdus, traits de coupe, résolutions et avertissements correspondent aux critères d'acceptation.
+
+### Lot G — Multiplateforme, sécurité et préparation de livraison
+**Dépendances :** Lots A à F.
+
+- Ajouter les validations CI Windows, macOS et Linux selon la matrice Q799.
+- Produire NSIS/MSI, DMG/.app, AppImage et DEB selon Q803 ; tester chaque artefact sur machine propre.
+- Mettre en place les signatures, notarisation, attestations, empreintes et analyses de dépendances requises par Q660–Q663.
+- Ajouter les tests bout en bout, visuels et scénarios de récupération sur les plateformes annoncées.
+- Terminer la documentation utilisateur, les notices et le texte de licence personnalisé.
+- Vérifier les droits de toutes les ressources embarquées ; aucune distribution contenant un asset en attente n'est permise.
+
+**Sortie du lot :** zéro défaut connu, aucun écart non arbitré, tous les critères d'acceptation prouvés sur les plateformes annoncées et rapport d'audit global remis à l'utilisateur.
+
+### Critères d'entrée dans le premier lot de développement
+
+1. Cahier des charges déclaré complet et cohérent par audit ; index vérifié et trois dernières versions conservées.
+2. Aucun arbitrage fonctionnel crucial non résolu.
+3. Contrats techniques et critères d'acceptation établis ; risques de droits non résolus isolés hors des artefacts distribuables.
+4. État de la branche principale, de la CI et des écarts actuels documenté.
+5. Plan de lots et dépendances approuvés comme méthode de réalisation.
+6. Autorisation explicite de l'utilisateur pour commencer les modifications du code produit.
+
 ## Phase 1 — Fondations et premier éditeur (en cours)
 - [x] Initialiser React, TypeScript et Vite.
 - [x] Définir un modèle de carte interne validé.
