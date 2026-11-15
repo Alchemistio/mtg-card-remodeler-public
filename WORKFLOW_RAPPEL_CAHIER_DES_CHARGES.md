@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.123](MTG_Card_Remodeler_Cahier_des_charges_V3.123.md)
+- Cahier des charges de référence au dernier contrôle : [V3.124](MTG_Card_Remodeler_Cahier_des_charges_V3.124.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
-- Dernière question enregistrée : **Q798**
-- Dernière section : **10.767**
-- Prochain numéro disponible : **Q799** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.123
+- Dernière question enregistrée : **Q803**
+- Dernière section : **10.772**
+- Prochain numéro disponible : **Q804** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.124
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -117,10 +117,10 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.123.**
-- **Dernière question enregistrée : Q798.**
-- **Dernière section : 10.767.**
-- **Prochaine question disponible : Q799.**
+- **Version courante : V3.124.**
+- **Dernière question enregistrée : Q803.**
+- **Dernière section : 10.772.**
+- **Prochaine question disponible : Q804.**
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
 - **Rétention :** la branche `main` doit conserver uniquement V3.121, V3.122 et V3.123. V3.120 est à retirer de `main` après vérification de V3.123 et de son index ; l'historique Git est préservé.
@@ -281,3 +281,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.123 :** version 3.123 et historique des versions corrigés ; index recalculé après les métadonnées de version. Contrôle automatique : 745 sections/questions dans le cahier des charges, 745 entrées uniques dans l'index, toutes les références de titres et de lignes concordent (0 erreur). V3.120 supprimée de la branche main après vérification ; la branche conserve désormais V3.121, V3.122 et V3.123. Aucun code produit n'a été modifié. Point de reprise confirmé : Q798 / 10.767 ; prochaine décision à préparer : Q799 après consultation de la feuille de route, de l'index et des sections pertinentes.
+
+
+- **2026-11-15 — Publication V3.124 :** ajout de cinq décisions techniques Q799–Q803, sections 10.768–10.772 : matrice initiale des systèmes et architectures officiellement supportés, machine de référence des performances, corpus visuel minimal, filtrage des assets selon les droits et formats d'artefacts par plateforme. Les décisions sont documentées comme choix techniques de l'assistant et s'appuient sur les cycles de support officiels et la documentation Tauri. Point de reprise : Q803 / 10.772 ; prochaine question Q804. Rétention cible : V3.122, V3.123 et V3.124 ; V3.121 à retirer après vérification de l'index. Aucun code produit n'a été modifié.
