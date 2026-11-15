@@ -4,12 +4,12 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.132](MTG_Card_Remodeler_Cahier_des_charges_V3.132.md)
+- Cahier des charges de référence au dernier contrôle : [V3.133](MTG_Card_Remodeler_Cahier_des_charges_V3.133.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
 - Feuille de route : [docs/ROADMAP.md](docs/ROADMAP.md) — phase 0 obligatoire avant toute autorisation de développement
 - Dernière question enregistrée : **Q812**
 - Dernière section : **10.781**
-- Prochain numéro disponible : **Q813** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.132
+- Prochain numéro disponible : **Q813** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.133
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -118,14 +118,14 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.132.**
+- **Version courante : V3.133.**
 - **Dernière question enregistrée : Q812.**
 - **Dernière section : 10.781.**
 - **Prochaine question disponible : Q813.**
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
 - **Vérification des identifiants historiques :** Q594–Q618 sont explicitement réservées par l'audit du 13 novembre 2026, leurs propositions ayant été retirées pour doublons avec V3.93. Les identifiants Q499–Q503 et Q633 ne disposent pas de section correspondante dans le cahier des charges courant ; ils sont considérés comme non attribués/non réutilisables tant qu'une preuve historique ne justifie pas leur rétablissement. Les identifiants Q1–Q21 appartiennent à l'ancienne phase initiale sans entrée de question indexée. Ne jamais combler ces trous automatiquement ; le prochain identifiant courant reste Q804.
-- **Rétention :** la branche `main` doit conserver uniquement V3.130, V3.131 et V3.132. V3.129 est à retirer de `main` après vérification de V3.132 et de son index ; l'historique Git est préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.131, V3.132 et V3.133. V3.130 est à retirer de `main` après vérification de V3.133 et de son index ; l'historique Git est préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -337,3 +337,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle final V3.132 — rétention appliquée :** 759 identifiants indexés (757 exigences actives, 2 fusionnées), références de lignes et titres valides, ordre strict, aucune section vide. V3.129 supprimée de main après vérification ; seules V3.130, V3.131 et V3.132 sont conservées. Point de reprise Q812 / 10.781 ; prochaine question Q813. Aucun code produit modifié.
+
+
+- **2026-11-15 — Publication V3.133 — candidate finale :** correction du format de la liste des principes, mise à jour du statut de clôture et ajout du rapport d'audit final. Le cahier des charges compte 759 identifiants (757 exigences actives, deux fusionnées), 759 sections non vides, ordre strict et zéro erreur d'index. Tous les reports techniques identifiés ont été résolus ; les écarts de code sont documentés et répartis dans les lots A–G. La phase de développement est prête à être autorisée, mais aucun code produit ne peut être modifié avant validation explicite de clôture et autorisation utilisateur. Rétention cible V3.131–V3.133 ; V3.130 à retirer après vérification. Aucun code produit modifié.
