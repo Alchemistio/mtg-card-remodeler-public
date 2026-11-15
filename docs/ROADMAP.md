@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.128, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.127 est la version courante ; V3.125, V3.126 et V3.127 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.128, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.128 est la version courante ; V3.126, V3.127 et V3.128 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -116,6 +116,11 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 - [x] Retirer le bloc 10.348 obsolète, dupliqué et non indexé.
 - [x] Vérifier que les 753 questions indexées sont conservées et que les sections numérotées retrouvent leur ordre.
 - [x] Recalculer les références de lignes après la suppression.
+
+### Contrôle documentaire V3.128 — rétention
+
+- [x] Vérifier 753 questions, 753 entrées d'index, zéro erreur et ordre strict des sections.
+- [x] Conserver V3.126, V3.127 et V3.128 dans main ; V3.125 retirée, historique Git préservé.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
