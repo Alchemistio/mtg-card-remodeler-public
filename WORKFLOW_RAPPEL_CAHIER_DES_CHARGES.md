@@ -334,3 +334,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Contrôle de publication et rétention V3.132 :** 759 identifiants indexés (757 exigences actives, 2 fusionnées), 759 sections de question, aucune section vide, ordre strict et zéro erreur de référence. V3.129 à retirer après contrôle ; seules V3.130, V3.131 et V3.132 doivent rester dans main. Point de reprise Q812 / 10.781 ; prochaine question Q813. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle final V3.132 — rétention appliquée :** 759 identifiants indexés (757 exigences actives, 2 fusionnées), références de lignes et titres valides, ordre strict, aucune section vide. V3.129 supprimée de main après vérification ; seules V3.130, V3.131 et V3.132 sont conservées. Point de reprise Q812 / 10.781 ; prochaine question Q813. Aucun code produit modifié.
