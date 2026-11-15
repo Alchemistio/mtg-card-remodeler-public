@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.129, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.128 est la version courante ; V3.126, V3.127 et V3.128 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.129, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.129 est la version courante ; V3.127, V3.128 et V3.129 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -145,6 +145,12 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 - [x] Restaurer le contenu des questions Q478 et Q483 depuis les phrases mal placées sous Q488.
 - [x] Vérifier que les 753 sections de question ont un contenu et que Q488 ne contient plus ces exigences d'animation.
 - [x] Recalculer l'index après restauration.
+
+### Contrôle documentaire V3.129 — validation et rétention
+
+- [x] Vérifier les 753 sections de question : aucune n'est vide.
+- [x] Vérifier l'ordre strict des 753 sections et 753 entrées d'index uniques ; zéro erreur de référence.
+- [x] Conserver V3.127, V3.128 et V3.129 dans main ; V3.126 retirée, historique Git préservé.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
