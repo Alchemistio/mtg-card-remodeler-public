@@ -310,3 +310,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.128 :** retrait du bloc 10.348 « Chapitres restant à développer », obsolète, dupliqué et non indexé, qui interrompait l'ordre des sections. Les 753 décisions/questions indexées sont conservées. Index recalculé après suppression et métadonnées de version. Point de reprise Q806 / section 10.775 ; prochaine question Q807. Rétention cible V3.126, V3.127 et V3.128 ; V3.125 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.128 :** ordre strict des 753 sections rétabli ; 753 questions uniques ; index de 753 entrées, zéro erreur de référence. Le bloc 10.348 obsolète a été retiré sans perte de question. V3.125 supprimée de main après contrôle ; seules V3.126, V3.127 et V3.128 sont conservées. Point de reprise Q806 / 10.775 ; prochaine question Q807. Aucun code produit modifié.
