@@ -291,3 +291,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.125 :** ajout des décisions Q804–Q805 (sections 10.773–10.774) après audit des sections fonctionnelles et du modèle de données Scryfall. La matrice couvre les layouts connus (split, flip, transform, modal DFC, meld, leveler, class, saga, adventure, planar, scheme, vanguard, token, double-faced token, emblem, augment, host, art series, reversible card, mutate, prototype, battle, case, normal) et définit la conservation des faces, relations et mécaniques. Index à recalculer/vérifier après ajout. Point de reprise Q805 ; prochaine question Q806. Rétention cible V3.123, V3.124, V3.125 ; V3.122 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.125 :** 752 sections/questions et 752 entrées uniques dans l'index ; références de titres et de lignes vérifiées, zéro erreur. V3.122 supprimée de la branche main après vérification ; seules V3.123, V3.124 et V3.125 sont conservées. Point de reprise Q805 / 10.774 ; prochaine question Q806. Aucun code produit modifié.
