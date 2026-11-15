@@ -4,11 +4,11 @@
 
 - Dépôt : https://github.com/Alchemistio/mtg-card-remodeler-public
 - Branche de référence : `main`
-- Cahier des charges de référence au dernier contrôle : [V3.121](MTG_Card_Remodeler_Cahier_des_charges_V3.121.md)
+- Cahier des charges de référence au dernier contrôle : [V3.122](MTG_Card_Remodeler_Cahier_des_charges_V3.122.md)
 - Index de décisions : [INDEX_CAHIER_DES_CHARGES.md](INDEX_CAHIER_DES_CHARGES.md)
-- Dernière question enregistrée : **Q748**
-- Dernière section : **10.717**
-- Prochain numéro disponible : **Q749** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.121
+- Dernière question enregistrée : **Q773**
+- Dernière section : **10.742**
+- Prochain numéro disponible : **Q774** ; prochaine question à préparer après audit de l'index puis des sections pertinentes de V3.122
 - État : **phase de définition du cahier des charges uniquement**.
 
 ## 1. Instruction de reprise — à appliquer en premier
@@ -104,13 +104,13 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 
 ## 6. Point exact de reprise connu
 
-- **Version courante : V3.120.**
-- **Dernière question enregistrée : Q723.**
-- **Dernière section : 10.667.**
-- **Prochaine question disponible : Q699.**
-- Q674 à Q678 traitent de la portabilité des noms et chemins entre systèmes ; Q679 à Q683 de la coordination des accès concurrents et externes ; Q684 à Q688 du cycle de vie et de la récupération ; Q689 à Q693 de la journalisation structurée et sûre ; Q694 à Q698 de l'ordonnancement et de la réactivité.
+- **Version courante : V3.122.**
+- **Dernière question enregistrée : Q773.**
+- **Dernière section : 10.742.**
+- **Prochaine question disponible : Q774.**
+- Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
-- **Rétention :** la branche `main` doit conserver uniquement V3.117, V3.118 et V3.119. Après vérification de V3.119 et de son index, V3.116 peut être retirée de `main`, historique Git préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.120, V3.121 et V3.122. Après vérification de V3.122 et de son index, V3.119 peut être retirée de `main`, historique Git préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -256,3 +256,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 - **2026-11-14 — Publication V3.120 :** cinq séries de cinq décisions techniques autonomes Q699–Q723, sections 10.668–10.692 : décodage et mémoire des ressources graphiques ; recherche locale et indexation ; accessibilité des interactions ; licences et incorporation des polices ; mesure et maîtrise des performances. Index actualisé vers V3.120, 671 entrées. Dernière question Q723 ; prochaine Q724. Aucun code du remodeler modifié. La branche `main` doit conserver V3.118, V3.119 et V3.120 ; V3.117 est à retirer après vérification, historique Git préservé.
 
 - **2026-11-14 — Publication V3.121 :** cinq séries de décisions techniques autonomes Q724–Q748, sections 10.693–10.717 : historique Annuler/Rétablir ; presse-papiers graphique et collage sécurisé ; interactions de pointage ; édition Unicode et texte bidirectionnel ; façonnage et métriques typographiques. Les décisions sont attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Index actualisé vers V3.121 avec 696 entrées uniques ; liens et lignes recalculés. Dernière question Q748 ; prochaine Q749. Aucun code du remodeler modifié. La branche `main` conserve V3.119, V3.120 et V3.121 ; V3.118 a été retirée après vérification, historique Git préservé.
+
+
+- **2026-11-15 — Publication V3.122 :** cinq séries de décisions techniques autonomes Q749–Q773, sections 10.718–10.742 : contrat réseau Scryfall et résilience ; recherche et pagination ; synchronisation de catalogue par Bulk Data ; modèle des identifiants, impressions et langues ; provenance, attribution et téléchargements d'illustrations. Les décisions sont attribuées à l'assistant et ne constituent pas des validations de l'utilisateur. Index actualisé vers V3.122 avec 721 questions uniques et liens recalculés pour les nouvelles sections. Point de reprise : Q773 / section 10.742 ; prochaine question Q774. La branche `main` conserve V3.120, V3.121 et V3.122 ; V3.119 est retirée après vérification, historique Git préservé. Aucun code du remodeler n'a été modifié.
