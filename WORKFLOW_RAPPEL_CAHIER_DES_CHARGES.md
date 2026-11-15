@@ -316,3 +316,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.129 :** réaffectation des deux phrases d'animation mal placées sous Q488 vers Q478 (animation discrète de glissement) et Q483 (adaptation pendant redimensionnement). L'audit avait détecté ces deux questions sans corps ; les exigences existantes ont été restaurées sans invention ni changement d'identifiant. Index recalculé. Point de reprise Q806 / 10.775 ; prochaine question Q807. Rétention cible V3.127–V3.129 ; V3.126 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.129 :** les 753 sections de question ont un contenu ; aucune section vide ; ordre strict des sections confirmé ; 753 entrées d'index uniques et zéro erreur de ligne/titre. V3.126 retirée de main après contrôle ; seules V3.127, V3.128 et V3.129 sont conservées. Point de reprise Q806 / 10.775 ; prochaine question Q807. Aucun code produit modifié.
