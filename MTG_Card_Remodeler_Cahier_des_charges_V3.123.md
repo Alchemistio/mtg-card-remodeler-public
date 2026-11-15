@@ -1,7 +1,7 @@
 # MTG Card Remodeler
 # Cahier des charges fonctionnel et technique
 
-**Version :** 3.122  
+**Version :** 3.123  
 **Date :** 15 novembre 2026  
 **Statut :** En cours de définition — décisions validées et questions ouvertes  
 **Dépôt :** https://github.com/Alchemistio/mtg-card-remodeler-public
@@ -12,7 +12,8 @@
 
 | Version | Description |
 |---|---|
-| V3.123 | Intégration Scryfall : résilience API, pagination, Bulk Data, identifiants de cartes, impressions, langues et provenance des illustrations |
+| V3.123 | Contrats de persistance et de projet, intégration FeSens, compatibilité OS/WebView, performances et validation multiplateforme (Q774–Q798) |
+| V3.122 | Intégration Scryfall : résilience API, pagination, Bulk Data, identifiants de cartes, impressions, langues et provenance des illustrations |
 | V3.121 | Historique Annuler/Rétablir, presse-papiers, interactions de pointage, édition Unicode et composition typographique |
 | V3.120 | Décodage graphique, recherche locale, accessibilité, licences des polices et performances |
 
