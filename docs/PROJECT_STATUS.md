@@ -279,3 +279,8 @@ L'audit de similarité a identifié deux paires redondantes. Q437 était identiq
 ## 17. Valeurs par défaut testables V3.131
 
 Q807–Q811 rendent numériques plusieurs exigences auparavant qualitatives : notifications non bloquantes 5 s, transitions 160 ms avec courbes adaptées et respect de prefers-reduced-motion, largeur minimale du panneau 260 px CSS, espace de travail RGB sRGB IEC 61966-2.1, seuils raster recommandés de 300 PPI (tons continus) et 600 PPI (trait monochrome). Ces valeurs sont des défauts modifiables par les profils prévus, pas des limites universelles imposées à tous les cas.
+
+
+## 18. Paramètres de rétention des journaux — V3.132
+
+Q812 ferme le report technique de Q638 : conservation par défaut 30 jours, plafond 250 Mo, rotation d'un fichier à 10 Mo ou quotidienne, compression après fermeture, choix configurables de durée et de volume. Q624 renvoie désormais explicitement à la matrice OS Q799 et aux formats de livraison Q803. Ces paramètres sont définis mais restent à implémenter et tester.
