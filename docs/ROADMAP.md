@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.126, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.127, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -104,6 +104,12 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 
 - [x] Définir le parcours d'import de decks publics par URL et ses contrôles de sécurité réseau (Q806).
 - [ ] Implémenter le service réseau natif et les tests de fournisseurs/SSRF ; l'exigence est définie, pas réalisée.
+
+### Contrôle documentaire V3.127
+
+- [x] Auditer les 75 décisions techniques Q519–Q593 auparavant marquées recommandées.
+- [x] Les adopter comme décisions techniques prises par l'assistant, sans nouvel arbitrage utilisateur.
+- [x] Recalculer les références de l'index après mise à jour des statuts.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
