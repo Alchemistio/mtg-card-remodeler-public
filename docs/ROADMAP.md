@@ -174,6 +174,12 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 - [x] Définir les valeurs initiales et les règles de rotation des journaux promises par Q638.
 - [x] Remplacer le report de compatibilité de Q624 par les matrices Q799 et Q803.
 
+### Contrôle documentaire V3.132 — rétention appliquée
+
+- [x] Vérifier 759 identifiants indexés, 757 exigences actives et 2 entrées fusionnées.
+- [x] Vérifier zéro erreur de référence et aucune section vide.
+- [x] Conserver V3.130, V3.131 et V3.132 ; V3.129 retirée de main, historique Git préservé.
+
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
 Ce plan organise la réalisation sans réduire le périmètre final validé. Il s'agit d'un plan de préparation : aucun lot ne peut commencer avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
