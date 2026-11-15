@@ -10,7 +10,7 @@
 - Dernière question enregistrée : **Q812**
 - Dernière section : **10.781**
 - Prochain numéro disponible : **Q813** ; prochaine question à préparer après consultation de la feuille de route, audit de l'index puis des sections pertinentes de V3.133
-- État : **phase de définition du cahier des charges uniquement**.
+- État : **cahier des charges V3.133 prêt pour clôture utilisateur ; aucun développement n'est autorisé avant validation explicite**.
 
 ## 1. Instruction de reprise — à appliquer en premier
 
@@ -21,9 +21,9 @@ Quand l'utilisateur demande de reprendre le projet ou fournit ce document :
 3. Lire `docs/ROADMAP.md` et relever les contrôles ouverts de la phase 0.
 4. Lire `INDEX_CAHIER_DES_CHARGES.md`, identifier la version la plus récente du cahier des charges à partir de l'index et du contenu réel du dépôt, puis ouvrir les sections liées aux contrôles ouverts.
 5. Lire la fin du cahier des charges courant et les sections thématiques pertinentes avant de préparer de nouvelles décisions.
-5. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
-6. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
-7. Poursuivre directement le workflow, sans demander à l'utilisateur de répéter les décisions déjà prises.
+6. Reprendre au prochain numéro de question non utilisé, sans réutiliser un numéro et sans repartir de zéro.
+7. Vérifier que les sujets proposés ne sont pas déjà couverts. L'index sert au repérage ; le cahier des charges complet fait foi.
+8. Poursuivre directement le workflow, sans demander à l'utilisateur de répéter les décisions déjà prises.
 
 ## 1 bis. Consultation obligatoire de la feuille de route et critères de sortie
 
@@ -125,7 +125,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
 - **Vérification des identifiants historiques :** Q594–Q618 sont explicitement réservées par l'audit du 13 novembre 2026, leurs propositions ayant été retirées pour doublons avec V3.93. Les identifiants Q499–Q503 et Q633 ne disposent pas de section correspondante dans le cahier des charges courant ; ils sont considérés comme non attribués/non réutilisables tant qu'une preuve historique ne justifie pas leur rétablissement. Les identifiants Q1–Q21 appartiennent à l'ancienne phase initiale sans entrée de question indexée. Ne jamais combler ces trous automatiquement ; le prochain identifiant courant reste Q804.
-- **Rétention :** la branche `main` doit conserver uniquement V3.131, V3.132 et V3.133. V3.130 est à retirer de `main` après vérification finale de V3.133 et de son index ; l'historique Git est préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.131, V3.132 et V3.133. V3.130 a été retirée de `main` après vérification finale de V3.133 et de son index ; l'historique Git est préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
@@ -340,3 +340,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.133 — candidate finale :** correction du format de la liste des principes, mise à jour du statut de clôture et ajout du rapport d'audit final. Le cahier des charges compte 759 identifiants (757 exigences actives, deux fusionnées), 759 sections non vides, ordre strict et zéro erreur d'index. Tous les reports techniques identifiés ont été résolus ; les écarts de code sont documentés et répartis dans les lots A–G. La phase de développement est prête à être autorisée, mais aucun code produit ne peut être modifié avant validation explicite de clôture et autorisation utilisateur. Rétention cible V3.131–V3.133 ; V3.130 à retirer après vérification. Aucun code produit modifié.
+
+
+- **2026-11-15 — Contrôle final V3.133 — rétention appliquée :** 759 identifiants indexés (757 exigences actives, 2 fusionnées), 759 sections non vides, ordre strict, zéro erreur d'index. V3.130 retirée de main après contrôle ; seules V3.131, V3.132 et V3.133 sont conservées. Phase 0 achevée au niveau documentaire ; il ne reste que la clôture formelle du cahier des charges et l'autorisation explicite de démarrer le Lot A. Point de reprise Q812 / 10.781 ; Q813 seulement si une nouvelle lacune apparaît. Aucun code produit modifié.
