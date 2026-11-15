@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.131, dernière décision Q811 / section 10.780. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.129 est la version courante ; V3.127, V3.128 et V3.129 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.132, dernière décision Q812 / section 10.781. L'index contient 759 identifiants (757 exigences actives, 2 fusionnées), vérifiés sans erreur. V3.132 est la version courante ; V3.130, V3.131 et V3.132 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -168,6 +168,11 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 - [x] Vérifier 758 identifiants d'index, dont 756 exigences actives et deux identifiants fusionnés.
 - [x] Vérifier zéro section vide, ordre strict des sections et zéro erreur de lien.
 - [x] Conserver V3.129, V3.130 et V3.131 ; V3.128 retirée de main, historique préservé.
+
+### Contrôle documentaire V3.132
+
+- [x] Définir les valeurs initiales et les règles de rotation des journaux promises par Q638.
+- [x] Remplacer le report de compatibilité de Q624 par les matrices Q799 et Q803.
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
