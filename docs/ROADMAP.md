@@ -47,6 +47,19 @@ Les cases cochées dans la section 0.2 signifient que les contrats et politiques
 - [ ] Vérifier les dépendances, leurs versions, licences, vulnérabilités connues et modalités de mise à jour.
 
 ### 0.4 Préparation de la réalisation
+
+#### Audit initial du code et des workflows — 15 novembre 2026
+
+- [~] Audit comparatif commencé ; rapport détaillé : [docs/PROJECT_STATUS.md](PROJECT_STATUS.md), section 8.
+- [ ] Corriger lors du développement le repli localStorage des cartes/projets, qui contredit la cible Q776.
+- [ ] Ajouter un lockfile, utiliser npm ci et épingler mtg-card à une version exacte, conformément à Q659 et Q784.
+- [ ] Mettre en place les tests visuels et le corpus Playwright prévus par Q755, Q766 et Q797.
+- [ ] Ajouter les validations CI macOS et compléter la validation Windows/Linux sur les environnements officiellement annoncés.
+- [ ] Rédiger la licence du projet et achever les vérifications de droits avant toute distribution.
+- [ ] Exécuter les workflows et tests sur les commits candidats ; ne pas déduire leur réussite de la seule présence des fichiers de configuration.
+
+**Écarts vérifiés :** aucun fichier de verrouillage npm/pnpm/yarn, aucun fichier LICENSE racine, aucune configuration Playwright dédiée ; le code écrit actuellement cartes et projets dans localStorage lorsque IndexedDB est indisponible ; package.json déclare mtg-card avec la plage ^0.1.1 ; la CI générale vérifiée est Linux et le workflow Windows produit des artefacts temporaires. Aucun code produit n'a été modifié pendant cet audit.
+
 - [ ] Comparer l'état réel de la branche principale, la CI et les documents d'état avec les exigences consolidées ; marquer chaque fonctionnalité comme absente, partielle, présente ou vérifiée.
 - [ ] Décomposer le périmètre complet en lots de développement ordonnés, sans réduire les exigences finales, avec dépendances, risques, tests et critères de sortie.
 - [ ] Définir les critères d'entrée en développement, les contrôles CI obligatoires et la procédure de validation des lots.
