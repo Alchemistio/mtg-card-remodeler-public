@@ -252,3 +252,10 @@ La matrice fonctionnelle est désormais définie ; le code actuel ne couvre pas 
 ## 12. Import direct des decks par URL — V3.126
 
 Q806 formalise l'import des decks publics par URL avec un service réseau natif dans Tauri, des fournisseurs autorisés, des protections SSRF, des limites de réponse et un repli fichier/texte lorsque le navigateur bloque l'accès. Le code actuel ne possède pas encore ce parcours sécurisé complet ; l'import reste best-effort et soumis aux possibilités d'accès des plateformes. La fonctionnalité est spécifiée mais non réalisée.
+
+
+## 13. Adoption des décisions techniques recommandées — V3.127
+
+Les 75 sections Q519–Q593 (10.514–10.588) ont été relues. Elles couvrent l'interface du gestionnaire d'extensions, la validation de leurs paramètres, les autorisations et la sécurité d'exécution/installation, la résolution des dépendances, la géométrie et la composition SVG, la gestion ICC, la résolution d'image, l'imposition, ainsi que la traçabilité et la publication sûre des générations.
+
+Ces recommandations ont été adoptées comme décisions techniques prises par l'assistant dans V3.127. Les sujets sont donc définis au niveau du cahier des charges ; leur implémentation et leurs tests restent des tâches de développement. Aucune décision fonctionnelle supplémentaire de l'utilisateur n'est nécessaire pour ce bloc.
