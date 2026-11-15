@@ -123,7 +123,7 @@ Ces repères sont ceux du dernier état contrôlé ; ils doivent être revalidé
 - **Prochaine question disponible : Q804.**
 - Les décisions Q749 à Q773 portent sur l'intégration Scryfall : contrat HTTP, régulation des requêtes, erreurs et reprises, pagination, Bulk Data, modèle des identifiants carte/impression/illustration, langues, cartes à plusieurs faces, métadonnées d'artiste et provenance des images.
 - Ces 25 décisions sont des choix techniques pris par l'assistant, non des validations personnelles de l'utilisateur.
-- **Rétention :** la branche `main` doit conserver uniquement V3.121, V3.122 et V3.123. V3.120 est à retirer de `main` après vérification de V3.123 et de son index ; l'historique Git est préservé.
+- **Rétention :** la branche `main` doit conserver uniquement V3.122, V3.123 et V3.124. V3.121 est à retirer de `main` après vérification de V3.124 et de son index ; l'historique Git est préservé.
 - **Aucun développement du remodeler n'est autorisé** avant clôture explicite du cahier des charges et autorisation distincte de l'utilisateur.
 
 ## 7. Domaines à explorer ensuite
