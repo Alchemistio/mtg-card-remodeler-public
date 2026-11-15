@@ -240,3 +240,10 @@ La matrice initiale de support est définie dans Q799, mais la compatibilité ef
 - Q802 exige que le packaging refuse tout asset dont les droits de redistribution ne sont pas établis. Ce contrôle n'est pas encore implémenté ni testé.
 
 **Conclusion :** les assets sources restent en inventaire et hors de la bibliothèque runtime approuvée. Aucun lot graphique issu des collections historiques ne doit être intégré à un artefact distribué avant inspection visuelle, vérification de licence et validation technique. Le registre runtime actuel doit être réconcilié avec les fichiers réellement présents avant de déclarer la gestion des assets prête.
+
+
+## 11. Matrice des layouts Scryfall — V3.125
+
+L'audit fonctionnel a montré que la spécification reconnaissait les types de cartes mais ne listait pas explicitement tous les layouts Scryfall. Les questions Q804–Q805 ajoutent cette matrice et le traitement des faces, côtés, relations meld, coûts et statistiques alternatifs, chapitres, niveaux, marqueurs et textes de rappel.
+
+La matrice fonctionnelle est désormais définie ; le code actuel ne couvre pas encore l'ensemble des layouts. Le statut de réalisation reste donc partiel et doit être vérifié layout par layout avec les fixtures visuelles de Q801/Q797. Les layouts inconnus doivent conserver leurs données et utiliser un repli générique clairement signalé.
