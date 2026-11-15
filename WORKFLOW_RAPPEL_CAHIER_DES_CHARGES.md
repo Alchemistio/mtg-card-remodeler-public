@@ -284,3 +284,6 @@ Ce fichier est un document vivant. À chaque changement du workflow — nouvelle
 
 
 - **2026-11-15 — Publication V3.124 :** ajout de cinq décisions techniques Q799–Q803, sections 10.768–10.772 : matrice initiale des systèmes et architectures officiellement supportés, machine de référence des performances, corpus visuel minimal, filtrage des assets selon les droits et formats d'artefacts par plateforme. Les décisions sont documentées comme choix techniques de l'assistant et s'appuient sur les cycles de support officiels et la documentation Tauri. Point de reprise : Q803 / 10.772 ; prochaine question Q804. Rétention cible : V3.122, V3.123 et V3.124 ; V3.121 à retirer après vérification de l'index. Aucun code produit n'a été modifié.
+
+
+- **2026-11-15 — Contrôle de publication et rétention V3.124 :** V3.124 et son index ont été vérifiés : 750 sections/questions, 750 entrées uniques et zéro erreur de référence de titre ou de ligne. V3.121 a été supprimée de la branche principale après vérification ; la branche conserve désormais V3.122, V3.123 et V3.124. Le point de reprise est Q803 / section 10.772 ; prochaine question Q804. Aucun code produit n'a été modifié.
