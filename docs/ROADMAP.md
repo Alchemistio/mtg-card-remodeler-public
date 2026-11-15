@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.130, dernière décision Q806 / section 10.775. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.129 est la version courante ; V3.127, V3.128 et V3.129 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.131, dernière décision Q811 / section 10.780. L'index contient 753 entrées uniques, vérifiées sans erreur. V3.129 est la version courante ; V3.127, V3.128 et V3.129 sont les trois versions conservées dans main.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -157,6 +157,11 @@ Cette matrice vérifie que les lots de développement ne reposent pas sur des fo
 - [x] Fusionner le doublon exact Q437 dans Q440 et le doublon sémantique Q489 dans Q485.
 - [x] Conserver les identifiants retirés comme références historiques non réutilisables.
 - [x] Mettre à jour l'index : 753 identifiants, 751 exigences actives, 2 entrées fusionnées.
+
+### Contrôle documentaire V3.131
+
+- [x] Fixer les durées de notification et de transition, la largeur minimale du panneau, l'espace RGB et les seuils de résolution d'impression.
+- [x] Rendre testables les choix auparavant exprimés par « quelques secondes », « court » ou « largeur minimale fixe ».
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
