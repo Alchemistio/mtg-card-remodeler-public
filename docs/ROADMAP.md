@@ -2,7 +2,7 @@
 
 ## Phase 0 — Clôture du cahier des charges et autorisation de développement (préalable obligatoire)
 
-**Statut au 15 novembre 2026 : en cours — cahier des charges V3.123, dernière décision Q798 / section 10.767.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
+**Statut au 15 novembre 2026 : en cours — cahier des charges V3.123, dernière décision Q798 / section 10.767. L'index contient 745 entrées uniques et ses références de ligne sont vérifiées.** Cette phase ne modifie pas le code produit. Elle transforme les points de préparation identifiés en contrôles traçables et vérifiables. Les éléments déjà présents dans le code sont évalués comme existant technique, jamais comme preuve qu'une exigence est spécifiée ou acceptée.
 
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
@@ -13,6 +13,12 @@
 - [ ] Les licences et droits des collections d'assets, des polices et des ressources Figma/FeSens restent bloquants tant qu'ils ne sont pas établis ou que les ressources concernées ne sont pas exclues.
 - [ ] La rédaction et la revue du texte de licence du projet restent à effectuer avant toute distribution.
 - [ ] Le rapport final de préparation et la clôture explicite par l'utilisateur restent à obtenir.
+
+### Contrôle documentaire V3.123
+
+- [x] Publier V3.123 avec 25 décisions techniques supplémentaires (Q774–Q798).
+- [x] Recalculer et vérifier 745 entrées uniques de l'index, avec zéro erreur de référence.
+- [x] Appliquer la règle de rétention : V3.121, V3.122 et V3.123 uniquement dans la branche principale ; V3.120 retirée, historique Git préservé.
 
 Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.123 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
 
