@@ -227,3 +227,16 @@ Ces décisions ne signifient pas que les builds ou tests multiplateformes existe
 
 La matrice initiale de support est définie dans Q799, mais la compatibilité effective de chaque build reste à démontrer. Le statut des licences FeSens/Figma et des autres assets en attente demeure un blocage à toute distribution contenant ces ressources. Le texte définitif de licence du code, demandé par Q632, reste à rédiger et faire relire avant toute diffusion autorisée du code.
 
+
+
+## 10. Audit complémentaire du registre d'assets — 15 novembre 2026
+
+- L'inventaire source couvre 37 371 fichiers répartis en cinq collections, pour environ 1,75 Go. Cet inventaire décrit les sources ; il ne constitue pas une validation visuelle, juridique ou d'intégration.
+- Les cinq collections restent au statut global pending-review pour les droits ; les planches de contact n'ont pas été générées et examinées dans un clone local complet.
+- Le registre Assets/LIBRARY ne contient volontairement aucun asset de production approuvé.
+- Le validateur Python contrôle la structure des inventaires, les identifiants/chemins uniques, les statuts et les Git blob SHA ; il ne certifie ni la licence ni l'apparence ni les dimensions binaires.
+- Le manifeste TypeScript src/assets/manifest.ts déclare six fichiers assets/frames/*.svg comme project-generated, mais le rapport d'audit indique que ces fichiers ne sont pas présents à ces emplacements. Leur usage réel dans le rendu reste à démontrer.
+- Le manifeste TypeScript n'impose pas encore le statut de droits requis par Q802 ; son type actuel distingue user-provided, open-license et project-generated, sans lien vers une preuve de licence.
+- Q802 exige que le packaging refuse tout asset dont les droits de redistribution ne sont pas établis. Ce contrôle n'est pas encore implémenté ni testé.
+
+**Conclusion :** les assets sources restent en inventaire et hors de la bibliothèque runtime approuvée. Aucun lot graphique issu des collections historiques ne doit être intégré à un artefact distribué avant inspection visuelle, vérification de licence et validation technique. Le registre runtime actuel doit être réconcilié avec les fichiers réellement présents avant de déclarer la gestion des assets prête.
