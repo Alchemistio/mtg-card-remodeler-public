@@ -7,7 +7,7 @@
 ### Avancement de la phase 0 — contrôle du 15 novembre 2026
 
 - [x] La phase de clôture préalable est formalisée et intégrée au workflow.
-- [x] Les décisions techniques Q774–Q798 ont précisé les contrats de persistance, le format de projet, l'intégration FeSens, les politiques OS/WebView, les budgets de performance et les validations.
+- [x] Les décisions techniques Q774–Q806 ont précisé les contrats de persistance, le format de projet, l'intégration FeSens, les politiques OS/WebView, les budgets de performance, les layouts Scryfall et l'import sécurisé par URL.
 - [ ] L'audit fonctionnel global et la vérification de toutes les interactions restent à effectuer.
 - [ ] Les preuves d'exécution sur les plateformes cibles et la comparaison exhaustive entre le dépôt, la CI et les exigences restent à effectuer.
 - [ ] Les licences et droits des collections d'assets, des polices et des ressources Figma/FeSens restent bloquants tant qu'ils ne sont pas établis ou que les ressources concernées ne sont pas exclues.
@@ -28,7 +28,7 @@
 - [x] Définir le contrôle bloquant des droits d'assets avant inclusion dans un paquet distribué.
 - [x] Définir les formats d'artefacts Windows, macOS et Linux, avec conditions de validation.
 
-Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.123 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
+Les cases cochées dans la section 0.2 signifient que les contrats et politiques sont maintenant définis dans V3.128 ; elles ne signifient pas que les fonctionnalités sont implémentées ni que les validations de plateforme ou de conformité ont été exécutées.
 
 ---
 
@@ -121,6 +121,24 @@ L'inventaire de 37 371 fichiers est un inventaire de sources, pas une bibliothè
 
 - [x] Vérifier 753 questions, 753 entrées d'index, zéro erreur et ordre strict des sections.
 - [x] Conserver V3.126, V3.127 et V3.128 dans main ; V3.125 retirée, historique Git préservé.
+
+## Matrice de traçabilité entre la feuille de route et le cahier des charges
+
+Cette matrice vérifie que les lots de développement ne reposent pas sur des fonctionnalités implicites ou inventées. Les références pointent vers l'index V3.128 ; les numéros ci-dessous sont les identifiants de questions, pas les numéros de ligne.
+
+| Lot / chantier | Exigences déjà définies | Ce qui reste à faire |
+|---|---|---|
+| A — fondations et persistance | Q357, Q659–Q663, Q774–Q783, Q784 | Aligner le code, ajouter lockfile/npm ci, migration localStorage, tests de contrat et intégrité |
+| B — rendu et layouts | Q27–Q28, Q33, Q569–Q573, Q714–Q718, Q739–Q748, Q784–Q788, Q804–Q805, Q797, Q801 | Implémenter la matrice complète, stabiliser FeSens/SVG, polices et corpus visuel |
+| C — assets et licences | Q714–Q718, Q730, Q771–Q772, Q757, Q802, Q801 | Réconcilier les manifestes, inspecter visuellement les sources, vérifier les droits et bloquer les assets non autorisés au packaging |
+| D — éditeur et projets | Q27–Q28, Q29–Q32, Q174–Q203, Q357, Q748–Q752, Q779–Q783 | Compléter l'éditeur et les workflows projets, puis valider migrations, restauration et portabilité |
+| E — import, catalogue et hors ligne | Q30–Q31, Q334, Q702–Q708, Q749–Q773, Q806 | Implémenter les imports publics, la synchronisation et le cache, avec repli hors ligne sûr |
+| F — impression et exports | Q34–Q47, Q574–Q593, Q716–Q718, Q756–Q787, Q797–Q801 | Implémenter profils ICC, qualité de résolution, imposition, exports et validation sur sorties réelles |
+| G — multiplateforme et livraison | Q624, Q644, Q659–Q663, Q758–Q763, Q767, Q794, Q798–Q803 | Construire et tester les artefacts sur les OS annoncés, compléter la CI, signatures, documentation et conformité |
+
+**Résultat de l'audit de couverture :** les chantiers actuellement ouverts dans les phases 1 à 4 de cette feuille de route disposent maintenant d'exigences de référence identifiées dans V3.128. Cela valide la traçabilité du périmètre, mais ne prouve ni l'implémentation ni l'exécution des tests. Toute lacune découverte pendant un lot doit être ajoutée à la spécification avant sa réalisation, sans réduire le périmètre existant.
+
+---
 
 ## Plan de lots pour le développement complet — préparé, non autorisé à démarrer
 
@@ -224,7 +242,7 @@ Ce plan organise la réalisation sans réduire le périmètre final validé. Il 
 - [x] Analyser les symboles de règles et les retours à la ligne.
 - [x] Produire un premier rendu SVG.
 - [x] Ajouter un ajustement typographique et un diagnostic de débordement.
-- [x] Ajouter une bibliothèque locale IndexedDB avec repli localStorage.
+- [x] Existant actuel : bibliothèque locale IndexedDB avec repli localStorage ; ce repli est non conforme à la cible Q776 et doit être remplacé dans le lot A.
 - [x] Mettre en cache les recherches Scryfall pendant 12 h en mémoire et dans le stockage persistant.
 - [x] Ajouter une persistance SQLite dans l'application Tauri, y compris le cache Scryfall.
 - [x] Ajouter des exports SVG, PNG 3× et PDF au format physique standard.
@@ -244,7 +262,7 @@ Ce plan organise la réalisation sans réduire le périmètre final validé. Il 
 - [ ] Corpus visuel de référence et tests de régression par famille de cartes.
 
 ## Phase 3 — Atelier de personnalisation
-- [x] Ajouter une dépendance versionnée au paquet de cadres FeSens (SVG, textures et glyphes).
+- [x] Ajouter le paquet de cadres FeSens (SVG, textures et glyphes) ; la plage actuelle ^0.1.1 doit être remplacée par une version exacte selon Q784 dans le lot A.
 - [ ] Registre d’assets local unifié : cadres, textures, symboles, polices et masques, avec inventaire de licences.
 - [ ] Éditeur de cadres et de zones de texte.
 - [ ] Séparation des données Scryfall et des surcharges utilisateur.
